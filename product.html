@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Produs — Mon Chérie</title>
+  <meta name="description" content="Bumbac 100%, livrare 24–48h, retur gratuit 30 de zile. Descoperă produsul pe Mon Chérie — fashion premium accesibil.">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' fill='%23F6F3EE'/%3E%3Ctext x='32' y='44' font-family='Georgia,serif' font-style='italic' font-size='34' fill='%23A31621' text-anchor='middle'%3EMC%3C/text%3E%3C/svg%3E">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..640;1,9..144,300..640&family=Manrope:wght@400..800&display=swap">
+  <link rel="stylesheet" href="assets/css/main.css">
+  <link rel="stylesheet" href="assets/css/product.css">
+</head>
+<body>
+
+  <div id="mc-header"></div>
+
+  <main id="main">
+
+    <!-- Galerie + buy-box (randate din product.js pe baza ?p=handle) -->
+    <div class="container pdp-top">
+      <div class="pdp-grid">
+        <section class="pdp-gallery" id="pdp-gallery" aria-label="Galerie foto produs"></section>
+        <section class="pdp-buybox" id="pdp-buybox" aria-label="Informații produs și cumpărare"></section>
+      </div>
+    </div>
+
+    <!-- Merge perfect cu -->
+    <section class="pdp-sub" id="pdp-pairs" aria-labelledby="pairs-title" hidden>
+      <div class="container">
+        <p class="micro rv">Stilul complet</p>
+        <h2 class="h2 rv" id="pairs-title">Merge perfect <em>cu</em></h2>
+        <div class="pdp-rail" id="pairs-rail" role="list" aria-label="Produse recomandate"></div>
+      </div>
+    </section>
+
+    <!-- Recenzii -->
+    <section class="pdp-sub pdp-sub--reviews" id="pdp-reviews" aria-labelledby="reviews-title">
+      <div class="container">
+        <p class="micro rv">Clienții spun</p>
+        <h2 class="h2 rv" id="reviews-title">Recenzii <em>verificate</em></h2>
+        <div class="rev-wrap" id="rev-wrap"></div>
+      </div>
+    </section>
+
+    <!-- Ai văzut recent -->
+    <section class="pdp-sub" id="pdp-recent" aria-labelledby="recent-title" hidden>
+      <div class="container">
+        <p class="micro rv">Continuă de unde ai rămas</p>
+        <h2 class="h2 rv" id="recent-title">Ai văzut <em>recent</em></h2>
+        <div class="pdp-rail" id="recent-rail" role="list" aria-label="Produse văzute recent"></div>
+      </div>
+    </section>
+
+  </main>
+
+  <div id="mc-footer"></div>
+
+  <!-- Sticky ATC mobil -->
+  <div class="pdp-stickybar" id="pdp-stickybar" aria-hidden="true"></div>
+
+  <!-- Modal Ghid mărimi -->
+  <div class="pdp-modal" id="pdp-modal" hidden></div>
+
+  <script src="assets/js/data.js"></script>
+  <script src="assets/js/shared.js"></script>
+  <script src="assets/js/product.js"></script>
+</body>
+</html>

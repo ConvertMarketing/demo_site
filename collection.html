@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Colecție — Mon Chérie</title>
+  <meta name="description" content="Explorează colecțiile Mon Chérie — tricouri, bluze și treninguri din bumbac 100%, cu imprimeuri originale. Filtrează după culoare, mărime și preț.">
+  <meta name="theme-color" content="#F6F3EE">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%2024%2024'%3E%3Cpath%20d='M12%2020.6s-7.4-4.8-9.6-9.3A5.2%205.2%200%200%201%2012%207.1a5.2%205.2%200%200%201%209.6%204.2c-2.2%204.5-9.6%209.3-9.6%209.3z'%20fill='%23A31621'/%3E%3C/svg%3E">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..620;1,9..144,300..620&family=Manrope:wght@400;500;600;700;800&display=swap">
+  <link rel="stylesheet" href="assets/css/main.css">
+  <link rel="stylesheet" href="assets/css/collection.css">
+</head>
+<body>
+  <div id="mc-header"></div>
+
+  <main id="main">
+    <!-- Hero compact colecție -->
+    <section class="col-hero">
+      <div class="container">
+        <nav class="col-crumbs" aria-label="Breadcrumb" data-crumbs></nav>
+        <p class="micro col-sub" data-col-sub></p>
+        <h1 class="col-title" data-col-title>Colecție</h1>
+        <p class="col-desc" data-col-desc></p>
+        <p class="col-note" data-col-note hidden></p>
+        <p class="col-hero-count" data-col-count></p>
+      </div>
+    </section>
+
+    <!-- Chips colecții înrudite -->
+    <nav class="col-chips-wrap" aria-label="Colecții înrudite">
+      <div class="container">
+        <div class="col-chips" data-chips></div>
+      </div>
+    </nav>
+
+    <!-- Toolbar sticky: filtre + sort -->
+    <div class="col-toolbar-sentinel" data-sentinel aria-hidden="true"></div>
+    <section class="col-toolbar" data-toolbar aria-label="Filtrare și sortare">
+      <div class="container col-toolbar-inner">
+        <button type="button" class="colf-trigger" data-colf-open aria-haspopup="dialog" aria-expanded="false">
+          <span class="col-ic" data-icon="filter" aria-hidden="true"></span>
+          <span>Filtrează</span>
+          <b class="colf-n" data-trigger-n hidden></b>
+        </button>
+        <div class="colf" data-colf></div>
+        <p class="col-count" data-count aria-live="polite"></p>
+        <div class="col-sort">
+          <span class="col-ic" data-icon="sort" aria-hidden="true"></span>
+          <label class="visually-hidden" for="col-sort">Sortează produsele</label>
+          <select id="col-sort" data-sort>
+            <option value="recomandate">Recomandate</option>
+            <option value="pret-asc">Preț ↑</option>
+            <option value="pret-desc">Preț ↓</option>
+            <option value="noutati">Noutăți</option>
+            <option value="rating">Rating</option>
+          </select>
+        </div>
+      </div>
+      <div class="container col-active" data-active hidden></div>
+    </section>
+
+    <!-- Grilă produse -->
+    <section class="col-products">
+      <div class="container">
+        <div class="col-grid" data-grid></div>
+        <div class="col-empty" data-empty hidden>
+          <span class="col-ic" data-icon="search" aria-hidden="true"></span>
+          <p class="h3">Niciun produs nu se potrivește.</p>
+          <p>Încearcă să scoți un filtru sau explorează altă colecție.</p>
+          <button type="button" class="btn btn-ghost" data-clear-all>Șterge filtrele</button>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <div id="mc-footer"></div>
+  <div class="colf-scrim" data-colf-scrim aria-hidden="true"></div>
+
+  <script src="assets/js/data.js"></script>
+  <script src="assets/js/shared.js"></script>
+  <script src="assets/js/collection.js"></script>
+</body>
+</html>
