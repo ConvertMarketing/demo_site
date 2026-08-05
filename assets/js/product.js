@@ -30,6 +30,11 @@
     if (q) handle = q;
   } catch (e) { /* noop */ }
   var P = (typeof mcProduct === "function") ? (mcProduct(handle) || mcProduct(DEFAULT_HANDLE)) : null;
+  /* handle invalid → fallback vizibil (notă + URL corectat), nu tăcut */
+  var invalidHandle = !!(P && handle !== P.handle);
+  if (invalidHandle) {
+    try { history.replaceState(null, "", location.pathname + "?p=" + encodeURIComponent(P.handle)); } catch (e) { /* file:// */ }
+  }
 
   var gallery = $("#pdp-gallery");
   var buybox = $("#pdp-buybox");
@@ -45,6 +50,17 @@
   document.title = P.title + " — " + money(P.price) + " · Mon Chérie";
 
   var COL = COLLECTIONS[P.collection] || { title: "Colecție" };
+
+  /* Recenziile sunt un pool global — filtrează-le pe cele nepotrivite contextului */
+  var PCOLS = (P.collections || [P.collection]).join(" ");
+  var isVelvetProduct = /trening|catifea/i.test(P.handle + " " + PCOLS);
+  if (!isVelvetProduct) {
+    REVIEWS = REVIEWS.filter(function (r) { return !/catifea|trening|vișin/i.test(r.title + " " + r.text); });
+  }
+  if (P.sizes === "case" || P.sizes === "set") {
+    REVIEWS = REVIEWS.filter(function (r) { return !/mărime/i.test(r.title + " " + r.text); });
+  }
+
   var IMAGES = P.images || [];
   var COLORS = P.colors || [];
   var SIZES = P.sizeList || [];
@@ -70,13 +86,8 @@
     return "Transport gratuit la comenzi peste " + money(PROMOS.freeShippingThreshold || 200);
   }
 
-  /* ---------- Badge helper (aceeași logică vizuală ca pe card) ---------- */
-  function badgeClass(b) {
-    if (!b) return "";
-    if (/^-|→|=/.test(b)) return " mc-badge--sale";
-    if (/bestseller/i.test(b)) return " mc-badge--gold";
-    return "";
-  }
+  /* ---------- Badge helper — sursa unică din shared.js ---------- */
+  var badgeClass = MC.badgeClass || function () { return ""; };
 
   /* =========================================================
      Galerie
@@ -88,7 +99,7 @@
         "</div>";
     }).join("");
     var thumbs = IMAGES.map(function (src, i) {
-      return '<button type="button" class="pdp-thumb' + (i === 0 ? " active" : "") + '" data-goto="' + i + '" data-tone="' + esc(TONE) + '" aria-label="Imaginea ' + (i + 1) + '">' +
+      return '<button type="button" class="pdp-thumb' + (i === 0 ? " active" : "") + '" data-goto="' + i + '" data-tone="' + esc(TONE) + '" aria-pressed="' + (i === 0) + '" aria-label="Imaginea ' + (i + 1) + '">' +
         '<img src="' + esc(src) + '" alt="" loading="lazy">' +
         "</button>";
     }).join("");
@@ -97,7 +108,7 @@
     }).join("");
     var pct = sale ? Math.round((1 - P.price / P.compareAt) * 100) : 0;
     gallery.innerHTML =
-      '<div class="pdp-thumbs" role="tablist" aria-label="Miniaturi">' + thumbs + "</div>" +
+      '<div class="pdp-thumbs" role="group" aria-label="Miniaturi">' + thumbs + "</div>" +
       '<div class="pdp-stage">' +
         '<div class="pdp-track" tabindex="0" aria-label="Imagini produs — derulează">' + slides + "</div>" +
         (P.badge ? '<span class="mc-badge' + badgeClass(P.badge) + '">' + esc(P.badge) + "</span>" : "") +
@@ -115,7 +126,10 @@
   function markActive(i) {
     if (i === activeIdx) return;
     activeIdx = i;
-    $$(".pdp-thumb", gallery).forEach(function (t, j) { t.classList.toggle("active", j === i); });
+    $$(".pdp-thumb", gallery).forEach(function (t, j) {
+      t.classList.toggle("active", j === i);
+      t.setAttribute("aria-pressed", j === i ? "true" : "false");
+    });
     $$(".pdp-dot", gallery).forEach(function (d, j) { d.classList.toggle("active", j === i); });
   }
   function bindGallery() {
@@ -171,7 +185,7 @@
           '<span class="pdp-bundle-price"><s>' + money(combined) + "</s><b>" + money(bundlePrice) + "</b></span>" +
         "</span>" +
       "</div>" +
-      '<label class="pdp-bundle-check"><input type="checkbox" id="pdp-bundle-cb"><span>Adaugă ambele în coș (−10% afișat la set)</span></label>' +
+      '<label class="pdp-bundle-check"><input type="checkbox" id="pdp-bundle-cb"><span>Adaugă ambele în coș (−10% aplicat în coș)</span></label>' +
       "</div>";
   }
 
@@ -195,8 +209,9 @@
     ];
     return '<div class="pdp-acc">' + items.map(function (it) {
       return '<div class="pdp-acc-item' + (it.open ? " open" : "") + '">' +
+        /* + / − comutate din CSS după starea .open (nu „×”) */
         '<h3><button type="button" class="pdp-acc-btn" aria-expanded="' + it.open + '" aria-controls="acc-' + it.id + '">' +
-          esc(it.title) + icon("plus") + "</button></h3>" +
+          esc(it.title) + '<span class="pdp-acc-ic" aria-hidden="true">' + icon("plus") + icon("minus") + "</span></button></h3>" +
         '<div class="pdp-acc-panel" id="acc-' + it.id + '"' + (it.open ? "" : ' aria-hidden="true"') + '><div class="pdp-acc-inner"><div>' + it.html + "</div></div></div>" +
       "</div>";
     }).join("") + "</div>";
@@ -208,6 +223,9 @@
   function renderBuybox() {
     var showGuide = P.sizes === "adult" || P.sizes === "kids";
     buybox.innerHTML =
+      /* notă pentru handle invalid (fallback pe bestseller) */
+      (invalidHandle ? '<p class="pdp-note" role="status">Produsul „' + esc(handle) + '” nu există — îți arătăm în schimb bestsellerul nostru.</p>' : "") +
+
       /* breadcrumb */
       '<nav class="pdp-crumbs" aria-label="Breadcrumb"><ol>' +
         '<li><a href="index.html">Acasă</a></li><li class="sep" aria-hidden="true">›</li>' +
@@ -234,9 +252,9 @@
       /* culori */
       (COLORS.length ? '<div class="pdp-block">' +
         '<div class="pdp-block-label"><span>Culoare: <b data-color-name>' + esc(COLORS[0].name) + "</b></span></div>" +
-        '<div class="pdp-colors" role="radiogroup" aria-label="Alege culoarea">' +
+        '<div class="pdp-colors" role="group" aria-label="Alege culoarea">' +
           COLORS.map(function (c, i) {
-            return '<button type="button" class="pdp-color' + (i === 0 ? " active" : "") + '" role="radio" aria-checked="' + (i === 0) +
+            return '<button type="button" class="pdp-color' + (i === 0 ? " active" : "") + '" aria-pressed="' + (i === 0) +
               '" data-color="' + i + '" style="background:' + esc(c.hex) + '" title="' + esc(c.name) + '" aria-label="' + esc(c.name) + '"></button>';
           }).join("") +
         "</div></div>" : "") +
@@ -246,9 +264,9 @@
         '<div class="pdp-block-label"><span>' + esc(sizeLabels[P.sizes] || "Mărime") + "</span>" +
           (showGuide ? '<button type="button" class="pdp-guide-link" data-guide>Ghid mărimi</button>' : "") +
         "</div>" +
-        '<div class="pdp-sizes" role="radiogroup" aria-label="Alege mărimea">' +
+        '<div class="pdp-sizes" role="group" aria-label="Alege mărimea">' +
           SIZES.map(function (s) {
-            return '<button type="button" class="pdp-size" role="radio" aria-checked="false" data-size="' + esc(s) + '">' + esc(s) + "</button>";
+            return '<button type="button" class="pdp-size" aria-pressed="false" data-size="' + esc(s) + '">' + esc(s) + "</button>";
           }).join("") +
         "</div>" +
         '<p class="pdp-size-msg" role="alert" data-size-msg>' + icon("tag") + "Te rugăm să alegi " + (P.sizes === "case" ? "modelul de telefon" : "o mărime") + " mai întâi.</p>" +
@@ -318,8 +336,14 @@
   function doATC() {
     if (needSize()) { flagSizeMissing(false); return false; }
     var color = COLORS[state.colorIdx] ? COLORS[state.colorIdx].name : "";
-    MC.cart.add(P.handle, { color: color, size: state.size || "", qty: state.qty });
-    if (state.bundle && UP) MC.cart.add(UP.handle, { qty: 1 });
+    /* bundle: ambele piese marcate cu același id → shared.js aplică −10% în coș */
+    var bundleId = (state.bundle && UP) ? "set-" + P.handle : "";
+    MC.cart.add(P.handle, { color: color, size: state.size || "", qty: state.qty, bundle: bundleId });
+    if (state.bundle && UP) {
+      /* upsell-ul moștenește mărimea aleasă la produsul principal (dacă există) */
+      var upSize = (UP.sizeList || []).indexOf(state.size) !== -1 ? state.size : "";
+      MC.cart.add(UP.handle, { qty: 1, size: upSize, bundle: bundleId });
+    }
     MC.cart.open();
     return true;
   }
@@ -332,7 +356,7 @@
         state.colorIdx = +t.getAttribute("data-color");
         $$(".pdp-color", buybox).forEach(function (b, i) {
           b.classList.toggle("active", i === state.colorIdx);
-          b.setAttribute("aria-checked", i === state.colorIdx ? "true" : "false");
+          b.setAttribute("aria-pressed", i === state.colorIdx ? "true" : "false");
         });
         var nameEl = $("[data-color-name]", buybox);
         if (nameEl) nameEl.textContent = COLORS[state.colorIdx].name;
@@ -345,7 +369,7 @@
         $$(".pdp-size", buybox).forEach(function (b) {
           var on = b === t;
           b.classList.toggle("active", on);
-          b.setAttribute("aria-checked", on ? "true" : "false");
+          b.setAttribute("aria-pressed", on ? "true" : "false");
         });
         var msg = $("[data-size-msg]", buybox);
         if (msg) msg.classList.remove("show");
@@ -400,9 +424,15 @@
         rows.map(function (r) { return "<tr><td>" + r[0] + "</td><td>" + r[1] + "</td><td>" + r[2] + "</td></tr>"; }).join("") +
         "</tbody></table>";
     }
-    var rows2 = [["XS", "82–86", "62–66", "60"], ["S", "86–90", "66–70", "62"], ["M", "90–96", "70–76", "64"], ["L", "96–102", "76–82", "66"], ["XL", "102–110", "82–90", "68"], ["2XL", "110–118", "90–98", "70"]];
-    return '<table class="pdp-size-table"><thead><tr><th scope="col">Mărime</th><th scope="col">Bust (cm)</th><th scope="col">Talie (cm)</th><th scope="col">Lungime (cm)</th></tr></thead><tbody>' +
-      rows2.map(function (r) { return "<tr><td>" + r.join("</td><td>") + "</td></tr>"; }).join("") +
+    /* măsurători diferite pentru damă vs bărbați/unisex; doar mărimile din sizeList */
+    var male = /barbat|unisex/i.test(P.handle + " " + PCOLS + " " + ((P.details || {}).fit || ""));
+    var rows2 = male
+      ? [["XS", "88–92", "72–76", "66"], ["S", "92–98", "76–82", "68"], ["M", "98–104", "82–88", "70"], ["L", "104–112", "88–96", "72"], ["XL", "112–120", "96–104", "74"], ["2XL", "120–128", "104–112", "76"]]
+      : [["XS", "82–86", "62–66", "60"], ["S", "86–90", "66–70", "62"], ["M", "90–96", "70–76", "64"], ["L", "96–102", "76–82", "66"], ["XL", "102–110", "82–90", "68"], ["2XL", "110–118", "90–98", "70"]];
+    var rows3 = rows2.filter(function (r) { return SIZES.indexOf(r[0]) !== -1; });
+    if (!rows3.length) rows3 = rows2;
+    return '<table class="pdp-size-table"><thead><tr><th scope="col">Mărime</th><th scope="col">' + (male ? "Piept" : "Bust") + ' (cm)</th><th scope="col">Talie (cm)</th><th scope="col">Lungime (cm)</th></tr></thead><tbody>' +
+      rows3.map(function (r) { return "<tr><td>" + r.join("</td><td>") + "</td></tr>"; }).join("") +
       "</tbody></table>";
   }
   function openGuide() {
@@ -421,6 +451,7 @@
     modal.hidden = false;
     document.documentElement.classList.add("mc-lock");
     lastFocus = document.activeElement;
+    if (MC.trapFocus) MC.trapFocus($(".pdp-modal-panel", modal) || modal);
     var closeBtn = $(".pdp-modal-close", modal);
     if (closeBtn) closeBtn.focus();
   }
@@ -428,6 +459,7 @@
     if (!modal || modal.hidden) return;
     modal.hidden = true;
     modal.innerHTML = "";
+    if (MC.releaseTrap) MC.releaseTrap();
     document.documentElement.classList.remove("mc-lock");
     if (lastFocus && lastFocus.focus) { try { lastFocus.focus(); } catch (e) {} }
   }
@@ -533,7 +565,7 @@
             visible.map(function (r) { return revCard(r, false); }).join("") +
             extra.map(function (r) { return revCard(r, true); }).join("") +
           "</div>" +
-          (extra.length ? '<button type="button" class="btn btn-ghost rev-more" data-rev-more aria-expanded="false">Vezi toate (' + REVIEWS.length + ")</button>" : "") +
+          (extra.length ? '<button type="button" class="btn btn-ghost rev-more" data-rev-more aria-expanded="false">Vezi mai multe recenzii</button>' : "") +
         "</div>" +
       "</div>";
     var more = $("[data-rev-more]", wrap);
@@ -541,7 +573,7 @@
       var opened = more.getAttribute("aria-expanded") === "true";
       $$("[data-rev-extra]", wrap).forEach(function (c) { c.hidden = opened; });
       more.setAttribute("aria-expanded", opened ? "false" : "true");
-      more.textContent = opened ? "Vezi toate (" + REVIEWS.length + ")" : "Afișează mai puțin";
+      more.textContent = opened ? "Vezi mai multe recenzii" : "Afișează mai puțin";
     });
   }
 

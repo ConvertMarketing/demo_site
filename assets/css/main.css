@@ -11,7 +11,7 @@
   --surface: #FFFFFF;
   --ink: #16130F;
   --ink-soft: #5C554B;
-  --muted: #8A7F72;
+  --muted: #75695C; /* AA (≥4.5:1) pe --bg și pe alb pentru text mic */
   --line: #E4DED4;
   --cherry: #A31621;
   --cherry-deep: #7C1220;
@@ -56,11 +56,16 @@ h1, h2, h3, h4 { font-weight: inherit; overflow-wrap: break-word; }
   outline-offset: 2px;
   border-radius: var(--radius);
 }
+/* pe secțiunile dark, outline-ul ink ar fi invizibil */
+.promo-band :focus-visible,
+.col-break :focus-visible,
+.mc-announce :focus-visible {
+  outline-color: var(--bg);
+}
 ::selection { background: var(--blush); color: var(--ink); }
 html.mc-lock, html.mc-lock body { overflow: hidden; }
 
 /* ---------- 3. Tipografie ---------- */
-.font-display { font-family: var(--font-display); }
 .display {
   font-family: var(--font-display);
   font-size: clamp(2.6rem, 6vw, 5rem);
@@ -90,7 +95,6 @@ html.mc-lock, html.mc-lock body { overflow: hidden; }
   text-transform: uppercase;
   color: var(--ink-soft);
 }
-.micro--cherry { color: var(--cherry); }
 .lead { font-size: 17px; color: var(--ink-soft); max-width: 46ch; }
 small, .small { font-size: 13px; }
 
@@ -102,7 +106,6 @@ small, .small { font-size: 13px; }
   padding-inline: clamp(20px, 4vw, 48px);
 }
 .section { padding-block: clamp(64px, 10vw, 120px); }
-.hairline { border: 0; border-top: 1px solid var(--line); }
 .skip-link {
   position: absolute;
   left: 12px; top: -60px;
@@ -168,8 +171,6 @@ small, .small { font-size: 13px; }
 .btn-primary:hover, .btn-primary:focus-visible { background: var(--cherry); color: #fff; }
 .btn-ghost { border-color: var(--ink); color: var(--ink); background: transparent; }
 .btn-ghost:hover, .btn-ghost:focus-visible { background: var(--ink); color: var(--bg); }
-.btn-dark { background: var(--bg); color: var(--ink); }
-.btn-dark:hover, .btn-dark:focus-visible { background: var(--cherry); color: #fff; }
 .btn-cherry { background: var(--cherry); color: #fff; }
 .btn-cherry:hover, .btn-cherry:focus-visible { background: var(--cherry-deep); color: #fff; }
 .btn--block { width: 100%; }
@@ -322,7 +323,8 @@ small, .small { font-size: 13px; }
 }
 .mc-mega-grid {
   display: grid;
-  grid-template-columns: 1fr auto;
+  grid-template-columns: auto auto;
+  justify-content: space-between;
   gap: clamp(28px, 4vw, 64px);
   padding-block: 34px 26px;
 }
@@ -539,7 +541,6 @@ small, .small { font-size: 13px; }
   transition: border-color .2s, color .2s, background-color .2s;
 }
 .mc-chip:hover, .mc-chip:focus-visible { border-color: var(--ink); }
-.mc-chip[aria-pressed="true"], .mc-chip.active { background: var(--ink); color: var(--bg); border-color: var(--ink); }
 .mc-search-sugg { margin-top: 14px; }
 .mc-sugg-item {
   display: flex;
@@ -621,6 +622,8 @@ small, .small { font-size: 13px; }
   background: var(--blush);
 }
 .mc-cart-item-title { font-size: 14px; font-weight: 600; line-height: 1.35; }
+.mc-cart-item-title a { transition: color .2s; }
+.mc-cart-item-title a:hover, .mc-cart-item-title a:focus-visible { color: var(--cherry); }
 .mc-cart-item-meta { font-size: 12px; color: var(--muted); margin-top: 2px; }
 .mc-cart-item-row {
   display: flex;
@@ -630,6 +633,7 @@ small, .small { font-size: 13px; }
   margin-top: 10px;
 }
 .mc-cart-item-price { font-size: 14px; font-weight: 700; }
+.mc-cart-item-price s { color: var(--muted); font-weight: 500; font-size: 12px; margin-left: 6px; }
 .mc-cart-remove {
   font-size: 11.5px;
   color: var(--muted);
@@ -655,7 +659,6 @@ small, .small { font-size: 13px; }
   transition: color .2s;
 }
 .mc-qty button:hover { color: var(--ink); }
-.mc-qty button:disabled { opacity: .35; cursor: default; }
 .mc-qty svg { width: 13px; height: 13px; }
 .mc-qty output {
   min-width: 26px;
@@ -674,10 +677,12 @@ small, .small { font-size: 13px; }
 }
 .mc-cartd-upsell .micro { display: block; margin-bottom: 10px; color: var(--muted); }
 .mc-upsell-row {
+  position: relative; /* ancoră pentru popover-ul de mărime */
   display: flex;
   align-items: center;
   gap: 12px;
 }
+.mc-upsell-row .qa-pop { left: 0; right: 0; bottom: calc(100% + 8px); }
 .mc-upsell-row img {
   width: 48px; height: 60px;
   object-fit: cover;
@@ -714,6 +719,27 @@ small, .small { font-size: 13px; }
 }
 .mc-cartd-total b { font-size: 18px; }
 .mc-cartd-note { font-size: 11.5px; color: var(--muted); margin-bottom: 14px; }
+.mc-cartd-discounts { margin-bottom: 6px; }
+.mc-cartd-disc {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 12px;
+  font-size: 12.5px;
+  font-weight: 600;
+  color: var(--cherry);
+  margin-bottom: 4px;
+}
+.mc-cartd-hint {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  margin-top: 9px;
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--cherry-deep);
+}
+.mc-cartd-hint svg { width: 14px; height: 14px; flex: none; color: var(--cherry); }
 
 /* ---------- 12. Card produs ---------- */
 .mc-card { position: relative; }
@@ -815,6 +841,41 @@ small, .small { font-size: 13px; }
 }
 .mc-swatch-more { font-size: 11px; color: var(--muted); font-weight: 600; }
 
+/* Quick-add: mini-selector de mărime (global — home, colecție, PDP, coș) */
+.qa-pop {
+  position: absolute;
+  left: 8px; right: 8px; bottom: 8px;
+  z-index: 3;
+  background: rgba(255, 255, 255, .96);
+  -webkit-backdrop-filter: blur(6px);
+  backdrop-filter: blur(6px);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow);
+  padding: 12px;
+  opacity: 0;
+  transform: translateY(8px);
+  transition: opacity .25s, transform .25s var(--ease-out);
+}
+.qa-pop.in { opacity: 1; transform: none; }
+.qa-pop .micro { display: block; margin-bottom: 8px; color: var(--muted); }
+.qa-sizes { display: flex; flex-wrap: wrap; gap: 6px; }
+.qa-sizes button {
+  min-width: 38px;
+  min-height: 34px;
+  padding-inline: 9px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  font-size: 12px;
+  font-weight: 700;
+  background: var(--surface);
+  transition: background-color .15s, color .15s, border-color .15s;
+}
+.qa-sizes button:hover, .qa-sizes button:focus-visible {
+  background: var(--ink);
+  color: var(--bg);
+  border-color: var(--ink);
+}
+
 /* ---------- 13. Toast ---------- */
 .mc-toast {
   position: fixed;
@@ -870,7 +931,7 @@ small, .small { font-size: 13px; }
 }
 .mc-footer-top {
   display: grid;
-  grid-template-columns: 1.35fr repeat(3, 1fr);
+  grid-template-columns: 1.35fr repeat(4, 1fr);
   gap: clamp(24px, 4vw, 56px);
   padding-block: clamp(44px, 6vw, 72px) clamp(34px, 5vw, 56px);
 }

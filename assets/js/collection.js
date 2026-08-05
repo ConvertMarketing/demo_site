@@ -28,17 +28,12 @@
   };
   var PROMO_IMG = { tee4for3: "tricouri-dama", white3: "tricouri-barbati", color3: "modele-noi", trening10: "trening-catifea" };
 
-  function countText(n) {
-    if (n === 1) return "1 produs";
-    if (n < 20) return n + " produse";
-    return n + " de produse";
-  }
-
   function init() {
     if (!window.MC || typeof MC_COLLECTIONS === "undefined" || typeof mcByCollection !== "function") return;
+    var countText = MC.countText;
 
     /* iconițe în shell-ul static */
-    $$("[data-icon]").forEach(function (el) { el.innerHTML = MC.icon(el.getAttribute("data-icon")); });
+    MC.hydrateIcons(document);
 
     /* ---------- Colecția curentă (?c=handle) ---------- */
     var params = new URLSearchParams(location.search);
@@ -235,8 +230,15 @@
     }
     function breakHTML(idx) {
       if (!promos.length) return "";
-      var b = promos[idx % promos.length];
-      var cta = PROMO_CTA[b.id] || { href: "collection.html?c=all", label: "Descoperă" };
+      /* nu face link către pagina curentă: sari la următoarea promoție potrivită */
+      var b = null, cta = null;
+      for (var k = 0; k < promos.length; k++) {
+        var cand = promos[(idx + k) % promos.length];
+        var c = PROMO_CTA[cand.id] || { href: "collection.html?c=all", label: "Descoperă" };
+        var m = /c=([\w-]+)/.exec(c.href || "");
+        if (!m || m[1] !== handle) { b = cand; cta = c; break; }
+      }
+      if (!b) { b = promos[idx % promos.length]; cta = null; }
       var src = MC_COLLECTIONS[PROMO_IMG[b.id]] || col;
       var tone = (src.tone || ["#3D2B33", "#8A5A6B"]).join(",");
       return '<aside class="col-break rv" data-tone="' + esc(tone) + '" aria-label="Promoție: ' + esc(b.short || b.label) + '">' +
@@ -244,7 +246,7 @@
         '<div class="col-break-body">' +
         '<span class="micro">' + esc(b.short || "Ofertă") + "</span>" +
         '<p class="col-break-quote">' + esc(b.label) + ".</p>" +
-        '<a class="lnk" href="' + esc(cta.href) + '">' + esc(cta.label) + MC.icon("arrow-right") + "</a>" +
+        (cta ? '<a class="lnk" href="' + esc(cta.href) + '">' + esc(cta.label) + MC.icon("arrow-right") + "</a>" : "") +
         "</div></aside>";
     }
 
@@ -274,7 +276,6 @@
       return out;
     }
     function renderGrid() {
-      closeQuickPop(false);
       var items = sortItems(filtered());
       countEl.textContent = countText(items.length);
       if (!items.length) {
@@ -288,6 +289,8 @@
           /* editorial break după fiecare ~8 carduri */
           if ((i + 1) % 8 === 0 && i < items.length - 1) html += breakHTML(bi++);
         });
+        /* colecțiile sărace nu lasă golul dinaintea footer-ului: umple cu un break */
+        if (items.length < 4) html += breakHTML(bi++);
         grid.innerHTML = html;
         MC.sweepBrokenImages(grid);
         MC.initReveal(grid);
@@ -399,12 +402,14 @@
         var b = $("[data-colf-toggle]", g);
         if (b) b.setAttribute("aria-expanded", "true");
       });
+      if (MC.trapFocus) MC.trapFocus(colf);
       var c = $("[data-colf-close]", colf);
       if (c) setTimeout(function () { c.focus(); }, 60);
     }
     function closeSheet(noFocus) {
       if (!sheetOpen) return;
       sheetOpen = false;
+      if (MC.releaseTrap) MC.releaseTrap();
       colf.classList.remove("open");
       colf.removeAttribute("role");
       colf.removeAttribute("aria-modal");
@@ -457,67 +462,7 @@
 
     sortSel.addEventListener("change", function () { state.sort = sortSel.value; apply(); });
 
-    /* ---------- Quick-add cu mini-selector de mărime ---------- */
-    var qaPop = null, qaTrigger = null;
-    function needsSizePop(p) {
-      /* huse & seturi → direct; tricouri/bluze/treninguri → alege mărimea */
-      return (p.sizes === "adult" || p.sizes === "kids") && p.sizeList && p.sizeList.length > 1;
-    }
-    function closeQuickPop(refocus) {
-      if (!qaPop) return;
-      var t = qaTrigger;
-      if (t) t.setAttribute("aria-expanded", "false");
-      qaPop.remove();
-      qaPop = null;
-      qaTrigger = null;
-      if (refocus && t) { try { t.focus(); } catch (e) { /* noop */ } }
-    }
-    function openQuickPop(qa, p) {
-      var media = qa.closest(".mc-card-media");
-      if (!media) return;
-      var pop = document.createElement("div");
-      pop.className = "qa-pop";
-      pop.setAttribute("role", "dialog");
-      pop.setAttribute("aria-label", "Alege mărimea pentru " + p.title);
-      pop.setAttribute("data-handle", p.handle);
-      pop.innerHTML = '<p class="micro">Alege mărimea</p><div class="qa-sizes">' +
-        p.sizeList.map(function (s) {
-          return '<button type="button" data-qa-size="' + esc(s) + '">' + esc(s) + "</button>";
-        }).join("") + "</div>";
-      media.appendChild(pop);
-      qaPop = pop;
-      qaTrigger = qa;
-      qa.setAttribute("aria-expanded", "true");
-      requestAnimationFrame(function () { pop.classList.add("in"); });
-      var first = $("button", pop);
-      if (first) setTimeout(function () { first.focus(); }, 40);
-    }
-    grid.addEventListener("click", function (e) {
-      var sizeBtn = e.target.closest("[data-qa-size]");
-      if (sizeBtn && qaPop) {
-        var h = qaPop.getAttribute("data-handle");
-        var p = mcProduct(h);
-        var size = sizeBtn.getAttribute("data-qa-size");
-        if (p) {
-          MC.cart.add(h, { size: size });
-          MC.toast("Adăugat în coș: " + p.title + " — " + size);
-        }
-        closeQuickPop(false);
-        return;
-      }
-      var qa = e.target.closest("[data-quick-add]");
-      if (qa) {
-        var prod = mcProduct(qa.getAttribute("data-handle"));
-        if (prod && needsSizePop(prod)) {
-          e.preventDefault(); /* oprește quick-add-ul implicit din shared.js */
-          if (qaTrigger === qa) { closeQuickPop(false); return; }
-          closeQuickPop(false);
-          openQuickPop(qa, prod);
-        } else {
-          closeQuickPop(false); /* huse/seturi: shared.js adaugă direct */
-        }
-      }
-    });
+    /* Quick-add cu mini-selector de mărime: gestionat global în shared.js */
 
     /* ---------- Interacțiuni la nivel de document ---------- */
     document.addEventListener("click", function (e) {
@@ -542,14 +487,12 @@
       }
       if (e.target.closest("[data-colf-open]")) { openSheet(); return; }
       if (e.target.closest("[data-colf-close]")) { closeSheet(); return; }
-      /* click în afară: închide dropdown-urile + popover-ul quick-add */
+      /* click în afară: închide dropdown-urile */
       if (!e.target.closest(".colf")) closeGroups(null);
-      if (qaPop && !e.target.closest(".qa-pop") && !e.target.closest("[data-quick-add]")) closeQuickPop(false);
     });
     document.addEventListener("keydown", function (e) {
       if (e.key !== "Escape") return;
       if (sheetOpen) { closeSheet(); return; }
-      if (qaPop) { closeQuickPop(true); return; }
       closeGroups(null);
     });
 

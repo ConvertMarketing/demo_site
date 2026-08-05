@@ -26,9 +26,7 @@
   }
 
   /* Iconițe declarate în HTML prin data-mc-icon */
-  $$("[data-mc-icon]").forEach(function (el) {
-    el.innerHTML = MC.icon(el.getAttribute("data-mc-icon"));
-  });
+  MC.hydrateIcons(document);
 
   /* ---------- 1. Hero — card plutitor produs ---------- */
   var heroP = mcProduct("trening-din-catifea");

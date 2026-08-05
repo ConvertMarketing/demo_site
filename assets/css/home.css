@@ -202,7 +202,8 @@
 .rail::-webkit-scrollbar { display: none; }
 .rail .mc-card {
   flex: 0 0 auto;
-  width: clamp(228px, 21.5vw, 284px);
+  /* lățime calibrată ca al 5-lea card să apară tăiat = affordance de scroll */
+  width: clamp(220px, 20vw, 262px);
   scroll-snap-align: start;
 }
 
@@ -364,7 +365,8 @@
   pointer-events: none;
   user-select: none;
 }
-.nl-box > * { position: relative; }
+/* ornamentul rămâne absolut (în spate); doar conținutul urcă peste el */
+.nl-box > :not(.nl-orn) { position: relative; }
 .nl-box .micro { display: block; margin-bottom: 12px; }
 .nl-title { margin-bottom: 12px; }
 .nl-sub { color: var(--ink-soft); max-width: 52ch; margin-inline: auto; }
@@ -433,7 +435,17 @@
   .cat-tile--wide { aspect-ratio: 16 / 7; }
 }
 
+@media (max-width: 640px) {
+  /* pe ecrane mici ornamentul nu are loc să respire — fragmentele arată a defect */
+  .hero-ornament { display: none; }
+}
+
 @media (max-width: 560px) {
   .nl-form { flex-direction: column; }
   .nl-form .btn { width: 100%; }
+}
+
+@media (max-width: 480px) {
+  .hero-cta .btn { width: 100%; }
+  .usp-item strong { font-size: 13px; }
 }
