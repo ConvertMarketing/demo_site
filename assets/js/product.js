@@ -107,13 +107,15 @@
       return '<button type="button" class="pdp-dot' + (i === 0 ? " active" : "") + '" data-goto="' + i + '" aria-label="Imaginea ' + (i + 1) + '"></button>';
     }).join("");
     var pct = sale ? Math.round((1 - P.price / P.compareAt) * 100) : 0;
+    var single = IMAGES.length < 2; /* produsele reale au adesea o singură imagine */
+    gallery.classList.toggle("pdp-gallery--single", single);
     gallery.innerHTML =
-      '<div class="pdp-thumbs" role="group" aria-label="Miniaturi">' + thumbs + "</div>" +
+      (single ? "" : '<div class="pdp-thumbs" role="group" aria-label="Miniaturi">' + thumbs + "</div>") +
       '<div class="pdp-stage">' +
         '<div class="pdp-track" tabindex="0" aria-label="Imagini produs — derulează">' + slides + "</div>" +
         (P.badge ? '<span class="mc-badge' + badgeClass(P.badge) + '">' + esc(P.badge) + "</span>" : "") +
         (sale && !/^-/.test(P.badge || "") ? '<span class="mc-badge mc-badge--sale' + (P.badge ? " pdp-badge-2" : "") + '">−' + pct + "%</span>" : "") +
-        '<div class="pdp-dots" aria-hidden="true">' + dots + "</div>" +
+        (single ? "" : '<div class="pdp-dots" aria-hidden="true">' + dots + "</div>") +
       "</div>";
   }
 

@@ -1,6 +1,6 @@
 # MON CHÉRIE — Redesign Demo (moncherie.ro)
 
-Demo static HTML/CSS/JS pentru redesign-ul moncherie.ro: homepage, pagină de colecție, pagină de produs, mega-menu avansat. Datele (colecții, produse, prețuri, promoții) sunt preluate de pe site-ul real. Imaginile sunt stand-in-uri premium (Unsplash) cu fallback elegant — se înlocuiesc 1:1 cu URL-urile cdn.shopify.com în producție.
+Demo static HTML/CSS/JS pentru redesign-ul moncherie.ro: homepage, pagină de colecție, pagină de produs, mega-menu avansat. Datele sunt 100% reale, preluate din catalogul public Shopify al magazinului (moncherie.ro/products.json): 296 de produse curatoriate din 5.477, cu titluri, prețuri, reduceri, mărimi, descrieri și imagini originale de pe cdn.shopify.com. Ratingurile și recenziile sunt valori demonstrative (nu sunt expuse public prin API). Catalogul se regenerează cu `gen_data.py` (păstrat în afara repo-ului).
 
 ## Direcție: „Parisian ease, Romanian heart”
 Fashion premium accesibil — editorial, aerisit, cald. Nu streetwear agresiv, nu lux rece: un magazin care vinde bumbac bun cu grafică personală, prezentat ca un brand parizian. Multă lumină, tipografie mare cu sans-serif expresiv, accente cireșiu („chérie”), micro-etichete uppercase, imagini 4:5.

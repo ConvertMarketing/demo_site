@@ -61,6 +61,8 @@
 .pdp-thumbs { display: none; }
 @media (min-width: 1024px) {
   .pdp-thumbs { display: flex; flex-direction: column; gap: 10px; order: -1; }
+  /* o singură imagine → fără coloană de miniaturi */
+  .pdp-gallery--single { grid-template-columns: minmax(0, 1fr); }
 }
 .pdp-thumb {
   aspect-ratio: 4 / 5;

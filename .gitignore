@@ -1,3 +1,4 @@
 .claude/
 chrome-test.html
 node_modules/
+tools/.cache/

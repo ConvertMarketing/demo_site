@@ -24,7 +24,7 @@
     tee4for3: { href: "collection.html?c=tricouri-dama", label: "Alege tricourile" },
     white3: { href: "collection.html?c=tricouri-barbati", label: "Vezi tricourile albe" },
     color3: { href: "collection.html?c=modele-noi", label: "Vezi tricourile colorate" },
-    trening10: { href: "collection.html?c=treninguri", label: "Vezi treningurile" }
+    trening10: { href: "collection.html?c=trening-1", label: "Vezi treningurile" }
   };
   var PROMO_IMG = { tee4for3: "tricouri-dama", white3: "tricouri-barbati", color3: "modele-noi", trening10: "trening-catifea" };
 

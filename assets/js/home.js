@@ -29,7 +29,7 @@
   MC.hydrateIcons(document);
 
   /* ---------- 1. Hero — card plutitor produs ---------- */
-  var heroP = mcProduct("trening-din-catifea");
+  var heroP = mcProduct("trening-din-catifea-8");
   var floatHost = $("#hero-float");
   if (floatHost && heroP) {
     floatHost.innerHTML =
@@ -51,9 +51,9 @@
     { c: "tricouri-dama",    label: "Damă",       cls: "cat-tile--lead" },
     { c: "tricouri-barbati", label: "Bărbați" },
     { c: "tricouri-copii",   label: "Copii" },
-    { c: "treninguri",       label: "Treninguri" },
+    { c: "trening-1",        label: "Treninguri" },
     { c: "tricouri-cupluri", label: "Cupluri" },
-    { c: "huse-marble",      label: "Accesorii",  cls: "cat-tile--wide" }
+    { c: "lenjerii",         label: "Casă & textile", cls: "cat-tile--wide" }
   ];
   var catsHost = $("#cats-grid");
   if (catsHost) {
@@ -86,7 +86,7 @@
       return b.reviews - a.reviews;
     });
     /* Flagship-ul deschide rail-ul */
-    var best = pool.filter(function (p) { return p.handle !== "trening-din-catifea"; });
+    var best = pool.filter(function (p) { return p.handle !== "trening-din-catifea-8"; });
     if (heroP) best.unshift(heroP);
     best = best.slice(0, 8);
     bestHost.innerHTML = best.map(MC.productCard).join("");
