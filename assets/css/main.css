@@ -610,6 +610,7 @@ small, .small { font-size: 13px; }
 .mc-cartd-ship .is-done { color: var(--ink); display: inline-flex; align-items: center; gap: 7px; font-weight: 600; }
 .mc-cartd-ship .is-done svg { width: 15px; height: 15px; color: var(--cherry); }
 .mc-ship-bar {
+  display: block; /* e un <span>; inline ar ignora height și ar deborda peste items */
   margin-top: 9px;
   height: 4px;
   border-radius: 99px;

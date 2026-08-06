@@ -169,10 +169,11 @@ def derive_color(p, primary):
     for pat, col in COLOR_MAP:
         if re.search(pat, hay):
             return [{"name": col[0], "hex": col[1]}]
-    if primary in ("lenjerii", "prosoape"):
-        return []
-    # tricourile/bluzele fără culoare în titlu sunt aproape toate albe pe moncherie.ro
-    return [{"name": "Alb", "hex": "#F4F1EA"}]
+    # doar tricourile/bluzele fără culoare în titlu sunt implicit albe pe moncherie.ro;
+    # la restul (treninguri, lenjerii, prosoape) nu afișăm o culoare inventată
+    if re.search(r"tricou|bluz", norm(p["title"] + " " + primary)):
+        return [{"name": "Alb", "hex": "#F4F1EA"}]
+    return []
 
 OPT_LABEL = {
     "marime dama": "Damă", "marime barbat": "Bărbat", "marime mama": "Mama",
@@ -180,8 +181,13 @@ OPT_LABEL = {
     "marime baiat": "Băiat", "marime unisex": "Unisex", "gen": "Gen",
 }
 
+SIZE_ALIAS = {"XXL": "2XL", "XXXL": "3XL"}  # catalogul amestecă ambele notații
+def norm_size(v):
+    v = (v or "").strip()
+    return SIZE_ALIAS.get(v.upper(), v)
+
 def size_range(vals):
-    vals = [v for v in vals if v]
+    vals = [norm_size(v) for v in vals if v]
     if not vals: return ""
     return vals[0] if len(vals) == 1 else f"{vals[0]}–{vals[-1]}"
 
@@ -193,7 +199,8 @@ def derive_sizes(p, primary):
         return "home", []
     if len(real) == 1:
         o = real[0]
-        vals = o["values"]
+        vals = [norm_size(v) for v in o["values"]]
+        vals = list(dict.fromkeys(vals))  # XXL→2XL poate crea dubluri
         if any("ani" in norm(v) for v in vals) or primary == "tricouri-copii":
             return "kids", vals
         if norm(o["name"]) == "gen":
@@ -330,16 +337,20 @@ for h in handles_order:
     reviews = seeded(h, 9, 214, "n")
     tone = COLS[primary][3]
 
-    # upsells: următoarele 2 din colecția primară + 1 bestseller
+    # upsells: următoarele 2 din colecția primară + 1 bestseller;
+    # titluri diferite de produs și între ele (catalogul real are multe titluri identice)
+    def title_of(x): return by_handle[x]["title"].strip().lower()
+    seen_titles = {title_of(h)}
     pool = [x for x in order_in.get(primary, []) if x != h and x in chosen]
     i = pool and (order_in[primary].index(h) if h in order_in[primary] else 0) or 0
     ups = []
     for k in range(len(pool)):
         cand = pool[(i + k) % len(pool)]
-        if cand not in ups: ups.append(cand)
+        if cand not in ups and title_of(cand) not in seen_titles:
+            ups.append(cand); seen_titles.add(title_of(cand))
         if len(ups) == 2: break
     for b in order_in.get("best-seller", []):
-        if b != h and b not in ups and b in chosen:
+        if b != h and b not in ups and b in chosen and title_of(b) not in seen_titles:
             ups.append(b); break
 
     prods_js.append({

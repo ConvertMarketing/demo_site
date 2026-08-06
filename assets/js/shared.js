@@ -278,7 +278,8 @@
       subtotal += p.price * it.qty;
       if (it.bundle) (bundles[it.bundle] = bundles[it.bundle] || []).push({ price: p.price, qty: it.qty });
       if (isTee(p)) {
-        for (var i = 0; i < it.qty; i++) tees.push({ price: p.price, white: /alb/i.test(it.color || "") });
+        /* doar „Alb” exact — /alb/ s-ar potrivi și pe „Albastru” */
+        for (var i = 0; i < it.qty; i++) tees.push({ price: p.price, white: /^alb$/i.test((it.color || "").trim()) });
       }
       if (isTrening(p)) { trCount += it.qty; trTotal += p.price * it.qty; }
     });
@@ -447,7 +448,7 @@
   function tplLogo() {
     return '<a class="mc-logo" href="index.html" aria-label="Mon Chérie — acasă">' +
       '<img class="mc-logo-img" data-nofb="1" alt="Mon Chérie" ' +
-      'src="https://www.moncherie.ro/cdn/shop/files/WhatsApp_Image_2022-10-11_at_3.47.52_PM.jpg?v=1665492569&amp;width=500" ' +
+      'src="assets/img/logo-moncherie.jpg" ' +
       'onerror="this.closest(&quot;.mc-logo&quot;).classList.add(&quot;logo-text&quot;);this.remove()">' +
       '<span class="mc-logo-fb">MON <em>chérie</em></span></a>';
   }
