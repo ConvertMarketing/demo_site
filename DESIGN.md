@@ -24,9 +24,9 @@ Fashion premium accesibil — editorial, aerisit, cald. Nu streetwear agresiv, n
 --container: 1280px;  /* max-width conținut, padding lateral clamp(20px, 4vw, 48px) */
 --header-h: 64px;
 ```
-Fonturi (Google Fonts, cu fallback): `Fraunces` (display; optical size, ligaturi, italic pentru accente) + `Manrope` (UI/body). Fallback: `Georgia, serif` / `system-ui, sans-serif`. Diacritice românești obligatorii (subset latin-ext).
+Fonturi (Google Fonts, cu fallback): `Playfair Display` (display; optical size, ligaturi, italic pentru accente) + `Manrope` (UI/body). Fallback: `Georgia, serif` / `system-ui, sans-serif`. Diacritice românești obligatorii (subset latin-ext).
 
-Scară tipografică: display `clamp(2.6rem, 6vw, 5rem)` Fraunces 340–420 weight, letter-spacing -0.02em; h2 secțiuni `clamp(1.8rem, 3.4vw, 2.6rem)`; micro-etichete 11px uppercase tracking .18em Manrope 600; body 15–16px/1.6.
+Scară tipografică: display `clamp(2.6rem, 6vw, 5rem)` Playfair Display 340–420 weight, letter-spacing -0.02em; h2 secțiuni `clamp(1.8rem, 3.4vw, 2.6rem)`; micro-etichete 11px uppercase tracking .18em Manrope 600; body 15–16px/1.6.
 
 ## Reguli vizuale
 - Cireșiul apare doar la: CTA principal, badge-uri reducere, contor promo, hover pe linkuri cheie, progres transport gratuit. Restul = ivory/ink/taupe.
@@ -51,7 +51,7 @@ assets/js/data.js     — catalog (EXISTĂ — nu se modifică fără motiv)
 Fiecare pagină include: `<div id="mc-header"></div>` … conținut … `<div id="mc-footer"></div>` și scripturile `data.js`, `shared.js`, apoi scriptul paginii. `shared.js` expune `window.MC = { renderChrome(), cart: {add(handle, opts), remove(), setQty(), items(), count(), total(), open(), close()}, toast(msg), money(v), productCard(p) → html, icon(name) → svg string, initReveal(root) }`. `MC.productCard(p)` este SINGURA sursă de carduri de produs — orice grilă îl folosește (consistență între pagini). Cardul: imagine 4/5 cu hover-swap, badge stânga-sus, quick-add „+" dreapta-jos (apare la hover, mereu vizibil pe touch), titlu, rating mic, preț + compare-at tăiat, swatch-uri culoare (max 4 + „+n").
 
 ## Header + Mega-menu (centrul cerinței de UX)
-Header: bară anunț sus (marquee lent cu cele 4 promoții reale, pauză la hover) → header sticky (blur backdrop, umbră la scroll): logo „MON CHÉRIE" (Fraunces, „chérie" italic), nav desktop = tab-urile din MC_MENU + link „Oferte" (cherry), icons: căutare (overlay cu sugestii din catalog), cont, coș cu badge count.
+Header: bară anunț sus (marquee lent cu cele 4 promoții reale, pauză la hover) → header sticky (blur backdrop, umbră la scroll): logo „MON CHÉRIE" (Playfair Display, „chérie" italic), nav desktop = tab-urile din MC_MENU + link „Oferte" (cherry), icons: căutare (overlay cu sugestii din catalog), cont, coș cu badge count.
 Mega-menu desktop: la hover/focus pe tab → panou full-width (animație fade+translateY 8px, 200ms; delay de închidere 150ms; se închide la Escape/mouseleave). Layout 3 zone: (1) coloane de grupuri cu titluri micro-etichetă și linkuri cu iconiță SVG 18px stroke 1.5 + badge opțional; (2) separator hairline; (3) 2 feature-cards cu imagine 16:10, titlu, notă, hover zoom. Sub panou, o bară subtilă cu tagline-ul tab-ului + link „Vezi tot". Accesibil: roving tabindex, `aria-expanded`, se deschide și la focus, Escape închide.
 Mobil (<1024px): buton hamburger → drawer stânga full-height cu animație; nivel 1 = tab-uri cu iconiță + chevron; tap → nivel 2 cu buton „← Înapoi", grupuri + feature-cards ca imagini mici; jos: promo bar + linkuri cont/căutare. Body scroll-lock cât e deschis.
 Cart drawer (dreapta): produse cu imagine mică, qty stepper, remove; bara de progres transport gratuit (200 lei — „Mai adaugă X lei"); upsell compact „Adaugă și…" (1 produs mic din upsells); subtotal + CTA checkout (demo). Toast la add-to-cart.
@@ -59,7 +59,7 @@ Cart drawer (dreapta): produse cu imagine mică, qty stepper, remove; bara de pr
 ## Homepage (index.html)
 1. **Hero editorial**: split 60/40 — stânga: micro-etichetă „Colecția nouă", display „Poartă-ți inima pe bumbac", subtitlu, 2 CTA („Cumpără femei", „Cumpără bărbați"); dreapta: imagine mare 4/5 cu card plutitor produs (Trening Catifea, preț, link). Fundal ivory, ornament tipografic „chérie" italic mare, foarte subtil în spate.
 2. **USP bar**: 4 iconițe + text scurt (Bumbac 100% · Livrare 24–48h · Retur 30 zile · Transport gratuit >200 lei), hairlines între ele.
-3. **Categorii**: grilă editorială asimetrică (Damă mare + Bărbați, Copii, Treninguri, Cupluri, Accesorii) — imagine, titlu Fraunces, „Descoperă →".
+3. **Categorii**: grilă editorială asimetrică (Damă mare + Bărbați, Copii, Treninguri, Cupluri, Accesorii) — imagine, titlu Playfair Display, „Descoperă →".
 4. **Bestsellers**: micro-etichetă + h2 + rail orizontal cu scroll-snap (6–8 produse via MC.productCard), săgeți pe desktop.
 5. **Banda promo 4=3**: secțiune dark (ink) cu tipografie mare „4 tricouri. Plătești 3.", cele 3 mecanici de preț ca listă elegantă, CTA cherry.
 6. **Poveste catifea**: split imagine/text pentru Trening Catifea (bestseller real) cu citat recenzie și CTA spre produs.
@@ -69,7 +69,7 @@ Cart drawer (dreapta): produse cu imagine mică, qty stepper, remove; bara de pr
 Footer (global): 4 coloane (Magazin/Ajutor/Companie/Contact), social icons, plăți (SVG generice), copyright + notă demo discretă.
 
 ## Pagina de colecție (collection.html?c=handle)
-- Hero compact: breadcrumb, titlu Fraunces + sub + desc din MC_COLLECTIONS, count produse.
+- Hero compact: breadcrumb, titlu Playfair Display + sub + desc din MC_COLLECTIONS, count produse.
 - Sub-nav chips orizontale (colecții înrudite din același tab de meniu) — scroll-snap pe mobil.
 - Toolbar sticky sub header: count, filtre (Culoare — swatch-uri, Mărime, Preț — range simplu, Reduceri toggle) în dropdown-uri pe desktop / bottom-sheet pe mobil; sort (Recomandate, Preț ↑, Preț ↓, Noutăți, Rating); chips active cu x.
 - Grilă: 4 col desktop / 2 tabletă / 2 mobil (gutter mic), MC.productCard, reveal stagger. La fiecare ~8 carduri, un „editorial break" — card wide cu imagine + citat promo (ex. 3 albe → 30 lei/buc).
@@ -79,7 +79,7 @@ Footer (global): 4 coloane (Magazin/Ajutor/Companie/Contact), social icons, plă
 ## Pagina de produs (product.html?p=handle) — optimizată CRO, stil US
 Două coloane desktop (galerie 55% / buy-box 45%, buy-box sticky), o coloană mobil (galerie sus).
 - **Galerie**: imagine principală 4/5 + thumbnails verticale (desktop) / dots swipe (mobil); zoom la hover (scale în container); badge-uri.
-- **Buy-box** (ordinea exactă, totul compact): breadcrumb mic › colecție; titlu Fraunces; rând rating (stele gold + „4.8 (127 recenzii)" — ancoră la recenzii); preț mare + compare-at tăiat + badge „Economisești X lei"; promo-hint contextual într-o linie (ex. „-10% la 3 treninguri" pentru treninguri, „3+ → 30 lei/buc" la tricouri albe) cu iconiță tag; culori ca swatch-uri rotunde cu nume selectat; mărimi ca butoane pill + link „Ghid mărimi" (modal cu tabel + sfat fit real din recenzii „Mihai: recomand o mărime în plus"); qty stepper + ATC mare full-width (ink→cherry hover, „Adaugă în coș — 149 lei" cu preț dinamic × qty); sub ATC: butoane express slim mock (Apple Pay negru, Google Pay alb); microcopy livrare cu iconițe („Livrare 24–48h · Retur gratuit 30 zile · Transport gratuit >200 lei"); **modul bundle compact** „Completează setul — economisești 10%": 1 rând cu thumbnail produs curent + „+" + thumbnail upsell[0] + preț combinat tăiat/redus + checkbox „Adaugă ambele"; accordion (Descriere / Material & Îngrijire / Livrare & Retur) — primul deschis, restul închise (economie de scroll).
+- **Buy-box** (ordinea exactă, totul compact): breadcrumb mic › colecție; titlu Playfair Display; rând rating (stele gold + „4.8 (127 recenzii)" — ancoră la recenzii); preț mare + compare-at tăiat + badge „Economisești X lei"; promo-hint contextual într-o linie (ex. „-10% la 3 treninguri" pentru treninguri, „3+ → 30 lei/buc" la tricouri albe) cu iconiță tag; culori ca swatch-uri rotunde cu nume selectat; mărimi ca butoane pill + link „Ghid mărimi" (modal cu tabel + sfat fit real din recenzii „Mihai: recomand o mărime în plus"); qty stepper + ATC mare full-width (ink→cherry hover, „Adaugă în coș — 149 lei" cu preț dinamic × qty); sub ATC: butoane express slim mock (Apple Pay negru, Google Pay alb); microcopy livrare cu iconițe („Livrare 24–48h · Retur gratuit 30 zile · Transport gratuit >200 lei"); **modul bundle compact** „Completează setul — economisești 10%": 1 rând cu thumbnail produs curent + „+" + thumbnail upsell[0] + preț combinat tăiat/redus + checkbox „Adaugă ambele"; accordion (Descriere / Material & Îngrijire / Livrare & Retur) — primul deschis, restul închise (economie de scroll).
 - **Sub fold**: „Merge perfect cu" — rail orizontal compact (upsells, MC.productCard mărime S); recenzii: sumar (nota mare + bare 5→1) + 4 recenzii (pool MC_REVIEWS) + „Vezi toate"; „Ai văzut recent" (localStorage, max 4, se populează real).
 - **Sticky ATC mobil**: bară jos cu mini-imagine, preț, buton ATC — apare după ce ATC-ul principal iese din viewport.
 - Toate elementele funcționale: schimbarea culorii schimbă imaginea activă (dacă există), mărimea se selectează, ATC adaugă în coșul real din shared.js cu varianta aleasă, bundle adaugă ambele produse cu discount aplicat la afișare.
