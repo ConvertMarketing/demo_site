@@ -169,7 +169,7 @@
     return "data:image/svg+xml;charset=utf-8," + encodeURIComponent(svg);
   }
   function applyFallback(img) {
-    if (!img || img.dataset.mcFb === "1") return;
+    if (!img || img.dataset.mcFb === "1" || img.dataset.nofb === "1") return;
     img.dataset.mcFb = "1";
     img.src = placeholderURI(parseTone(img), img.getAttribute("alt") || "");
     img.removeAttribute("srcset");
@@ -445,7 +445,11 @@
   }
 
   function tplLogo() {
-    return '<a class="mc-logo" href="index.html" aria-label="Mon Chérie — acasă">MON <em>chérie</em></a>';
+    return '<a class="mc-logo" href="index.html" aria-label="Mon Chérie — acasă">' +
+      '<img class="mc-logo-img" data-nofb="1" alt="Mon Chérie" ' +
+      'src="https://www.moncherie.ro/cdn/shop/files/WhatsApp_Image_2022-10-11_at_3.47.52_PM.jpg?v=1665492569&amp;width=500" ' +
+      'onerror="this.closest(&quot;.mc-logo&quot;).classList.add(&quot;logo-text&quot;);this.remove()">' +
+      '<span class="mc-logo-fb">MON <em>chérie</em></span></a>';
   }
 
   function tplMega(tab) {

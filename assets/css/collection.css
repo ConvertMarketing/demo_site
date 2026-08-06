@@ -25,7 +25,7 @@
 .col-title {
   font-family: var(--font-display);
   font-size: clamp(2.1rem, 4.6vw, 3.4rem);
-  font-weight: 400;
+  font-weight: 620;
   letter-spacing: -.02em;
   line-height: 1.05;
 }
@@ -322,7 +322,7 @@
 .col-break-quote {
   font-family: var(--font-display);
   font-size: clamp(1.5rem, 3vw, 2.3rem);
-  font-weight: 400;
+  font-weight: 620;
   line-height: 1.14;
   letter-spacing: -.015em;
   max-width: 22ch;
@@ -404,7 +404,7 @@ html.col-lock, html.col-lock body { overflow: hidden; }
     border-bottom: 1px solid var(--line);
     flex: none;
   }
-  .colf-head p { font-family: var(--font-display); font-size: 19px; font-weight: 520; }
+  .colf-head p { font-family: var(--font-display); font-size: 19px; font-weight: 600; }
   .colf-groups {
     display: block;
     flex: 1;

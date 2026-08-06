@@ -120,7 +120,7 @@
 .pdp-title {
   font-family: var(--font-display);
   font-size: clamp(1.75rem, 3.4vw, 2.5rem);
-  font-weight: 420;
+  font-weight: 560;
   line-height: 1.08;
   letter-spacing: -.015em;
 }
@@ -432,7 +432,7 @@
 .rev-num {
   font-family: var(--font-display);
   font-size: 56px;
-  font-weight: 420;
+  font-weight: 560;
   line-height: 1;
 }
 .rev-score-meta { font-size: 13px; color: var(--ink-soft); }
@@ -565,7 +565,7 @@
 .pdp-modal-title {
   font-family: var(--font-display);
   font-size: 24px;
-  font-weight: 440;
+  font-weight: 560;
   margin-bottom: 4px;
 }
 .pdp-modal-sub { font-size: 13px; color: var(--ink-soft); margin-bottom: 16px; }
