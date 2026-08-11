@@ -24,6 +24,7 @@
   --shadow: 0 24px 60px -30px rgba(22, 19, 15, .25);
   --container: 1280px;
   --header-h: 64px;
+  --tabbar-h: 0px; /* devine 58px pe mobil (vezi §17) */
 
   --font-display: "Archivo", "Helvetica Neue", Arial, sans-serif;
   --font-ui: "Manrope", system-ui, -apple-system, "Segoe UI", sans-serif;
@@ -902,11 +903,68 @@ small, .small { font-size: 13px; }
   border-color: var(--ink);
 }
 
+/* ---------- 12b. Tab bar mobil ---------- */
+.mc-tabbar { display: none; }
+@media (max-width: 1023px) {
+  .mc-tabbar {
+    position: fixed;
+    left: 0; right: 0; bottom: 0;
+    z-index: 135;
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    align-items: stretch;
+    height: calc(var(--tabbar-h) + env(safe-area-inset-bottom));
+    padding-bottom: env(safe-area-inset-bottom);
+    background: var(--dark);
+    border-radius: var(--radius-lg) var(--radius-lg) 0 0;
+    box-shadow: 0 -12px 30px -18px rgba(22, 19, 15, .55);
+  }
+  .mc-tab {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 4px;
+    padding: 0 2px;
+    font-size: 10.5px;
+    font-weight: 600;
+    letter-spacing: .02em;
+    color: rgba(255, 255, 255, .72);
+    background: none;
+    border: 0;
+    transition: color .2s;
+  }
+  .mc-tab svg { width: 21px; height: 21px; }
+  .mc-tab:hover, .mc-tab:focus-visible { color: #fff; }
+  .mc-tab.active { color: #fff; }
+  .mc-tab.active svg { color: var(--blush); }
+  .mc-tab:focus-visible { outline: 2px solid var(--blush); outline-offset: -3px; border-radius: var(--radius-sm); }
+  /* pastila cu numărul de produse, ancorată pe iconița coșului */
+  .mc-tab-ic { position: relative; display: inline-flex; }
+  .mc-tab-ic .mc-cart-count {
+    position: absolute;
+    top: -5px; right: -9px;
+    min-width: 16px;
+    height: 16px;
+    padding: 0 4px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 10px;
+    font-weight: 700;
+    line-height: 1;
+    color: #fff;
+    background: var(--cherry);
+    border-radius: 99px;
+  }
+  .mc-tab-ic .mc-cart-count.is-empty { display: none; }
+}
+
 /* ---------- 13. Toast ---------- */
 .mc-toast {
   position: fixed;
   left: 50%;
-  bottom: 26px;
+  bottom: calc(26px + var(--tabbar-h));
   z-index: 200;
   transform: translate(-50%, 16px);
   display: flex;
@@ -1027,13 +1085,14 @@ html.mc-js .rv.in { opacity: 1; transform: none; }
 
 /* ---------- 17. Responsive ---------- */
 @media (max-width: 1023px) {
+  :root { --tabbar-h: 58px; }
+  /* conținutul nu trebuie să rămână sub bara fixă de jos */
+  body { padding-bottom: calc(var(--tabbar-h) + env(safe-area-inset-bottom)); }
   .mc-nav { display: none; }
-  .mc-burger {
-    display: inline-flex;
-    margin-left: -8px;
-  }
-  .mc-header-inner { gap: 8px; }
-  .mc-logo { margin-inline: auto; transform: translateX(-21px); }
+  /* navigarea trăiește în tab bar-ul de jos — antetul rămâne doar cu logo-ul */
+  .mc-burger, .mc-actions { display: none; }
+  .mc-header-inner { gap: 8px; justify-content: center; }
+  .mc-logo { margin-inline: auto; }
   .mc-footer-top { grid-template-columns: 1fr 1fr; }
   .mc-footer-brand { grid-column: 1 / -1; }
 }

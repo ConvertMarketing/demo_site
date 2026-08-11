@@ -43,6 +43,7 @@
     kid: '<circle cx="12" cy="6.4" r="2.6"/><path d="M9.4 11h5.2v4.6h-1.3V19h-2.6v-3.4H9.4V11z"/><path d="M6.8 13.2 9.4 11m7.8 2.2L14.6 11"/>',
     hearts: '<path d="M9 13.2S4.5 10.3 3.4 7.8A3.1 3.1 0 0 1 9 5.6a3.1 3.1 0 0 1 5.6 2.2C13.5 10.3 9 13.2 9 13.2z"/><path d="M15.6 20.4s-4.1-2.7-5.1-5a2.85 2.85 0 0 1 5.1-2 2.85 2.85 0 0 1 5.1 2c-1 2.3-5.1 5-5.1 5z"/>',
     family: '<circle cx="6.7" cy="5.9" r="1.9"/><circle cx="17.3" cy="5.9" r="1.9"/><circle cx="12" cy="10.3" r="1.55"/><path d="M3.8 20.5v-3.4c0-2.7 1.2-4.3 2.9-4.3s2.9 1.6 2.9 4.3"/><path d="M14.4 17.1c0-2.7 1.2-4.3 2.9-4.3s2.9 1.6 2.9 4.3v3.4"/><path d="M9.8 20.5v-2.2c0-1.8.9-2.9 2.2-2.9s2.2 1.1 2.2 2.9v2.2"/>',
+    home: '<path d="M3.75 10.4 12 3.9l8.25 6.5v9.1a.9.9 0 0 1-.9.9h-4.6v-6.2H9.25v6.2h-4.6a.9.9 0 0 1-.9-.9v-9.1z"/>',
     tee: '<path d="M8.6 3.9 3.6 6.7l1.7 3.3 2.1-1v11h9.2V9l2.1 1 1.7-3.3-5-2.8a3.4 3.4 0 0 1-6.8 0z"/>',
     sweater: '<path d="M8.6 3.9 4.3 6.3 3.2 14l2.9.5.6-3V20h10.6v-8.5l.6 3 2.9-.5-1.1-7.7-4.3-2.4a3.4 3.4 0 0 1-6.8 0z"/>',
     velvet: '<rect x="3.75" y="3.75" width="16.5" height="16.5" rx="1"/><path d="M3.75 9.2c2.1 1.5 4.1-1.5 6.2 0s4.1-1.5 6.2 0 4.1 0 4.1 0"/><path d="M3.75 14.6c2.1 1.5 4.1-1.5 6.2 0s4.1-1.5 6.2 0 4.1 0 4.1 0"/>',
@@ -508,6 +509,23 @@
       "</div></header>";
   }
 
+  /* Bara de navigare de jos (mobil) — acces într-un deget la tot ce contează */
+  function tplTabbar() {
+    var page = (location.pathname.split("/").pop() || "index.html").toLowerCase();
+    var isHome = page === "" || page === "index.html";
+    return '<nav class="mc-tabbar" aria-label="Navigație rapidă">' +
+      '<a class="mc-tab' + (isHome ? " active" : "") + '" href="index.html"' + (isHome ? ' aria-current="page"' : "") + ">" +
+        icon("home") + "<span>Acasă</span></a>" +
+      '<button type="button" class="mc-tab" data-mc-open="search">' + icon("search") + "<span>Caută</span></button>" +
+      '<button type="button" class="mc-tab" data-mc-account>' + icon("user") + "<span>Cont</span></button>" +
+      '<button type="button" class="mc-tab" data-mc-open="cart">' +
+        '<span class="mc-tab-ic">' + icon("cart") +
+          '<span class="mc-cart-count is-empty" aria-hidden="true">0</span></span>' +
+        "<span>Coș</span></button>" +
+      '<button type="button" class="mc-tab" data-mc-open="drawer">' + icon("menu") + "<span>Meniu</span></button>" +
+    "</nav>";
+  }
+
   function tplSearch() {
     return '<div class="mc-search" role="dialog" aria-modal="true" aria-label="Căutare produse">' +
       '<div class="container mc-search-inner">' +
@@ -646,6 +664,12 @@
   function layerEl(name) {
     return { drawer: $(".mc-drawer"), search: $(".mc-search"), cart: $(".mc-cartd") }[name];
   }
+  /* meniul se deschide din burger (desktop) sau din tab bar (mobil) — ambele anunță starea */
+  function setMenuExpanded(on) {
+    $$('.mc-burger, .mc-tab[data-mc-open="drawer"]').forEach(function (b) {
+      b.setAttribute("aria-expanded", on ? "true" : "false");
+    });
+  }
   function openLayer(name) {
     closeLayers(true);
     var el = layerEl(name);
@@ -655,7 +679,7 @@
     el.classList.add("open");
     if (scrim) scrim.classList.add("open");
     document.documentElement.classList.add("mc-lock");
-    if (name === "drawer") { var b = $(".mc-burger"); if (b) b.setAttribute("aria-expanded", "true"); }
+    if (name === "drawer") setMenuExpanded(true);
     trapFocus(el);
     var focusable = el.querySelector("input, button, a[href]");
     if (name === "search") focusable = el.querySelector(".mc-search-input") || focusable;
@@ -670,8 +694,7 @@
     });
     var drawer = $(".mc-drawer");
     if (drawer) drawer.classList.remove("is-sub");
-    var b = $(".mc-burger");
-    if (b) b.setAttribute("aria-expanded", "false");
+    setMenuExpanded(false);
     if (!soft) {
       var scrim = $(".mc-scrim");
       if (scrim) scrim.classList.remove("open");
@@ -1124,7 +1147,8 @@
     var footerHost = $("#mc-footer");
     if (headerHost) {
       chromeDone = true;
-      headerHost.innerHTML = tplAnnounce() + tplHeader() + tplSearch() + tplDrawer() + tplCartDrawer() + '<div class="mc-scrim"></div>';
+      headerHost.innerHTML = tplAnnounce() + tplHeader() + tplSearch() + tplDrawer() + tplCartDrawer() +
+        tplTabbar() + '<div class="mc-scrim"></div>';
       /* skip-link ca prim element din body */
       if (!$(".skip-link")) {
         var skip = document.createElement("a");
