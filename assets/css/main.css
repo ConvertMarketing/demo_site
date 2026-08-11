@@ -7,8 +7,8 @@
 
 /* ---------- 1. Tokens ---------- */
 :root {
-  --bg: #F6F3EE;
-  --surface: #FFFFFF;
+  --bg: #FFFFFF;     /* fundal pagină — alb curat */
+  --surface: #F7F5F1; /* panouri/carduri ridicate: o nuanță caldă peste alb */
   --ink: #16130F;
   --ink-soft: #5C554B;
   --muted: #75695C; /* AA (≥4.5:1) pe --bg și pe alb pentru text mic */
