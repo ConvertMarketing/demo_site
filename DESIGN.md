@@ -18,8 +18,9 @@ Fashion premium accesibil — editorial, aerisit, cald. Nu streetwear agresiv, n
 --blush: #EAD9D5;
 --gold: #B08D57;      /* stele rating, badge-uri premium */
 --dark: #16130F;      /* secțiuni întunecate */
---radius: 2px;        /* colțuri aproape drepte = editorial */
---radius-lg: 6px;
+--radius-sm: 7px;     /* badge-uri, butoane de mărime, chips */
+--radius: 12px;       /* carduri, imagini produs, butoane, inputuri */
+--radius-lg: 20px;    /* panouri, modale, drawere, containere mari */
 --shadow: 0 24px 60px -30px rgba(22,19,15,.25);
 --container: 1280px;  /* max-width conținut, padding lateral clamp(20px, 4vw, 48px) */
 --header-h: 64px;

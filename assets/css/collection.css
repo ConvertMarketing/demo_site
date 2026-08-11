@@ -190,7 +190,7 @@
   align-items: center;
   gap: 10px;
   padding: 7px 4px;
-  border-radius: var(--radius);
+  border-radius: var(--radius-sm);
   cursor: pointer;
 }
 .colf-opt input { position: absolute; opacity: 0; pointer-events: none; }
@@ -220,7 +220,7 @@
   min-height: 38px;
   padding-inline: 11px;
   border: 1px solid var(--line);
-  border-radius: var(--radius);
+  border-radius: var(--radius-sm);
   font-size: 12.5px;
   font-weight: 600;
   background: var(--surface);
@@ -386,7 +386,7 @@ html.col-lock, html.col-lock body { overflow: hidden; }
     left: 0; right: 0; bottom: 0;
     z-index: 170;
     background: var(--bg);
-    border-radius: 14px 14px 0 0;
+    border-radius: var(--radius-lg) var(--radius-lg) 0 0;
     box-shadow: var(--shadow);
     transform: translateY(103%);
     visibility: hidden;
