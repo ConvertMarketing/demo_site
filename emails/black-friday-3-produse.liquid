@@ -49,7 +49,7 @@
 {%- comment -%} Carduri produs {%- endcomment -%}
 {%- assign bf_badge     = "Black Friday" -%}
 {%- assign bf_reveal    = "Preț dezvăluit pe 6 noiembrie" -%}
-{%- assign bf_title_max = 36 -%}            {%- comment -%} caractere, apoi „…” {%- endcomment -%}
+{%- assign bf_title_max = 38 -%}            {%- comment -%} caractere, apoi „…” {%- endcomment -%}
 {%- assign bf_lock_img  = "" -%}            {%- comment -%} opțional: URL PNG lacăt (32×32) {%- endcomment -%}
 
 {%- comment -%} Titlu deasupra produselor (centrat) {%- endcomment -%}
@@ -58,7 +58,7 @@
 
 {%- comment -%} Buton final {%- endcomment -%}
 {%- assign bf_cta_text  = "Află mai multe" -%}
-{%- assign bf_cta_url   = "https://magazinul-tau.ro/pages/black-friday" -%}
+{%- assign bf_cta_url   = "https://smartinoshop.ro" -%}
 
 {%- comment -%} Culori și font {%- endcomment -%}
 {%- assign bf_bg        = "#000000" -%}     {%- comment -%} fundal secțiune + casetă preț {%- endcomment -%}
@@ -75,17 +75,17 @@
   6 produse = 2 rânduri pe desktop / 3 rânduri pe mobil.
 {%- endcomment -%}
 {%- capture bf_produse -%}
-SLEEPY | PACHET PROMO - 12 x Servetele Umede Sleepy Easy Clean | https://placehold.co/600x600/png?text=Produs+1 | https://magazinul-tau.ro/products/produs-1
+SLEEPY | PACHET PROMO - 12 x Servetele Umede Sleepy Easy Clean Multisuprafete, 100 Buc | https://smartinoshop.ro/cdn/shop/files/PACHETPROMOEASYCLEAN12BUC_1000x.png?v=1701998513 | https://smartinoshop.ro/products/pachet-promo-12-x-servetele-umede-sleepy-easy-clean-multisuprafete-100-buc
 ##
-PAREX | Pachet Promo PAREX QuickPick Mop + 3x Lavete Umede Sleepy | https://placehold.co/600x600/png?text=Produs+2 | https://magazinul-tau.ro/products/produs-2
+ACTUAL | Scutece textil incontinență adulți, Actual Double, mărimea XL 120-160 cm, 30 bucăți | https://smartinoshop.ro/cdn/shop/products/scutece-textil-incontinenta-adulti-actual-double-marime-l-100-150-cm-30-bucati-copie-191-6385.jpg?v=1695812731&width=700 | https://smartinoshop.ro/products/scutece-textil-incontinenta-adulti-actual-double-marime-xl-120-160-cm-30-bucati
 ##
-ACTUAL | Scutece textil incontinență adulți, Actual Double, mărimea XL | https://placehold.co/600x600/png?text=Produs+3 | https://magazinul-tau.ro/products/produs-3
+PAREX | Pachet Promo PAREX QuickPick Mop + 6x Lavete Umede Sleepy Easy Clean Mix | https://smartinoshop.ro/cdn/shop/files/5_16e9cb49-da56-4ed9-b4eb-af82c8eb1467.png?v=1787923587&width=700 | https://smartinoshop.ro/products/pachet-promo-mop-cu-prindere-rapida-parex-6x-lavete-umede-pentru-curatare-pardoseli-sleepy-easy-clean-mix
 ##
-BRAND 4 | Titlu produs 4 — înlocuiește cu produsul tău | https://placehold.co/600x600/png?text=Produs+4 | https://magazinul-tau.ro/products/produs-4
+UNLEASHIA | Unleashia Paleta farduri pentru ochi cu glitter N7 All of Peach Ade, 6.2g | https://smartinoshop.ro/cdn/shop/files/7____01.png?v=1720526053&width=700 | https://smartinoshop.ro/products/unleashia-paleta-farduri-pentru-ochi-cu-glitter-n7-all-of-peach-ade-6-2g
 ##
-BRAND 5 | Titlu produs 5 — înlocuiește cu produsul tău | https://placehold.co/600x600/png?text=Produs+5 | https://magazinul-tau.ro/products/produs-5
+PASTA DEL CAPITANO | Pasta de dinti cu bicarbonat Pasta del Capitano + apa de gura + periuta peri medii – Pachet Promo | https://smartinoshop.ro/cdn/shop/files/3X_7_83ba4a82-3ce6-4e13-bd3b-6806dfd84a30.png?v=1786429430&width=700 | https://smartinoshop.ro/products/pasta-de-dinti-cu-bicarbonat-pasta-del-capitano-apa-de-gura-periuta-peri-medii-pachet-promo
 ##
-BRAND 6 | Titlu produs 6 — înlocuiește cu produsul tău | https://placehold.co/600x600/png?text=Produs+6 | https://magazinul-tau.ro/products/produs-6
+SLEEPY | 3x Scutece Sleepy Natural H2O Ultra Sensitive Double Marime 6 XLarge + 1x Servetele Umede pentru copii cu 99,5% Apa Pura, 40 bucati (cadou) | https://smartinoshop.ro/cdn/shop/files/Cadou_5_af5789b3-bcae-4bfc-87fc-081a44650a76.png?v=1790765391&width=700 | https://smartinoshop.ro/products/pachet-promo-3x-sleepy-natural-ultra-sensitive-double-marime-6-xlarge
 {%- endcapture -%}
 {%- assign bf_lista = bf_produse | split: "##" -%}
 
@@ -175,8 +175,26 @@ BRAND 6 | Titlu produs 6 — înlocuiește cu produsul tău | https://placehold.
         {%- for bf_item in bf_lista -%}
           {%- unless bf_item contains "|" -%}{%- continue -%}{%- endunless -%}
           {%- assign bf_f      = bf_item | split: "|" -%}
-          {%- assign bf_vendor = bf_f[0] | strip | upcase | truncate: 16, "…" | escape -%}
-          {%- assign bf_title  = bf_f[1] | strip | truncate: bf_title_max, "…" | escape -%}
+          {%- assign bf_vendor = bf_f[0] | strip | upcase | truncate: 20, "…" | escape -%}
+          {%- comment -%} titlu tăiat la cuvânt întreg, fără „+”, „,” sau „-” la final {%- endcomment -%}
+          {%- assign bf_title  = bf_f[1] | strip -%}
+          {%- if bf_title.size > bf_title_max -%}
+            {%- assign bf_cut   = bf_title | slice: 0, bf_title_max -%}
+            {%- assign bf_words = bf_cut | split: " " -%}
+            {%- assign bf_title = "" -%}
+            {%- for bf_w in bf_words -%}
+              {%- unless forloop.last -%}{%- assign bf_title = bf_title | append: bf_w | append: " " -%}{%- endunless -%}
+            {%- endfor -%}
+            {%- assign bf_title = bf_title | strip -%}
+            {%- assign bf_lc = bf_title | slice: -1 -%}
+            {%- if bf_lc == "+" or bf_lc == "," or bf_lc == "-" or bf_lc == "–" or bf_lc == ":" -%}
+              {%- assign bf_len   = bf_title.size | minus: 1 -%}
+              {%- assign bf_title = bf_title | slice: 0, bf_len | strip -%}
+            {%- endif -%}
+            {%- if bf_title == "" -%}{%- assign bf_title = bf_cut -%}{%- endif -%}
+            {%- assign bf_title = bf_title | append: "…" -%}
+          {%- endif -%}
+          {%- assign bf_title  = bf_title | escape -%}
           {%- assign bf_alt    = bf_f[1] | strip | escape -%}
           {%- assign bf_img    = bf_f[2] | strip -%}
           {%- assign bf_url    = bf_f[3] | strip -%}
@@ -211,7 +229,7 @@ BRAND 6 | Titlu produs 6 — înlocuiește cu produsul tău | https://placehold.
                     <!-- brand -->
                     <tr>
                       <td style="padding:12px 10px 0 10px;">
-                        <div style="overflow:hidden;white-space:nowrap;text-overflow:ellipsis;font-family:{{ bf_font }};font-size:11px;line-height:14px;font-weight:600;letter-spacing:1.5px;color:#646C71;">{{ bf_vendor }}</div>
+                        <div style="overflow:hidden;white-space:nowrap;text-overflow:ellipsis;font-family:{{ bf_font }};font-size:11px;line-height:14px;font-weight:600;letter-spacing:1px;color:#646C71;">{{ bf_vendor }}</div>
                       </td>
                     </tr>
                     <!-- titlu (max. 2 rânduri) -->
