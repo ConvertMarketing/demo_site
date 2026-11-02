@@ -5,9 +5,10 @@
 ---------------------------------------------------------------------
   1. Countdown „OFERTELE ÎNCEP ÎN”: ZILE / ORE / MIN / SEC până la data
      setată în bf_cd_start.
-  2. Carduri produs: badge roșu „Black Friday”, brand, titlu pe max.
+  2. Titlu + subtitlu centrate deasupra produselor.
+  3. Carduri produs: badge roșu „Black Friday”, brand, titlu pe max.
      2 rânduri și caseta neagră cu lacăt „Preț dezvăluit pe 6 noiembrie”.
-  3. Buton „Află mai multe” la final.
+  4. Buton „Află mai multe” la final.
 
   CUM SE FOLOSEȘTE
   1. Lipește tot fișierul într-un bloc „HTML / Cod personalizat”
@@ -51,12 +52,16 @@
 {%- assign bf_title_max = 36 -%}            {%- comment -%} caractere, apoi „…” {%- endcomment -%}
 {%- assign bf_lock_img  = "" -%}            {%- comment -%} opțional: URL PNG lacăt (32×32) {%- endcomment -%}
 
+{%- comment -%} Titlu deasupra produselor (centrat) {%- endcomment -%}
+{%- assign bf_head_title = "Primele produse din oferta Black Friday" -%}
+{%- assign bf_head_text  = "Descoperă o parte dintre produsele pentru care pregătim prețuri speciale." -%}
+
 {%- comment -%} Buton final {%- endcomment -%}
 {%- assign bf_cta_text  = "Află mai multe" -%}
 {%- assign bf_cta_url   = "https://magazinul-tau.ro/pages/black-friday" -%}
 
 {%- comment -%} Culori și font {%- endcomment -%}
-{%- assign bf_bg        = "#0B0B0C" -%}     {%- comment -%} fundal secțiune + casetă preț {%- endcomment -%}
+{%- assign bf_bg        = "#000000" -%}     {%- comment -%} fundal secțiune + casetă preț {%- endcomment -%}
 {%- assign bf_box       = "#17181A" -%}     {%- comment -%} căsuțe countdown {%- endcomment -%}
 {%- assign bf_box_line  = "#1C3436" -%}     {%- comment -%} contur căsuțe countdown {%- endcomment -%}
 {%- assign bf_red       = "#E3242B" -%}     {%- comment -%} badge + buton {%- endcomment -%}
@@ -137,14 +142,10 @@ BRAND 6 | Titlu produs 6 — înlocuiește cu produsul tău | https://placehold.
                 {%- else -%}{%- assign bf_val = bf_cd_s -%}{%- assign bf_lbl = "SEC" -%}
               {%- endcase %}
             <td width="25%" valign="top" style="padding:0 5px;">
-              <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" bgcolor="{{ bf_box }}" style="background-color:{{ bf_box }};border:1px solid {{ bf_box_line }};border-radius:10px;border-collapse:separate;">
-                <tr>
-                  <td align="center" style="padding:12px 4px 0 4px;font-family:{{ bf_font }};font-size:32px;line-height:36px;font-weight:700;color:#FFFFFF;">{{ bf_val }}</td>
-                </tr>
-                <tr>
-                  <td align="center" style="padding:2px 4px 12px 4px;font-family:{{ bf_font }};font-size:11px;line-height:14px;font-weight:400;letter-spacing:1px;color:#9A9FA3;">{{ bf_lbl }}</td>
-                </tr>
-              </table>
+              <div style="background-color:{{ bf_box }};border:1px solid {{ bf_box_line }};border-radius:8px;padding:12px 4px;text-align:center;">
+                <div style="font-family:{{ bf_font }};font-size:32px;line-height:36px;font-weight:700;color:#FFFFFF;">{{ bf_val }}</div>
+                <div style="padding-top:2px;font-family:{{ bf_font }};font-size:11px;line-height:14px;font-weight:400;letter-spacing:1px;color:#9A9FA3;">{{ bf_lbl }}</div>
+              </div>
             </td>
             {%- endfor %}
           </tr>
@@ -154,6 +155,14 @@ BRAND 6 | Titlu produs 6 — înlocuiește cu produsul tău | https://placehold.
       {%- else -%}
         <div style="font-family:{{ bf_font }};font-size:24px;line-height:30px;font-weight:700;color:#FFFFFF;">{{ bf_cd_done }}</div>
       {%- endif -%}
+    </td>
+  </tr>
+
+  <!-- ===================== TITLU ===================== -->
+  <tr>
+    <td align="center" style="padding:36px 20px 6px 20px;text-align:center;">
+      <div style="font-family:{{ bf_font }};font-size:26px;line-height:32px;font-weight:700;color:#FFFFFF;">{{ bf_head_title }}</div>
+      <div style="padding-top:10px;font-family:{{ bf_font }};font-size:15px;line-height:22px;font-weight:400;color:#A3A6A8;">{{ bf_head_text }}</div>
     </td>
   </tr>
 
