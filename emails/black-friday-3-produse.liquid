@@ -1,30 +1,20 @@
 {%- comment -%}
 =====================================================================
   SECȚIUNE EMAIL „BLACK FRIDAY”
-  countdown + grid produse (3 pe rând desktop, 2 pe rând mobil) + buton
+  titlu + grid produse (3 pe rând desktop, 2 pe rând mobil) + buton
 ---------------------------------------------------------------------
-  1. Countdown „OFERTELE ÎNCEP ÎN”: ZILE / ORE / MIN / SEC până la data
-     setată în bf_cd_start.
-  2. Titlu + subtitlu centrate deasupra produselor.
-  3. Carduri produs: badge roșu „Black Friday”, brand, titlu pe max.
+  1. Titlu + subtitlu centrate deasupra produselor.
+  2. Carduri produs: badge roșu „Black Friday”, brand, titlu pe max.
      2 rânduri și caseta neagră cu lacăt „Preț dezvăluit pe 6 noiembrie”.
-  4. Buton „Află mai multe” la final.
+  3. Buton „Află mai multe” la final.
+  Countdown-ul se pune separat: secțiunea „Countdown” din Shopify Email,
+  cu textul din ofertele-incep-in.liquid deasupra.
 
   CUM SE FOLOSEȘTE
-  1. Lipește tot fișierul într-un bloc „HTML / Cod personalizat”
-     din editorul de email (platformă cu Liquid).
+  1. Lipește tot fișierul într-o secțiune „Custom Liquid” din
+     Shopify Email (sub secțiunea „Countdown”).
   2. Modifică SETĂRILE (secțiunea 1) și lista de PRODUSE (secțiunea 2).
   3. Trimite-ți un test.
-
-  DESPRE COUNTDOWN
-  - Emailurile nu pot rula JavaScript, așa că cifrele sunt calculate de
-    Liquid în MOMENTUL TRIMITERII (rămân fixe după aceea). Dacă emailul e
-    deschis a doua zi, arată tot timpul rămas de la trimitere.
-  - Pentru un countdown care se mișcă la fiecare deschidere ai nevoie de
-    un GIF generat de un serviciu de countdown (sau blocul de timer al
-    platformei tale). Pune URL-ul GIF-ului în bf_cd_gif și el va înlocui
-    automat căsuțele HTML.
-  - După ce trece data setată, în locul căsuțelor apare bf_cd_done.
 
   DETALII
   - Merge cu oricâte produse: 3 pe rând pe desktop (inclusiv Outlook),
@@ -39,14 +29,6 @@
 {%- endcomment -%}
 
 {%- comment -%} ===== 1. SETĂRI ===== {%- endcomment -%}
-
-{%- comment -%} Countdown — data de început a ofertelor, format AAAA-LL-ZZTHH:MM:SS+02:00
-    +02:00 = ora României iarna (din ultima duminică din octombrie), +03:00 vara {%- endcomment -%}
-{%- assign bf_cd_start  = "2026-11-06T00:00:00+02:00" -%}
-{%- assign bf_cd_title  = "Ofertele încep în" -%}
-{%- assign bf_cd_done   = "Ofertele au început!" -%}
-{%- assign bf_cd_show   = true -%}          {%- comment -%} false = ascunde countdown-ul din acest bloc (ex. dacă folosești secțiunea „Countdown” din Shopify Email) {%- endcomment -%}
-{%- assign bf_cd_gif    = "" -%}            {%- comment -%} opțional: URL GIF countdown „live” {%- endcomment -%}
 
 {%- comment -%} Carduri produs {%- endcomment -%}
 {%- assign bf_badge     = "Black Friday" -%}
@@ -65,8 +47,6 @@
 
 {%- comment -%} Culori și font {%- endcomment -%}
 {%- assign bf_bg        = "#000000" -%}     {%- comment -%} fundal secțiune + casetă preț {%- endcomment -%}
-{%- assign bf_box       = "#17181A" -%}     {%- comment -%} căsuțe countdown {%- endcomment -%}
-{%- assign bf_box_line  = "#1C3436" -%}     {%- comment -%} contur căsuțe countdown {%- endcomment -%}
 {%- assign bf_red       = "#E3242B" -%}     {%- comment -%} badge + buton {%- endcomment -%}
 {%- assign bf_teal      = "#15B7C6" -%}     {%- comment -%} lacăt {%- endcomment -%}
 {%- assign bf_font      = "'Poppins', Arial, Helvetica, sans-serif" -%}
@@ -94,22 +74,6 @@ SLEEPY | 3x Scutece Sleepy Natural H2O Ultra Sensitive Double Marime 6 XLarge + 
 
 {%- comment -%} ===== 3. ȘABLON (nu e nevoie să modifici mai jos) ===== {%- endcomment -%}
 
-{%- comment -%} Calcul countdown (secunde rămase la momentul trimiterii) {%- endcomment -%}
-{%- assign bf_cd_target = bf_cd_start | date: "%s" | plus: 0 -%}
-{%- assign bf_cd_now    = "now" | date: "%s" | plus: 0 -%}
-{%- assign bf_cd_left   = bf_cd_target | minus: bf_cd_now -%}
-{%- if bf_cd_left > 0 -%}
-  {%- assign bf_cd_d = bf_cd_left | divided_by: 86400 | floor -%}
-  {%- assign bf_cd_r = bf_cd_left | modulo: 86400 -%}
-  {%- assign bf_cd_h = bf_cd_r | divided_by: 3600 | floor -%}
-  {%- assign bf_cd_r = bf_cd_r | modulo: 3600 -%}
-  {%- assign bf_cd_m = bf_cd_r | divided_by: 60 | floor -%}
-  {%- assign bf_cd_s = bf_cd_r | modulo: 60 -%}
-  {%- assign bf_cd_h = bf_cd_h | prepend: "0" | slice: -2, 2 -%}
-  {%- assign bf_cd_m = bf_cd_m | prepend: "0" | slice: -2, 2 -%}
-  {%- assign bf_cd_s = bf_cd_s | prepend: "0" | slice: -2, 2 -%}
-{%- endif -%}
-
 <!--[if !mso]><!-->
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
 <!--<![endif]-->
@@ -121,47 +85,6 @@ SLEEPY | 3x Scutece Sleepy Natural H2O Ultra Sensitive Double Marime 6 XLarge + 
 </style>
 
 <table role="presentation" class="bf-wrap" width="100%" cellpadding="0" cellspacing="0" border="0" bgcolor="{{ bf_bg }}" style="background-color:{{ bf_bg }};">
-
-  <!-- ===================== COUNTDOWN ===================== -->
-  {%- if bf_cd_show %}
-  <tr>
-    <td align="center" style="padding:32px 12px 8px 12px;text-align:center;font-size:0;line-height:0;">
-      {%- if bf_cd_gif != "" -%}
-        <img src="{{ bf_cd_gif }}" width="420" alt="{{ bf_cd_title | escape }}" style="display:inline-block;width:100%;max-width:420px;height:auto;border:0;">
-      {%- elsif bf_cd_left > 0 -%}
-        <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0">
-          <tr>
-            <td align="center" style="padding:0 0 14px 0;font-family:{{ bf_font }};font-size:13px;line-height:16px;font-weight:700;letter-spacing:2px;color:#A3A6A8;text-transform:uppercase;">{{ bf_cd_title | upcase }}</td>
-          </tr>
-        </table>
-        <!--[if mso]><table role="presentation" width="420" cellpadding="0" cellspacing="0" border="0" align="center"><tr><td><![endif]-->
-        <div style="display:inline-block;width:100%;max-width:420px;vertical-align:top;">
-        <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0">
-          <tr>
-            {%- for bf_u in (1..4) -%}
-              {%- case bf_u -%}
-                {%- when 1 -%}{%- assign bf_val = bf_cd_d -%}{%- assign bf_lbl = "ZILE" -%}
-                {%- when 2 -%}{%- assign bf_val = bf_cd_h -%}{%- assign bf_lbl = "ORE" -%}
-                {%- when 3 -%}{%- assign bf_val = bf_cd_m -%}{%- assign bf_lbl = "MIN" -%}
-                {%- else -%}{%- assign bf_val = bf_cd_s -%}{%- assign bf_lbl = "SEC" -%}
-              {%- endcase %}
-            <td width="25%" valign="top" style="padding:0 5px;">
-              <div style="background-color:{{ bf_box }};border:1px solid {{ bf_box_line }};border-radius:8px;padding:12px 4px;text-align:center;">
-                <div style="font-family:{{ bf_font }};font-size:32px;line-height:36px;font-weight:700;color:#FFFFFF;">{{ bf_val }}</div>
-                <div style="padding-top:2px;font-family:{{ bf_font }};font-size:11px;line-height:14px;font-weight:400;letter-spacing:1px;color:#9A9FA3;">{{ bf_lbl }}</div>
-              </div>
-            </td>
-            {%- endfor %}
-          </tr>
-        </table>
-        </div>
-        <!--[if mso]></td></tr></table><![endif]-->
-      {%- else -%}
-        <div style="font-family:{{ bf_font }};font-size:24px;line-height:30px;font-weight:700;color:#FFFFFF;">{{ bf_cd_done }}</div>
-      {%- endif -%}
-    </td>
-  </tr>
-  {%- endif %}
 
   <!-- ===================== TITLU ===================== -->
   <tr>

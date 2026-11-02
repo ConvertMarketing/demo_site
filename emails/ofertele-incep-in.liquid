@@ -1,0 +1,21 @@
+{%- comment -%}
+=====================================================================
+  TEXT „OFERTELE ÎNCEP ÎN” — se pune într-o secțiune „Custom Liquid”
+  chiar DEASUPRA secțiunii „Countdown” din Shopify Email.
+  Același stil ca în design: gri, bold, majuscule, litere spațiate,
+  centrat, pe fundal negru.
+=====================================================================
+{%- endcomment -%}
+
+{%- assign cd_text = "Ofertele încep în" -%}
+{%- assign cd_bg   = "#000000" -%}
+{%- assign cd_font = "'Poppins', Arial, Helvetica, sans-serif" -%}
+
+<!--[if !mso]><!-->
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@700&display=swap" rel="stylesheet">
+<!--<![endif]-->
+<table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" bgcolor="{{ cd_bg }}" style="background-color:{{ cd_bg }};">
+  <tr>
+    <td align="center" style="padding:32px 12px 6px 12px;text-align:center;font-family:{{ cd_font }};font-size:13px;line-height:16px;font-weight:700;letter-spacing:2px;color:#A3A6A8;text-transform:uppercase;">{{ cd_text | upcase }}</td>
+  </tr>
+</table>
