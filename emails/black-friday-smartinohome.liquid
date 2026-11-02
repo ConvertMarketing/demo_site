@@ -59,21 +59,21 @@
      BRAND | Titlu produs | URL imagine (pătrată) | URL produs
   6 produse = 2 rânduri pe desktop / 3 rânduri pe mobil.
   Pozele (placehold.co) sunt provizorii: înlocuiește-le cu linkurile pozelor
-  de pe smartinohome.ro. Până pui linkul fiecărui produs, cardurile duc la
-  pagina Black Friday. În titluri NU folosi caracterul |.
+  de pe smartinohome.ro. Brandul poate rămâne gol (rândul se păstrează).
+  În titluri NU folosi caracterul |.
 {%- endcomment -%}
 {%- capture bf_produse -%}
-FIVE | Sistem de curatare Stepa cu galeata dubla mecanica | https://placehold.co/600x600/png?text=Poza+1 | https://smartinohome.ro/pages/black-friday-2026
+ | Vesela portelan set 12 piese Juliette - Verde | https://placehold.co/600x600/png?text=Poza+1 | https://smartinohome.ro/products/vesela-portelan-set-12-piese-juliette-verde
 ##
-FIVE | Suport pentru ustensile cu 4 spatule - Bambou | https://placehold.co/600x600/png?text=Poza+2 | https://smartinohome.ro/pages/black-friday-2026
+ | Brad artificial de Craciun luminos Green Creek, H 150 cm | https://placehold.co/600x600/png?text=Poza+2 | https://smartinohome.ro/products/brad-artificial-de-craciun-luminos-green-creek-h-150-cm
 ##
-FEERIC | Sat luminos atelier cadouri si trenulet 12 LED - Feeric | https://placehold.co/600x600/png?text=Poza+3 | https://smartinohome.ro/pages/black-friday-2026
+FIVE | Sistem de curatare Stepa cu galeata dubla mecanica (7 l si 8.2 l) si mop rotativ | https://placehold.co/600x600/png?text=Poza+3 | https://smartinohome.ro/products/sistem-de-curatare-stepa-cu-galeata-dubla-mecanica-7-l-%C8%99i-8-2-l-si-mop-rotativ
 ##
-ATMOSPHERA | Fotoliu rotativ boucle Sileo culoare argila Atmosphera | https://placehold.co/600x600/png?text=Poza+4 | https://smartinohome.ro/pages/black-friday-2026
+ATMOSPHERA | Fotoliu rotativ boucle Sileo culoare argila Atmosphera | https://placehold.co/600x600/png?text=Poza+4 | https://smartinohome.ro/products/fotoliu-rotativ-boucle-sileo-culoare-argila
 ##
-SECRET DE GOURMET | Cana "Clea" - Transparent, 1 buc | https://placehold.co/600x600/png?text=Poza+5 | https://smartinohome.ro/pages/black-friday-2026
+ | Covor de baie din diatomit 39x60 cm - Gri | https://placehold.co/600x600/png?text=Poza+5 | https://smartinohome.ro/products/covor-de-baie-din-diatomit-39x60-cm-gri
 ##
-FIVE | Cos de rufe pliabil 45L - Gri, Alb - Hugger | https://placehold.co/600x600/png?text=Poza+6 | https://smartinohome.ro/pages/black-friday-2026
+ATMOSPHERA | Lumanare LED 3 bucati, H 9/14/20 cm - Atmosphera | https://placehold.co/600x600/png?text=Poza+6 | https://smartinohome.ro/products/lumanare-led-3-bucati-h-9-14-20-cm-atmosphera
 {%- endcapture -%}
 {%- assign bf_lista = bf_produse | split: "##" -%}
 
@@ -109,6 +109,7 @@ FIVE | Cos de rufe pliabil 45L - Gri, Alb - Hugger | https://placehold.co/600x60
           {%- unless bf_item contains "|" -%}{%- continue -%}{%- endunless -%}
           {%- assign bf_f      = bf_item | split: "|" -%}
           {%- assign bf_vendor = bf_f[0] | strip | upcase | truncate: 20, "…" | escape -%}
+          {%- if bf_vendor == "" -%}{%- assign bf_vendor = "&nbsp;" -%}{%- endif -%}
           {%- comment -%} titlu tăiat la cuvânt întreg, fără „+”, „,” sau „-” la final {%- endcomment -%}
           {%- assign bf_title  = bf_f[1] | strip -%}
           {%- if bf_title.size > bf_title_max -%}
