@@ -1,10 +1,13 @@
 {%- comment -%}
 =====================================================================
-  GRID PRODUSE „BLACK FRIDAY” — 3 produse pe rând (email marketing)
+  SECȚIUNE EMAIL „BLACK FRIDAY”
+  countdown + grid produse (3 pe rând desktop, 2 pe rând mobil) + buton
 ---------------------------------------------------------------------
-  Fundal închis, carduri albe rotunjite, badge roșu „Black Friday”,
-  brand (uppercase gri), titlu pe max. 2 rânduri și caseta neagră
-  cu lacăt „Preț dezvăluit pe 6 noiembrie”.
+  1. Countdown „OFERTELE ÎNCEP ÎN”: ZILE / ORE / MIN / SEC până la data
+     setată în bf_cd_start.
+  2. Carduri produs: badge roșu „Black Friday”, brand, titlu pe max.
+     2 rânduri și caseta neagră cu lacăt „Preț dezvăluit pe 6 noiembrie”.
+  3. Buton „Află mai multe” la final.
 
   CUM SE FOLOSEȘTE
   1. Lipește tot fișierul într-un bloc „HTML / Cod personalizat”
@@ -12,24 +15,51 @@
   2. Modifică SETĂRILE (secțiunea 1) și lista de PRODUSE (secțiunea 2).
   3. Trimite-ți un test.
 
+  DESPRE COUNTDOWN
+  - Emailurile nu pot rula JavaScript, așa că cifrele sunt calculate de
+    Liquid în MOMENTUL TRIMITERII (rămân fixe după aceea). Dacă emailul e
+    deschis a doua zi, arată tot timpul rămas de la trimitere.
+  - Pentru un countdown care se mișcă la fiecare deschidere ai nevoie de
+    un GIF generat de un serviciu de countdown (sau blocul de timer al
+    platformei tale). Pune URL-ul GIF-ului în bf_cd_gif și el va înlocui
+    automat căsuțele HTML.
+  - După ce trece data setată, în locul căsuțelor apare bf_cd_done.
+
   DETALII
-  - Merge cu oricâte produse: 3 pe rând pe desktop (inclusiv Outlook);
-    pe telefon cardurile se așază unul sub altul.
+  - Merge cu oricâte produse: 3 pe rând pe desktop (inclusiv Outlook),
+    2 pe rând pe telefon.
   - Imaginile trebuie să fie PĂTRATE (ex. 600×600) ca toate cardurile
     să aibă aceeași înălțime.
   - Titlurile lungi se taie automat cu „…”.
-  - Fără imagini externe pentru lacăt: e desenat din HTML (în Outlook
-    pe Windows nu apare). Dacă vrei iconiță PNG, pune URL-ul în bf_lock_img.
+  - Lacătul e desenat din HTML (în Outlook pe Windows nu apare). Dacă
+    vrei iconiță PNG, pune URL-ul în bf_lock_img.
 =====================================================================
 {%- endcomment -%}
 
 {%- comment -%} ===== 1. SETĂRI ===== {%- endcomment -%}
+
+{%- comment -%} Countdown — data de început a ofertelor, format AAAA-LL-ZZTHH:MM:SS+02:00
+    +02:00 = ora României iarna (din ultima duminică din octombrie), +03:00 vara {%- endcomment -%}
+{%- assign bf_cd_start  = "2026-11-06T00:00:00+02:00" -%}
+{%- assign bf_cd_title  = "Ofertele încep în" -%}
+{%- assign bf_cd_done   = "Ofertele au început!" -%}
+{%- assign bf_cd_gif    = "" -%}            {%- comment -%} opțional: URL GIF countdown „live” {%- endcomment -%}
+
+{%- comment -%} Carduri produs {%- endcomment -%}
 {%- assign bf_badge     = "Black Friday" -%}
 {%- assign bf_reveal    = "Preț dezvăluit pe 6 noiembrie" -%}
-{%- assign bf_title_max = 40 -%}            {%- comment -%} caractere, apoi „…” {%- endcomment -%}
+{%- assign bf_title_max = 36 -%}            {%- comment -%} caractere, apoi „…” {%- endcomment -%}
 {%- assign bf_lock_img  = "" -%}            {%- comment -%} opțional: URL PNG lacăt (32×32) {%- endcomment -%}
+
+{%- comment -%} Buton final {%- endcomment -%}
+{%- assign bf_cta_text  = "Află mai multe" -%}
+{%- assign bf_cta_url   = "https://magazinul-tau.ro/pages/black-friday" -%}
+
+{%- comment -%} Culori și font {%- endcomment -%}
 {%- assign bf_bg        = "#0B0B0C" -%}     {%- comment -%} fundal secțiune + casetă preț {%- endcomment -%}
-{%- assign bf_red       = "#E3242B" -%}     {%- comment -%} badge {%- endcomment -%}
+{%- assign bf_box       = "#17181A" -%}     {%- comment -%} căsuțe countdown {%- endcomment -%}
+{%- assign bf_box_line  = "#1C3436" -%}     {%- comment -%} contur căsuțe countdown {%- endcomment -%}
+{%- assign bf_red       = "#E3242B" -%}     {%- comment -%} badge + buton {%- endcomment -%}
 {%- assign bf_teal      = "#15B7C6" -%}     {%- comment -%} lacăt {%- endcomment -%}
 {%- assign bf_font      = "'Poppins', Arial, Helvetica, sans-serif" -%}
 
@@ -37,7 +67,7 @@
   ===== 2. PRODUSE =====
   Un produs pe bloc, câmpurile separate prin |, produsele separate prin ##
      BRAND | Titlu produs | URL imagine (pătrată) | URL produs
-  Adaugă sau șterge blocuri după nevoie (3, 6, 9… umplu rânduri complete).
+  6 produse = 2 rânduri pe desktop / 3 rânduri pe mobil.
 {%- endcomment -%}
 {%- capture bf_produse -%}
 SLEEPY | PACHET PROMO - 12 x Servetele Umede Sleepy Easy Clean | https://placehold.co/600x600/png?text=Produs+1 | https://magazinul-tau.ro/products/produs-1
@@ -45,30 +75,96 @@ SLEEPY | PACHET PROMO - 12 x Servetele Umede Sleepy Easy Clean | https://placeho
 PAREX | Pachet Promo PAREX QuickPick Mop + 3x Lavete Umede Sleepy | https://placehold.co/600x600/png?text=Produs+2 | https://magazinul-tau.ro/products/produs-2
 ##
 ACTUAL | Scutece textil incontinență adulți, Actual Double, mărimea XL | https://placehold.co/600x600/png?text=Produs+3 | https://magazinul-tau.ro/products/produs-3
+##
+BRAND 4 | Titlu produs 4 — înlocuiește cu produsul tău | https://placehold.co/600x600/png?text=Produs+4 | https://magazinul-tau.ro/products/produs-4
+##
+BRAND 5 | Titlu produs 5 — înlocuiește cu produsul tău | https://placehold.co/600x600/png?text=Produs+5 | https://magazinul-tau.ro/products/produs-5
+##
+BRAND 6 | Titlu produs 6 — înlocuiește cu produsul tău | https://placehold.co/600x600/png?text=Produs+6 | https://magazinul-tau.ro/products/produs-6
 {%- endcapture -%}
 {%- assign bf_lista = bf_produse | split: "##" -%}
 
 {%- comment -%} ===== 3. ȘABLON (nu e nevoie să modifici mai jos) ===== {%- endcomment -%}
+
+{%- comment -%} Calcul countdown (secunde rămase la momentul trimiterii) {%- endcomment -%}
+{%- assign bf_cd_target = bf_cd_start | date: "%s" | plus: 0 -%}
+{%- assign bf_cd_now    = "now" | date: "%s" | plus: 0 -%}
+{%- assign bf_cd_left   = bf_cd_target | minus: bf_cd_now -%}
+{%- if bf_cd_left > 0 -%}
+  {%- assign bf_cd_d = bf_cd_left | divided_by: 86400 | floor -%}
+  {%- assign bf_cd_r = bf_cd_left | modulo: 86400 -%}
+  {%- assign bf_cd_h = bf_cd_r | divided_by: 3600 | floor -%}
+  {%- assign bf_cd_r = bf_cd_r | modulo: 3600 -%}
+  {%- assign bf_cd_m = bf_cd_r | divided_by: 60 | floor -%}
+  {%- assign bf_cd_s = bf_cd_r | modulo: 60 -%}
+  {%- assign bf_cd_h = bf_cd_h | prepend: "0" | slice: -2, 2 -%}
+  {%- assign bf_cd_m = bf_cd_m | prepend: "0" | slice: -2, 2 -%}
+  {%- assign bf_cd_s = bf_cd_s | prepend: "0" | slice: -2, 2 -%}
+{%- endif -%}
+
 <!--[if !mso]><!-->
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
 <!--<![endif]-->
 <style>
-  .bf-grid a { text-decoration: none; }
+  .bf-wrap a { text-decoration: none; }
   @media only screen and (max-width: 480px) {
-    .bf-col { max-width: 320px !important; }
+    .bf-col { width: 50% !important; max-width: 50% !important; }
   }
 </style>
 
-<table role="presentation" class="bf-grid" width="100%" cellpadding="0" cellspacing="0" border="0" bgcolor="{{ bf_bg }}" style="background-color:{{ bf_bg }};">
+<table role="presentation" class="bf-wrap" width="100%" cellpadding="0" cellspacing="0" border="0" bgcolor="{{ bf_bg }}" style="background-color:{{ bf_bg }};">
+
+  <!-- ===================== COUNTDOWN ===================== -->
   <tr>
-    <td align="center" style="padding:20px 12px;">
-      <!--[if mso]><table role="presentation" width="576" cellpadding="0" cellspacing="0" border="0" align="center"><tr><![endif]-->
-      <div style="max-width:576px;margin:0 auto;font-size:0;line-height:0;text-align:center;">
+    <td align="center" style="padding:32px 12px 8px 12px;">
+      {%- if bf_cd_gif != "" -%}
+        <img src="{{ bf_cd_gif }}" width="420" alt="{{ bf_cd_title | escape }}" style="display:block;width:100%;max-width:420px;height:auto;border:0;margin:0 auto;">
+      {%- elsif bf_cd_left > 0 -%}
+        <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0">
+          <tr>
+            <td align="center" style="padding:0 0 14px 0;font-family:{{ bf_font }};font-size:13px;line-height:16px;font-weight:700;letter-spacing:2px;color:#A3A6A8;text-transform:uppercase;">{{ bf_cd_title | upcase }}</td>
+          </tr>
+        </table>
+        <!--[if mso]><table role="presentation" width="420" cellpadding="0" cellspacing="0" border="0" align="center"><tr><td><![endif]-->
+        <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" align="center" style="max-width:420px;margin:0 auto;">
+          <tr>
+            {%- for bf_u in (1..4) -%}
+              {%- case bf_u -%}
+                {%- when 1 -%}{%- assign bf_val = bf_cd_d -%}{%- assign bf_lbl = "ZILE" -%}
+                {%- when 2 -%}{%- assign bf_val = bf_cd_h -%}{%- assign bf_lbl = "ORE" -%}
+                {%- when 3 -%}{%- assign bf_val = bf_cd_m -%}{%- assign bf_lbl = "MIN" -%}
+                {%- else -%}{%- assign bf_val = bf_cd_s -%}{%- assign bf_lbl = "SEC" -%}
+              {%- endcase %}
+            <td width="25%" valign="top" style="padding:0 5px;">
+              <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" bgcolor="{{ bf_box }}" style="background-color:{{ bf_box }};border:1px solid {{ bf_box_line }};border-radius:10px;border-collapse:separate;">
+                <tr>
+                  <td align="center" style="padding:12px 4px 0 4px;font-family:{{ bf_font }};font-size:32px;line-height:36px;font-weight:700;color:#FFFFFF;">{{ bf_val }}</td>
+                </tr>
+                <tr>
+                  <td align="center" style="padding:2px 4px 12px 4px;font-family:{{ bf_font }};font-size:11px;line-height:14px;font-weight:400;letter-spacing:1px;color:#9A9FA3;">{{ bf_lbl }}</td>
+                </tr>
+              </table>
+            </td>
+            {%- endfor %}
+          </tr>
+        </table>
+        <!--[if mso]></td></tr></table><![endif]-->
+      {%- else -%}
+        <div style="font-family:{{ bf_font }};font-size:24px;line-height:30px;font-weight:700;color:#FFFFFF;">{{ bf_cd_done }}</div>
+      {%- endif -%}
+    </td>
+  </tr>
+
+  <!-- ===================== PRODUSE ===================== -->
+  <tr>
+    <td align="center" style="padding:18px 6px 0 6px;">
+      <!--[if mso]><table role="presentation" width="540" cellpadding="0" cellspacing="0" border="0" align="center"><tr><![endif]-->
+      <div style="max-width:540px;margin:0 auto;font-size:0;line-height:0;text-align:center;">
         {%- assign bf_n = 0 -%}
         {%- for bf_item in bf_lista -%}
           {%- unless bf_item contains "|" -%}{%- continue -%}{%- endunless -%}
           {%- assign bf_f      = bf_item | split: "|" -%}
-          {%- assign bf_vendor = bf_f[0] | strip | upcase | truncate: 18, "…" | escape -%}
+          {%- assign bf_vendor = bf_f[0] | strip | upcase | truncate: 16, "…" | escape -%}
           {%- assign bf_title  = bf_f[1] | strip | truncate: bf_title_max, "…" | escape -%}
           {%- assign bf_alt    = bf_f[1] | strip | escape -%}
           {%- assign bf_img    = bf_f[2] | strip -%}
@@ -77,8 +173,8 @@ ACTUAL | Scutece textil incontinență adulți, Actual Double, mărimea XL | htt
           {%- assign bf_mod    = bf_n | modulo: 3 -%}
 
           {%- if bf_n > 1 and bf_mod == 1 -%}<!--[if mso]></tr><tr><![endif]-->{%- endif -%}
-          <!--[if mso]><td width="192" valign="top"><![endif]-->
-          <div class="bf-col" style="display:inline-block;width:100%;max-width:192px;vertical-align:top;font-size:14px;line-height:20px;text-align:left;">
+          <!--[if mso]><td width="180" valign="top"><![endif]-->
+          <div class="bf-col" style="display:inline-block;width:100%;max-width:180px;vertical-align:top;font-size:14px;line-height:20px;text-align:left;">
             <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0">
               <tr>
                 <td style="padding:6px;">
@@ -97,7 +193,7 @@ ACTUAL | Scutece textil incontinență adulți, Actual Double, mărimea XL | htt
                     <tr>
                       <td align="center" style="padding:6px 10px 0 10px;">
                         <a href="{{ bf_url }}" target="_blank" style="text-decoration:none;">
-                          <img src="{{ bf_img }}" width="160" alt="{{ bf_alt }}" style="display:block;width:100%;max-width:100%;height:auto;border:0;outline:none;text-decoration:none;">
+                          <img src="{{ bf_img }}" width="148" alt="{{ bf_alt }}" style="display:block;width:100%;max-width:100%;height:auto;border:0;outline:none;text-decoration:none;">
                         </a>
                       </td>
                     </tr>
@@ -120,7 +216,7 @@ ACTUAL | Scutece textil incontinență adulți, Actual Double, mărimea XL | htt
                       <td style="padding:10px;">
                         <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" bgcolor="{{ bf_bg }}" style="background-color:{{ bf_bg }};border-radius:8px;border-collapse:separate;">
                           <tr>
-                            <td width="16" valign="middle" style="padding:9px 0 9px 11px;font-size:0;line-height:0;">
+                            <td width="16" valign="middle" style="padding:9px 0 9px 10px;font-size:0;line-height:0;">
                               {%- if bf_lock_img != "" -%}
                               <img src="{{ bf_lock_img }}" width="16" height="16" alt="" style="display:block;border:0;">
                               {%- else -%}
@@ -130,7 +226,7 @@ ACTUAL | Scutece textil incontinență adulți, Actual Double, mărimea XL | htt
                               <!--<![endif]-->
                               {%- endif -%}
                             </td>
-                            <td valign="middle" style="padding:9px 10px 9px 9px;font-family:{{ bf_font }};font-size:13px;line-height:17px;font-weight:700;color:#FFFFFF;">
+                            <td valign="middle" style="padding:9px 8px 9px 8px;font-family:{{ bf_font }};font-size:12px;line-height:16px;font-weight:700;color:#FFFFFF;">
                               <a href="{{ bf_url }}" target="_blank" style="color:#FFFFFF;text-decoration:none;">{{ bf_reveal }}</a>
                             </td>
                           </tr>
@@ -148,4 +244,18 @@ ACTUAL | Scutece textil incontinență adulți, Actual Double, mărimea XL | htt
       <!--[if mso]></tr></table><![endif]-->
     </td>
   </tr>
+
+  <!-- ===================== BUTON ===================== -->
+  <tr>
+    <td align="center" style="padding:22px 12px 36px 12px;">
+      <table role="presentation" cellpadding="0" cellspacing="0" border="0" align="center" style="border-collapse:separate;">
+        <tr>
+          <td align="center" bgcolor="{{ bf_red }}" style="background-color:{{ bf_red }};border-radius:10px;mso-padding-alt:15px 44px;">
+            <a href="{{ bf_cta_url }}" target="_blank" style="display:inline-block;padding:15px 44px;font-family:{{ bf_font }};font-size:15px;line-height:18px;font-weight:700;color:#FFFFFF;text-decoration:none;border-radius:10px;">{{ bf_cta_text }}</a>
+          </td>
+        </tr>
+      </table>
+    </td>
+  </tr>
+
 </table>
