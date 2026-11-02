@@ -57,23 +57,24 @@
   ===== 2. PRODUSE =====
   Un produs pe bloc, câmpurile separate prin |, produsele separate prin ##
      BRAND | Titlu produs | URL imagine (pătrată) | URL produs
-  6 produse = 2 rânduri pe desktop / 3 rânduri pe mobil.
-  Pozele (placehold.co) sunt provizorii: înlocuiește-le cu linkurile pozelor
-  de pe smartinohome.ro. Brandul poate rămâne gol (rândul se păstrează).
-  În titluri NU folosi caracterul |.
+  3 pe rând pe desktop, 2 pe rând pe mobil; un produs rămas singur pe
+  ultimul rând e centrat. Brandul poate rămâne gol (rândul se păstrează),
+  iar „_” din brand devine spațiu. În titluri NU folosi caracterul |.
 {%- endcomment -%}
 {%- capture bf_produse -%}
-SECRET DE GOURMET | Vesela portelan set 12 piese "Juliette", Verde, 1 set | https://placehold.co/600x600/png?text=Poza+1 | https://smartinohome.ro/products/vesela-portelan-set-12-piese-juliette-verde
+FIVE | Sistem de curatare Stepa cu galeata dubla mecanica (7 l si 8.2 l) si mop rotativ | https://smartinohome.ro/cdn/shop/files/WhatsAppImage2026-10-05at14.00.54_1_1000x.jpg?v=1791202973 | https://smartinohome.ro/products/sistem-de-curatare-stepa-cu-galeata-dubla-mecanica-7-l-%C8%99i-8-2-l-si-mop-rotativ
 ##
- | Brad artificial de Craciun luminos Green Creek, H 150 cm | https://placehold.co/600x600/png?text=Poza+2 | https://smartinohome.ro/products/brad-artificial-de-craciun-luminos-green-creek-h-150-cm
+ATMOSPHERA | Fotoliu XL "Muzi" - Alb - Atmosphera | https://smartinohome.ro/cdn/shop/files/207360A_DEB1_21c08473-c852-48b1-9260-d34347989108_1000x.jpg?v=1779322477 | https://smartinohome.ro/products/fotoliu-xl-muzi-alb-atmosphera
 ##
-FIVE | Sistem de curatare Stepa cu galeata dubla mecanica (7 l si 8.2 l) si mop rotativ | https://placehold.co/600x600/png?text=Poza+3 | https://smartinohome.ro/products/sistem-de-curatare-stepa-cu-galeata-dubla-mecanica-7-l-%C8%99i-8-2-l-si-mop-rotativ
+FIVE | Covor de baie din diatomit 39x60 cm - Gri | https://smartinohome.ro/cdn/shop/files/174683_DEB1_7b4644a6-8b19-4450-9994-229c6060e5e7_1000x.jpg?v=1781183161 | https://smartinohome.ro/products/covor-de-baie-din-diatomit-39x60-cm-gri
 ##
-ATMOSPHERA | Fotoliu rotativ boucle Sileo culoare argila Atmosphera | https://placehold.co/600x600/png?text=Poza+4 | https://smartinohome.ro/products/fotoliu-rotativ-boucle-sileo-culoare-argila
+Atmosphera Createur d'interieur | Brad artificial de Craciun luminos Green Creek, H 150 cm | https://smartinohome.ro/cdn/shop/files/207533_DEB1_1000x.jpg?v=1788785555 | https://smartinohome.ro/products/brad-artificial-de-craciun-luminos-green-creek-h-150-cm
 ##
- | Covor de baie din diatomit 39x60 cm - Gri | https://placehold.co/600x600/png?text=Poza+5 | https://smartinohome.ro/products/covor-de-baie-din-diatomit-39x60-cm-gri
+ATMOSPHERA | Lumanare LED, 3 bucati - H. 9/14/20 cm - Atmosphera | https://smartinohome.ro/cdn/shop/files/135375_DEB1_6109a011-c331-4d09-9be3-1cef2b72a5f7_1000x.jpg?v=1779291419 | https://smartinohome.ro/products/lumanare-led-3-bucati-h-9-14-20-cm-atmosphera
 ##
-ATMOSPHERA | Lumanare LED, 3 bucati - H. 9/14/20 cm - Atmosphera | https://placehold.co/600x600/png?text=Poza+6 | https://smartinohome.ro/products/lumanare-led-3-bucati-h-9-14-20-cm-atmosphera
+SECRET_DE_GOURMET | Vesela portelan set 12 piese "Juliette", Verde, 1 set | https://smartinohome.ro/cdn/shop/files/212371_DEB1_a99c0d6c-c8ee-42d6-b50d-39255e4ede1b_1000x.jpg?v=1781202501 | https://smartinohome.ro/products/vesela-portelan-set-12-piese-juliette-verde
+##
+Atmosphera Createur d'interieur | Perna cadou cu funda rosie, catifea, verde - Atmosphera | https://smartinohome.ro/cdn/shop/files/208636B_DEB1_1000x.jpg?v=1788786704 | https://smartinohome.ro/products/perna-cadou-de-craciun-cu-funda-rosie-verde-50-x-30-cm
 {%- endcapture -%}
 {%- assign bf_lista = bf_produse | split: "##" -%}
 
@@ -108,7 +109,7 @@ ATMOSPHERA | Lumanare LED, 3 bucati - H. 9/14/20 cm - Atmosphera | https://place
         {%- for bf_item in bf_lista -%}
           {%- unless bf_item contains "|" -%}{%- continue -%}{%- endunless -%}
           {%- assign bf_f      = bf_item | split: "|" -%}
-          {%- assign bf_vendor = bf_f[0] | strip | upcase | truncate: 20, "…" | escape -%}
+          {%- assign bf_vendor = bf_f[0] | strip | replace: "_", " " | upcase | truncate: 17, "…" | escape -%}
           {%- if bf_vendor == "" -%}{%- assign bf_vendor = "&nbsp;" -%}{%- endif -%}
           {%- comment -%} titlu tăiat la cuvânt întreg, fără „+”, „,” sau „-” la final {%- endcomment -%}
           {%- assign bf_title  = bf_f[1] | strip -%}
@@ -120,6 +121,18 @@ ATMOSPHERA | Lumanare LED, 3 bucati - H. 9/14/20 cm - Atmosphera | https://place
               {%- unless forloop.last -%}{%- assign bf_title = bf_title | append: bf_w | append: " " -%}{%- endunless -%}
             {%- endfor -%}
             {%- assign bf_title = bf_title | strip -%}
+            {%- comment -%} ultimul cuvânt e o abreviere („H.”, „D.”) → îl scoatem {%- endcomment -%}
+            {%- assign bf_lc = bf_title | slice: -1 -%}
+            {%- if bf_lc == "." -%}
+              {%- assign bf_ws = bf_title | split: " " -%}
+              {%- if bf_ws.size > 1 -%}
+                {%- assign bf_title = "" -%}
+                {%- for bf_w in bf_ws -%}
+                  {%- unless forloop.last -%}{%- assign bf_title = bf_title | append: bf_w | append: " " -%}{%- endunless -%}
+                {%- endfor -%}
+                {%- assign bf_title = bf_title | strip -%}
+              {%- endif -%}
+            {%- endif -%}
             {%- assign bf_lc = bf_title | slice: -1 -%}
             {%- if bf_lc == "+" or bf_lc == "," or bf_lc == "-" or bf_lc == "–" or bf_lc == ":" -%}
               {%- assign bf_len   = bf_title.size | minus: 1 -%}
