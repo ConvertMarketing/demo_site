@@ -45,6 +45,7 @@
 {%- assign bf_cd_start  = "2026-11-06T00:00:00+02:00" -%}
 {%- assign bf_cd_title  = "Ofertele încep în" -%}
 {%- assign bf_cd_done   = "Ofertele au început!" -%}
+{%- assign bf_cd_show   = true -%}          {%- comment -%} false = ascunde countdown-ul din acest bloc (ex. dacă folosești secțiunea „Countdown” din Shopify Email) {%- endcomment -%}
 {%- assign bf_cd_gif    = "" -%}            {%- comment -%} opțional: URL GIF countdown „live” {%- endcomment -%}
 
 {%- comment -%} Carduri produs {%- endcomment -%}
@@ -122,6 +123,7 @@ SLEEPY | 3x Scutece Sleepy Natural H2O Ultra Sensitive Double Marime 6 XLarge + 
 <table role="presentation" class="bf-wrap" width="100%" cellpadding="0" cellspacing="0" border="0" bgcolor="{{ bf_bg }}" style="background-color:{{ bf_bg }};">
 
   <!-- ===================== COUNTDOWN ===================== -->
+  {%- if bf_cd_show %}
   <tr>
     <td align="center" style="padding:32px 12px 8px 12px;text-align:center;font-size:0;line-height:0;">
       {%- if bf_cd_gif != "" -%}
@@ -159,6 +161,7 @@ SLEEPY | 3x Scutece Sleepy Natural H2O Ultra Sensitive Double Marime 6 XLarge + 
       {%- endif -%}
     </td>
   </tr>
+  {%- endif %}
 
   <!-- ===================== TITLU ===================== -->
   <tr>
