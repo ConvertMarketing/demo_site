@@ -29,8 +29,9 @@
   DETALII
   - Merge cu oricâte produse: 3 pe rând pe desktop (inclusiv Outlook),
     2 pe rând pe telefon.
-  - Imaginile trebuie să fie PĂTRATE (ex. 600×600) ca toate cardurile
-    să aibă aceeași înălțime.
+  - Toate pozele ocupă același pătrat de 148×148 px (cele late sau
+    înalte sunt micșorate și centrate), deci cardurile au aceeași înălțime.
+    Pozele Shopify sunt în plus transformate automat în pătrate (bf_img_square).
   - Titlurile lungi se taie automat cu „…”.
   - Lacătul e desenat din HTML (în Outlook pe Windows nu apare). Dacă
     vrei iconiță PNG, pune URL-ul în bf_lock_img.
@@ -50,6 +51,7 @@
 {%- assign bf_badge     = "Black Friday" -%}
 {%- assign bf_reveal    = "Preț dezvăluit pe 6 noiembrie" -%}
 {%- assign bf_title_max = 38 -%}            {%- comment -%} caractere, apoi „…” {%- endcomment -%}
+{%- assign bf_img_square = true -%}          {%- comment -%} pozele Shopify (…/cdn/shop/…?width=700) sunt transformate automat în pătrate cu fundal alb; pune false dacă vreo poză nu se mai încarcă {%- endcomment -%}
 {%- assign bf_lock_img  = "" -%}            {%- comment -%} opțional: URL PNG lacăt (32×32) {%- endcomment -%}
 
 {%- comment -%} Titlu deasupra produselor (centrat) {%- endcomment -%}
@@ -197,6 +199,13 @@ SLEEPY | 3x Scutece Sleepy Natural H2O Ultra Sensitive Double Marime 6 XLarge + 
           {%- assign bf_title  = bf_title | escape -%}
           {%- assign bf_alt    = bf_f[1] | strip | escape -%}
           {%- assign bf_img    = bf_f[2] | strip -%}
+          {%- comment -%} Shopify CDN: aceeași lățime și înălțime + pad_color = poză pătrată, completată cu alb {%- endcomment -%}
+          {%- if bf_img_square and bf_img contains "/cdn/shop/" and bf_img contains "width=" -%}
+            {%- unless bf_img contains "pad_color=" -%}
+              {%- assign bf_w   = bf_img | split: "width=" | last | split: "&" | first -%}
+              {%- assign bf_img = bf_img | append: "&height=" | append: bf_w | append: "&pad_color=ffffff" -%}
+            {%- endunless -%}
+          {%- endif -%}
           {%- assign bf_url    = bf_f[3] | strip -%}
           {%- assign bf_n      = bf_n | plus: 1 -%}
           {%- assign bf_mod    = bf_n | modulo: 3 -%}
@@ -220,9 +229,9 @@ SLEEPY | 3x Scutece Sleepy Natural H2O Ultra Sensitive Double Marime 6 XLarge + 
                     </tr>
                     <!-- imagine -->
                     <tr>
-                      <td align="center" style="padding:6px 10px 0 10px;">
+                      <td align="center" valign="middle" height="148" style="padding:6px 10px 0 10px;height:148px;text-align:center;font-size:0;line-height:0;">
                         <a href="{{ bf_url }}" target="_blank" style="text-decoration:none;">
-                          <img src="{{ bf_img }}" width="148" alt="{{ bf_alt }}" style="display:block;width:100%;max-width:100%;height:auto;border:0;outline:none;text-decoration:none;">
+                          <img src="{{ bf_img }}" width="148" alt="{{ bf_alt }}" style="display:inline-block;vertical-align:middle;width:auto;height:auto;max-width:100%;max-height:148px;border:0;outline:none;text-decoration:none;">
                         </a>
                       </td>
                     </tr>
