@@ -6,7 +6,7 @@
   1. Titlu + subtitlu centrate deasupra produselor.
   2. Carduri produs: badge roșu „Black Friday”, brand, titlu pe max.
      2 rânduri și caseta neagră cu lacăt „Preț dezvăluit pe 6 noiembrie”.
-  3. Buton „Află mai multe” la final.
+  3. Buton „Află mai multe →” la final (turcoaz Smartino, colțuri complet rotunde).
   Countdown-ul se pune separat: secțiunea „Countdown” din Shopify Email,
   cu textul din ofertele-incep-in.liquid deasupra.
 
@@ -44,10 +44,12 @@
 {%- comment -%} Buton final {%- endcomment -%}
 {%- assign bf_cta_text  = "Află mai multe" -%}
 {%- assign bf_cta_url   = "https://smartinohome.ro/pages/black-friday-2026" -%}
+{%- assign bf_cta_bg    = "#00B8C7" -%}     {%- comment -%} culoarea Smartino {%- endcomment -%}
+{%- assign bf_cta_color = "#000000" -%}     {%- comment -%} text + săgeată; negru se citește mult mai bine pe turcoaz decât alb {%- endcomment -%}
 
 {%- comment -%} Culori și font {%- endcomment -%}
 {%- assign bf_bg        = "#000000" -%}     {%- comment -%} fundal secțiune + casetă preț {%- endcomment -%}
-{%- assign bf_red       = "#E3242B" -%}     {%- comment -%} badge + buton {%- endcomment -%}
+{%- assign bf_red       = "#E3242B" -%}     {%- comment -%} badge „Black Friday” {%- endcomment -%}
 {%- assign bf_teal      = "#15B7C6" -%}     {%- comment -%} lacăt {%- endcomment -%}
 {%- assign bf_font      = "'Poppins', Arial, Helvetica, sans-serif" -%}
 
@@ -215,9 +217,15 @@ FIVE | Cos de rufe pliabil 45L - Gri, Alb - Hugger | https://placehold.co/600x60
   <!-- ===================== BUTON ===================== -->
   <tr>
     <td align="center" style="padding:22px 12px 36px 12px;text-align:center;">
-      <!--[if mso]><table role="presentation" cellpadding="0" cellspacing="0" border="0" align="center"><tr><td bgcolor="{{ bf_red }}" style="padding:15px 44px;"><![endif]-->
-      <a href="{{ bf_cta_url }}" target="_blank" style="display:inline-block;background-color:{{ bf_red }};border-radius:10px;padding:15px 44px;mso-padding-alt:0;font-family:{{ bf_font }};font-size:15px;line-height:18px;font-weight:700;color:#FFFFFF;text-decoration:none;">{{ bf_cta_text }}</a>
-      <!--[if mso]></td></tr></table><![endif]-->
+      <!--[if mso]>
+      <v:roundrect xmlns:v="urn:schemas-microsoft-com:vml" xmlns:w="urn:schemas-microsoft-com:office:word" href="{{ bf_cta_url }}" style="height:50px;v-text-anchor:middle;width:250px;" arcsize="50%" stroke="f" fillcolor="{{ bf_cta_bg }}">
+        <w:anchorlock/>
+        <center style="color:{{ bf_cta_color }};font-family:Arial,sans-serif;font-size:15px;font-weight:bold;">{{ bf_cta_text }}&nbsp;&nbsp;&#8594;</center>
+      </v:roundrect>
+      <![endif]-->
+      <!--[if !mso]><!-->
+      <a href="{{ bf_cta_url }}" target="_blank" style="display:inline-block;background-color:{{ bf_cta_bg }};border-radius:999px;padding:15px 34px 15px 40px;font-family:{{ bf_font }};font-size:15px;line-height:20px;font-weight:700;color:{{ bf_cta_color }};text-decoration:none;">{{ bf_cta_text }}&nbsp;&nbsp;<span style="font-family:Arial,Helvetica,sans-serif;font-size:18px;line-height:20px;font-weight:700;color:{{ bf_cta_color }};">&#8594;</span></a>
+      <!--<![endif]-->
     </td>
   </tr>
 
