@@ -1,0 +1,3 @@
+Iconițele smartino-*.png sunt randate (culoare #00B8C7) din Tabler Icons
+(https://tabler.io/icons), licență MIT, Copyright (c) 2020-2024 Paweł Kuna.
+Iconițe folosite: sofa, christmas-tree, tools-kitchen-2, bath, spray, basket.

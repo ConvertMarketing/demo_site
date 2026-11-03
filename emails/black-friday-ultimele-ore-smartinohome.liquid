@@ -5,8 +5,10 @@
 ---------------------------------------------------------------------
   Tema banner-ului: „Black Friday trece pe modul smart”.
   1. Titlu mare „La 00:00, Black Friday trece pe modul smart” + text.
-  2. „Ce pui pe listă?” — 6 categorii pentru casă, fiecare cu emoji și
-     căsuță de bifat (3 pe rând desktop, 2 pe rând mobil).
+  2. „Ce pui pe listă?” — 6 categorii pentru casă, fiecare cu iconiță
+     turcoaz și căsuță de bifat (3 pe rând desktop, 2 pe rând mobil).
+     Iconițele sunt PNG-urile din emails/icons/ (smartino-*.png): se urcă
+     în Shopify (Content → Files) și linkul fiecăreia se pune în listă.
   3. Casetă „Stocuri limitate”.
   4. Buton turcoaz „Începe-ți lista →” spre pagina Black Friday.
   5. Notă mică: perioada ofertei, în limita stocului.
@@ -29,21 +31,23 @@
 {%- assign bf_list_text = "Găsești produse pentru fiecare cameră pe pagina de Black&nbsp;Friday." -%}
 
 {%- comment -%}
-  Categorii: una pe bloc, emoji | nume | link, separate prin ##
-  Linkul poate fi pagina Black Friday sau colecția categoriei.
+  Categorii: una pe bloc, separate prin ##
+     link iconiță (PNG din Shopify Files) | nume | link categorie
+  Linkul categoriei poate fi pagina Black Friday sau colecția categoriei.
+  Cât timp linkul iconiței e gol, cardul apare fără iconiță (aceeași înălțime).
 {%- endcomment -%}
 {%- capture bf_categorii -%}
-🛋️ | Mobilier | https://smartinohome.ro/pages/black-friday-2026
+LINK-ICON-MOBILIER | Mobilier | https://smartinohome.ro/pages/black-friday-2026
 ##
-🎄 | Crăciun | https://smartinohome.ro/pages/black-friday-2026
+LINK-ICON-CRACIUN | Crăciun | https://smartinohome.ro/pages/black-friday-2026
 ##
-🍽️ | Bucătărie | https://smartinohome.ro/pages/black-friday-2026
+LINK-ICON-BUCATARIE | Bucătărie | https://smartinohome.ro/pages/black-friday-2026
 ##
-🛁 | Baie | https://smartinohome.ro/pages/black-friday-2026
+LINK-ICON-BAIE | Baie | https://smartinohome.ro/pages/black-friday-2026
 ##
-🧹 | Curățenie | https://smartinohome.ro/pages/black-friday-2026
+LINK-ICON-CURATENIE | Curățenie | https://smartinohome.ro/pages/black-friday-2026
 ##
-🧺 | Depozitare | https://smartinohome.ro/pages/black-friday-2026
+LINK-ICON-DEPOZITARE | Depozitare | https://smartinohome.ro/pages/black-friday-2026
 {%- endcapture -%}
 
 {%- assign bf_stock_head = "Stocuri limitate" -%}
@@ -98,7 +102,8 @@
         {%- for bf_item in bf_lista -%}
           {%- unless bf_item contains "|" -%}{%- continue -%}{%- endunless -%}
           {%- assign bf_f     = bf_item | split: "|" -%}
-          {%- assign bf_emoji = bf_f[0] | strip -%}
+          {%- assign bf_icon  = bf_f[0] | strip -%}
+          {%- unless bf_icon contains "://" -%}{%- assign bf_icon = "" -%}{%- endunless -%}
           {%- assign bf_name  = bf_f[1] | strip -%}
           {%- assign bf_url   = bf_f[2] | strip -%}
           {%- assign bf_n     = bf_n | plus: 1 -%}
@@ -108,7 +113,11 @@
           <div class="bfh-col" style="display:inline-block;width:100%;max-width:180px;vertical-align:top;font-size:14px;line-height:20px;text-align:center;">
             <div style="padding:6px;">
               <a href="{{ bf_url }}" target="_blank" style="display:block;background-color:{{ bf_tile }};border:1px solid {{ bf_tile_line }};border-radius:14px;padding:18px 8px 16px 8px;text-decoration:none;">
-                <span style="display:block;font-size:34px;line-height:40px;">{{ bf_emoji }}</span>
+                {%- if bf_icon != "" -%}
+                <span style="display:block;height:40px;line-height:40px;font-size:0;text-align:center;"><img src="{{ bf_icon }}" width="40" height="40" alt="" style="display:inline-block;width:40px;height:40px;border:0;vertical-align:top;"></span>
+                {%- else -%}
+                <span style="display:block;height:40px;line-height:40px;font-size:0;">&nbsp;</span>
+                {%- endif -%}
                 <span style="display:block;padding-top:8px;font-family:{{ bf_font }};font-size:15px;line-height:20px;font-weight:700;color:#FFFFFF;white-space:nowrap;"><!--[if !mso]><!--><span style="display:inline-block;width:11px;height:11px;margin-right:7px;border:2px solid {{ bf_teal }};border-radius:4px;vertical-align:-1px;"></span><!--<![endif]-->{{ bf_name }}</span>
               </a>
             </div>
@@ -126,7 +135,7 @@
       <!--[if mso]><table role="presentation" width="528" cellpadding="0" cellspacing="0" border="0" align="center"><tr><td><![endif]-->
       <div style="display:inline-block;width:100%;max-width:528px;vertical-align:top;text-align:left;">
         <div style="border:1px solid {{ bf_teal }};border-radius:14px;padding:14px 18px;">
-          <div style="font-family:{{ bf_font }};font-size:15px;line-height:21px;font-weight:700;color:{{ bf_teal }};">⚡ {{ bf_stock_head }}</div>
+          <div style="font-family:{{ bf_font }};font-size:15px;line-height:21px;font-weight:700;color:{{ bf_teal }};">{{ bf_stock_head }}</div>
           <div style="padding-top:2px;font-family:{{ bf_font }};font-size:14px;line-height:20px;font-weight:400;color:#C9CCCE;">{{ bf_stock_text }}</div>
         </div>
       </div>
