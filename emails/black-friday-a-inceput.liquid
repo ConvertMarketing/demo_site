@@ -1,0 +1,164 @@
+{%- comment -%}
+=====================================================================
+  EMAIL „A ÎNCEPUT BLACK FRIDAY” — SMARTINO SHOP
+  (se trimite vineri, 6 noiembrie, după start)
+---------------------------------------------------------------------
+  1. Pastilă „6–8 noiembrie” + titlu „Black Friday a început”.
+  2. Etichetă roșie „Reduceri de până la -45%” (ca pe landing).
+  3. Text: sute de produse, oferte limitate.
+  4. „Alege categoria” — categoriile ca butoane-pastilă, fiecare cu link.
+  5. Casetă „Oferte limitate”.
+  6. Buton turcoaz „Vezi ofertele →” + notă cu perioada ofertei.
+
+  ORDINEA ÎN SHOPIFY EMAIL
+  1. Banner
+  2. Custom Liquid cu ofertele-incep-in.liquid, textul schimbat în
+     „Ofertele expiră în”
+  3. Secțiunea „Countdown”, cu data de FINAL a ofertelor (8 noiembrie)
+  4. Custom Liquid cu ACEST fișier
+=====================================================================
+{%- endcomment -%}
+
+{%- comment -%} ===== 1. SETĂRI ===== {%- endcomment -%}
+{%- assign bf_pill      = "6–8 noiembrie" -%}
+{%- assign bf_title_1   = "Black Friday" -%}
+{%- assign bf_title_2   = "a început" -%}          {%- comment -%} partea colorată din titlu {%- endcomment -%}
+{%- assign bf_tag_small = "Reduceri de până la" -%}
+{%- assign bf_tag_big   = "-45" -%}                {%- comment -%} fără semnul % (se adaugă singur) {%- endcomment -%}
+{%- assign bf_text      = "Sute de produse pentru casă și familie au acum prețuri de Black Friday. Ofertele sunt limitate, iar cele mai căutate produse se termină primele." -%}
+
+{%- assign bf_cat_head  = "Alege categoria" -%}
+{%- comment -%}
+  Categorii: una pe bloc, nume | link, separate prin ##
+  Linkul poate fi pagina Black Friday sau colecția categoriei.
+{%- endcomment -%}
+{%- capture bf_categorii -%}
+Șervețele și lavete EasyClean | https://smartinoshop.ro/pages/black-friday-1
+##
+Sleepy Easy Clean acti foam | https://smartinoshop.ro/pages/black-friday-1
+##
+Curățenie și întreținere | https://smartinoshop.ro/pages/black-friday-1
+##
+Produse Macromax | https://smartinoshop.ro/pages/black-friday-1
+##
+Scutece și chiloței copii | https://smartinoshop.ro/pages/black-friday-1
+##
+Scutece adulți | https://smartinoshop.ro/pages/black-friday-1
+##
+Îngrijire dentară | https://smartinoshop.ro/pages/black-friday-1
+##
+Îngrijire personală | https://smartinoshop.ro/pages/black-friday-1
+##
+Produse din hârtie | https://smartinoshop.ro/pages/black-friday-1
+{%- endcapture -%}
+
+{%- assign bf_stock_head = "Oferte limitate" -%}
+{%- assign bf_stock_text = "Reducerile țin până pe 8 noiembrie sau până se termină stocul. Nu lăsa coșul pe mai târziu." -%}
+
+{%- assign bf_cta_text  = "Vezi ofertele" -%}
+{%- assign bf_cta_url   = "https://smartinoshop.ro/pages/black-friday-1" -%}
+{%- assign bf_note      = "Ofertele sunt valabile în perioada 6–8 noiembrie 2026, în limita stocului disponibil." -%}
+
+{%- comment -%} Culori și font {%- endcomment -%}
+{%- assign bf_bg        = "#000000" -%}
+{%- assign bf_red       = "#E3242B" -%}           {%- comment -%} eticheta -45% {%- endcomment -%}
+{%- assign bf_red_line  = "#F4A3A6" -%}           {%- comment -%} linia punctată din etichetă {%- endcomment -%}
+{%- assign bf_teal      = "#00B8C7" -%}           {%- comment -%} culoarea Smartino {%- endcomment -%}
+{%- assign bf_chip      = "#17181A" -%}           {%- comment -%} fundal butoane categorii {%- endcomment -%}
+{%- assign bf_chip_line = "#2A2D30" -%}
+{%- assign bf_cta_color = "#000000" -%}           {%- comment -%} text buton (negru = contrast bun pe turcoaz) {%- endcomment -%}
+{%- assign bf_font      = "'Poppins', Arial, Helvetica, sans-serif" -%}
+
+{%- assign bf_lista = bf_categorii | split: "##" -%}
+
+{%- comment -%} ===== 2. ȘABLON (nu e nevoie să modifici mai jos) ===== {%- endcomment -%}
+<!--[if !mso]><!-->
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800&display=swap" rel="stylesheet">
+<!--<![endif]-->
+
+<table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" bgcolor="{{ bf_bg }}" style="background-color:{{ bf_bg }};">
+
+  <!-- ===================== PASTILĂ + TITLU ===================== -->
+  <tr>
+    <td align="center" style="padding:32px 20px 0 20px;text-align:center;">
+      <span style="display:inline-block;border:1px solid {{ bf_teal }};border-radius:999px;padding:6px 14px;font-family:{{ bf_font }};font-size:12px;line-height:14px;font-weight:700;letter-spacing:2px;color:{{ bf_teal }};text-transform:uppercase;"><span style="font-size:14px;">&#9679;</span>&nbsp; {{ bf_pill | upcase }}</span>
+      <div style="padding-top:16px;font-family:{{ bf_font }};font-size:34px;line-height:40px;font-weight:800;color:#FFFFFF;">{{ bf_title_1 }} <span style="color:{{ bf_teal }};white-space:nowrap;">{{ bf_title_2 }}</span></div>
+    </td>
+  </tr>
+
+  <!-- ===================== ETICHETA -45% ===================== -->
+  <tr>
+    <td align="center" style="padding:22px 20px 0 20px;text-align:center;font-size:0;line-height:0;">
+      <!--[if mso]><table role="presentation" width="300" cellpadding="0" cellspacing="0" border="0" align="center"><tr><td bgcolor="{{ bf_red }}" style="padding:18px;"><![endif]-->
+      <div style="display:inline-block;width:100%;max-width:300px;vertical-align:top;background-color:{{ bf_red }};border-radius:16px;padding:8px;box-sizing:border-box;">
+        <div style="border:2px dashed {{ bf_red_line }};border-radius:11px;padding:12px 10px 10px 10px;text-align:center;">
+          <div style="font-family:{{ bf_font }};font-size:13px;line-height:16px;font-weight:700;letter-spacing:2px;color:#FFFFFF;text-transform:uppercase;">{{ bf_tag_small | upcase }}</div>
+          <div style="padding-top:2px;font-family:{{ bf_font }};font-size:64px;line-height:70px;font-weight:800;color:#FFFFFF;">{{ bf_tag_big }}<span style="font-size:34px;line-height:34px;vertical-align:top;">%</span></div>
+        </div>
+      </div>
+      <!--[if mso]></td></tr></table><![endif]-->
+    </td>
+  </tr>
+
+  <!-- ===================== TEXT ===================== -->
+  <tr>
+    <td align="center" style="padding:20px 24px 0 24px;text-align:center;">
+      <div style="max-width:480px;margin:0 auto;font-family:{{ bf_font }};font-size:15px;line-height:23px;font-weight:400;color:#A3A6A8;">{{ bf_text }}</div>
+    </td>
+  </tr>
+
+  <!-- ===================== CATEGORII ===================== -->
+  <tr>
+    <td align="center" style="padding:30px 16px 0 16px;text-align:center;">
+      <div style="font-family:{{ bf_font }};font-size:20px;line-height:26px;font-weight:700;color:#FFFFFF;">{{ bf_cat_head }}</div>
+    </td>
+  </tr>
+  <tr>
+    <td align="center" style="padding:12px 12px 0 12px;text-align:center;font-size:0;line-height:0;">
+      <div style="display:inline-block;width:100%;max-width:540px;vertical-align:top;text-align:center;font-size:0;line-height:0;">
+        {%- for bf_item in bf_lista -%}
+          {%- unless bf_item contains "|" -%}{%- continue -%}{%- endunless -%}
+          {%- assign bf_f    = bf_item | split: "|" -%}
+          {%- assign bf_name = bf_f[0] | strip -%}
+          {%- assign bf_url  = bf_f[1] | strip -%}
+          <a href="{{ bf_url }}" target="_blank" style="display:inline-block;margin:4px;background-color:{{ bf_chip }};border:1px solid {{ bf_chip_line }};border-radius:999px;padding:9px 16px;font-family:{{ bf_font }};font-size:14px;line-height:18px;font-weight:600;color:#FFFFFF;text-decoration:none;white-space:nowrap;">{{ bf_name }}</a>
+        {%- endfor -%}
+      </div>
+    </td>
+  </tr>
+
+  <!-- ===================== OFERTE LIMITATE ===================== -->
+  <tr>
+    <td align="center" style="padding:26px 16px 0 16px;text-align:center;font-size:0;line-height:0;">
+      <!--[if mso]><table role="presentation" width="528" cellpadding="0" cellspacing="0" border="0" align="center"><tr><td><![endif]-->
+      <div style="display:inline-block;width:100%;max-width:528px;vertical-align:top;text-align:left;">
+        <div style="border:1px solid {{ bf_teal }};border-radius:14px;padding:14px 18px;">
+          <div style="font-family:{{ bf_font }};font-size:15px;line-height:21px;font-weight:700;color:{{ bf_teal }};">{{ bf_stock_head }}</div>
+          <div style="padding-top:2px;font-family:{{ bf_font }};font-size:14px;line-height:20px;font-weight:400;color:#C9CCCE;">{{ bf_stock_text }}</div>
+        </div>
+      </div>
+      <!--[if mso]></td></tr></table><![endif]-->
+    </td>
+  </tr>
+
+  <!-- ===================== BUTON ===================== -->
+  <tr>
+    <td align="center" style="padding:28px 12px 0 12px;text-align:center;">
+      <!--[if mso]>
+      <v:roundrect xmlns:v="urn:schemas-microsoft-com:vml" xmlns:w="urn:schemas-microsoft-com:office:word" href="{{ bf_cta_url }}" style="height:50px;v-text-anchor:middle;width:230px;" arcsize="50%" stroke="f" fillcolor="{{ bf_teal }}">
+        <w:anchorlock/>
+        <center style="color:{{ bf_cta_color }};font-family:Arial,sans-serif;font-size:15px;font-weight:bold;">{{ bf_cta_text }}&nbsp;&nbsp;&#8594;</center>
+      </v:roundrect>
+      <![endif]-->
+      <!--[if !mso]><!-->
+      <a href="{{ bf_cta_url }}" target="_blank" style="display:inline-block;background-color:{{ bf_teal }};border-radius:999px;padding:15px 34px 15px 40px;font-family:{{ bf_font }};font-size:15px;line-height:20px;font-weight:700;color:{{ bf_cta_color }};text-decoration:none;">{{ bf_cta_text }}&nbsp;&nbsp;<span style="font-family:Arial,Helvetica,sans-serif;font-size:18px;line-height:20px;font-weight:700;color:{{ bf_cta_color }};">&#8594;</span></a>
+      <!--<![endif]-->
+    </td>
+  </tr>
+
+  <!-- ===================== NOTĂ ===================== -->
+  <tr>
+    <td align="center" style="padding:16px 24px 36px 24px;text-align:center;font-family:{{ bf_font }};font-size:12px;line-height:18px;font-weight:400;color:#75797C;">{{ bf_note }}</td>
+  </tr>
+
+</table>
