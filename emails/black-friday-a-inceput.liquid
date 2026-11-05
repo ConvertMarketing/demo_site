@@ -6,10 +6,8 @@
   1. Pastilă „6–8 noiembrie” + titlu „Black Friday a început”.
   2. Etichetă roșie „Reduceri de până la -45%” (ca pe landing).
   3. Text: sute de produse, oferte limitate.
-  4. „Alege categoria” — grilă de butoane egale (3 pe rând desktop,
-     2 pe rând mobil), fiecare cu linkul colecției.
-  5. Casetă „Oferte limitate”.
-  6. Buton turcoaz „Vezi ofertele →” + notă cu perioada ofertei.
+  4. Casetă „Oferte limitate”.
+  5. Buton turcoaz „Vezi ofertele →” + notă cu perioada ofertei.
 
   ORDINEA ÎN SHOPIFY EMAIL
   1. Banner
@@ -28,37 +26,6 @@
 {%- assign bf_tag_big   = "-45" -%}                {%- comment -%} fără semnul % (se adaugă singur) {%- endcomment -%}
 {%- assign bf_text      = "Sute de produse pentru casă și familie au acum prețuri de Black Friday. Ofertele sunt limitate, iar cele mai căutate produse se termină primele." -%}
 
-{%- assign bf_cat_head  = "Alege categoria" -%}
-{%- comment -%}
-  Categorii: una pe bloc, nume | link, separate prin ##
-  Linkul poate fi pagina Black Friday sau colecția categoriei.
-{%- endcomment -%}
-{%- capture bf_categorii -%}
-Șervețele și lavete EasyClean | https://smartinoshop.ro/collections/servetele-si-lavete-easyclean-black-friday
-##
-Sleepy Easy Clean acti foam | https://smartinoshop.ro/collections/sleepy-easy-clean-acti-foam-black-friday
-##
-Curățenie și întreținere | https://smartinoshop.ro/collections/curatenie-si-intretinere-black-friday
-##
-Produse Macromax | https://smartinoshop.ro/collections/produse-macromax-black-friday
-##
-Scutece și chiloței copii | https://smartinoshop.ro/collections/scutece-si-chilotei-copii-black-friday
-##
-Scutece adulți | https://smartinoshop.ro/collections/scutece-adulti-black-friday
-##
-Îngrijire dentară | https://smartinoshop.ro/collections/ingrijire-dentara-black-friday
-##
-Îngrijire personală | https://smartinoshop.ro/collections/ingrijire-personala-black-friday
-##
-Produse din hârtie | https://smartinoshop.ro/collections/produse-din-hartie-black-friday
-##
-Șervețele umede | https://smartinoshop.ro/collections/servetele-umede-black-friday
-##
-Igienă și îngrijire copii | https://smartinoshop.ro/collections/igiena-si-ingrijire-copii-black-friday
-##
-Cosmetice coreene | https://smartinoshop.ro/collections/cosmetice-coreene-black-friday
-{%- endcapture -%}
-
 {%- assign bf_stock_head = "Oferte limitate" -%}
 {%- assign bf_stock_text = "Reducerile țin până pe 8 noiembrie sau până se termină stocul. Nu lăsa coșul pe mai târziu." -%}
 
@@ -71,22 +38,13 @@ Cosmetice coreene | https://smartinoshop.ro/collections/cosmetice-coreene-black-
 {%- assign bf_red       = "#E3242B" -%}           {%- comment -%} eticheta -45% {%- endcomment -%}
 {%- assign bf_red_line  = "#F4A3A6" -%}           {%- comment -%} linia punctată din etichetă {%- endcomment -%}
 {%- assign bf_teal      = "#00B8C7" -%}           {%- comment -%} culoarea Smartino {%- endcomment -%}
-{%- assign bf_chip      = "#17181A" -%}           {%- comment -%} fundal butoane categorii {%- endcomment -%}
-{%- assign bf_chip_line = "#00B8C7" -%}           {%- comment -%} chenarul categoriilor {%- endcomment -%}
 {%- assign bf_cta_color = "#000000" -%}           {%- comment -%} text buton (negru = contrast bun pe turcoaz) {%- endcomment -%}
 {%- assign bf_font      = "'Poppins', Arial, Helvetica, sans-serif" -%}
-
-{%- assign bf_lista = bf_categorii | split: "##" -%}
 
 {%- comment -%} ===== 2. ȘABLON (nu e nevoie să modifici mai jos) ===== {%- endcomment -%}
 <!--[if !mso]><!-->
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800&display=swap" rel="stylesheet">
 <!--<![endif]-->
-<style>
-  @media only screen and (max-width: 480px) {
-    .bfc-col { width: 50% !important; max-width: 50% !important; }
-  }
-</style>
 
 <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" bgcolor="{{ bf_bg }}" style="background-color:{{ bf_bg }};">
 
@@ -116,40 +74,6 @@ Cosmetice coreene | https://smartinoshop.ro/collections/cosmetice-coreene-black-
   <tr>
     <td align="center" style="padding:20px 24px 0 24px;text-align:center;">
       <div style="max-width:480px;margin:0 auto;font-family:{{ bf_font }};font-size:15px;line-height:23px;font-weight:400;color:#A3A6A8;">{{ bf_text }}</div>
-    </td>
-  </tr>
-
-  <!-- ===================== CATEGORII ===================== -->
-  <tr>
-    <td align="center" style="padding:30px 16px 0 16px;text-align:center;">
-      <div style="font-family:{{ bf_font }};font-size:20px;line-height:26px;font-weight:700;color:#FFFFFF;">{{ bf_cat_head }}</div>
-    </td>
-  </tr>
-  <tr>
-    <td align="center" style="padding:10px 6px 0 6px;text-align:center;font-size:0;line-height:0;">
-      <!--[if mso]><table role="presentation" width="540" cellpadding="0" cellspacing="0" border="0" align="center"><tr><![endif]-->
-      <div style="display:inline-block;width:100%;max-width:540px;vertical-align:top;text-align:center;font-size:0;line-height:0;">
-        {%- assign bf_n = 0 -%}
-        {%- for bf_item in bf_lista -%}
-          {%- unless bf_item contains "|" -%}{%- continue -%}{%- endunless -%}
-          {%- assign bf_f    = bf_item | split: "|" -%}
-          {%- assign bf_name = bf_f[0] | strip -%}
-          {%- assign bf_url  = bf_f[1] | strip -%}
-          {%- assign bf_n    = bf_n | plus: 1 -%}
-          {%- assign bf_mod  = bf_n | modulo: 3 -%}
-          {%- if bf_n > 1 and bf_mod == 1 -%}<!--[if mso]></tr><tr><![endif]-->{%- endif -%}
-          <!--[if mso]><td width="180" valign="top"><![endif]-->
-          <div class="bfc-col" style="display:inline-block;width:100%;max-width:180px;vertical-align:top;text-align:center;">
-            <div style="padding:5px;">
-              <div style="background-color:{{ bf_chip }};border:1px solid {{ bf_chip_line }};border-radius:12px;">
-              <a href="{{ bf_url }}" target="_blank" style="display:block;height:54px;padding:0 8px;text-align:center;text-decoration:none;color:#FFFFFF;font-size:0;line-height:0;"><span style="display:inline-block;width:0;height:54px;vertical-align:middle;"></span><span style="display:inline-block;max-width:96%;vertical-align:middle;font-family:{{ bf_font }};font-size:13px;line-height:17px;font-weight:600;color:#FFFFFF;">{{ bf_name }}&nbsp;<span style="color:{{ bf_teal }};font-family:Arial,Helvetica,sans-serif;font-weight:700;">&#8594;</span></span></a>
-              </div>
-            </div>
-          </div>
-          <!--[if mso]></td><![endif]-->
-        {%- endfor -%}
-      </div>
-      <!--[if mso]></tr></table><![endif]-->
     </td>
   </tr>
 
