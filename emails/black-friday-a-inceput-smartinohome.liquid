@@ -1,0 +1,113 @@
+{%- comment -%}
+=====================================================================
+  EMAIL „A ÎNCEPUT BLACK FRIDAY” — SMARTINO HOME
+  (se trimite vineri, 6 noiembrie, după start)
+---------------------------------------------------------------------
+  Tema banner-ului: „modul smart”. Diferit de emailul Smartino Shop.
+  1. Pastilă „6–8 noiembrie” + titlu „Black Friday a început / pe modul smart”.
+  2. Casetă turcoaz „Reduceri de până la −50%” (ca pe landing).
+  3. Text + rând cu ce găsești la reducere (fără linkuri).
+  4. Bandă „Se încheie: duminică, 8 noiembrie, ora 23:59”.
+  5. Buton turcoaz „Descoperă ofertele →” + notă cu perioada ofertei.
+  Singurul link din email e butonul.
+
+  ORDINEA ÎN SHOPIFY EMAIL
+  1. Banner
+  2. Custom Liquid cu ofertele-incep-in.liquid, textul schimbat în
+     „Ofertele expiră în”
+  3. Secțiunea „Countdown”: November 8, 2026, 11:59 PM (ca pe landing)
+  4. Custom Liquid cu ACEST fișier
+=====================================================================
+{%- endcomment -%}
+
+{%- comment -%} ===== 1. SETĂRI ===== {%- endcomment -%}
+{%- assign bf_pill      = "6–8 noiembrie" -%}
+{%- assign bf_title_1   = "Black Friday a&nbsp;început" -%}
+{%- assign bf_title_2   = "pe modul smart" -%}     {%- comment -%} al doilea rând, colorat {%- endcomment -%}
+{%- assign bf_disc_small = "Reduceri de până la" -%}
+{%- assign bf_disc_big   = "−50" -%}               {%- comment -%} fără semnul % (se adaugă singur) {%- endcomment -%}
+{%- assign bf_text      = "Cele mai mari reduceri ale anului la produsele pentru casă. Stocurile sunt limitate, așa că nu&nbsp;amâna." -%}
+{%- assign bf_cats      = "Mobilier · Covoare · Crăciun · Bucătărie · Textile · Organizare" -%}
+{%- assign bf_end_label = "Se încheie" -%}
+{%- assign bf_end_text  = "duminică, 8&nbsp;noiembrie, ora&nbsp;23:59" -%}
+
+{%- assign bf_cta_text  = "Descoperă ofertele" -%}
+{%- assign bf_cta_url   = "https://smartinohome.ro/pages/black-friday" -%}
+{%- assign bf_note      = "Ofertele sunt valabile în perioada 6–8 noiembrie 2026, în limita stocului disponibil." -%}
+
+{%- comment -%} Culori și font {%- endcomment -%}
+{%- assign bf_bg        = "#000000" -%}
+{%- assign bf_box       = "#17181A" -%}
+{%- assign bf_teal      = "#00B8C7" -%}           {%- comment -%} culoarea Smartino {%- endcomment -%}
+{%- assign bf_cta_color = "#000000" -%}           {%- comment -%} text buton (negru = contrast bun pe turcoaz) {%- endcomment -%}
+{%- assign bf_font      = "'Poppins', Arial, Helvetica, sans-serif" -%}
+
+{%- comment -%} ===== 2. ȘABLON (nu e nevoie să modifici mai jos) ===== {%- endcomment -%}
+<!--[if !mso]><!-->
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800&display=swap" rel="stylesheet">
+<!--<![endif]-->
+
+<table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" bgcolor="{{ bf_bg }}" style="background-color:{{ bf_bg }};">
+
+  <!-- ===================== PASTILĂ + TITLU ===================== -->
+  <tr>
+    <td align="center" style="padding:32px 20px 0 20px;text-align:center;">
+      <span style="display:inline-block;border:1px solid {{ bf_teal }};border-radius:999px;padding:6px 14px;font-family:{{ bf_font }};font-size:12px;line-height:14px;font-weight:700;letter-spacing:2px;color:{{ bf_teal }};text-transform:uppercase;"><span style="font-size:14px;">&#9679;</span>&nbsp; {{ bf_pill | upcase }}</span>
+      <div style="padding-top:16px;font-family:{{ bf_font }};font-size:32px;line-height:39px;font-weight:800;color:#FFFFFF;">{{ bf_title_1 }}<br><span style="color:{{ bf_teal }};white-space:nowrap;">{{ bf_title_2 }}</span></div>
+    </td>
+  </tr>
+
+  <!-- ===================== REDUCERE −50% ===================== -->
+  <tr>
+    <td align="center" style="padding:24px 20px 0 20px;text-align:center;font-size:0;line-height:0;">
+      <!--[if mso]><table role="presentation" width="320" cellpadding="0" cellspacing="0" border="0" align="center"><tr><td bgcolor="{{ bf_box }}" style="padding:18px;"><![endif]-->
+      <div style="display:inline-block;width:100%;max-width:320px;vertical-align:top;background-color:{{ bf_box }};border:2px solid {{ bf_teal }};border-radius:20px;padding:16px 10px 14px 10px;box-sizing:border-box;text-align:center;">
+        <div style="font-family:{{ bf_font }};font-size:13px;line-height:16px;font-weight:700;letter-spacing:2px;color:#A3A6A8;text-transform:uppercase;">{{ bf_disc_small | upcase }}</div>
+        <div style="padding-top:4px;font-family:{{ bf_font }};font-size:72px;line-height:78px;font-weight:800;color:{{ bf_teal }};">{{ bf_disc_big }}<span style="font-size:38px;line-height:38px;vertical-align:top;">%</span></div>
+      </div>
+      <!--[if mso]></td></tr></table><![endif]-->
+    </td>
+  </tr>
+
+  <!-- ===================== TEXT + CE GĂSEȘTI ===================== -->
+  <tr>
+    <td align="center" style="padding:20px 24px 0 24px;text-align:center;">
+      <div style="max-width:470px;margin:0 auto;font-family:{{ bf_font }};font-size:15px;line-height:23px;font-weight:400;color:#A3A6A8;">{{ bf_text }}</div>
+      <div style="max-width:470px;margin:0 auto;padding-top:14px;font-family:{{ bf_font }};font-size:14px;line-height:22px;font-weight:600;color:#FFFFFF;">{{ bf_cats | replace: " · ", " <span style='color:#00B8C7;'>&middot;</span> " }}</div>
+    </td>
+  </tr>
+
+  <!-- ===================== SE ÎNCHEIE ===================== -->
+  <tr>
+    <td align="center" style="padding:24px 16px 0 16px;text-align:center;font-size:0;line-height:0;">
+      <!--[if mso]><table role="presentation" width="440" cellpadding="0" cellspacing="0" border="0" align="center"><tr><td><![endif]-->
+      <div style="display:inline-block;width:100%;max-width:440px;vertical-align:top;text-align:center;">
+        <div style="background-color:{{ bf_box }};border-radius:999px;padding:12px 18px;font-family:{{ bf_font }};font-size:14px;line-height:20px;font-weight:400;color:#FFFFFF;">
+          <span style="font-weight:700;letter-spacing:1px;color:{{ bf_teal }};text-transform:uppercase;">{{ bf_end_label | upcase }}:</span>&nbsp; {{ bf_end_text }}
+        </div>
+      </div>
+      <!--[if mso]></td></tr></table><![endif]-->
+    </td>
+  </tr>
+
+  <!-- ===================== BUTON ===================== -->
+  <tr>
+    <td align="center" style="padding:28px 12px 0 12px;text-align:center;">
+      <!--[if mso]>
+      <v:roundrect xmlns:v="urn:schemas-microsoft-com:vml" xmlns:w="urn:schemas-microsoft-com:office:word" href="{{ bf_cta_url }}" style="height:50px;v-text-anchor:middle;width:260px;" arcsize="50%" stroke="f" fillcolor="{{ bf_teal }}">
+        <w:anchorlock/>
+        <center style="color:{{ bf_cta_color }};font-family:Arial,sans-serif;font-size:15px;font-weight:bold;">{{ bf_cta_text }}&nbsp;&nbsp;&#8594;</center>
+      </v:roundrect>
+      <![endif]-->
+      <!--[if !mso]><!-->
+      <a href="{{ bf_cta_url }}" target="_blank" style="display:inline-block;background-color:{{ bf_teal }};border-radius:999px;padding:15px 34px 15px 40px;font-family:{{ bf_font }};font-size:15px;line-height:20px;font-weight:700;color:{{ bf_cta_color }};text-decoration:none;">{{ bf_cta_text }}&nbsp;&nbsp;<span style="font-family:Arial,Helvetica,sans-serif;font-size:18px;line-height:20px;font-weight:700;color:{{ bf_cta_color }};">&#8594;</span></a>
+      <!--<![endif]-->
+    </td>
+  </tr>
+
+  <!-- ===================== NOTĂ ===================== -->
+  <tr>
+    <td align="center" style="padding:16px 24px 36px 24px;text-align:center;font-family:{{ bf_font }};font-size:12px;line-height:18px;font-weight:400;color:#75797C;">{{ bf_note }}</td>
+  </tr>
+
+</table>
