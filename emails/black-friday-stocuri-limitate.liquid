@@ -1,0 +1,193 @@
+{%- comment -%}
+=====================================================================
+  EMAIL „GRĂBEȘTE-TE, STOCURI LIMITATE” — SMARTINO SHOP
+  (în timpul Black Friday, 6–8 noiembrie)
+---------------------------------------------------------------------
+  1. Pastilă roșie „Stocuri limitate” + titlu „Grăbește-te!”.
+  2. „Prinde reducerile de până la 45%” + text cu data de final.
+  3. 6 produse reale din oferta Black Friday: badge cu reducerea
+     calculată automat, preț nou + preț vechi tăiat, buton „Cumpără acum”
+     (3 pe rând desktop, 2 pe rând mobil).
+  4. Buton turcoaz „Vezi toate ofertele →” + notă.
+
+  ORDINEA ÎN SHOPIFY EMAIL
+  1. Banner
+  2. Custom Liquid cu ofertele-incep-in.liquid, textul „Ofertele expiră în”
+  3. Secțiunea „Countdown”: November 8, 2026, 11:59 PM
+  4. Custom Liquid cu ACEST fișier
+
+  PRODUSELE și prețurile sunt luate de pe smartinoshop.ro (6 noiembrie).
+  Dacă schimbi prețurile pe site, actualizează-le și aici.
+=====================================================================
+{%- endcomment -%}
+
+{%- comment -%} ===== 1. SETĂRI ===== {%- endcomment -%}
+{%- assign bf_pill      = "Stocuri limitate" -%}
+{%- assign bf_title     = "Grăbește-te!" -%}
+{%- assign bf_sub_1     = "Prinde reducerile de până la" -%}
+{%- assign bf_sub_2     = "45%" -%}                {%- comment -%} partea colorată {%- endcomment -%}
+{%- assign bf_text      = "Stocurile sunt limitate și cele mai căutate produse pleacă primele. Ofertele se încheie duminică, 8&nbsp;noiembrie, la&nbsp;23:59." -%}
+{%- assign bf_grid_head = "Cele mai mari reduceri acum" -%}
+
+{%- assign bf_card_cta  = "Cumpără acum" -%}
+{%- assign bf_currency  = "lei" -%}
+{%- assign bf_title_max = 38 -%}
+
+{%- assign bf_cta_text  = "Vezi toate ofertele" -%}
+{%- assign bf_cta_url   = "https://smartinoshop.ro/pages/black-friday-1" -%}
+{%- assign bf_note      = "Ofertele sunt valabile în perioada 6–8 noiembrie 2026, în limita stocului disponibil." -%}
+
+{%- comment -%} Culori și font {%- endcomment -%}
+{%- assign bf_bg        = "#000000" -%}
+{%- assign bf_red       = "#E3242B" -%}
+{%- assign bf_teal      = "#00B8C7" -%}
+{%- assign bf_cta_color = "#000000" -%}
+{%- assign bf_font      = "'Poppins', Arial, Helvetica, sans-serif" -%}
+
+{%- comment -%}
+  ===== 2. PRODUSE =====
+  Un produs pe bloc, separate prin ##
+     BRAND | Titlu | URL imagine | URL produs | preț nou | preț vechi
+  Prețurile cu punct (ex. 239.99). Reducerea din badge se calculează singură.
+  În titluri NU folosi caracterul |.
+{%- endcomment -%}
+{%- capture bf_produse -%}
+SLEEPY | PACHET PROMO - 18 x Servetele Umede Sleepy Easy Clean Multisuprafete, 100 Buc | https://cdn.shopify.com/s/files/1/0834/0688/1063/files/PACHETESMARTINOBF_4_aa1d0eb5-9982-408f-89d6-9327b2bafa4e.png?v=1761833080&width=600&height=600&pad_color=ffffff | https://smartinoshop.ro/products/pachet-promo-18-x-servetele-umede-sleepy-easy-clean-multisuprafete-100-buc-1 | 239.99 | 425.89
+##
+REMAPLE | 4 x Balsam de rufe REMAPLE Sakura Flower, 1440 ml | https://cdn.shopify.com/s/files/1/0834/0688/1063/files/5_9de8e821-4d05-4be4-b10b-add89aa85212.png?v=1774815798&width=600&height=600&pad_color=ffffff | https://smartinoshop.ro/products/4-x-balsam-de-rufe-remaple-sakura-flower-1440-ml | 66.00 | 110.00
+##
+SLEEPY BIO NATURAL | 4x Scutece Sleepy Bio Natural Premium Plus AirBag Comfort – marimea 7 XXLarge, 20–30 kg, 28 bucati+ 1x Servetele umede pentru bebelusi Sleepy Aqua Care, 50 bucati (cadou) | https://cdn.shopify.com/s/files/1/0834/0688/1063/files/Cadou_3_161152bb-1925-4cac-bde8-916b1d3b2554.jpg?v=1792738812&width=600&height=600&pad_color=ffffff | https://smartinoshop.ro/products/4x-scutece-sleepy-bio-natural-premium-plus-airbag-comfort-marimea-7-xxlarge-15-27-kg-32-bucati-1x-%C8%99erve%C8%9Bele-umede-pentru-bebelu%C8%99i-sleepy-aqua-care-50-buca%C8%9Bi-cadou | 143.00 | 220.00
+##
+PAPIA | 6X Prosop din hartie cu dispozitiv de agatare 250 buc PAPIA HOME | https://cdn.shopify.com/s/files/1/0834/0688/1063/files/767.png?v=1776863448&width=600&height=600&pad_color=ffffff | https://smartinoshop.ro/products/6x-papia-home-prosop-cu-dispozitiv-de-agatare-250-buc | 86.24 | 127.02
+##
+DOYFRESH | 24x MINI Servetele umede buzunar DOYFRESH igienice 8x8buc | https://cdn.shopify.com/s/files/1/0834/0688/1063/files/3X_73.png?v=1779204589&width=600&height=600&pad_color=ffffff | https://smartinoshop.ro/products/24x-mini-servetele-umede-buzunar-doyfresh-igienice-8x8buc | 150.92 | 215.60
+##
+PASTA DEL CAPITANO | Pasta de dinti cu bicarbonat de sodiu 75 ml- Pasta Del Capitano 1905- Pachet Promo (2 buc) | https://cdn.shopify.com/s/files/1/0834/0688/1063/files/3X-2026-08-12T111240.207.png?v=1786522380&width=600&height=600&pad_color=ffffff | https://smartinoshop.ro/products/pasta-de-dinti-cu-bicarbonat-de-sodiu-75-ml-pasta-del-capitano-1905-pachet-promo-2-buc | 34.23 | 48.89
+{%- endcapture -%}
+{%- assign bf_lista = bf_produse | split: "##" -%}
+
+{%- comment -%} ===== 3. ȘABLON (nu e nevoie să modifici mai jos) ===== {%- endcomment -%}
+<!--[if !mso]><!-->
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800&display=swap" rel="stylesheet">
+<!--<![endif]-->
+<style>
+  @media only screen and (max-width: 480px) {
+    .bfs-col { width: 50% !important; max-width: 50% !important; }
+  }
+</style>
+
+<table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" bgcolor="{{ bf_bg }}" style="background-color:{{ bf_bg }};">
+
+  <!-- ===================== PASTILĂ + TITLU ===================== -->
+  <tr>
+    <td align="center" style="padding:32px 20px 0 20px;text-align:center;">
+      <span style="display:inline-block;background-color:{{ bf_red }};border-radius:999px;padding:6px 14px;font-family:{{ bf_font }};font-size:12px;line-height:14px;font-weight:700;letter-spacing:2px;color:#FFFFFF;text-transform:uppercase;"><span style="font-size:14px;">&#9679;</span>&nbsp; {{ bf_pill | upcase }}</span>
+      <div style="padding-top:16px;font-family:{{ bf_font }};font-size:38px;line-height:44px;font-weight:800;color:#FFFFFF;">{{ bf_title }}</div>
+      <div style="padding-top:6px;font-family:{{ bf_font }};font-size:22px;line-height:29px;font-weight:700;color:#FFFFFF;">{{ bf_sub_1 }} <span style="color:{{ bf_teal }};white-space:nowrap;">{{ bf_sub_2 }}</span></div>
+      <div style="max-width:470px;margin:0 auto;padding-top:12px;font-family:{{ bf_font }};font-size:15px;line-height:23px;font-weight:400;color:#A3A6A8;">{{ bf_text }}</div>
+    </td>
+  </tr>
+
+  <!-- ===================== PRODUSE ===================== -->
+  <tr>
+    <td align="center" style="padding:30px 20px 0 20px;text-align:center;">
+      <div style="font-family:{{ bf_font }};font-size:20px;line-height:26px;font-weight:700;color:#FFFFFF;">{{ bf_grid_head }}</div>
+    </td>
+  </tr>
+  <tr>
+    <td align="center" style="padding:12px 6px 0 6px;text-align:center;font-size:0;line-height:0;">
+      <!--[if mso]><table role="presentation" width="540" cellpadding="0" cellspacing="0" border="0" align="center"><tr><![endif]-->
+      <div style="display:inline-block;width:100%;max-width:540px;vertical-align:top;font-size:0;line-height:0;text-align:center;">
+        {%- assign bf_n = 0 -%}
+        {%- for bf_item in bf_lista -%}
+          {%- unless bf_item contains "|" -%}{%- continue -%}{%- endunless -%}
+          {%- assign bf_f      = bf_item | split: "|" -%}
+          {%- assign bf_vendor = bf_f[0] | strip | replace: "_", " " | upcase | truncate: 20, "…" | escape -%}
+          {%- assign bf_title2 = bf_f[1] | strip -%}
+          {%- if bf_title2.size > bf_title_max -%}
+            {%- assign bf_cut   = bf_title2 | slice: 0, bf_title_max -%}
+            {%- assign bf_words = bf_cut | split: " " -%}
+            {%- assign bf_title2 = "" -%}
+            {%- for bf_w in bf_words -%}
+              {%- unless forloop.last -%}{%- assign bf_title2 = bf_title2 | append: bf_w | append: " " -%}{%- endunless -%}
+            {%- endfor -%}
+            {%- assign bf_title2 = bf_title2 | strip -%}
+            {%- assign bf_lc = bf_title2 | slice: -1 -%}
+            {%- if bf_lc == "+" or bf_lc == "," or bf_lc == "-" or bf_lc == "–" or bf_lc == ":" -%}
+              {%- assign bf_len    = bf_title2.size | minus: 1 -%}
+              {%- assign bf_title2 = bf_title2 | slice: 0, bf_len | strip -%}
+            {%- endif -%}
+            {%- if bf_title2 == "" -%}{%- assign bf_title2 = bf_cut -%}{%- endif -%}
+            {%- assign bf_title2 = bf_title2 | append: "…" -%}
+          {%- endif -%}
+          {%- assign bf_title2 = bf_title2 | escape -%}
+          {%- assign bf_alt    = bf_f[1] | strip | escape -%}
+          {%- assign bf_img    = bf_f[2] | strip -%}
+          {%- assign bf_url    = bf_f[3] | strip -%}
+          {%- assign bf_p_new  = bf_f[4] | strip -%}
+          {%- assign bf_p_old  = bf_f[5] | strip -%}
+          {%- assign bf_new_n  = bf_p_new | plus: 0 -%}
+          {%- assign bf_old_n  = bf_p_old | plus: 0 -%}
+          {%- assign bf_badge  = "Black Friday" -%}
+          {%- if bf_old_n > bf_new_n -%}
+            {%- assign bf_pct   = bf_old_n | minus: bf_new_n | times: 100 | divided_by: bf_old_n | round -%}
+            {%- assign bf_badge = "-" | append: bf_pct | append: "%" -%}
+          {%- endif -%}
+          {%- assign bf_p_new_txt = bf_p_new | replace: ".", "," | append: " " | append: bf_currency -%}
+          {%- assign bf_p_old_txt = bf_p_old | replace: ".", "," | append: " " | append: bf_currency -%}
+          {%- assign bf_n      = bf_n | plus: 1 -%}
+          {%- assign bf_mod    = bf_n | modulo: 3 -%}
+          {%- if bf_n > 1 and bf_mod == 1 -%}<!--[if mso]></tr><tr><![endif]-->{%- endif -%}
+          <!--[if mso]><td width="180" valign="top"><![endif]-->
+          <div class="bfs-col" style="display:inline-block;width:100%;max-width:180px;vertical-align:top;font-size:14px;line-height:20px;text-align:left;">
+            <div style="padding:6px;">
+              <div style="background-color:#FFFFFF;border-radius:14px;padding:10px;">
+                <!-- badge reducere -->
+                <span style="display:inline-block;background-color:{{ bf_red }};border-radius:7px;padding:4px 8px;font-family:{{ bf_font }};font-size:13px;line-height:15px;font-weight:800;color:#FFFFFF;white-space:nowrap;">{{ bf_badge }}</span>
+                <!-- imagine -->
+                <div style="padding-top:6px;height:148px;text-align:center;font-size:0;line-height:0;">
+                  <a href="{{ bf_url }}" target="_blank" style="text-decoration:none;"><img src="{{ bf_img }}" width="148" alt="{{ bf_alt }}" style="display:inline-block;vertical-align:middle;width:auto;height:auto;max-width:100%;max-height:148px;border:0;outline:none;text-decoration:none;"></a>
+                </div>
+                <!-- brand -->
+                <div style="padding-top:12px;overflow:hidden;white-space:nowrap;text-overflow:ellipsis;font-family:{{ bf_font }};font-size:11px;line-height:14px;font-weight:600;letter-spacing:1px;color:#646C71;">{{ bf_vendor }}</div>
+                <!-- titlu (max. 2 rânduri) -->
+                <div style="margin-top:6px;height:38px;overflow:hidden;font-family:{{ bf_font }};font-size:13px;line-height:19px;font-weight:400;color:#404040;"><a href="{{ bf_url }}" target="_blank" style="color:#404040;text-decoration:none;">{{ bf_title2 }}</a></div>
+                <!-- preț -->
+                <div style="padding-top:8px;white-space:nowrap;font-family:{{ bf_font }};font-size:16px;line-height:20px;font-weight:800;color:{{ bf_red }};">{{ bf_p_new_txt }}{% if bf_old_n > bf_new_n %} <span style="font-size:12px;font-weight:400;color:#8A9095;text-decoration:line-through;">{{ bf_p_old_txt }}</span>{% endif %}</div>
+                <!-- buton card -->
+                <div style="padding-top:10px;">
+                  <div style="background-color:#000000;border-radius:8px;text-align:center;">
+                    <a href="{{ bf_url }}" target="_blank" style="display:block;padding:10px 6px;font-family:{{ bf_font }};font-size:13px;line-height:17px;font-weight:700;color:#FFFFFF;text-decoration:none;">{{ bf_card_cta }}&nbsp;<span style="color:{{ bf_teal }};font-family:Arial,Helvetica,sans-serif;">&#8594;</span></a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!--[if mso]></td><![endif]-->
+        {%- endfor -%}
+      </div>
+      <!--[if mso]></tr></table><![endif]-->
+    </td>
+  </tr>
+
+  <!-- ===================== BUTON ===================== -->
+  <tr>
+    <td align="center" style="padding:24px 12px 0 12px;text-align:center;">
+      <!--[if mso]>
+      <v:roundrect xmlns:v="urn:schemas-microsoft-com:vml" xmlns:w="urn:schemas-microsoft-com:office:word" href="{{ bf_cta_url }}" style="height:50px;v-text-anchor:middle;width:270px;" arcsize="50%" stroke="f" fillcolor="{{ bf_teal }}">
+        <w:anchorlock/>
+        <center style="color:{{ bf_cta_color }};font-family:Arial,sans-serif;font-size:15px;font-weight:bold;">{{ bf_cta_text }}&nbsp;&nbsp;&#8594;</center>
+      </v:roundrect>
+      <![endif]-->
+      <!--[if !mso]><!-->
+      <a href="{{ bf_cta_url }}" target="_blank" style="display:inline-block;background-color:{{ bf_teal }};border-radius:999px;padding:15px 34px 15px 40px;font-family:{{ bf_font }};font-size:15px;line-height:20px;font-weight:700;color:{{ bf_cta_color }};text-decoration:none;">{{ bf_cta_text }}&nbsp;&nbsp;<span style="font-family:Arial,Helvetica,sans-serif;font-size:18px;line-height:20px;font-weight:700;color:{{ bf_cta_color }};">&#8594;</span></a>
+      <!--<![endif]-->
+    </td>
+  </tr>
+
+  <!-- ===================== NOTĂ ===================== -->
+  <tr>
+    <td align="center" style="padding:16px 24px 36px 24px;text-align:center;font-family:{{ bf_font }};font-size:12px;line-height:18px;font-weight:400;color:#75797C;">{{ bf_note }}</td>
+  </tr>
+
+</table>
