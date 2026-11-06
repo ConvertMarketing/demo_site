@@ -26,7 +26,17 @@
 {%- assign bf_title     = "Grăbește-te!" -%}
 {%- assign bf_sub_1     = "Prinde reducerile de până la" -%}
 {%- assign bf_sub_2     = "45%" -%}                {%- comment -%} partea colorată {%- endcomment -%}
-{%- assign bf_text      = "Stocurile sunt limitate și cele mai căutate produse pleacă primele. Ofertele se încheie duminică, 8&nbsp;noiembrie, la&nbsp;23:59." -%}
+{%- assign bf_text      = "Stocurile sunt limitate, iar cele mai căutate produse se pot epuiza în orice moment. Ofertele se încheie duminică, 8&nbsp;noiembrie, la&nbsp;23:59." -%}
+
+{%- comment -%}
+  „Unele produse s-au epuizat deja” — pune true DOAR dacă e adevărat în
+  momentul trimiterii (afirmațiile false despre stoc sunt practică
+  înșelătoare, Legea 363/2007). Pe 6 noiembrie, ora 17:10, toate produsele
+  Black Friday erau disponibile pe site.
+{%- endcomment -%}
+{%- assign bf_soldout      = false -%}
+{%- assign bf_soldout_text = "Unele produse s-au epuizat deja." -%}
+{%- assign bf_soldout_more = "Nu aștepta până se termină și restul." -%}
 {%- assign bf_grid_head = "Cele mai mari reduceri acum" -%}
 
 {%- assign bf_card_cta  = "Cumpără acum" -%}
@@ -83,10 +93,25 @@ PASTA DEL CAPITANO | Pasta de dinti cu bicarbonat de sodiu 75 ml- Pasta Del Capi
     <td align="center" style="padding:32px 20px 0 20px;text-align:center;">
       <span style="display:inline-block;background-color:{{ bf_red }};border-radius:999px;padding:6px 14px;font-family:{{ bf_font }};font-size:12px;line-height:14px;font-weight:700;letter-spacing:2px;color:#FFFFFF;text-transform:uppercase;"><span style="font-size:14px;">&#9679;</span>&nbsp; {{ bf_pill | upcase }}</span>
       <div style="padding-top:16px;font-family:{{ bf_font }};font-size:38px;line-height:44px;font-weight:800;color:#FFFFFF;">{{ bf_title }}</div>
-      <div style="padding-top:6px;font-family:{{ bf_font }};font-size:22px;line-height:29px;font-weight:700;color:#FFFFFF;">{{ bf_sub_1 }} <span style="color:{{ bf_teal }};white-space:nowrap;">{{ bf_sub_2 }}</span></div>
+      <div style="padding-top:6px;font-family:{{ bf_font }};font-size:22px;line-height:29px;font-weight:700;color:#FFFFFF;">{{ bf_sub_1 }}&nbsp;<span style="color:{{ bf_teal }};white-space:nowrap;">{{ bf_sub_2 }}</span></div>
       <div style="max-width:470px;margin:0 auto;padding-top:12px;font-family:{{ bf_font }};font-size:15px;line-height:23px;font-weight:400;color:#A3A6A8;">{{ bf_text }}</div>
     </td>
   </tr>
+  {%- if bf_soldout %}
+
+  <!-- ===================== UNELE S-AU EPUIZAT ===================== -->
+  <tr>
+    <td align="center" style="padding:20px 16px 0 16px;text-align:center;font-size:0;line-height:0;">
+      <!--[if mso]><table role="presentation" width="470" cellpadding="0" cellspacing="0" border="0" align="center"><tr><td><![endif]-->
+      <div style="display:inline-block;width:100%;max-width:470px;vertical-align:top;text-align:center;">
+        <div style="border:1px solid {{ bf_red }};border-radius:14px;padding:12px 16px;font-family:{{ bf_font }};font-size:14px;line-height:21px;font-weight:400;color:#FFFFFF;">
+          <span style="color:{{ bf_red }};font-size:15px;">&#9679;</span>&nbsp; <span style="font-weight:700;">{{ bf_soldout_text }}</span> {{ bf_soldout_more }}
+        </div>
+      </div>
+      <!--[if mso]></td></tr></table><![endif]-->
+    </td>
+  </tr>
+  {%- endif %}
 
   <!-- ===================== PRODUSE ===================== -->
   <tr>
