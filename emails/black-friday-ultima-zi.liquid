@@ -25,7 +25,7 @@
 {%- assign bf_pill      = "Ultima zi" -%}
 {%- assign bf_title     = "Ultimele ore de reduceri" -%}
 {%- assign bf_sub_1     = "Black Friday se încheie" -%}
-{%- assign bf_sub_2     = "azi la 23:59" -%}       {%- comment -%} partea colorată (roșu) {%- endcomment -%}
+{%- assign bf_sub_2     = "azi la 23:59" -%}       {%- comment -%} partea colorată (turcoaz Smartino) {%- endcomment -%}
 {%- assign bf_text      = "Mai ai doar câteva ore să prinzi reducerile de până la&nbsp;45%. După miezul nopții prețurile revin la normal, așa că profită&nbsp;acum." -%}
 
 {%- assign bf_grid_head = "Ultima șansă la aceste prețuri" -%}
@@ -74,6 +74,13 @@ PAPIA | 6X Prosop din hartie cu dispozitiv de agatare 250 buc PAPIA HOME | https
 <style>
   @media only screen and (max-width: 480px) {
     .bfs-col { width: 50% !important; max-width: 50% !important; }
+    .bfs-card { padding: 8px !important; }
+    .bfs-cta { font-size: 12px !important; padding: 10px 2px !important; }
+    .bfs-price { font-size: 15px !important; }
+    .bfs-old { font-size: 11px !important; }
+  }
+  @media only screen and (max-width: 350px) {
+    .bfs-old { display: block !important; }
   }
 </style>
 
@@ -84,7 +91,7 @@ PAPIA | 6X Prosop din hartie cu dispozitiv de agatare 250 buc PAPIA HOME | https
     <td align="center" style="padding:32px 20px 0 20px;text-align:center;">
       <span style="display:inline-block;background-color:{{ bf_red }};border-radius:999px;padding:6px 14px;font-family:{{ bf_font }};font-size:12px;line-height:14px;font-weight:700;letter-spacing:2px;color:#FFFFFF;text-transform:uppercase;"><span style="font-size:14px;">&#9679;</span>&nbsp; {{ bf_pill | upcase }}</span>
       <div style="padding-top:16px;font-family:{{ bf_font }};font-size:38px;line-height:44px;font-weight:800;color:#FFFFFF;">{{ bf_title }}</div>
-      <div style="padding-top:6px;font-family:{{ bf_font }};font-size:22px;line-height:29px;font-weight:700;color:#FFFFFF;">{{ bf_sub_1 }} <span style="color:{{ bf_red }};white-space:nowrap;">{{ bf_sub_2 }}</span></div>
+      <div style="padding-top:6px;font-family:{{ bf_font }};font-size:22px;line-height:29px;font-weight:700;color:#FFFFFF;">{{ bf_sub_1 }} <span style="color:{{ bf_teal }};white-space:nowrap;">{{ bf_sub_2 }}</span></div>
       <div style="max-width:470px;margin:0 auto;padding-top:12px;font-family:{{ bf_font }};font-size:15px;line-height:23px;font-weight:400;color:#A3A6A8;">{{ bf_text }}</div>
     </td>
   </tr>
@@ -141,7 +148,7 @@ PAPIA | 6X Prosop din hartie cu dispozitiv de agatare 250 buc PAPIA HOME | https
           <!--[if mso]><td width="180" valign="top"><![endif]-->
           <div class="bfs-col" style="display:inline-block;width:100%;max-width:180px;vertical-align:top;font-size:14px;line-height:20px;text-align:left;">
             <div style="padding:6px;">
-              <div style="background-color:#FFFFFF;border-radius:14px;padding:10px;">
+              <div class="bfs-card" style="background-color:#FFFFFF;border-radius:14px;padding:10px;">
                 <!-- badge reducere -->
                 <span style="display:inline-block;background-color:{{ bf_red }};border-radius:7px;padding:4px 8px;font-family:{{ bf_font }};font-size:13px;line-height:15px;font-weight:800;color:#FFFFFF;white-space:nowrap;">{{ bf_badge }}</span>
                 <!-- imagine -->
@@ -153,11 +160,11 @@ PAPIA | 6X Prosop din hartie cu dispozitiv de agatare 250 buc PAPIA HOME | https
                 <!-- titlu (max. 2 rânduri) -->
                 <div style="margin-top:6px;height:38px;overflow:hidden;font-family:{{ bf_font }};font-size:13px;line-height:19px;font-weight:400;color:#404040;"><a href="{{ bf_url }}" target="_blank" style="color:#404040;text-decoration:none;">{{ bf_title2 }}</a></div>
                 <!-- preț -->
-                <div style="padding-top:8px;white-space:nowrap;font-family:{{ bf_font }};font-size:16px;line-height:20px;font-weight:800;color:{{ bf_red }};">{{ bf_p_new_txt }}{% if bf_old_n > bf_new_n %} <span style="font-size:12px;font-weight:400;color:#8A9095;text-decoration:line-through;">{{ bf_p_old_txt }}</span>{% endif %}</div>
+                <div class="bfs-price" style="padding-top:8px;white-space:nowrap;font-family:{{ bf_font }};font-size:16px;line-height:20px;font-weight:800;color:{{ bf_red }};">{{ bf_p_new_txt }}{% if bf_old_n > bf_new_n %} <span class="bfs-old" style="font-size:12px;font-weight:400;color:#8A9095;text-decoration:line-through;">{{ bf_p_old_txt }}</span>{% endif %}</div>
                 <!-- buton card -->
                 <div style="padding-top:10px;">
-                  <div style="background-color:#000000;border-radius:8px;text-align:center;">
-                    <a href="{{ bf_url }}" target="_blank" style="display:block;padding:10px 6px;font-family:{{ bf_font }};font-size:13px;line-height:17px;font-weight:700;color:#FFFFFF;text-decoration:none;">{{ bf_card_cta }}&nbsp;<span style="color:{{ bf_teal }};font-family:Arial,Helvetica,sans-serif;">&#8594;</span></a>
+                  <div style="background-color:#000000;border-radius:8px;text-align:center;overflow:hidden;">
+                    <a class="bfs-cta" href="{{ bf_url }}" target="_blank" style="display:block;padding:10px 6px;font-family:{{ bf_font }};font-size:13px;line-height:17px;font-weight:700;color:#FFFFFF;text-decoration:none;white-space:nowrap;">{{ bf_card_cta }}&nbsp;<span style="color:{{ bf_teal }};font-family:Arial,Helvetica,sans-serif;">&#8594;</span></a>
                   </div>
                 </div>
               </div>
