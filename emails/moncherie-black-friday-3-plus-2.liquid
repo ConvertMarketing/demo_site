@@ -1,0 +1,255 @@
+{%- comment -%}
+=====================================================================
+  EMAIL MON CHÉRIE — BLACK FRIDAY 3+2 GRATIS LA TRICOURI
+  Landing: https://www.moncherie.ro/pages/black-friday-3-2-gratis-la-tricouri
+---------------------------------------------------------------------
+  Stilul landing-ului: negru, roșu #E3000F, titluri Anton (majuscule).
+  1. „Black Friday” + banda roșie „3+2 GRATIS” + text ofertă.
+  2. „Plătești 3, primești 5”: 5 tricouri reale, 3 „Plătești” + 2 „Gratis”.
+  3. Butoane „Cumpără acum” + „Vezi colecțiile”.
+  4. Cum funcționează: 3 pași.
+  5. „Alege-ți colecția”: 6 colecții cu poză (3 pe rând desktop, 2 mobil).
+  6. Banda finală „5 tricouri în coș. Plătești doar 3.” + buton + notă.
+
+  Pune tot fișierul într-o secțiune „Custom Liquid” din Shopify Email,
+  sub banner. Toate linkurile conțin doar text sau o imagine (fără
+  tabele în linkuri), ca să rămână clicabile.
+=====================================================================
+{%- endcomment -%}
+
+{%- comment -%} ===== 1. SETĂRI ===== {%- endcomment -%}
+{%- assign mc_kicker   = "Moncherie · Black Friday 2026" -%}
+{%- assign mc_offer    = "3+2 GRATIS" -%}
+{%- assign mc_text     = "Pune <b style='color:#FFFFFF;'>5 tricouri</b> în coș și plătești doar <b style='color:#FFFFFF;'>3</b>. Tricouri din bumbac 100%." -%}
+{%- assign mc_row_head = "Plătești 3, primești 5" -%}
+
+{%- assign mc_shop_url = "https://www.moncherie.ro/collections/tricouri-black-friday" -%}
+{%- assign mc_page_url = "https://www.moncherie.ro/pages/black-friday-3-2-gratis-la-tricouri" -%}
+{%- assign mc_cta_1    = "Cumpără acum" -%}
+{%- assign mc_cta_2    = "Vezi colecțiile" -%}
+
+{%- comment -%} Pașii: titlu | descriere, separați prin ## {%- endcomment -%}
+{%- capture mc_pasi -%}
+Alegi 5 tricouri | din colecțiile Moncherie
+##
+Le pui în coș | oricare 5 modele îți plac
+##
+Plătești doar 3 | 2 tricouri sunt gratis
+{%- endcapture -%}
+
+{%- comment -%}
+  Cele 5 tricouri din rândul „Plătești 3, primești 5” (primele 3 = Plătești,
+  ultimele 2 = Gratis): nume | URL imagine | URL produs
+{%- endcomment -%}
+{%- capture mc_tricouri -%}
+Perfect | https://cdn.shopify.com/s/files/1/0555/7593/7208/files/WhatsApp_Image_2026-03-10_at_16.17.16_7.jpg?v=1773152417&width=300&height=375&crop=center | https://www.moncherie.ro/products/tricou-perfect
+##
+Fluturi 15 | https://cdn.shopify.com/s/files/1/0555/7593/7208/files/WhatsApp_Image_2026-03-10_at_16.17.16_11.jpg?v=1773152478&width=300&height=375&crop=center | https://www.moncherie.ro/products/tricou-fluturi-15
+##
+Faith Hope Love | https://cdn.shopify.com/s/files/1/0555/7593/7208/files/WhatsApp_Image_2026-03-06_at_17.22.03.jpg?v=1772810587&width=300&height=375&crop=center | https://www.moncherie.ro/products/tricou-faith-hope-love
+##
+Fluture Simplu | https://cdn.shopify.com/s/files/1/0555/7593/7208/files/WhatsApp_Image_2025-07-26_at_04.34.26_598fe206-55cb-46ac-aa63-1d7fddf50803.jpg?v=1753531186&width=300&height=375&crop=center | https://www.moncherie.ro/products/tricou-fluture-simplu
+##
+Love Coffee | https://cdn.shopify.com/s/files/1/0555/7593/7208/files/WhatsAppImage2025-08-05at07.07.34_2.jpg?v=1754403037&width=300&height=375&crop=center | https://www.moncherie.ro/products/tricou-love-coffee
+{%- endcapture -%}
+
+{%- assign mc_coll_head_1 = "Alege-ți" -%}
+{%- assign mc_coll_head_2 = "colecția" -%}
+{%- assign mc_coll_text   = "Fiecare colecție are zeci de modele. Intră, alege-ți preferatele și pune 5&nbsp;în&nbsp;coș." -%}
+{%- comment -%} Colecții: nume | nr. modele | URL imagine | URL colecție {%- endcomment -%}
+{%- capture mc_colectii -%}
+Tricouri de Crăciun | 549 modele | https://www.moncherie.ro/cdn/shop/files/WhatsApp_Image_2025-11-14_at_09.21.04.jpg?v=1763132358&width=400&height=500&crop=center | https://www.moncherie.ro/collections/craciun-tricouri-dama
+##
+Tricouri cu imprimeu | 2429 modele | https://www.moncherie.ro/cdn/shop/files/WhatsApp_Image_2026-01-03_at_16.33.29_13.jpg?v=1767457081&width=400&height=500&crop=center | https://www.moncherie.ro/collections/tricouri-dama
+##
+Tricouri albe | 680 modele | https://www.moncherie.ro/cdn/shop/files/WhatsApp_Image_2026-03-06_at_17.09.31.jpg?v=1772809849&width=400&height=500&crop=center | https://www.moncherie.ro/collections/tricou-dama-bumbac
+##
+Tricouri negre | 213 modele | https://www.moncherie.ro/cdn/shop/files/WhatsAppImage2026-05-03at22.22.26_26.jpg?v=1777838738&width=400&height=500&crop=center | https://www.moncherie.ro/collections/tricouri-negre-dama
+##
+Cele mai vândute | 45 modele | https://www.moncherie.ro/cdn/shop/files/WhatsAppImage2026-03-06at17.30.38.jpg?v=1772811070&width=400&height=500&crop=center | https://www.moncherie.ro/collections/best-seller
+##
+Modele noi | 131 modele | https://www.moncherie.ro/cdn/shop/files/WhatsAppImage2025-09-28at01.47.48_6.jpg?v=1759052627&width=400&height=500&crop=center | https://www.moncherie.ro/collections/modele-noi
+{%- endcapture -%}
+
+{%- assign mc_final_1 = "5 tricouri în coș." -%}
+{%- assign mc_final_2 = "Plătești doar&nbsp;3." -%}
+{%- assign mc_note    = "Reducerea se aplică automat în coș: la fiecare 5 tricouri din colecțiile participante, 2 sunt gratuite. Oferta e valabilă de Black Friday, în limita stocului disponibil." -%}
+
+{%- comment -%} Culori și fonturi {%- endcomment -%}
+{%- assign mc_bg      = "#070707" -%}
+{%- assign mc_card    = "#141414" -%}
+{%- assign mc_line    = "#2A2A2A" -%}
+{%- assign mc_red     = "#E3000F" -%}
+{%- assign mc_gray    = "#9A9A9A" -%}
+{%- assign mc_display = "'Anton', Impact, 'Arial Narrow Bold', 'Arial Black', Arial, sans-serif" -%}
+{%- assign mc_font    = "'Inter', 'Segoe UI', Roboto, Arial, Helvetica, sans-serif" -%}
+
+{%- assign mc_pasi_l  = mc_pasi | split: "##" -%}
+{%- assign mc_tric_l  = mc_tricouri | split: "##" -%}
+{%- assign mc_coll_l  = mc_colectii | split: "##" -%}
+
+{%- comment -%} ===== 2. ȘABLON (nu e nevoie să modifici mai jos) ===== {%- endcomment -%}
+<!--[if !mso]><!-->
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+<!--<![endif]-->
+<style>
+  @media only screen and (max-width: 480px) {
+    .mc-col { width: 50% !important; max-width: 50% !important; }
+    .mc-hero { font-size: 62px !important; line-height: 60px !important; }
+    .mc-plus { display: none !important; }
+    .mc-offer { font-size: 44px !important; line-height: 50px !important; padding: 4px 16px 6px 16px !important; }
+  }
+</style>
+
+<table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" bgcolor="{{ mc_bg }}" style="background-color:{{ mc_bg }};">
+
+  <!-- ===================== HERO ===================== -->
+  <tr>
+    <td align="center" style="padding:34px 20px 0 20px;text-align:center;">
+      <div style="font-family:{{ mc_font }};font-size:11px;line-height:14px;font-weight:800;letter-spacing:2px;color:{{ mc_gray }};text-transform:uppercase;"><span style="color:{{ mc_red }};font-size:13px;">&#9679;</span>&nbsp; {{ mc_kicker | upcase }}</div>
+      <div class="mc-hero" style="padding-top:12px;font-family:{{ mc_display }};font-size:76px;line-height:74px;font-weight:700;font-synthesis:none;color:#FFFFFF;text-transform:uppercase;letter-spacing:1px;">Black <span style="color:{{ mc_red }};">Friday</span></div>
+      <div style="padding-top:14px;">
+        <span style="display:inline-block;background-color:{{ mc_red }};padding:4px 22px 6px 22px;font-family:{{ mc_display }};font-size:52px;line-height:58px;font-weight:700;font-synthesis:none;color:#FFFFFF;text-transform:uppercase;letter-spacing:1px;white-space:nowrap;" class="mc-offer">{{ mc_offer }}</span>
+      </div>
+      <div style="max-width:440px;margin:0 auto;padding-top:16px;font-family:{{ mc_font }};font-size:16px;line-height:24px;font-weight:400;color:#C9C9C9;">{{ mc_text }}</div>
+    </td>
+  </tr>
+
+  <!-- ===================== PLĂTEȘTI 3, PRIMEȘTI 5 ===================== -->
+  <tr>
+    <td align="center" style="padding:28px 20px 0 20px;text-align:center;">
+      <div style="font-family:{{ mc_display }};font-size:22px;line-height:28px;font-weight:700;font-synthesis:none;color:#FFFFFF;text-transform:uppercase;letter-spacing:1px;">{{ mc_row_head }}</div>
+    </td>
+  </tr>
+  <tr>
+    <td align="center" style="padding:12px 6px 0 6px;text-align:center;font-size:0;line-height:0;">
+      <!--[if mso]><table role="presentation" width="524" cellpadding="0" cellspacing="0" border="0" align="center"><tr><![endif]-->
+      <div style="display:inline-block;width:100%;max-width:524px;vertical-align:top;text-align:center;font-size:0;line-height:0;">
+        {%- assign mc_n = 0 -%}
+        {%- for mc_item in mc_tric_l -%}
+          {%- unless mc_item contains "|" -%}{%- continue -%}{%- endunless -%}
+          {%- assign mc_f    = mc_item | split: "|" -%}
+          {%- assign mc_name = mc_f[0] | strip | escape -%}
+          {%- assign mc_img  = mc_f[1] | strip -%}
+          {%- assign mc_url  = mc_f[2] | strip -%}
+          {%- assign mc_n    = mc_n | plus: 1 -%}
+          {%- if mc_n == 4 -%}
+          <!--[if mso]><td width="24" valign="middle" align="center"><![endif]-->
+          <div class="mc-plus" style="display:inline-block;width:24px;vertical-align:top;padding-top:52px;font-family:{{ mc_display }};font-size:30px;line-height:30px;font-weight:700;font-synthesis:none;color:{{ mc_red }};text-align:center;">+</div>
+          <!--[if mso]></td><![endif]-->
+          {%- endif -%}
+          <!--[if mso]><td width="100" valign="top"><![endif]-->
+          <div style="display:inline-block;width:100px;vertical-align:top;text-align:center;">
+            <div style="padding:0 4px;">
+              <a href="{{ mc_url }}" target="_blank" style="text-decoration:none;"><img src="{{ mc_img }}" width="92" height="115" alt="Tricou {{ mc_name }}" style="display:block;width:92px;height:115px;border:0;border-radius:6px;"></a>
+              {%- if mc_n <= 3 -%}
+              <div style="margin-top:6px;background-color:#1F1F1F;border-radius:4px;padding:4px 0;font-family:{{ mc_font }};font-size:10px;line-height:12px;font-weight:800;letter-spacing:1px;color:#FFFFFF;text-transform:uppercase;">Plătești</div>
+              {%- else -%}
+              <div style="margin-top:6px;background-color:{{ mc_red }};border-radius:4px;padding:4px 0;font-family:{{ mc_font }};font-size:10px;line-height:12px;font-weight:800;letter-spacing:1px;color:#FFFFFF;text-transform:uppercase;">Gratis</div>
+              {%- endif -%}
+            </div>
+          </div>
+          <!--[if mso]></td><![endif]-->
+        {%- endfor -%}
+      </div>
+      <!--[if mso]></tr></table><![endif]-->
+    </td>
+  </tr>
+
+  <!-- ===================== BUTOANE ===================== -->
+  <tr>
+    <td align="center" style="padding:24px 12px 0 12px;text-align:center;">
+      <a href="{{ mc_shop_url }}" target="_blank" style="display:inline-block;margin:5px;background-color:{{ mc_red }};border:2px solid {{ mc_red }};border-radius:4px;padding:13px 24px;font-family:{{ mc_font }};font-size:14px;line-height:18px;font-weight:800;letter-spacing:1.5px;color:#FFFFFF;text-decoration:none;text-transform:uppercase;">{{ mc_cta_1 }}&nbsp;&nbsp;&#8594;</a>
+      <a href="{{ mc_page_url }}" target="_blank" style="display:inline-block;margin:5px;background-color:transparent;border:2px solid #FFFFFF;border-radius:4px;padding:13px 24px;font-family:{{ mc_font }};font-size:14px;line-height:18px;font-weight:800;letter-spacing:1.5px;color:#FFFFFF;text-decoration:none;text-transform:uppercase;">{{ mc_cta_2 }}</a>
+    </td>
+  </tr>
+
+  <!-- ===================== PAȘI ===================== -->
+  <tr>
+    <td align="center" style="padding:30px 16px 0 16px;text-align:center;font-size:0;line-height:0;">
+      <!--[if mso]><table role="presentation" width="528" cellpadding="0" cellspacing="0" border="0" align="center"><tr><td><![endif]-->
+      <div style="display:inline-block;width:100%;max-width:528px;vertical-align:top;text-align:left;">
+        <div style="background-color:{{ mc_card }};border:1px solid {{ mc_line }};border-radius:6px;padding:4px 18px;">
+          {%- assign mc_n = 0 -%}
+          {%- for mc_item in mc_pasi_l -%}
+            {%- unless mc_item contains "|" -%}{%- continue -%}{%- endunless -%}
+            {%- assign mc_f  = mc_item | split: "|" -%}
+            {%- assign mc_n  = mc_n | plus: 1 %}
+          <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0">
+            <tr>
+              <td width="36" valign="middle" style="padding:14px 0;{% if mc_n > 1 %}border-top:1px solid {{ mc_line }};{% endif %}">
+                <table role="presentation" cellpadding="0" cellspacing="0" border="0">
+                  <tr>
+                    <td width="36" height="36" align="center" valign="middle" bgcolor="{{ mc_red }}" style="width:36px;height:36px;background-color:{{ mc_red }};font-family:{{ mc_display }};font-size:20px;line-height:36px;font-weight:700;font-synthesis:none;color:#FFFFFF;text-align:center;">{{ mc_n }}</td>
+                  </tr>
+                </table>
+              </td>
+              <td valign="middle" style="padding:14px 0 14px 14px;{% if mc_n > 1 %}border-top:1px solid {{ mc_line }};{% endif %}">
+                <div style="font-family:{{ mc_font }};font-size:15px;line-height:20px;font-weight:800;color:#FFFFFF;text-transform:uppercase;letter-spacing:0.5px;">{{ mc_f[0] | strip }}</div>
+                <div style="padding-top:2px;font-family:{{ mc_font }};font-size:14px;line-height:20px;font-weight:400;color:{{ mc_gray }};">{{ mc_f[1] | strip }}</div>
+              </td>
+            </tr>
+          </table>
+          {%- endfor %}
+        </div>
+      </div>
+      <!--[if mso]></td></tr></table><![endif]-->
+    </td>
+  </tr>
+
+  <!-- ===================== ALEGE-ȚI COLECȚIA ===================== -->
+  <tr>
+    <td align="center" style="padding:36px 20px 0 20px;text-align:center;">
+      <div style="font-family:{{ mc_display }};font-size:40px;line-height:44px;font-weight:700;font-synthesis:none;color:#FFFFFF;text-transform:uppercase;letter-spacing:1px;">{{ mc_coll_head_1 }} <span style="color:{{ mc_red }};">{{ mc_coll_head_2 }}</span></div>
+      <div style="max-width:440px;margin:0 auto;padding-top:8px;font-family:{{ mc_font }};font-size:14px;line-height:21px;font-weight:400;color:{{ mc_gray }};">{{ mc_coll_text }}</div>
+    </td>
+  </tr>
+  <tr>
+    <td align="center" style="padding:14px 6px 0 6px;text-align:center;font-size:0;line-height:0;">
+      <!--[if mso]><table role="presentation" width="540" cellpadding="0" cellspacing="0" border="0" align="center"><tr><![endif]-->
+      <div style="display:inline-block;width:100%;max-width:540px;vertical-align:top;text-align:center;font-size:0;line-height:0;">
+        {%- assign mc_n = 0 -%}
+        {%- for mc_item in mc_coll_l -%}
+          {%- unless mc_item contains "|" -%}{%- continue -%}{%- endunless -%}
+          {%- assign mc_f     = mc_item | split: "|" -%}
+          {%- assign mc_name  = mc_f[0] | strip -%}
+          {%- assign mc_count = mc_f[1] | strip -%}
+          {%- assign mc_img   = mc_f[2] | strip -%}
+          {%- assign mc_url   = mc_f[3] | strip -%}
+          {%- assign mc_n     = mc_n | plus: 1 -%}
+          {%- assign mc_mod   = mc_n | modulo: 3 -%}
+          {%- if mc_n > 1 and mc_mod == 1 -%}<!--[if mso]></tr><tr><![endif]-->{%- endif -%}
+          <!--[if mso]><td width="180" valign="top"><![endif]-->
+          <div class="mc-col" style="display:inline-block;width:100%;max-width:180px;vertical-align:top;text-align:left;">
+            <div style="padding:6px;">
+              <div style="background-color:{{ mc_card }};border:1px solid {{ mc_line }};border-radius:6px;padding:8px;">
+                <a href="{{ mc_url }}" target="_blank" style="text-decoration:none;"><img src="{{ mc_img }}" width="150" alt="{{ mc_name | escape }}" style="display:block;width:100%;max-width:100%;height:auto;border:0;border-radius:4px;"></a>
+                <div style="padding-top:8px;"><span style="display:inline-block;background-color:{{ mc_red }};border-radius:3px;padding:3px 7px;font-family:{{ mc_font }};font-size:10px;line-height:12px;font-weight:800;color:#FFFFFF;text-transform:uppercase;letter-spacing:0.5px;">{{ mc_count }}</span></div>
+                <div style="padding-top:8px;height:36px;overflow:hidden;font-family:{{ mc_font }};font-size:13px;line-height:18px;font-weight:800;color:#FFFFFF;text-transform:uppercase;"><a href="{{ mc_url }}" target="_blank" style="color:#FFFFFF;text-decoration:none;">{{ mc_name }}</a></div>
+                <div style="padding-top:6px;font-family:{{ mc_font }};font-size:11px;line-height:14px;font-weight:800;letter-spacing:1px;text-transform:uppercase;"><a href="{{ mc_url }}" target="_blank" style="color:{{ mc_red }};text-decoration:none;">Vezi colecția&nbsp;&#8594;</a></div>
+              </div>
+            </div>
+          </div>
+          <!--[if mso]></td><![endif]-->
+        {%- endfor -%}
+      </div>
+      <!--[if mso]></tr></table><![endif]-->
+    </td>
+  </tr>
+
+  <!-- ===================== FINAL ===================== -->
+  <tr>
+    <td align="center" style="padding:36px 20px 0 20px;text-align:center;">
+      <div style="font-family:{{ mc_display }};font-size:34px;line-height:40px;font-weight:700;font-synthesis:none;color:#FFFFFF;text-transform:uppercase;letter-spacing:1px;">{{ mc_final_1 }} <span style="color:{{ mc_red }};">{{ mc_final_2 }}</span></div>
+    </td>
+  </tr>
+  <tr>
+    <td align="center" style="padding:18px 12px 0 12px;text-align:center;">
+      <a href="{{ mc_shop_url }}" target="_blank" style="display:inline-block;background-color:{{ mc_red }};border-radius:4px;padding:15px 30px;font-family:{{ mc_font }};font-size:14px;line-height:18px;font-weight:800;letter-spacing:1.5px;color:#FFFFFF;text-decoration:none;text-transform:uppercase;">{{ mc_cta_1 }}&nbsp;&nbsp;&#8594;</a>
+    </td>
+  </tr>
+  <tr>
+    <td align="center" style="padding:18px 28px 36px 28px;text-align:center;font-family:{{ mc_font }};font-size:12px;line-height:18px;font-weight:400;color:#6F6F6F;">{{ mc_note }}</td>
+  </tr>
+
+</table>
