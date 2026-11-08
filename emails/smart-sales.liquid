@@ -1,0 +1,272 @@
+{%- comment -%}
+=====================================================================
+  EMAIL „SMART SALES” — SMARTINO SHOP
+  (după Black Friday: reducerile continuă, de până la 45%)
+---------------------------------------------------------------------
+  Tema: „Black Friday a intrat în prelungiri” (ca la fotbal).
+  1. Pastilă „A doua șansă” + titlu „Ai ratat Black Friday?” +
+     „Reducerile au intrat în prelungiri” + text scurt.
+  2. „Biletul pentru prelungiri”: Smart Sales, intrare liberă,
+     locuri în limita stocului, ciotul turcoaz cu „până la −45%”.
+  3. „Cele mai cumpărate, din fiecare categorie”: 6 produse, fiecare cu
+     eticheta categoriei (Top Curățenie, Top Scutece copii etc.),
+     badge cu reducerea, preț nou + preț vechi tăiat, „Cumpără acum”
+     (3 pe rând desktop, 2 pe rând mobil).
+  4. Casetă „Cât mai avem stoc”.
+  5. Buton turcoaz „Prinde reducerile →” + notă.
+
+  ORDINEA ÎN SHOPIFY EMAIL
+  1. Banner Smart Sales
+  2. Custom Liquid cu ACEST fișier
+
+  Produsele sunt primele în „Cele mai vândute” din categoria lor pe
+  smartinoshop.ro, iar prețurile sunt cele din 8 noiembrie 2026.
+  Înainte de trimitere verifică prețurile pe site; dacă nu știi încă
+  prețurile Smart Sales, pune ss_show_prices = false (cardurile rămân
+  fără preț și fără badge cu procent).
+=====================================================================
+{%- endcomment -%}
+
+{%- comment -%} ===== 1. SETĂRI ===== {%- endcomment -%}
+{%- assign ss_pill      = "A doua șansă" -%}
+{%- assign ss_title     = "Ai ratat Black&nbsp;Friday?" -%}
+{%- assign ss_sub_1     = "Reducerile au intrat în" -%}
+{%- assign ss_sub_2     = "prelungiri" -%}         {%- comment -%} partea colorată (turcoaz Smartino) {%- endcomment -%}
+{%- assign ss_text      = "Dacă n-ai apucat să comanzi în weekend, ai noroc: reducerile de până la&nbsp;45% continuă cu Smart Sales. Doar că acum se joacă pe stocul rămas, așa că nu&nbsp;mai&nbsp;amâna." -%}
+
+{%- comment -%} Biletul {%- endcomment -%}
+{%- assign ss_tk_top    = "Bilet pentru prelungiri" -%}
+{%- assign ss_tk_name   = "Smart Sales" -%}
+{%- assign ss_tk_info_1 = "Intrare: liberă" -%}
+{%- assign ss_tk_info_2 = "Locuri: în limita stocului" -%}
+{%- assign ss_tk_small  = "până la" -%}
+{%- assign ss_tk_big    = "−45" -%}                {%- comment -%} fără semnul % (se adaugă singur) {%- endcomment -%}
+
+{%- assign ss_grid_head = "Cele mai cumpărate, din fiecare categorie" -%}
+{%- assign ss_grid_text = "Favoritele clienților Smartino, acum la prețuri Smart&nbsp;Sales." -%}
+
+{%- assign ss_show_prices = true -%}               {%- comment -%} false = cardurile apar fără preț și fără procent {%- endcomment -%}
+{%- assign ss_card_cta  = "Cumpără acum" -%}
+{%- assign ss_currency  = "lei" -%}
+{%- assign ss_title_max = 38 -%}
+
+{%- assign ss_stock_head = "Cât mai avem stoc" -%}
+{%- assign ss_stock_text = "Reducerile Smart Sales sunt valabile în limita stocului, iar produsele de mai sus, fiind cele mai căutate, se termină primele." -%}
+
+{%- assign ss_cta_text  = "Prinde reducerile" -%}
+{%- assign ss_cta_url   = "https://smartinoshop.ro/pages/black-friday-1" -%}   {%- comment -%} schimbă cu pagina Smart Sales {%- endcomment -%}
+{%- assign ss_note      = "Reducerile sunt valabile în limita stocului disponibil. Prețul final este cel afișat pe site la momentul comenzii." -%}
+
+{%- comment -%} Culori și font {%- endcomment -%}
+{%- assign ss_bg        = "#000000" -%}
+{%- assign ss_box       = "#17181A" -%}           {%- comment -%} fundal bilet {%- endcomment -%}
+{%- assign ss_box_line  = "#1C3436" -%}           {%- comment -%} contur bilet {%- endcomment -%}
+{%- assign ss_red       = "#E3242B" -%}           {%- comment -%} badge reducere, preț {%- endcomment -%}
+{%- assign ss_teal      = "#00B8C7" -%}           {%- comment -%} culoarea Smartino {%- endcomment -%}
+{%- assign ss_cta_color = "#000000" -%}           {%- comment -%} text buton (negru = contrast bun pe turcoaz) {%- endcomment -%}
+{%- assign ss_font      = "'Poppins', Arial, Helvetica, sans-serif" -%}
+
+{%- comment -%}
+  ===== 2. PRODUSE =====
+  Un produs pe bloc, separate prin ##
+     Categorie | BRAND | Titlu | URL imagine | URL produs | preț nou | preț vechi
+  Categoria apare sus pe card ca „Top <categorie>” (scurt, max. ~14 litere).
+  Prețurile cu punct (ex. 67.92). Reducerea din badge se calculează singură.
+  În titluri NU folosi caracterul |.
+{%- endcomment -%}
+{%- capture ss_produse -%}
+Curățenie | PAREX | Mop cu Prindere Rapida PAREX QuickPick cu dimensiunea 25x11cm+ 10 servetele umede pentru curatare | https://cdn.shopify.com/s/files/1/0834/0688/1063/files/pacheteparex_13.png?v=1787923296&width=600&height=600&pad_color=ffffff | https://smartinoshop.ro/products/mop-cu-prindere-rapida-parex-10-%C8%99erve%C8%9Bele-umede-pentru-cura%C8%9Bare | 67.92 | 84.90
+##
+Scutece copii | SLEEPY | Scutece pentru bebeluși Sleepy Natural H2O Double- marime 7 XXLarge, 20-30kg, 32 bucăți | https://cdn.shopify.com/s/files/1/0834/0688/1063/files/nr7-32_d9206a19-edf1-404b-aa15-2274feea9301.jpg?v=1790766684&width=600&height=600&pad_color=ffffff | https://smartinoshop.ro/products/scutece-sleepy-natural-ultra-sensitive-double-marime-7-xxlarge-20-30kg-32-bucati | 35.12 | 49.99
+##
+Igienă orală | JTF | Periuta de dinti electrica, JTF Sonic, J40 (6 capete de periere) Roz | https://cdn.shopify.com/s/files/1/0834/0688/1063/files/2_02403830-52d8-406a-9e36-8208dcb304fe.jpg?v=1736430826&width=600&height=600&pad_color=ffffff | https://smartinoshop.ro/products/periuta-de-dinti-electrica-jtf-sonic-j40-6-capete-de-periere-roz | 43.50 | 58.00
+##
+Incontinență | ACTUAL | Scutece textil incontinență adulți, Actual Double, mărimea XL 120-160 cm, 30 bucăți | https://cdn.shopify.com/s/files/1/0834/0688/1063/products/scutece-textil-incontinenta-adulti-actual-double-marime-l-100-150-cm-30-bucati-copie-191-6385.jpg?v=1695812731&width=600&height=600&pad_color=ffffff | https://smartinoshop.ro/products/scutece-textil-incontinenta-adulti-actual-double-marime-xl-120-160-cm-30-bucati | 56.80 | 70.99
+##
+Șervețele | SLEEPY | Șervețele umede pentru bebeluși, SLEEPY Camomile, 120 bucăți, aromă de mușețel | https://cdn.shopify.com/s/files/1/0834/0688/1063/products/servetele-umede-bebelusi-sleepy-camomile-120-bucati-aroma-de-musetel-530-6100.jpg?v=1695812388&width=600&height=600&pad_color=ffffff | https://smartinoshop.ro/products/servetele-umede-bebelusi-sleepy-camomile-120-bucati-aroma-de-musetel | 7.10 | 8.50
+##
+K-beauty | NARD | Nard Himalaya Herb Pure Water Cap de Dus cu 1 Microfiltru de apa | https://cdn.shopify.com/s/files/1/0834/0688/1063/files/ab86d6f9daaa3f34491c0d2daf189496.jpg?v=1716396035&width=600&height=600&pad_color=ffffff | https://smartinoshop.ro/products/nard-himalaya-herb-pure-water-para-de-dus-cu-1-microfiltru-de-apa | 27.16 | 38.80
+{%- endcapture -%}
+{%- assign ss_lista = ss_produse | split: "##" -%}
+
+{%- comment -%} ===== 3. ȘABLON (nu e nevoie să modifici mai jos) ===== {%- endcomment -%}
+<!--[if !mso]><!-->
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800&display=swap" rel="stylesheet">
+<!--<![endif]-->
+<style>
+  @media only screen and (max-width: 480px) {
+    .ss-col { width: 50% !important; max-width: 50% !important; }
+    .ss-card { padding: 8px !important; }
+    .ss-cta { font-size: 12px !important; padding: 10px 2px !important; }
+    .ss-price { font-size: 15px !important; }
+    .ss-old { font-size: 11px !important; }
+    .ss-tk-l { padding: 16px 12px 16px 16px !important; }
+    .ss-tk-name { font-size: 24px !important; line-height: 30px !important; }
+    .ss-tk-big { font-size: 34px !important; line-height: 38px !important; }
+  }
+  @media only screen and (max-width: 350px) {
+    .ss-old { display: block !important; }
+    .ss-cat { font-size: 9px !important; letter-spacing: 0 !important; }
+    .ss-tk-name { font-size: 21px !important; line-height: 27px !important; }
+    .ss-tk-big { font-size: 30px !important; line-height: 34px !important; }
+  }
+</style>
+
+<table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" bgcolor="{{ ss_bg }}" style="background-color:{{ ss_bg }};">
+
+  <!-- ===================== PASTILĂ + TITLU ===================== -->
+  <tr>
+    <td align="center" style="padding:32px 20px 0 20px;text-align:center;">
+      <span style="display:inline-block;border:1px solid {{ ss_teal }};border-radius:999px;padding:6px 14px;font-family:{{ ss_font }};font-size:12px;line-height:14px;font-weight:700;letter-spacing:2px;color:{{ ss_teal }};text-transform:uppercase;"><span style="font-size:14px;">&#9679;</span>&nbsp; {{ ss_pill | upcase }}</span>
+      <div style="padding-top:16px;font-family:{{ ss_font }};font-size:36px;line-height:42px;font-weight:800;color:#FFFFFF;">{{ ss_title }}</div>
+      <div style="padding-top:6px;font-family:{{ ss_font }};font-size:22px;line-height:29px;font-weight:700;color:#FFFFFF;">{{ ss_sub_1 }} <span style="color:{{ ss_teal }};white-space:nowrap;">{{ ss_sub_2 }}</span></div>
+      <div style="max-width:470px;margin:0 auto;padding-top:12px;font-family:{{ ss_font }};font-size:15px;line-height:23px;font-weight:400;color:#A3A6A8;">{{ ss_text }}</div>
+    </td>
+  </tr>
+
+  <!-- ===================== BILET ===================== -->
+  <tr>
+    <td align="center" style="padding:26px 16px 0 16px;text-align:center;font-size:0;line-height:0;">
+      <!--[if mso]><table role="presentation" width="440" cellpadding="0" cellspacing="0" border="0" align="center"><tr><td><![endif]-->
+      <div style="display:inline-block;width:100%;max-width:440px;vertical-align:top;background-color:{{ ss_box }};border:1px solid {{ ss_box_line }};border-radius:16px;overflow:hidden;text-align:left;">
+        <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0">
+          <tr>
+            <td class="ss-tk-l" valign="middle" style="padding:18px 14px 18px 22px;">
+              <div style="font-family:{{ ss_font }};font-size:10px;line-height:14px;font-weight:700;letter-spacing:1.5px;color:{{ ss_teal }};text-transform:uppercase;">{{ ss_tk_top | upcase }}</div>
+              <div class="ss-tk-name" style="padding-top:4px;font-family:{{ ss_font }};font-size:28px;line-height:34px;font-weight:800;color:#FFFFFF;">{{ ss_tk_name }}</div>
+              <div style="padding-top:6px;font-family:{{ ss_font }};font-size:12px;line-height:18px;font-weight:400;color:#A3A6A8;">{{ ss_tk_info_1 }}<br>{{ ss_tk_info_2 }}</div>
+            </td>
+            <td width="36%" valign="middle" bgcolor="{{ ss_teal }}" style="width:36%;background-color:{{ ss_teal }};border-left:3px dashed {{ ss_box }};border-radius:0 15px 15px 0;padding:14px 6px;text-align:center;">
+              <div style="font-family:{{ ss_font }};font-size:11px;line-height:14px;font-weight:700;letter-spacing:1.5px;color:#000000;text-transform:uppercase;">{{ ss_tk_small | upcase }}</div>
+              <div class="ss-tk-big" style="padding-top:2px;font-family:{{ ss_font }};font-size:40px;line-height:44px;font-weight:800;color:#000000;white-space:nowrap;">{{ ss_tk_big }}<span style="font-size:22px;line-height:22px;vertical-align:top;">%</span></div>
+            </td>
+          </tr>
+        </table>
+      </div>
+      <!--[if mso]></td></tr></table><![endif]-->
+    </td>
+  </tr>
+
+  <!-- ===================== PRODUSE ===================== -->
+  <tr>
+    <td align="center" style="padding:32px 20px 0 20px;text-align:center;">
+      <div style="font-family:{{ ss_font }};font-size:20px;line-height:26px;font-weight:700;color:#FFFFFF;">{{ ss_grid_head }}</div>
+      <div style="padding-top:6px;font-family:{{ ss_font }};font-size:14px;line-height:20px;font-weight:400;color:#A3A6A8;">{{ ss_grid_text }}</div>
+    </td>
+  </tr>
+  <tr>
+    <td align="center" style="padding:12px 6px 0 6px;text-align:center;font-size:0;line-height:0;">
+      <!--[if mso]><table role="presentation" width="540" cellpadding="0" cellspacing="0" border="0" align="center"><tr><![endif]-->
+      <div style="display:inline-block;width:100%;max-width:540px;vertical-align:top;font-size:0;line-height:0;text-align:center;">
+        {%- assign ss_n = 0 -%}
+        {%- for ss_item in ss_lista -%}
+          {%- unless ss_item contains "|" -%}{%- continue -%}{%- endunless -%}
+          {%- assign ss_f      = ss_item | split: "|" -%}
+          {%- assign ss_cat    = ss_f[0] | strip | upcase | escape -%}
+          {%- assign ss_vendor = ss_f[1] | strip | replace: "_", " " | upcase | truncate: 20, "…" | escape -%}
+          {%- assign ss_title2 = ss_f[2] | strip -%}
+          {%- if ss_title2.size > ss_title_max -%}
+            {%- assign ss_cut   = ss_title2 | slice: 0, ss_title_max -%}
+            {%- assign ss_words = ss_cut | split: " " -%}
+            {%- assign ss_title2 = "" -%}
+            {%- for ss_w in ss_words -%}
+              {%- unless forloop.last -%}{%- assign ss_title2 = ss_title2 | append: ss_w | append: " " -%}{%- endunless -%}
+            {%- endfor -%}
+            {%- assign ss_title2 = ss_title2 | strip -%}
+            {%- assign ss_lc = ss_title2 | slice: -1 -%}
+            {%- if ss_lc == "+" or ss_lc == "," or ss_lc == "-" or ss_lc == "–" or ss_lc == ":" or ss_lc == "(" -%}
+              {%- assign ss_len    = ss_title2.size | minus: 1 -%}
+              {%- assign ss_title2 = ss_title2 | slice: 0, ss_len | strip -%}
+            {%- endif -%}
+            {%- if ss_title2 == "" -%}{%- assign ss_title2 = ss_cut -%}{%- endif -%}
+            {%- assign ss_title2 = ss_title2 | append: "…" -%}
+          {%- endif -%}
+          {%- assign ss_title2 = ss_title2 | escape -%}
+          {%- assign ss_alt    = ss_f[2] | strip | escape -%}
+          {%- assign ss_img    = ss_f[3] | strip -%}
+          {%- assign ss_url    = ss_f[4] | strip -%}
+          {%- assign ss_p_new  = ss_f[5] | strip -%}
+          {%- assign ss_p_old  = ss_f[6] | strip -%}
+          {%- assign ss_new_n  = ss_p_new | plus: 0 -%}
+          {%- assign ss_old_n  = ss_p_old | plus: 0 -%}
+          {%- assign ss_badge  = "Smart Sales" -%}
+          {%- if ss_show_prices and ss_old_n > ss_new_n -%}
+            {%- assign ss_pct   = ss_old_n | minus: ss_new_n | times: 100 | divided_by: ss_old_n | round -%}
+            {%- assign ss_badge = "-" | append: ss_pct | append: "%" -%}
+          {%- endif -%}
+          {%- assign ss_p_new_txt = ss_p_new | replace: ".", "," | append: " " | append: ss_currency -%}
+          {%- assign ss_p_old_txt = ss_p_old | replace: ".", "," | append: " " | append: ss_currency -%}
+          {%- assign ss_n      = ss_n | plus: 1 -%}
+          {%- assign ss_mod    = ss_n | modulo: 3 -%}
+          {%- if ss_n > 1 and ss_mod == 1 -%}<!--[if mso]></tr><tr><![endif]-->{%- endif -%}
+          <!--[if mso]><td width="180" valign="top"><![endif]-->
+          <div class="ss-col" style="display:inline-block;width:100%;max-width:180px;vertical-align:top;font-size:14px;line-height:20px;text-align:left;">
+            <div style="padding:6px;">
+              <div class="ss-card" style="background-color:#FFFFFF;border-radius:14px;padding:10px;">
+                <!-- categoria -->
+                <div class="ss-cat" style="background-color:#000000;border-radius:8px;padding:6px 4px;overflow:hidden;white-space:nowrap;text-overflow:ellipsis;text-align:center;font-family:{{ ss_font }};font-size:10px;line-height:12px;font-weight:700;letter-spacing:1px;color:{{ ss_teal }};">&#9733;&nbsp;TOP {{ ss_cat }}</div>
+                <!-- badge reducere -->
+                <div style="padding-top:8px;"><span style="display:inline-block;background-color:{{ ss_red }};border-radius:7px;padding:4px 8px;font-family:{{ ss_font }};font-size:13px;line-height:15px;font-weight:800;color:#FFFFFF;white-space:nowrap;">{{ ss_badge }}</span></div>
+                <!-- imagine -->
+                <div style="margin-top:6px;height:132px;text-align:center;font-size:0;line-height:0;">
+                  <a href="{{ ss_url }}" target="_blank" style="text-decoration:none;"><img src="{{ ss_img }}" width="132" alt="{{ ss_alt }}" style="display:inline-block;vertical-align:middle;width:auto;height:auto;max-width:100%;max-height:132px;border:0;outline:none;text-decoration:none;"></a>
+                </div>
+                <!-- brand -->
+                <div style="padding-top:12px;overflow:hidden;white-space:nowrap;text-overflow:ellipsis;font-family:{{ ss_font }};font-size:11px;line-height:14px;font-weight:600;letter-spacing:1px;color:#646C71;">{{ ss_vendor }}</div>
+                <!-- titlu (max. 2 rânduri) -->
+                <div style="margin-top:6px;height:38px;overflow:hidden;font-family:{{ ss_font }};font-size:13px;line-height:19px;font-weight:400;color:#404040;"><a href="{{ ss_url }}" target="_blank" style="color:#404040;text-decoration:none;">{{ ss_title2 }}</a></div>
+                {%- if ss_show_prices %}
+                <!-- preț -->
+                <div class="ss-price" style="padding-top:8px;white-space:nowrap;font-family:{{ ss_font }};font-size:16px;line-height:20px;font-weight:800;color:{{ ss_red }};">{{ ss_p_new_txt }}{% if ss_old_n > ss_new_n %} <span class="ss-old" style="font-size:12px;font-weight:400;color:#8A9095;text-decoration:line-through;">{{ ss_p_old_txt }}</span>{% endif %}</div>
+                {%- endif %}
+                <!-- buton card -->
+                <div style="padding-top:10px;">
+                  <div style="background-color:#000000;border-radius:8px;text-align:center;overflow:hidden;">
+                    <a class="ss-cta" href="{{ ss_url }}" target="_blank" style="display:block;padding:10px 6px;font-family:{{ ss_font }};font-size:13px;line-height:17px;font-weight:700;color:#FFFFFF;text-decoration:none;white-space:nowrap;">{{ ss_card_cta }}&nbsp;<span style="color:{{ ss_teal }};font-family:Arial,Helvetica,sans-serif;">&#8594;</span></a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!--[if mso]></td><![endif]-->
+        {%- endfor -%}
+      </div>
+      <!--[if mso]></tr></table><![endif]-->
+    </td>
+  </tr>
+
+  <!-- ===================== CÂT MAI AVEM STOC ===================== -->
+  <tr>
+    <td align="center" style="padding:22px 16px 0 16px;text-align:center;font-size:0;line-height:0;">
+      <!--[if mso]><table role="presentation" width="528" cellpadding="0" cellspacing="0" border="0" align="center"><tr><td><![endif]-->
+      <div style="display:inline-block;width:100%;max-width:528px;vertical-align:top;text-align:left;">
+        <div style="border:1px solid {{ ss_teal }};border-radius:14px;padding:14px 18px;">
+          <div style="font-family:{{ ss_font }};font-size:15px;line-height:21px;font-weight:700;color:{{ ss_teal }};">{{ ss_stock_head }}</div>
+          <div style="padding-top:2px;font-family:{{ ss_font }};font-size:14px;line-height:20px;font-weight:400;color:#C9CCCE;">{{ ss_stock_text }}</div>
+        </div>
+      </div>
+      <!--[if mso]></td></tr></table><![endif]-->
+    </td>
+  </tr>
+
+  <!-- ===================== BUTON ===================== -->
+  <tr>
+    <td align="center" style="padding:28px 12px 0 12px;text-align:center;">
+      <!--[if mso]>
+      <v:roundrect xmlns:v="urn:schemas-microsoft-com:vml" xmlns:w="urn:schemas-microsoft-com:office:word" href="{{ ss_cta_url }}" style="height:50px;v-text-anchor:middle;width:260px;" arcsize="50%" stroke="f" fillcolor="{{ ss_teal }}">
+        <w:anchorlock/>
+        <center style="color:{{ ss_cta_color }};font-family:Arial,sans-serif;font-size:15px;font-weight:bold;">{{ ss_cta_text }}&nbsp;&nbsp;&#8594;</center>
+      </v:roundrect>
+      <![endif]-->
+      <!--[if !mso]><!-->
+      <a href="{{ ss_cta_url }}" target="_blank" style="display:inline-block;background-color:{{ ss_teal }};border-radius:999px;padding:15px 34px 15px 40px;font-family:{{ ss_font }};font-size:15px;line-height:20px;font-weight:700;color:{{ ss_cta_color }};text-decoration:none;">{{ ss_cta_text }}&nbsp;&nbsp;<span style="font-family:Arial,Helvetica,sans-serif;font-size:18px;line-height:20px;font-weight:700;color:{{ ss_cta_color }};">&#8594;</span></a>
+      <!--<![endif]-->
+    </td>
+  </tr>
+
+  <!-- ===================== NOTĂ ===================== -->
+  <tr>
+    <td align="center" style="padding:16px 24px 36px 24px;text-align:center;font-family:{{ ss_font }};font-size:12px;line-height:18px;font-weight:400;color:#75797C;">{{ ss_note }}</td>
+  </tr>
+
+</table>
