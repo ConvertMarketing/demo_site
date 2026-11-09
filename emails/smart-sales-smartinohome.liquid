@@ -6,14 +6,12 @@
   Diferit de emailul Smartino Shop.
   1. Pastilă „Smart Sales a început” + titlu „Până la −50%” +
      „pentru fiecare cameră din casă” + text scurt.
-  2. „Cât încape în buget?”: un bon de casă cu primele 3 produse din
-     listă. Totalul și „Ai economisit” se calculează singure din prețuri.
-  3. „Top oferte din fiecare categorie”: 9 produse (Textile, Mobilier,
+  2. „Top oferte din fiecare categorie”: 9 produse (Textile, Mobilier,
      Organizare, Covoare, Crăciun, Bucătărie, Lumânări, Top oferte),
      carduri închise la culoare, preț vechi tăiat + preț Smart Sales,
      buton turcoaz „Vezi oferta” (3 pe rând desktop, 2 pe rând mobil).
-  4. Casetă „Și în magazinul din Snagov”.
-  5. Buton turcoaz „Vezi toate ofertele →” + notă.
+  3. Casetă „Și în magazinul din Snagov”.
+  4. Buton turcoaz „Vezi toate ofertele →” + notă.
 
   ORDINEA ÎN SHOPIFY EMAIL
   1. Banner Smart Sales
@@ -33,17 +31,6 @@
 {%- assign hs_title_2   = "−50%" -%}                {%- comment -%} partea colorată din titlu {%- endcomment -%}
 {%- assign hs_sub       = "pentru fiecare cameră din&nbsp;casă" -%}
 {%- assign hs_text      = "Mobilier, textile, covoare, bucătărie și decorațiuni de Crăciun, la prețuri Smart Sales până pe 26&nbsp;noiembrie. Cele mai căutate produse pleacă primele, așa că nu&nbsp;amâna." -%}
-
-{%- comment -%} Bonul (folosește primele hs_bon_count produse din listă) {%- endcomment -%}
-{%- assign hs_bon_head  = "Cât încape în buget?" -%}
-{%- assign hs_bon_intro = "Am pus trei produse din campanie într-un coș. Uite cât&nbsp;economisești." -%}
-{%- assign hs_bon_count = 3 -%}
-{%- assign hs_bon_shop  = "Smartino Home" -%}
-{%- assign hs_bon_sub   = "Bon Smart Sales · coș exemplu" -%}
-{%- assign hs_bon_disc  = "Reducere" -%}
-{%- assign hs_bon_total = "Total Smart Sales" -%}
-{%- assign hs_bon_save  = "Ai economisit" -%}
-{%- assign hs_bon_foot  = "Mulțumim! Încape în buget." -%}
 
 {%- assign hs_grid_head = "Top oferte din fiecare categorie" -%}
 {%- assign hs_grid_text = "Alese dintre cele mai vândute produse Smart&nbsp;Sales." -%}
@@ -66,13 +53,11 @@
 {%- assign hs_teal      = "#00B8C7" -%}           {%- comment -%} culoarea Smartino {%- endcomment -%}
 {%- assign hs_cta_color = "#000000" -%}           {%- comment -%} text pe butoanele turcoaz {%- endcomment -%}
 {%- assign hs_font      = "'Poppins', Arial, Helvetica, sans-serif" -%}
-{%- assign hs_mono      = "'Courier New', Courier, monospace" -%}
 
 {%- comment -%}
   ===== 2. PRODUSE =====
   Un produs pe bloc, separate prin ##
      Categorie | BRAND (nu apare în email) | Titlu | URL imagine | URL produs | preț nou | preț vechi
-  Primele 3 produse apar și pe bon.
   Prețurile cu punct, fără separator de mii (ex. 4346.73).
   În titluri NU folosi caracterul |.
 {%- endcomment -%}
@@ -97,80 +82,7 @@ Top oferte | FIVE | Covor de baie din diatomit 39x60 cm, Gri | https://cdn.shopi
 {%- endcapture -%}
 {%- assign hs_lista = hs_produse | split: "##" -%}
 
-{%- comment -%} ===== 3. CALCUL BON (nu e nevoie să modifici) ===== {%- endcomment -%}
-{%- assign hs_b_names = "" -%}
-{%- assign hs_b_vals  = "" -%}
-{%- assign hs_b_pcts  = "" -%}
-{%- assign hs_b_old_sum = 0 -%}
-{%- assign hs_b_new_sum = 0 -%}
-{%- assign hs_b_n = 0 -%}
-{%- for hs_item in hs_lista -%}
-  {%- unless hs_item contains "|" -%}{%- continue -%}{%- endunless -%}
-  {%- if hs_b_n >= hs_bon_count -%}{%- break -%}{%- endif -%}
-  {%- assign hs_f     = hs_item | split: "|" -%}
-  {%- assign hs_new_c = hs_f[5] | strip | times: 100 | round -%}
-  {%- assign hs_old_c = hs_f[6] | strip | times: 100 | round -%}
-  {%- if hs_old_c < hs_new_c -%}{%- assign hs_old_c = hs_new_c -%}{%- endif -%}
-  {%- assign hs_b_old_sum = hs_b_old_sum | plus: hs_old_c -%}
-  {%- assign hs_b_new_sum = hs_b_new_sum | plus: hs_new_c -%}
-  {%- assign hs_disc_c = hs_old_c | minus: hs_new_c -%}
-  {%- assign hs_pct = 0 -%}
-  {%- if hs_old_c > 0 -%}{%- assign hs_pct = hs_disc_c | times: 100.0 | divided_by: hs_old_c | round -%}{%- endif -%}
-  {%- assign hs_nm = hs_f[2] | strip | remove: '"' | upcase -%}
-  {%- if hs_nm.size > 22 -%}
-    {%- assign hs_cut   = hs_nm | slice: 0, 22 -%}
-    {%- assign hs_next  = hs_nm | slice: 22, 1 -%}
-    {%- assign hs_last  = hs_cut | slice: -1 -%}
-    {%- if hs_next == " " or hs_last == " " -%}
-      {%- assign hs_nm = hs_cut | strip -%}
-    {%- else -%}
-      {%- assign hs_words = hs_cut | split: " " -%}
-      {%- assign hs_nm = "" -%}
-      {%- for hs_w in hs_words -%}
-        {%- unless forloop.last -%}{%- assign hs_nm = hs_nm | append: hs_w | append: " " -%}{%- endunless -%}
-      {%- endfor -%}
-      {%- assign hs_nm = hs_nm | strip -%}
-    {%- endif -%}
-    {%- assign hs_lc = hs_nm | slice: -1 -%}
-    {%- if hs_lc == "," or hs_lc == "-" or hs_lc == "–" -%}
-      {%- assign hs_len = hs_nm.size | minus: 1 -%}
-      {%- assign hs_nm  = hs_nm | slice: 0, hs_len | strip -%}
-    {%- endif -%}
-    {%- if hs_nm == "" -%}{%- assign hs_nm = hs_cut -%}{%- endif -%}
-    {%- assign hs_nm = hs_nm | append: "…" -%}
-  {%- endif -%}
-  {%- assign hs_b_names = hs_b_names | append: hs_nm | append: "~" -%}
-  {%- assign hs_b_vals  = hs_b_vals | append: hs_old_c | append: "~" | append: hs_disc_c | append: "~" -%}
-  {%- assign hs_b_pcts  = hs_b_pcts | append: hs_pct | append: "~" -%}
-  {%- assign hs_b_n = hs_b_n | plus: 1 -%}
-{%- endfor -%}
-{%- assign hs_b_save_sum = hs_b_old_sum | minus: hs_b_new_sum -%}
-{%- assign hs_b_vals = hs_b_vals | append: hs_b_new_sum | append: "~" | append: hs_b_save_sum -%}
-{%- comment -%} formatare: 434673 → 4.346,73 {%- endcomment -%}
-{%- assign hs_fmt_in  = hs_b_vals | split: "~" -%}
-{%- assign hs_fmt_out = "" -%}
-{%- for hs_v in hs_fmt_in -%}
-  {%- assign hs_c  = hs_v | plus: 0 -%}
-  {%- assign hs_i  = hs_c | divided_by: 100 | floor -%}
-  {%- assign hs_d  = hs_c | modulo: 100 -%}
-  {%- if hs_d < 10 -%}{%- assign hs_ds = hs_d | prepend: "0" -%}{%- else -%}{%- assign hs_ds = hs_d | append: "" -%}{%- endif -%}
-  {%- if hs_i >= 1000 -%}
-    {%- assign hs_th = hs_i | divided_by: 1000 | floor -%}
-    {%- assign hs_r  = hs_i | modulo: 1000 -%}
-    {%- if hs_r < 10 -%}{%- assign hs_rs = hs_r | prepend: "00" -%}{%- elsif hs_r < 100 -%}{%- assign hs_rs = hs_r | prepend: "0" -%}{%- else -%}{%- assign hs_rs = hs_r | append: "" -%}{%- endif -%}
-    {%- assign hs_is = hs_th | append: "." | append: hs_rs -%}
-  {%- else -%}
-    {%- assign hs_is = hs_i | append: "" -%}
-  {%- endif -%}
-  {%- assign hs_fmt_out = hs_fmt_out | append: hs_is | append: "," | append: hs_ds | append: "~" -%}
-{%- endfor -%}
-{%- assign hs_b_fmt   = hs_fmt_out | split: "~" -%}
-{%- assign hs_b_nm    = hs_b_names | split: "~" -%}
-{%- assign hs_b_pc    = hs_b_pcts | split: "~" -%}
-{%- assign hs_b_tot_i  = hs_b_n | times: 2 -%}
-{%- assign hs_b_save_i = hs_b_tot_i | plus: 1 -%}
-
-{%- comment -%} ===== 4. ȘABLON (nu e nevoie să modifici mai jos) ===== {%- endcomment -%}
+{%- comment -%} ===== 3. ȘABLON (nu e nevoie să modifici mai jos) ===== {%- endcomment -%}
 <!--[if !mso]><!-->
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800&display=swap" rel="stylesheet">
 <!--<![endif]-->
@@ -180,12 +92,9 @@ Top oferte | FIVE | Covor de baie din diatomit 39x60 cm, Gri | https://cdn.shopi
     .hs-card { padding: 7px !important; }
     .hs-cta { font-size: 12px !important; padding: 9px 2px !important; }
     .hs-price { font-size: 15px !important; }
-    .hs-bon { padding: 18px 14px 16px 14px !important; }
-    .hs-bon-save { font-size: 17px !important; }
   }
   @media only screen and (max-width: 350px) {
     .hs-cat { letter-spacing: 0 !important; }
-    .hs-bon-line { font-size: 12px !important; }
   }
 </style>
 
@@ -200,58 +109,6 @@ Top oferte | FIVE | Covor de baie din diatomit 39x60 cm, Gri | https://cdn.shopi
       <div style="max-width:470px;margin:0 auto;padding-top:12px;font-family:{{ hs_font }};font-size:15px;line-height:23px;font-weight:400;color:#A3A6A8;">{{ hs_text }}</div>
     </td>
   </tr>
-
-  <!-- ===================== BON ===================== -->
-  {%- if hs_b_n > 0 %}
-  <tr>
-    <td align="center" style="padding:32px 20px 0 20px;text-align:center;">
-      <div style="font-family:{{ hs_font }};font-size:20px;line-height:26px;font-weight:700;color:#FFFFFF;">{{ hs_bon_head }}</div>
-      <div style="max-width:440px;margin:0 auto;padding-top:6px;font-family:{{ hs_font }};font-size:14px;line-height:20px;font-weight:400;color:#A3A6A8;">{{ hs_bon_intro }}</div>
-    </td>
-  </tr>
-  <tr>
-    <td align="center" style="padding:16px 16px 0 16px;text-align:center;font-size:0;line-height:0;">
-      <!--[if mso]><table role="presentation" width="360" cellpadding="0" cellspacing="0" border="0" align="center"><tr><td bgcolor="#FFFFFF" style="padding:20px;"><![endif]-->
-      <div class="hs-bon" style="display:inline-block;width:100%;max-width:360px;vertical-align:top;background-color:#FFFFFF;border-radius:6px;padding:20px 20px 18px 20px;box-sizing:border-box;text-align:left;">
-        <div style="text-align:center;font-family:{{ hs_mono }};font-size:16px;line-height:20px;font-weight:700;letter-spacing:2px;color:#111111;text-transform:uppercase;">{{ hs_bon_shop | upcase }}</div>
-        <div style="padding-top:2px;text-align:center;font-family:{{ hs_mono }};font-size:11px;line-height:15px;font-weight:400;color:#555555;text-transform:uppercase;">{{ hs_bon_sub | upcase }}</div>
-        <div style="margin-top:12px;border-top:2px dashed #B9BCBE;font-size:0;line-height:0;">&nbsp;</div>
-        <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0">
-          {%- for hs_k in (1..hs_b_n) %}
-            {%- assign hs_ix  = forloop.index0 -%}
-            {%- assign hs_vi  = hs_ix | times: 2 -%}
-            {%- assign hs_vi2 = hs_vi | plus: 1 %}
-          <tr>
-            <td class="hs-bon-line" style="padding:10px 0 0 0;vertical-align:top;font-family:{{ hs_mono }};font-size:13px;line-height:17px;font-weight:700;color:#111111;white-space:nowrap;">{{ hs_b_nm[hs_ix] | escape }}</td>
-            <td class="hs-bon-line" align="right" style="padding:10px 0 0 8px;vertical-align:top;text-align:right;font-family:{{ hs_mono }};font-size:13px;line-height:17px;font-weight:700;color:#111111;white-space:nowrap;">{{ hs_b_fmt[hs_vi] }}</td>
-          </tr>
-          <tr>
-            <td class="hs-bon-line" style="padding:1px 0 0 12px;vertical-align:top;font-family:{{ hs_mono }};font-size:13px;line-height:17px;font-weight:400;color:#C21E24;white-space:nowrap;">{{ hs_bon_disc }} -{{ hs_b_pc[hs_ix] }}%</td>
-            <td class="hs-bon-line" align="right" style="padding:1px 0 0 8px;vertical-align:top;text-align:right;font-family:{{ hs_mono }};font-size:13px;line-height:17px;font-weight:400;color:#C21E24;white-space:nowrap;">-{{ hs_b_fmt[hs_vi2] }}</td>
-          </tr>
-          {%- endfor %}
-        </table>
-        <div style="margin-top:12px;border-top:2px dashed #B9BCBE;font-size:0;line-height:0;">&nbsp;</div>
-        <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0">
-          <tr>
-            <td class="hs-bon-line" style="padding:10px 0 0 0;vertical-align:top;font-family:{{ hs_mono }};font-size:13px;line-height:17px;font-weight:700;color:#111111;text-transform:uppercase;">{{ hs_bon_total | upcase }}</td>
-            <td class="hs-bon-line" align="right" style="padding:10px 0 0 8px;vertical-align:top;text-align:right;font-family:{{ hs_mono }};font-size:13px;line-height:17px;font-weight:700;color:#111111;white-space:nowrap;">{{ hs_b_fmt[hs_b_tot_i] }} {{ hs_currency | upcase }}</td>
-          </tr>
-        </table>
-        <div style="margin-top:12px;background-color:{{ hs_teal }};border-radius:8px;padding:10px 12px;">
-          <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0">
-            <tr>
-              <td style="vertical-align:middle;font-family:{{ hs_mono }};font-size:13px;line-height:17px;font-weight:700;color:#000000;text-transform:uppercase;">{{ hs_bon_save | upcase }}</td>
-              <td class="hs-bon-save" align="right" style="vertical-align:middle;text-align:right;font-family:{{ hs_mono }};font-size:20px;line-height:24px;font-weight:700;color:#000000;white-space:nowrap;">{{ hs_b_fmt[hs_b_save_i] }} {{ hs_currency | upcase }}</td>
-            </tr>
-          </table>
-        </div>
-        <div style="padding-top:12px;text-align:center;font-family:{{ hs_mono }};font-size:11px;line-height:15px;font-weight:400;color:#555555;text-transform:uppercase;">* {{ hs_bon_foot | upcase }} *</div>
-      </div>
-      <!--[if mso]></td></tr></table><![endif]-->
-    </td>
-  </tr>
-  {%- endif %}
 
   <!-- ===================== PRODUSE ===================== -->
   <tr>
