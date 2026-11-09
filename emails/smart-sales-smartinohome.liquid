@@ -1,0 +1,390 @@
+{%- comment -%}
+=====================================================================
+  EMAIL „SMART SALES” — SMARTINO HOME  (9–26 noiembrie 2026)
+---------------------------------------------------------------------
+  Tema banner-ului: „Ce nu încape în pungă, încape în buget”.
+  Diferit de emailul Smartino Shop.
+  1. Pastilă „Smart Sales a început” + titlu „Până la −50%” +
+     „pentru fiecare cameră din casă” + text scurt.
+  2. „Cât încape în buget?”: un bon de casă cu primele 3 produse din
+     listă. Totalul și „Ai economisit” se calculează singure din prețuri.
+  3. „Top oferte din fiecare categorie”: 9 produse (Textile, Mobilier,
+     Organizare, Covoare, Crăciun, Bucătărie, Lumânări, Top oferte),
+     carduri închise la culoare, preț vechi tăiat + preț Smart Sales,
+     buton turcoaz „Vezi oferta” (3 pe rând desktop, 2 pe rând mobil).
+  4. Casetă „Și în magazinul din Snagov”.
+  5. Buton turcoaz „Vezi toate ofertele →” + notă.
+
+  ORDINEA ÎN SHOPIFY EMAIL
+  1. Banner Smart Sales
+  2. (opțional) Custom Liquid cu ofertele-incep-in.liquid, textul
+     „Ofertele expiră în”, apoi secțiunea „Countdown”:
+     November 26, 2026, 11:59 PM (ca pe landing)
+  3. Custom Liquid cu ACEST fișier
+
+  Produsele sunt dintre cele mai vândute din categoriile Smart Sales de
+  pe smartinohome.ro, iar prețurile sunt cele din 9 noiembrie 2026.
+=====================================================================
+{%- endcomment -%}
+
+{%- comment -%} ===== 1. SETĂRI ===== {%- endcomment -%}
+{%- assign hs_pill      = "Smart Sales a început" -%}
+{%- assign hs_title_1   = "Până la" -%}
+{%- assign hs_title_2   = "−50%" -%}                {%- comment -%} partea colorată din titlu {%- endcomment -%}
+{%- assign hs_sub       = "pentru fiecare cameră din&nbsp;casă" -%}
+{%- assign hs_text      = "Mobilier, textile, covoare, bucătărie și decorațiuni de Crăciun, la prețuri Smart Sales până pe 26&nbsp;noiembrie. Cele mai căutate produse pleacă primele, așa că nu&nbsp;amâna." -%}
+
+{%- comment -%} Bonul (folosește primele hs_bon_count produse din listă) {%- endcomment -%}
+{%- assign hs_bon_head  = "Cât încape în buget?" -%}
+{%- assign hs_bon_intro = "Am pus trei produse din campanie într-un coș. Uite cât&nbsp;economisești." -%}
+{%- assign hs_bon_count = 3 -%}
+{%- assign hs_bon_shop  = "Smartino Home" -%}
+{%- assign hs_bon_sub   = "Bon Smart Sales · coș exemplu" -%}
+{%- assign hs_bon_disc  = "Reducere" -%}
+{%- assign hs_bon_total = "Total Smart Sales" -%}
+{%- assign hs_bon_save  = "Ai economisit" -%}
+{%- assign hs_bon_foot  = "Mulțumim! Încape în buget." -%}
+
+{%- assign hs_grid_head = "Top oferte din fiecare categorie" -%}
+{%- assign hs_grid_text = "Alese dintre cele mai vândute produse Smart&nbsp;Sales." -%}
+{%- assign hs_card_cta  = "Vezi oferta" -%}
+{%- assign hs_currency  = "lei" -%}
+{%- assign hs_title_max = 38 -%}
+
+{%- assign hs_store_head = "Și în magazinul din Snagov" -%}
+{%- assign hs_store_text = "Ofertele Smart Sales sunt valabile și în magazinul Smartino Home din Snagov Plaza (DN1, Intersecția Snagov). Vino să vezi mobila pe&nbsp;viu." -%}
+
+{%- assign hs_cta_text  = "Vezi toate ofertele" -%}
+{%- assign hs_cta_url   = "https://smartinohome.ro/pages/smart-sales" -%}
+{%- assign hs_note      = "Campanie valabilă în perioada 9–26 noiembrie 2026, pe smartinohome.ro și în magazinul Smartino Home din Snagov, în limita stocului disponibil." -%}
+
+{%- comment -%} Culori și font {%- endcomment -%}
+{%- assign hs_bg        = "#000000" -%}
+{%- assign hs_card      = "#17181A" -%}           {%- comment -%} fundal carduri {%- endcomment -%}
+{%- assign hs_card_line = "#1C3436" -%}           {%- comment -%} contur carduri {%- endcomment -%}
+{%- assign hs_red       = "#E3242B" -%}           {%- comment -%} badge reducere {%- endcomment -%}
+{%- assign hs_teal      = "#00B8C7" -%}           {%- comment -%} culoarea Smartino {%- endcomment -%}
+{%- assign hs_cta_color = "#000000" -%}           {%- comment -%} text pe butoanele turcoaz {%- endcomment -%}
+{%- assign hs_font      = "'Poppins', Arial, Helvetica, sans-serif" -%}
+{%- assign hs_mono      = "'Courier New', Courier, monospace" -%}
+
+{%- comment -%}
+  ===== 2. PRODUSE =====
+  Un produs pe bloc, separate prin ##
+     Categorie | BRAND (nu apare în email) | Titlu | URL imagine | URL produs | preț nou | preț vechi
+  Primele 3 produse apar și pe bon.
+  Prețurile cu punct, fără separator de mii (ex. 4346.73).
+  În titluri NU folosi caracterul |.
+{%- endcomment -%}
+{%- capture hs_produse -%}
+Textile | ATMOSPHERA | Lenjerie de pat "Etnik raye" 3 piese - 100% bumbac, 240x220 cm - Atmosphera | https://cdn.shopify.com/s/files/1/1050/9189/1539/files/163984F_DEB1_b55f96fd-c136-4597-9db1-a63f1955402c.jpg?v=1781181301&width=600&height=600&pad_color=ffffff | https://smartinohome.ro/products/lenjerie-de-pat-3-piese-etnik-raye-240x220-cm | 91.40 | 182.79
+##
+Mobilier | FIVE | Raft 6 compartimente cu 6 cutii de depozitare, Negru - Mix'n Modul | https://cdn.shopify.com/s/files/1/1050/9189/1539/files/193540_DEB1_52bc650a-90dc-4044-822e-d979f6cf92a1.jpg?v=1781189505&width=600&height=600&pad_color=ffffff | https://smartinohome.ro/products/raft-6-compartimente-cu-6-cutii-de-depozitare-negru-mix-n-modul | 92.19 | 131.69
+##
+Organizare | FIVE | Cos de rufe pliabil 45L - Gri, Alb - Hugger | https://cdn.shopify.com/s/files/1/1050/9189/1539/files/164585_DEB1_2a7e70d6-fe0e-4b4e-b564-cbb916ed3e8f.jpg?v=1779301343&width=600&height=600&pad_color=ffffff | https://smartinohome.ro/products/cos-de-rufe-pliabil-45l-gri-alb-hugger | 48.34 | 87.89
+##
+Mobilier | ATMOSPHERA | Canapea "Solka" - 3 locuri, L. 254 cm, Verde kaki | https://cdn.shopify.com/s/files/1/1050/9189/1539/files/214247C_DEB1_e4b3fbac-65ac-453f-8467-c51924c4846b.jpg?v=1781207413&width=600&height=600&pad_color=ffffff | https://smartinohome.ro/products/canapea-solka-3-locuri-l-254-cm-verde-kaki | 4346.73 | 5113.79
+##
+Covoare | PIERRE CARDIN | Covor Pierre Cardin Versay Delicat Touch, 120 x 200 cm | https://cdn.shopify.com/s/files/1/1050/9189/1539/files/445a_img05485.jpg?v=1783927247&width=600&height=600&pad_color=ffffff | https://smartinohome.ro/products/covor-pierre-cardin-versay-delicat-touch | 345.75 | 460.99
+##
+Crăciun | ATMOSPHERA | Set decor brad de Craciun, rosu si alb, 44 piese | https://cdn.shopify.com/s/files/1/1050/9189/1539/files/694531RB_DEB1_2108973c-1aea-4e8a-a851-acf3cc76c58b.jpg?v=1788790411&width=600&height=600&pad_color=ffffff | https://smartinohome.ro/products/set-decor-brad-de-craciun-rosu-si-alb-44-piese | 62.23 | 88.89
+##
+Bucătărie | SECRET DE GOURMET | Distribuitor "Modern Wood" - 1,5L, Transparent | https://cdn.shopify.com/s/files/1/1050/9189/1539/files/154873_DEB1_1b12b99c-3c19-42ab-8f29-d6689bb1dc57.jpg?v=1779297476&width=600&height=600&pad_color=ffffff | https://smartinohome.ro/products/distribuitor-modern-wood-1-5l-transparent | 93.24 | 109.69
+##
+Lumânări | ATMOSPHERA | Difuzor "Rita" - 200 ml - Atmosphera | https://cdn.shopify.com/s/files/1/1050/9189/1539/files/214954A_DEB1_f9ba826d-eac7-44ee-b888-05108feca6e7.jpg?v=1779333978&width=600&height=600&pad_color=ffffff | https://smartinohome.ro/products/difuzor-rita-200-ml-atmosphera | 71.32 | 95.09
+##
+Top oferte | FIVE | Covor de baie din diatomit 39x60 cm, Gri | https://cdn.shopify.com/s/files/1/1050/9189/1539/files/174683_DEB1_7b4644a6-8b19-4450-9994-229c6060e5e7.jpg?v=1781183161&width=600&height=600&pad_color=ffffff | https://smartinohome.ro/products/covor-de-baie-din-diatomit-39x60-cm-gri | 52.72 | 65.89
+{%- endcapture -%}
+{%- assign hs_lista = hs_produse | split: "##" -%}
+
+{%- comment -%} ===== 3. CALCUL BON (nu e nevoie să modifici) ===== {%- endcomment -%}
+{%- assign hs_b_names = "" -%}
+{%- assign hs_b_vals  = "" -%}
+{%- assign hs_b_pcts  = "" -%}
+{%- assign hs_b_old_sum = 0 -%}
+{%- assign hs_b_new_sum = 0 -%}
+{%- assign hs_b_n = 0 -%}
+{%- for hs_item in hs_lista -%}
+  {%- unless hs_item contains "|" -%}{%- continue -%}{%- endunless -%}
+  {%- if hs_b_n >= hs_bon_count -%}{%- break -%}{%- endif -%}
+  {%- assign hs_f     = hs_item | split: "|" -%}
+  {%- assign hs_new_c = hs_f[5] | strip | times: 100 | round -%}
+  {%- assign hs_old_c = hs_f[6] | strip | times: 100 | round -%}
+  {%- if hs_old_c < hs_new_c -%}{%- assign hs_old_c = hs_new_c -%}{%- endif -%}
+  {%- assign hs_b_old_sum = hs_b_old_sum | plus: hs_old_c -%}
+  {%- assign hs_b_new_sum = hs_b_new_sum | plus: hs_new_c -%}
+  {%- assign hs_disc_c = hs_old_c | minus: hs_new_c -%}
+  {%- assign hs_pct = 0 -%}
+  {%- if hs_old_c > 0 -%}{%- assign hs_pct = hs_disc_c | times: 100.0 | divided_by: hs_old_c | round -%}{%- endif -%}
+  {%- assign hs_nm = hs_f[2] | strip | remove: '"' | upcase -%}
+  {%- if hs_nm.size > 22 -%}
+    {%- assign hs_cut   = hs_nm | slice: 0, 22 -%}
+    {%- assign hs_next  = hs_nm | slice: 22, 1 -%}
+    {%- assign hs_last  = hs_cut | slice: -1 -%}
+    {%- if hs_next == " " or hs_last == " " -%}
+      {%- assign hs_nm = hs_cut | strip -%}
+    {%- else -%}
+      {%- assign hs_words = hs_cut | split: " " -%}
+      {%- assign hs_nm = "" -%}
+      {%- for hs_w in hs_words -%}
+        {%- unless forloop.last -%}{%- assign hs_nm = hs_nm | append: hs_w | append: " " -%}{%- endunless -%}
+      {%- endfor -%}
+      {%- assign hs_nm = hs_nm | strip -%}
+    {%- endif -%}
+    {%- assign hs_lc = hs_nm | slice: -1 -%}
+    {%- if hs_lc == "," or hs_lc == "-" or hs_lc == "–" -%}
+      {%- assign hs_len = hs_nm.size | minus: 1 -%}
+      {%- assign hs_nm  = hs_nm | slice: 0, hs_len | strip -%}
+    {%- endif -%}
+    {%- if hs_nm == "" -%}{%- assign hs_nm = hs_cut -%}{%- endif -%}
+    {%- assign hs_nm = hs_nm | append: "…" -%}
+  {%- endif -%}
+  {%- assign hs_b_names = hs_b_names | append: hs_nm | append: "~" -%}
+  {%- assign hs_b_vals  = hs_b_vals | append: hs_old_c | append: "~" | append: hs_disc_c | append: "~" -%}
+  {%- assign hs_b_pcts  = hs_b_pcts | append: hs_pct | append: "~" -%}
+  {%- assign hs_b_n = hs_b_n | plus: 1 -%}
+{%- endfor -%}
+{%- assign hs_b_save_sum = hs_b_old_sum | minus: hs_b_new_sum -%}
+{%- assign hs_b_vals = hs_b_vals | append: hs_b_new_sum | append: "~" | append: hs_b_save_sum -%}
+{%- comment -%} formatare: 434673 → 4.346,73 {%- endcomment -%}
+{%- assign hs_fmt_in  = hs_b_vals | split: "~" -%}
+{%- assign hs_fmt_out = "" -%}
+{%- for hs_v in hs_fmt_in -%}
+  {%- assign hs_c  = hs_v | plus: 0 -%}
+  {%- assign hs_i  = hs_c | divided_by: 100 | floor -%}
+  {%- assign hs_d  = hs_c | modulo: 100 -%}
+  {%- if hs_d < 10 -%}{%- assign hs_ds = hs_d | prepend: "0" -%}{%- else -%}{%- assign hs_ds = hs_d | append: "" -%}{%- endif -%}
+  {%- if hs_i >= 1000 -%}
+    {%- assign hs_th = hs_i | divided_by: 1000 | floor -%}
+    {%- assign hs_r  = hs_i | modulo: 1000 -%}
+    {%- if hs_r < 10 -%}{%- assign hs_rs = hs_r | prepend: "00" -%}{%- elsif hs_r < 100 -%}{%- assign hs_rs = hs_r | prepend: "0" -%}{%- else -%}{%- assign hs_rs = hs_r | append: "" -%}{%- endif -%}
+    {%- assign hs_is = hs_th | append: "." | append: hs_rs -%}
+  {%- else -%}
+    {%- assign hs_is = hs_i | append: "" -%}
+  {%- endif -%}
+  {%- assign hs_fmt_out = hs_fmt_out | append: hs_is | append: "," | append: hs_ds | append: "~" -%}
+{%- endfor -%}
+{%- assign hs_b_fmt   = hs_fmt_out | split: "~" -%}
+{%- assign hs_b_nm    = hs_b_names | split: "~" -%}
+{%- assign hs_b_pc    = hs_b_pcts | split: "~" -%}
+{%- assign hs_b_tot_i  = hs_b_n | times: 2 -%}
+{%- assign hs_b_save_i = hs_b_tot_i | plus: 1 -%}
+
+{%- comment -%} ===== 4. ȘABLON (nu e nevoie să modifici mai jos) ===== {%- endcomment -%}
+<!--[if !mso]><!-->
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800&display=swap" rel="stylesheet">
+<!--<![endif]-->
+<style>
+  @media only screen and (max-width: 480px) {
+    .hs-col { width: 50% !important; max-width: 50% !important; }
+    .hs-card { padding: 7px !important; }
+    .hs-cta { font-size: 12px !important; padding: 9px 2px !important; }
+    .hs-price { font-size: 15px !important; }
+    .hs-bon { padding: 18px 14px 16px 14px !important; }
+    .hs-bon-save { font-size: 17px !important; }
+  }
+  @media only screen and (max-width: 350px) {
+    .hs-cat { letter-spacing: 0 !important; }
+    .hs-bon-line { font-size: 12px !important; }
+  }
+</style>
+
+<table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" bgcolor="{{ hs_bg }}" style="background-color:{{ hs_bg }};">
+
+  <!-- ===================== PASTILĂ + TITLU ===================== -->
+  <tr>
+    <td align="center" style="padding:32px 20px 0 20px;text-align:center;">
+      <span style="display:inline-block;border:1px solid {{ hs_teal }};border-radius:999px;padding:6px 14px;font-family:{{ hs_font }};font-size:12px;line-height:14px;font-weight:700;letter-spacing:2px;color:{{ hs_teal }};text-transform:uppercase;"><span style="font-size:14px;">&#9679;</span>&nbsp; {{ hs_pill | upcase }}</span>
+      <div style="padding-top:16px;font-family:{{ hs_font }};font-size:44px;line-height:50px;font-weight:800;color:#FFFFFF;">{{ hs_title_1 }} <span style="color:{{ hs_teal }};white-space:nowrap;">{{ hs_title_2 }}</span></div>
+      <div style="padding-top:4px;font-family:{{ hs_font }};font-size:22px;line-height:29px;font-weight:700;color:#FFFFFF;">{{ hs_sub }}</div>
+      <div style="max-width:470px;margin:0 auto;padding-top:12px;font-family:{{ hs_font }};font-size:15px;line-height:23px;font-weight:400;color:#A3A6A8;">{{ hs_text }}</div>
+    </td>
+  </tr>
+
+  <!-- ===================== BON ===================== -->
+  {%- if hs_b_n > 0 %}
+  <tr>
+    <td align="center" style="padding:32px 20px 0 20px;text-align:center;">
+      <div style="font-family:{{ hs_font }};font-size:20px;line-height:26px;font-weight:700;color:#FFFFFF;">{{ hs_bon_head }}</div>
+      <div style="max-width:440px;margin:0 auto;padding-top:6px;font-family:{{ hs_font }};font-size:14px;line-height:20px;font-weight:400;color:#A3A6A8;">{{ hs_bon_intro }}</div>
+    </td>
+  </tr>
+  <tr>
+    <td align="center" style="padding:16px 16px 0 16px;text-align:center;font-size:0;line-height:0;">
+      <!--[if mso]><table role="presentation" width="360" cellpadding="0" cellspacing="0" border="0" align="center"><tr><td bgcolor="#FFFFFF" style="padding:20px;"><![endif]-->
+      <div class="hs-bon" style="display:inline-block;width:100%;max-width:360px;vertical-align:top;background-color:#FFFFFF;border-radius:6px;padding:20px 20px 18px 20px;box-sizing:border-box;text-align:left;">
+        <div style="text-align:center;font-family:{{ hs_mono }};font-size:16px;line-height:20px;font-weight:700;letter-spacing:2px;color:#111111;text-transform:uppercase;">{{ hs_bon_shop | upcase }}</div>
+        <div style="padding-top:2px;text-align:center;font-family:{{ hs_mono }};font-size:11px;line-height:15px;font-weight:400;color:#555555;text-transform:uppercase;">{{ hs_bon_sub | upcase }}</div>
+        <div style="margin-top:12px;border-top:2px dashed #B9BCBE;font-size:0;line-height:0;">&nbsp;</div>
+        <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0">
+          {%- for hs_k in (1..hs_b_n) %}
+            {%- assign hs_ix  = forloop.index0 -%}
+            {%- assign hs_vi  = hs_ix | times: 2 -%}
+            {%- assign hs_vi2 = hs_vi | plus: 1 %}
+          <tr>
+            <td class="hs-bon-line" style="padding:10px 0 0 0;vertical-align:top;font-family:{{ hs_mono }};font-size:13px;line-height:17px;font-weight:700;color:#111111;white-space:nowrap;">{{ hs_b_nm[hs_ix] | escape }}</td>
+            <td class="hs-bon-line" align="right" style="padding:10px 0 0 8px;vertical-align:top;text-align:right;font-family:{{ hs_mono }};font-size:13px;line-height:17px;font-weight:700;color:#111111;white-space:nowrap;">{{ hs_b_fmt[hs_vi] }}</td>
+          </tr>
+          <tr>
+            <td class="hs-bon-line" style="padding:1px 0 0 12px;vertical-align:top;font-family:{{ hs_mono }};font-size:13px;line-height:17px;font-weight:400;color:#C21E24;white-space:nowrap;">{{ hs_bon_disc }} -{{ hs_b_pc[hs_ix] }}%</td>
+            <td class="hs-bon-line" align="right" style="padding:1px 0 0 8px;vertical-align:top;text-align:right;font-family:{{ hs_mono }};font-size:13px;line-height:17px;font-weight:400;color:#C21E24;white-space:nowrap;">-{{ hs_b_fmt[hs_vi2] }}</td>
+          </tr>
+          {%- endfor %}
+        </table>
+        <div style="margin-top:12px;border-top:2px dashed #B9BCBE;font-size:0;line-height:0;">&nbsp;</div>
+        <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0">
+          <tr>
+            <td class="hs-bon-line" style="padding:10px 0 0 0;vertical-align:top;font-family:{{ hs_mono }};font-size:13px;line-height:17px;font-weight:700;color:#111111;text-transform:uppercase;">{{ hs_bon_total | upcase }}</td>
+            <td class="hs-bon-line" align="right" style="padding:10px 0 0 8px;vertical-align:top;text-align:right;font-family:{{ hs_mono }};font-size:13px;line-height:17px;font-weight:700;color:#111111;white-space:nowrap;">{{ hs_b_fmt[hs_b_tot_i] }} {{ hs_currency | upcase }}</td>
+          </tr>
+        </table>
+        <div style="margin-top:12px;background-color:{{ hs_teal }};border-radius:8px;padding:10px 12px;">
+          <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0">
+            <tr>
+              <td style="vertical-align:middle;font-family:{{ hs_mono }};font-size:13px;line-height:17px;font-weight:700;color:#000000;text-transform:uppercase;">{{ hs_bon_save | upcase }}</td>
+              <td class="hs-bon-save" align="right" style="vertical-align:middle;text-align:right;font-family:{{ hs_mono }};font-size:20px;line-height:24px;font-weight:700;color:#000000;white-space:nowrap;">{{ hs_b_fmt[hs_b_save_i] }} {{ hs_currency | upcase }}</td>
+            </tr>
+          </table>
+        </div>
+        <div style="padding-top:12px;text-align:center;font-family:{{ hs_mono }};font-size:11px;line-height:15px;font-weight:400;color:#555555;text-transform:uppercase;">* {{ hs_bon_foot | upcase }} *</div>
+      </div>
+      <!--[if mso]></td></tr></table><![endif]-->
+    </td>
+  </tr>
+  {%- endif %}
+
+  <!-- ===================== PRODUSE ===================== -->
+  <tr>
+    <td align="center" style="padding:34px 20px 0 20px;text-align:center;">
+      <div style="font-family:{{ hs_font }};font-size:20px;line-height:26px;font-weight:700;color:#FFFFFF;">{{ hs_grid_head }}</div>
+      <div style="padding-top:6px;font-family:{{ hs_font }};font-size:14px;line-height:20px;font-weight:400;color:#A3A6A8;">{{ hs_grid_text }}</div>
+    </td>
+  </tr>
+  <tr>
+    <td align="center" style="padding:12px 6px 0 6px;text-align:center;font-size:0;line-height:0;">
+      <!--[if mso]><table role="presentation" width="540" cellpadding="0" cellspacing="0" border="0" align="center"><tr><![endif]-->
+      <div style="display:inline-block;width:100%;max-width:540px;vertical-align:top;font-size:0;line-height:0;text-align:center;">
+        {%- assign hs_n = 0 -%}
+        {%- for hs_item in hs_lista -%}
+          {%- unless hs_item contains "|" -%}{%- continue -%}{%- endunless -%}
+          {%- assign hs_f      = hs_item | split: "|" -%}
+          {%- assign hs_cat    = hs_f[0] | strip | upcase | escape -%}
+          {%- assign hs_title2 = hs_f[2] | strip -%}
+          {%- if hs_title2.size > hs_title_max -%}
+            {%- assign hs_cut   = hs_title2 | slice: 0, hs_title_max -%}
+            {%- assign hs_words = hs_cut | split: " " -%}
+            {%- assign hs_title2 = "" -%}
+            {%- for hs_w in hs_words -%}
+              {%- unless forloop.last -%}{%- assign hs_title2 = hs_title2 | append: hs_w | append: " " -%}{%- endunless -%}
+            {%- endfor -%}
+            {%- assign hs_title2 = hs_title2 | strip -%}
+            {%- assign hs_lc = hs_title2 | slice: -1 -%}
+            {%- if hs_lc == "+" or hs_lc == "," or hs_lc == "-" or hs_lc == "–" or hs_lc == ":" or hs_lc == "(" -%}
+              {%- assign hs_len    = hs_title2.size | minus: 1 -%}
+              {%- assign hs_title2 = hs_title2 | slice: 0, hs_len | strip -%}
+            {%- endif -%}
+            {%- if hs_title2 == "" -%}{%- assign hs_title2 = hs_cut -%}{%- endif -%}
+            {%- assign hs_title2 = hs_title2 | append: "…" -%}
+          {%- endif -%}
+          {%- assign hs_title2 = hs_title2 | escape -%}
+          {%- assign hs_alt    = hs_f[2] | strip | escape -%}
+          {%- assign hs_img    = hs_f[3] | strip -%}
+          {%- assign hs_url    = hs_f[4] | strip -%}
+          {%- assign hs_new_c  = hs_f[5] | strip | times: 100 | round -%}
+          {%- assign hs_old_c  = hs_f[6] | strip | times: 100 | round -%}
+          {%- assign hs_badge  = "Smart Sales" -%}
+          {%- if hs_old_c > hs_new_c -%}
+            {%- assign hs_pct   = hs_old_c | minus: hs_new_c | times: 100.0 | divided_by: hs_old_c | round -%}
+            {%- assign hs_badge = "-" | append: hs_pct | append: "%" -%}
+          {%- endif -%}
+          {%- comment -%} formatare prețuri: 434673 → 4.346,73 {%- endcomment -%}
+          {%- assign hs_fmt_in  = hs_new_c | append: "~" | append: hs_old_c | split: "~" -%}
+          {%- assign hs_fmt_out = "" -%}
+          {%- for hs_v in hs_fmt_in -%}
+            {%- assign hs_c  = hs_v | plus: 0 -%}
+            {%- assign hs_i  = hs_c | divided_by: 100 | floor -%}
+            {%- assign hs_d  = hs_c | modulo: 100 -%}
+            {%- if hs_d < 10 -%}{%- assign hs_ds = hs_d | prepend: "0" -%}{%- else -%}{%- assign hs_ds = hs_d | append: "" -%}{%- endif -%}
+            {%- if hs_i >= 1000 -%}
+              {%- assign hs_th = hs_i | divided_by: 1000 | floor -%}
+              {%- assign hs_r  = hs_i | modulo: 1000 -%}
+              {%- if hs_r < 10 -%}{%- assign hs_rs = hs_r | prepend: "00" -%}{%- elsif hs_r < 100 -%}{%- assign hs_rs = hs_r | prepend: "0" -%}{%- else -%}{%- assign hs_rs = hs_r | append: "" -%}{%- endif -%}
+              {%- assign hs_is = hs_th | append: "." | append: hs_rs -%}
+            {%- else -%}
+              {%- assign hs_is = hs_i | append: "" -%}
+            {%- endif -%}
+            {%- assign hs_fmt_out = hs_fmt_out | append: hs_is | append: "," | append: hs_ds | append: "~" -%}
+          {%- endfor -%}
+          {%- assign hs_pf = hs_fmt_out | split: "~" -%}
+          {%- assign hs_n      = hs_n | plus: 1 -%}
+          {%- assign hs_mod    = hs_n | modulo: 3 -%}
+          {%- if hs_n > 1 and hs_mod == 1 -%}<!--[if mso]></tr><tr><![endif]-->{%- endif -%}
+          <!--[if mso]><td width="180" valign="top"><![endif]-->
+          <div class="hs-col" style="display:inline-block;width:100%;max-width:180px;vertical-align:top;font-size:14px;line-height:20px;text-align:left;">
+            <div style="padding:6px;">
+              <div class="hs-card" style="background-color:{{ hs_card }};border:1px solid {{ hs_card_line }};border-radius:14px;padding:8px;">
+                <!-- imagine + badge -->
+                <div style="background-color:#FFFFFF;border-radius:10px;padding:8px;">
+                  <div style="font-size:0;line-height:0;"><span style="display:inline-block;background-color:{{ hs_red }};border-radius:7px;padding:4px 8px;font-family:{{ hs_font }};font-size:13px;line-height:15px;font-weight:800;color:#FFFFFF;white-space:nowrap;">{{ hs_badge }}</span></div>
+                  <div style="margin-top:4px;height:124px;text-align:center;font-size:0;line-height:0;">
+                    <a href="{{ hs_url }}" target="_blank" style="text-decoration:none;"><img src="{{ hs_img }}" width="124" alt="{{ hs_alt }}" style="display:inline-block;vertical-align:middle;width:auto;height:auto;max-width:100%;max-height:124px;border:0;outline:none;text-decoration:none;"></a>
+                  </div>
+                </div>
+                <!-- categorie -->
+                <div class="hs-cat" style="padding:12px 2px 0 2px;overflow:hidden;white-space:nowrap;text-overflow:ellipsis;font-family:{{ hs_font }};font-size:10px;line-height:13px;font-weight:700;letter-spacing:1px;color:{{ hs_teal }};">{{ hs_cat }}</div>
+                <!-- titlu (max. 2 rânduri) -->
+                <div style="margin:6px 2px 0 2px;height:38px;overflow:hidden;font-family:{{ hs_font }};font-size:13px;line-height:19px;font-weight:400;color:#FFFFFF;"><a href="{{ hs_url }}" target="_blank" style="color:#FFFFFF;text-decoration:none;">{{ hs_title2 }}</a></div>
+                <!-- preț vechi + preț Smart Sales -->
+                <div style="padding:8px 2px 0 2px;white-space:nowrap;font-family:{{ hs_font }};font-size:12px;line-height:15px;font-weight:400;color:#8A9095;">{% if hs_old_c > hs_new_c %}<span style="text-decoration:line-through;">{{ hs_pf[1] }} {{ hs_currency }}</span>{% else %}&nbsp;{% endif %}</div>
+                <div class="hs-price" style="padding:1px 2px 0 2px;white-space:nowrap;font-family:{{ hs_font }};font-size:17px;line-height:22px;font-weight:800;color:{{ hs_teal }};">{{ hs_pf[0] }} {{ hs_currency }}</div>
+                <!-- buton card -->
+                <div style="padding-top:10px;">
+                  <div style="background-color:{{ hs_teal }};border-radius:999px;text-align:center;overflow:hidden;">
+                    <a class="hs-cta" href="{{ hs_url }}" target="_blank" style="display:block;padding:9px 6px;font-family:{{ hs_font }};font-size:13px;line-height:17px;font-weight:700;color:{{ hs_cta_color }};text-decoration:none;white-space:nowrap;">{{ hs_card_cta }}&nbsp;<span style="font-family:Arial,Helvetica,sans-serif;">&#8594;</span></a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!--[if mso]></td><![endif]-->
+        {%- endfor -%}
+      </div>
+      <!--[if mso]></tr></table><![endif]-->
+    </td>
+  </tr>
+
+  <!-- ===================== MAGAZIN SNAGOV ===================== -->
+  <tr>
+    <td align="center" style="padding:22px 16px 0 16px;text-align:center;font-size:0;line-height:0;">
+      <!--[if mso]><table role="presentation" width="528" cellpadding="0" cellspacing="0" border="0" align="center"><tr><td><![endif]-->
+      <div style="display:inline-block;width:100%;max-width:528px;vertical-align:top;text-align:left;">
+        <div style="border:1px solid {{ hs_teal }};border-radius:14px;padding:14px 18px;">
+          <div style="font-family:{{ hs_font }};font-size:15px;line-height:21px;font-weight:700;color:{{ hs_teal }};">{{ hs_store_head }}</div>
+          <div style="padding-top:2px;font-family:{{ hs_font }};font-size:14px;line-height:20px;font-weight:400;color:#C9CCCE;">{{ hs_store_text }}</div>
+        </div>
+      </div>
+      <!--[if mso]></td></tr></table><![endif]-->
+    </td>
+  </tr>
+
+  <!-- ===================== BUTON ===================== -->
+  <tr>
+    <td align="center" style="padding:28px 12px 0 12px;text-align:center;">
+      <!--[if mso]>
+      <v:roundrect xmlns:v="urn:schemas-microsoft-com:vml" xmlns:w="urn:schemas-microsoft-com:office:word" href="{{ hs_cta_url }}" style="height:50px;v-text-anchor:middle;width:270px;" arcsize="50%" stroke="f" fillcolor="{{ hs_teal }}">
+        <w:anchorlock/>
+        <center style="color:{{ hs_cta_color }};font-family:Arial,sans-serif;font-size:15px;font-weight:bold;">{{ hs_cta_text }}&nbsp;&nbsp;&#8594;</center>
+      </v:roundrect>
+      <![endif]-->
+      <!--[if !mso]><!-->
+      <a href="{{ hs_cta_url }}" target="_blank" style="display:inline-block;background-color:{{ hs_teal }};border-radius:999px;padding:15px 34px 15px 40px;font-family:{{ hs_font }};font-size:15px;line-height:20px;font-weight:700;color:{{ hs_cta_color }};text-decoration:none;">{{ hs_cta_text }}&nbsp;&nbsp;<span style="font-family:Arial,Helvetica,sans-serif;font-size:18px;line-height:20px;font-weight:700;color:{{ hs_cta_color }};">&#8594;</span></a>
+      <!--<![endif]-->
+    </td>
+  </tr>
+
+  <!-- ===================== NOTĂ ===================== -->
+  <tr>
+    <td align="center" style="padding:16px 24px 36px 24px;text-align:center;font-family:{{ hs_font }};font-size:12px;line-height:18px;font-weight:400;color:#75797C;">{{ hs_note }}</td>
+  </tr>
+
+</table>
