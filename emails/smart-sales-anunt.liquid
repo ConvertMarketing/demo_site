@@ -6,7 +6,7 @@
   45%” și butonul „Vezi ofertele”), deci nu repetă reducerea.
   Fundal negru, carduri albe, cifre turcoaz.
   1. Titlu scurt + text: tot ce folosești zilnic, la preț Smart Sales.
-  2. Trei casete cu cifre: sute de produse reduse · 12 categorii · 26.11.
+  2. Trei casete cu cifre: sute de produse · 12 categorii · 26.11.
   3. „Câte un favorit din fiecare categorie”: 12 produse în carduri albe
      (3 pe rând desktop, 2 pe rând mobil): badge cu reducerea, poză,
      categoria, titlul, nota cu stele și nr. de recenzii (de pe site),
@@ -30,7 +30,7 @@
 {%- assign sa_intro_text  = "De la curățenie și scutece, la igienă și îngrijire: am redus prețurile la produsele de care ai nevoie în fiecare&nbsp;zi." -%}
 
 {%- comment -%} Casetele cu cifre: număr | text {%- endcomment -%}
-{%- assign sa_stats     = "Sute|de produse reduse##12|categorii##26.11|ultima zi" -%}
+{%- assign sa_stats     = "Sute|de produse##12|categorii##26.11|ultima zi" -%}
 
 {%- assign sa_list_head = "Câte un favorit din fiecare categorie" -%}
 {%- assign sa_list_text = "Cele mai cumpărate produse, cu notele date de clienții Smartino." -%}
@@ -103,7 +103,6 @@ Igienă personală | Absorbante Sleepy Natural Normal Slim, 5 picături, 8 buc |
     .sa-wrap { padding-left: 12px !important; padding-right: 12px !important; }
     .sa-intro { font-size: 21px !important; line-height: 27px !important; }
     .sa-stat-num { font-size: 24px !important; line-height: 30px !important; }
-    .sa-stat-lbl { height: 28px !important; }
     .sa-col { width: 50% !important; max-width: 50% !important; }
     .sa-card { padding: 8px !important; }
     .sa-cta { font-size: 12px !important; padding: 9px 2px !important; }
@@ -137,7 +136,7 @@ Igienă personală | Absorbante Sleepy Natural Normal Slim, 5 picături, 8 buc |
           <div style="padding:0 4px;">
             <div style="background-color:{{ sa_tile }};border:1px solid {{ sa_tile_line }};border-radius:16px;padding:14px 4px 12px 4px;text-align:center;">
               <div class="sa-stat-num" style="font-family:{{ sa_font }};font-size:28px;line-height:34px;font-weight:800;color:{{ sa_teal }};white-space:nowrap;">{{ sa_sp[0] | strip }}</div>
-              <div class="sa-stat-lbl" style="padding-top:2px;font-family:{{ sa_font }};font-size:11px;line-height:14px;font-weight:600;letter-spacing:0.5px;color:{{ sa_muted }};text-transform:uppercase;">{{ sa_sp[1] | strip }}</div>
+              <div class="sa-stat-lbl" style="padding-top:2px;font-family:{{ sa_font }};font-size:11px;line-height:14px;font-weight:600;letter-spacing:0.5px;color:{{ sa_muted }};text-transform:uppercase;white-space:nowrap;">{{ sa_sp[1] | strip }}</div>
             </div>
           </div>
         </div>
