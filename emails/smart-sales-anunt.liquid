@@ -6,13 +6,13 @@
   45%” și butonul „Vezi ofertele”), deci nu repetă reducerea.
   Fundal negru, carduri albe, cifre turcoaz.
   1. Titlu scurt + text: tot ce folosești zilnic, la preț Smart Sales.
-  2. Trei casete cu cifre: 137 produse reduse · 12 categorii · 26.11.
+  2. Trei casete cu cifre: sute de produse reduse · 12 categorii · 26.11.
   3. „Câte un favorit din fiecare categorie”: 12 produse în carduri albe
      (3 pe rând desktop, 2 pe rând mobil): badge cu reducerea, poză,
      categoria, titlul, nota cu stele și nr. de recenzii (de pe site),
      preț vechi tăiat + preț nou, buton negru „Cumpără →”.
   4. Casetă „Stocurile sunt limitate”.
-  5. Buton turcoaz „Vezi toate cele 137 de oferte →” + notă.
+  5. Buton turcoaz „Vezi toate ofertele →” + notă.
 
   ORDINEA ÎN SHOPIFY EMAIL
   1. Banner Smart Sales
@@ -30,7 +30,7 @@
 {%- assign sa_intro_text  = "De la curățenie și scutece, la igienă și îngrijire: am redus prețurile la produsele de care ai nevoie în fiecare&nbsp;zi." -%}
 
 {%- comment -%} Casetele cu cifre: număr | text {%- endcomment -%}
-{%- assign sa_stats     = "137|produse reduse##12|categorii##26.11|ultima zi" -%}
+{%- assign sa_stats     = "Sute|de produse reduse##12|categorii##26.11|ultima zi" -%}
 
 {%- assign sa_list_head = "Câte un favorit din fiecare categorie" -%}
 {%- assign sa_list_text = "Cele mai cumpărate produse, cu notele date de clienții Smartino." -%}
@@ -41,7 +41,7 @@
 {%- assign sa_stock_head = "Stocurile sunt limitate" -%}
 {%- assign sa_stock_text = "Ofertele țin până pe 26 noiembrie, dar cele mai căutate produse se pot termina mai&nbsp;devreme." -%}
 
-{%- assign sa_cta_text  = "Vezi toate cele 137 de oferte" -%}
+{%- assign sa_cta_text  = "Vezi toate ofertele" -%}
 {%- assign sa_cta_url   = "https://smartinoshop.ro/pages/smart-sales" -%}
 {%- assign sa_note      = "Ofertele Smart Sales sunt valabile până pe 26 noiembrie 2026, ora 23:59, în limita stocului disponibil. Prețul final este cel afișat pe site la momentul comenzii." -%}
 
@@ -103,6 +103,7 @@ Igienă personală | Absorbante Sleepy Natural Normal Slim, 5 picături, 8 buc |
     .sa-wrap { padding-left: 12px !important; padding-right: 12px !important; }
     .sa-intro { font-size: 21px !important; line-height: 27px !important; }
     .sa-stat-num { font-size: 24px !important; line-height: 30px !important; }
+    .sa-stat-lbl { height: 28px !important; }
     .sa-col { width: 50% !important; max-width: 50% !important; }
     .sa-card { padding: 8px !important; }
     .sa-cta { font-size: 12px !important; padding: 9px 2px !important; }
@@ -275,7 +276,7 @@ Igienă personală | Absorbante Sleepy Natural Normal Slim, 5 picături, 8 buc |
   <tr>
     <td align="center" style="padding:26px 12px 0 12px;text-align:center;">
       <!--[if mso]>
-      <v:roundrect xmlns:v="urn:schemas-microsoft-com:vml" xmlns:w="urn:schemas-microsoft-com:office:word" href="{{ sa_cta_url }}" style="height:52px;v-text-anchor:middle;width:330px;" arcsize="50%" stroke="f" fillcolor="{{ sa_teal }}">
+      <v:roundrect xmlns:v="urn:schemas-microsoft-com:vml" xmlns:w="urn:schemas-microsoft-com:office:word" href="{{ sa_cta_url }}" style="height:52px;v-text-anchor:middle;width:270px;" arcsize="50%" stroke="f" fillcolor="{{ sa_teal }}">
         <w:anchorlock/>
         <center style="color:#000000;font-family:Arial,sans-serif;font-size:15px;font-weight:bold;">{{ sa_cta_text }}&nbsp;&nbsp;&#8594;</center>
       </v:roundrect>
