@@ -4,7 +4,7 @@
 ---------------------------------------------------------------------
   Se pune SUB bannerul Smart Sales (care are deja „Reduceri de până la
   45%” și butonul „Vezi ofertele”), deci nu repetă reducerea.
-  Design luminos (fundal gri-deschis), diferit de emailurile pe negru.
+  Fundal negru, carduri albe, cifre turcoaz.
   1. Titlu scurt + text: tot ce folosești zilnic, la preț Smart Sales.
   2. Trei casete cu cifre: 137 produse reduse · 12 categorii · 26.11.
   3. „Câte un favorit din fiecare categorie”: 12 produse în carduri albe
@@ -12,7 +12,7 @@
      categoria, titlul, nota cu stele și nr. de recenzii (de pe site),
      preț vechi tăiat + preț nou, buton negru „Cumpără →”.
   4. Casetă „Stocurile sunt limitate”.
-  5. Buton negru „Vezi toate cele 137 de oferte →” + notă.
+  5. Buton turcoaz „Vezi toate cele 137 de oferte →” + notă.
 
   ORDINEA ÎN SHOPIFY EMAIL
   1. Banner Smart Sales
@@ -46,12 +46,16 @@
 {%- assign sa_note      = "Ofertele Smart Sales sunt valabile până pe 26 noiembrie 2026, ora 23:59, în limita stocului disponibil. Prețul final este cel afișat pe site la momentul comenzii." -%}
 
 {%- comment -%} Culori și font {%- endcomment -%}
-{%- assign sa_bg        = "#EEF2F3" -%}           {%- comment -%} fundal email (gri-deschis) {%- endcomment -%}
+{%- assign sa_bg        = "#000000" -%}           {%- comment -%} fundal email {%- endcomment -%}
+{%- assign sa_head      = "#FFFFFF" -%}           {%- comment -%} titluri pe fundal {%- endcomment -%}
+{%- assign sa_muted     = "#A3A6A8" -%}           {%- comment -%} texte pe fundal {%- endcomment -%}
+{%- assign sa_tile      = "#17181A" -%}           {%- comment -%} casete cifre + stocuri {%- endcomment -%}
+{%- assign sa_tile_line = "#1C3436" -%}
 {%- assign sa_teal      = "#00B8C7" -%}           {%- comment -%} culoarea Smartino {%- endcomment -%}
 {%- assign sa_teal_dark = "#00818C" -%}           {%- comment -%} turcoaz închis pentru text pe alb {%- endcomment -%}
 {%- assign sa_red       = "#E3242B" -%}
-{%- assign sa_ink       = "#111418" -%}           {%- comment -%} text principal + butoane {%- endcomment -%}
-{%- assign sa_line      = "#DDE4E6" -%}           {%- comment -%} contururi {%- endcomment -%}
+{%- assign sa_ink       = "#111418" -%}           {%- comment -%} text în carduri + butoanele din carduri {%- endcomment -%}
+{%- assign sa_line      = "#DDE4E6" -%}           {%- comment -%} contur carduri {%- endcomment -%}
 {%- assign sa_star      = "#F5A623" -%}
 {%- assign sa_font      = "'Poppins', Arial, Helvetica, sans-serif" -%}
 
@@ -118,8 +122,8 @@ Igienă personală | Absorbante Sleepy Natural Normal Slim, 5 picături, 8 buc |
     <td class="sa-wrap" align="center" style="padding:30px 16px 0 16px;text-align:center;">
 
       <!-- ===================== TITLU ===================== -->
-      <div class="sa-intro" style="font-family:{{ sa_font }};font-size:24px;line-height:30px;font-weight:800;color:{{ sa_ink }};">{{ sa_intro_title }}</div>
-      <div style="padding-top:8px;font-size:0;line-height:0;"><div style="display:inline-block;max-width:460px;vertical-align:top;font-family:{{ sa_font }};font-size:15px;line-height:23px;font-weight:400;color:#41484D;">{{ sa_intro_text }}</div></div>
+      <div class="sa-intro" style="font-family:{{ sa_font }};font-size:24px;line-height:30px;font-weight:800;color:{{ sa_head }};">{{ sa_intro_title }}</div>
+      <div style="padding-top:8px;font-size:0;line-height:0;"><div style="display:inline-block;max-width:460px;vertical-align:top;font-family:{{ sa_font }};font-size:15px;line-height:23px;font-weight:400;color:{{ sa_muted }};">{{ sa_intro_text }}</div></div>
 
       <!-- ===================== CIFRE ===================== -->
       <div style="max-width:580px;margin:0 auto;padding-top:20px;font-size:0;line-height:0;text-align:center;">
@@ -130,9 +134,9 @@ Igienă personală | Absorbante Sleepy Natural Normal Slim, 5 picături, 8 buc |
         <!--[if mso]><td width="193" valign="top"><![endif]-->
         <div style="display:inline-block;width:33.33%;vertical-align:top;">
           <div style="padding:0 4px;">
-            <div style="background-color:#FFFFFF;border:1px solid {{ sa_line }};border-radius:16px;padding:14px 4px 12px 4px;text-align:center;">
-              <div class="sa-stat-num" style="font-family:{{ sa_font }};font-size:28px;line-height:34px;font-weight:800;color:{{ sa_ink }};white-space:nowrap;">{{ sa_sp[0] | strip }}</div>
-              <div class="sa-stat-lbl" style="padding-top:2px;font-family:{{ sa_font }};font-size:11px;line-height:14px;font-weight:600;letter-spacing:0.5px;color:#5F676C;text-transform:uppercase;">{{ sa_sp[1] | strip }}</div>
+            <div style="background-color:{{ sa_tile }};border:1px solid {{ sa_tile_line }};border-radius:16px;padding:14px 4px 12px 4px;text-align:center;">
+              <div class="sa-stat-num" style="font-family:{{ sa_font }};font-size:28px;line-height:34px;font-weight:800;color:{{ sa_teal }};white-space:nowrap;">{{ sa_sp[0] | strip }}</div>
+              <div class="sa-stat-lbl" style="padding-top:2px;font-family:{{ sa_font }};font-size:11px;line-height:14px;font-weight:600;letter-spacing:0.5px;color:{{ sa_muted }};text-transform:uppercase;">{{ sa_sp[1] | strip }}</div>
             </div>
           </div>
         </div>
@@ -143,8 +147,8 @@ Igienă personală | Absorbante Sleepy Natural Normal Slim, 5 picături, 8 buc |
 
       <!-- ===================== PRODUSE ===================== -->
       <div style="padding-top:34px;text-align:center;">
-        <div style="font-family:{{ sa_font }};font-size:22px;line-height:28px;font-weight:800;color:{{ sa_ink }};">{{ sa_list_head }}</div>
-        <div style="padding-top:6px;font-family:{{ sa_font }};font-size:14px;line-height:20px;font-weight:400;color:#5F676C;">{{ sa_list_text }}</div>
+        <div style="font-family:{{ sa_font }};font-size:22px;line-height:28px;font-weight:800;color:{{ sa_head }};">{{ sa_list_head }}</div>
+        <div style="padding-top:6px;font-family:{{ sa_font }};font-size:14px;line-height:20px;font-weight:400;color:{{ sa_muted }};">{{ sa_list_text }}</div>
       </div>
     </td>
   </tr>
@@ -258,9 +262,9 @@ Igienă personală | Absorbante Sleepy Natural Normal Slim, 5 picături, 8 buc |
     <td class="sa-wrap" align="center" style="padding:16px 16px 0 16px;text-align:center;font-size:0;line-height:0;">
       <!--[if mso]><table role="presentation" width="528" cellpadding="0" cellspacing="0" border="0" align="center"><tr><td><![endif]-->
       <div style="display:inline-block;width:100%;max-width:528px;vertical-align:top;text-align:left;">
-        <div style="border:2px solid {{ sa_teal }};border-radius:18px;padding:14px 18px;background-color:#FFFFFF;">
-          <div style="font-family:{{ sa_font }};font-size:15px;line-height:21px;font-weight:800;color:{{ sa_ink }};">{{ sa_stock_head }}</div>
-          <div style="padding-top:2px;font-family:{{ sa_font }};font-size:14px;line-height:20px;font-weight:400;color:#41484D;">{{ sa_stock_text }}</div>
+        <div style="border:1px solid {{ sa_teal }};border-radius:18px;padding:14px 18px;background-color:{{ sa_tile }};">
+          <div style="font-family:{{ sa_font }};font-size:15px;line-height:21px;font-weight:800;color:{{ sa_teal }};">{{ sa_stock_head }}</div>
+          <div style="padding-top:2px;font-family:{{ sa_font }};font-size:14px;line-height:20px;font-weight:400;color:#C9CCCE;">{{ sa_stock_text }}</div>
         </div>
       </div>
       <!--[if mso]></td></tr></table><![endif]-->
@@ -271,20 +275,20 @@ Igienă personală | Absorbante Sleepy Natural Normal Slim, 5 picături, 8 buc |
   <tr>
     <td align="center" style="padding:26px 12px 0 12px;text-align:center;">
       <!--[if mso]>
-      <v:roundrect xmlns:v="urn:schemas-microsoft-com:vml" xmlns:w="urn:schemas-microsoft-com:office:word" href="{{ sa_cta_url }}" style="height:52px;v-text-anchor:middle;width:330px;" arcsize="50%" stroke="f" fillcolor="{{ sa_ink }}">
+      <v:roundrect xmlns:v="urn:schemas-microsoft-com:vml" xmlns:w="urn:schemas-microsoft-com:office:word" href="{{ sa_cta_url }}" style="height:52px;v-text-anchor:middle;width:330px;" arcsize="50%" stroke="f" fillcolor="{{ sa_teal }}">
         <w:anchorlock/>
-        <center style="color:#FFFFFF;font-family:Arial,sans-serif;font-size:15px;font-weight:bold;">{{ sa_cta_text }}&nbsp;&nbsp;&#8594;</center>
+        <center style="color:#000000;font-family:Arial,sans-serif;font-size:15px;font-weight:bold;">{{ sa_cta_text }}&nbsp;&nbsp;&#8594;</center>
       </v:roundrect>
       <![endif]-->
       <!--[if !mso]><!-->
-      <a href="{{ sa_cta_url }}" target="_blank" style="display:inline-block;background-color:{{ sa_ink }};border-radius:999px;padding:16px 30px 16px 34px;font-family:{{ sa_font }};font-size:15px;line-height:20px;font-weight:700;color:#FFFFFF;text-decoration:none;">{{ sa_cta_text }}&nbsp;&nbsp;<span style="font-family:Arial,Helvetica,sans-serif;font-size:18px;line-height:20px;font-weight:700;color:{{ sa_teal }};">&#8594;</span></a>
+      <a href="{{ sa_cta_url }}" target="_blank" style="display:inline-block;background-color:{{ sa_teal }};border-radius:999px;padding:16px 30px 16px 34px;font-family:{{ sa_font }};font-size:15px;line-height:20px;font-weight:700;color:#000000;text-decoration:none;">{{ sa_cta_text }}&nbsp;&nbsp;<span style="font-family:Arial,Helvetica,sans-serif;font-size:18px;line-height:20px;font-weight:700;color:#000000;">&#8594;</span></a>
       <!--<![endif]-->
     </td>
   </tr>
 
   <!-- ===================== NOTĂ ===================== -->
   <tr>
-    <td align="center" style="padding:16px 24px 32px 24px;text-align:center;font-family:{{ sa_font }};font-size:12px;line-height:18px;font-weight:400;color:#6B7378;">{{ sa_note }}</td>
+    <td align="center" style="padding:16px 24px 32px 24px;text-align:center;font-family:{{ sa_font }};font-size:12px;line-height:18px;font-weight:400;color:#75797C;">{{ sa_note }}</td>
   </tr>
 
 </table>
