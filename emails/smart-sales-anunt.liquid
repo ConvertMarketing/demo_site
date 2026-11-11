@@ -2,20 +2,20 @@
 =====================================================================
   EMAIL „SMART SALES” (ANUNȚ) — SMARTINO SHOP   (până pe 26 noiembrie 2026)
 ---------------------------------------------------------------------
+  Se pune SUB bannerul Smart Sales (care are deja „Reduceri de până la
+  45%” și butonul „Vezi ofertele”), deci nu repetă reducerea.
   Design luminos (fundal gri-deschis), diferit de emailurile pe negru.
-  1. Bloc turcoaz: „Smart Sales” + „Reduceri de până la −45%” + text +
-     pastilă albă „Până pe 26 noiembrie, ora 23:59”.
-     (se poate ascunde cu sa_show_hero = false dacă pui un banner)
+  1. Titlu scurt + text: tot ce folosești zilnic, la preț Smart Sales.
   2. Trei casete cu cifre: 137 produse reduse · 12 categorii · 26.11.
-  3. „Câte un favorit din fiecare categorie”: 12 produse pe rânduri —
-     poză în stânga, categoria, titlul, nota cu stele și nr. de
-     recenzii (de pe site), preț nou + preț vechi tăiat, buton
-     „Cumpără”. Pe mobil rândul rămâne la fel, butonul trece dedesubt.
+  3. „Câte un favorit din fiecare categorie”: 12 produse în carduri albe
+     (3 pe rând desktop, 2 pe rând mobil): badge cu reducerea, poză,
+     categoria, titlul, nota cu stele și nr. de recenzii (de pe site),
+     preț vechi tăiat + preț nou, buton negru „Cumpără →”.
   4. Casetă „Stocurile sunt limitate”.
   5. Buton negru „Vezi toate cele 137 de oferte →” + notă.
 
   ORDINEA ÎN SHOPIFY EMAIL
-  1. (opțional) Banner — dacă îl pui, setează sa_show_hero = false
+  1. Banner Smart Sales
   2. Custom Liquid cu ACEST fișier
   3. (opțional) Countdown: November 26, 2026, 11:59 PM
 
@@ -26,12 +26,8 @@
 {%- endcomment -%}
 
 {%- comment -%} ===== 1. SETĂRI ===== {%- endcomment -%}
-{%- assign sa_show_hero = true -%}                {%- comment -%} false = ascunde blocul turcoaz {%- endcomment -%}
-{%- assign sa_label     = "Smart Sales" -%}
-{%- assign sa_line_1    = "Reduceri de până la" -%}
-{%- assign sa_disc      = "−45" -%}               {%- comment -%} fără semnul % (se adaugă singur) {%- endcomment -%}
-{%- assign sa_text      = "la produsele de care ai nevoie în fiecare zi: curățenie, scutece, igienă și&nbsp;îngrijire." -%}
-{%- assign sa_until     = "Până pe 26 noiembrie, ora 23:59" -%}
+{%- assign sa_intro_title = "Tot ce folosești zilnic, la preț Smart&nbsp;Sales" -%}
+{%- assign sa_intro_text  = "De la curățenie și scutece, la igienă și îngrijire: am redus prețurile la produsele de care ai nevoie în fiecare&nbsp;zi." -%}
 
 {%- comment -%} Casetele cu cifre: număr | text {%- endcomment -%}
 {%- assign sa_stats     = "137|produse reduse##12|categorii##26.11|ultima zi" -%}
@@ -40,7 +36,7 @@
 {%- assign sa_list_text = "Cele mai cumpărate produse, cu notele date de clienții Smartino." -%}
 {%- assign sa_card_cta  = "Cumpără" -%}
 {%- assign sa_currency  = "lei" -%}
-{%- assign sa_title_max = 60 -%}
+{%- assign sa_title_max = 34 -%}
 
 {%- assign sa_stock_head = "Stocurile sunt limitate" -%}
 {%- assign sa_stock_text = "Ofertele țin până pe 26 noiembrie, dar cele mai căutate produse se pot termina mai&nbsp;devreme." -%}
@@ -54,7 +50,7 @@
 {%- assign sa_teal      = "#00B8C7" -%}           {%- comment -%} culoarea Smartino {%- endcomment -%}
 {%- assign sa_teal_dark = "#00818C" -%}           {%- comment -%} turcoaz închis pentru text pe alb {%- endcomment -%}
 {%- assign sa_red       = "#E3242B" -%}
-{%- assign sa_ink       = "#111418" -%}           {%- comment -%} text principal + buton {%- endcomment -%}
+{%- assign sa_ink       = "#111418" -%}           {%- comment -%} text principal + butoane {%- endcomment -%}
 {%- assign sa_line      = "#DDE4E6" -%}           {%- comment -%} contururi {%- endcomment -%}
 {%- assign sa_star      = "#F5A623" -%}
 {%- assign sa_font      = "'Poppins', Arial, Helvetica, sans-serif" -%}
@@ -64,7 +60,7 @@
   Un produs pe bloc, separate prin ##
      Categorie | Titlu | URL imagine | URL produs | preț nou | preț vechi | nota | nr. recenzii
   Prețurile și nota cu punct (ex. 159.99 și 4.9). Nota și recenziile pot
-  rămâne goale (rândul apare fără stele). În titluri NU folosi caracterul |.
+  rămâne goale (cardul apare fără stele). În titluri NU folosi caracterul |.
 {%- endcomment -%}
 {%- capture sa_produse -%}
 Easy Clean | PACHET PROMO - 12 x Servetele Umede Sleepy Easy Clean Multisuprafete, 100 Buc | https://cdn.shopify.com/s/files/1/0834/0688/1063/files/PACHETPROMOEASYCLEAN12BUC.png?v=1701998513&width=600&height=600&pad_color=ffffff | https://smartinoshop.ro/products/pachet-promo-12-x-servetele-umede-sleepy-easy-clean-multisuprafete-100-buc | 159.99 | 254.99 | 4.9 | 749
@@ -101,44 +97,32 @@ Igienă personală | Absorbante Sleepy Natural Normal Slim, 5 picături, 8 buc |
 <style>
   @media only screen and (max-width: 480px) {
     .sa-wrap { padding-left: 12px !important; padding-right: 12px !important; }
-    .sa-hero { padding: 28px 18px 26px 18px !important; }
-    .sa-big { font-size: 76px !important; line-height: 78px !important; }
+    .sa-intro { font-size: 21px !important; line-height: 27px !important; }
     .sa-stat-num { font-size: 24px !important; line-height: 30px !important; }
-    .sa-card { padding: 10px !important; }
-    .sa-imgcell { width: 92px !important; }
-    .sa-img { width: 80px !important; height: 80px !important; }
-    .sa-info { padding-left: 12px !important; }
-    .sa-title { font-size: 13px !important; line-height: 18px !important; height: 36px !important; }
+    .sa-col { width: 50% !important; max-width: 50% !important; }
+    .sa-card { padding: 8px !important; }
+    .sa-cta { font-size: 12px !important; padding: 9px 2px !important; }
+    .sa-price { font-size: 15px !important; }
   }
   @media only screen and (max-width: 350px) {
-    .sa-big { font-size: 64px !important; line-height: 66px !important; }
     .sa-stat-num { font-size: 21px !important; }
     .sa-stat-lbl { font-size: 10px !important; }
-    .sa-imgcell { width: 80px !important; }
-    .sa-img { width: 68px !important; height: 68px !important; }
-    .sa-price { font-size: 16px !important; }
+    .sa-stars { font-size: 11px !important; letter-spacing: 0 !important; }
+    .sa-cat { letter-spacing: 0 !important; }
+    .sa-title { font-size: 11.5px !important; line-height: 17px !important; height: 34px !important; }
   }
 </style>
 
 <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" bgcolor="{{ sa_bg }}" style="background-color:{{ sa_bg }};">
   <tr>
-    <td class="sa-wrap" align="center" style="padding:24px 16px 0 16px;text-align:center;">
+    <td class="sa-wrap" align="center" style="padding:30px 16px 0 16px;text-align:center;">
 
-      {%- if sa_show_hero %}
-      <!-- ===================== BLOC TURCOAZ ===================== -->
-      <!--[if mso]><table role="presentation" width="568" cellpadding="0" cellspacing="0" border="0" align="center"><tr><td bgcolor="{{ sa_teal }}" style="padding:32px 24px;"><![endif]-->
-      <div class="sa-hero" style="max-width:568px;margin:0 auto;background-color:{{ sa_teal }};border-radius:24px;padding:34px 24px 30px 24px;text-align:center;">
-        <div style="font-family:{{ sa_font }};font-size:12px;line-height:14px;font-weight:700;letter-spacing:3px;color:{{ sa_ink }};text-transform:uppercase;"><span style="font-size:14px;">&#9679;</span>&nbsp; {{ sa_label | upcase }}</div>
-        <div style="padding-top:14px;font-family:{{ sa_font }};font-size:22px;line-height:28px;font-weight:700;color:{{ sa_ink }};">{{ sa_line_1 }}</div>
-        <div class="sa-big" style="font-family:{{ sa_font }};font-size:84px;line-height:88px;font-weight:800;color:{{ sa_ink }};white-space:nowrap;">{{ sa_disc }}<span style="font-size:0.55em;">%</span></div>
-        <div style="padding-top:6px;font-size:0;line-height:0;"><div style="display:inline-block;max-width:420px;vertical-align:top;font-family:{{ sa_font }};font-size:16px;line-height:24px;font-weight:600;color:{{ sa_ink }};">{{ sa_text }}</div></div>
-        <div style="padding-top:18px;"><span style="display:inline-block;background-color:#FFFFFF;border-radius:999px;padding:10px 18px;font-family:{{ sa_font }};font-size:14px;line-height:18px;font-weight:700;color:{{ sa_ink }};">{{ sa_until }}</span></div>
-      </div>
-      <!--[if mso]></td></tr></table><![endif]-->
-      {%- endif %}
+      <!-- ===================== TITLU ===================== -->
+      <div class="sa-intro" style="font-family:{{ sa_font }};font-size:24px;line-height:30px;font-weight:800;color:{{ sa_ink }};">{{ sa_intro_title }}</div>
+      <div style="padding-top:8px;font-size:0;line-height:0;"><div style="display:inline-block;max-width:460px;vertical-align:top;font-family:{{ sa_font }};font-size:15px;line-height:23px;font-weight:400;color:#41484D;">{{ sa_intro_text }}</div></div>
 
       <!-- ===================== CIFRE ===================== -->
-      <div style="max-width:580px;margin:0 auto;padding-top:{% if sa_show_hero %}12{% else %}4{% endif %}px;font-size:0;line-height:0;text-align:center;">
+      <div style="max-width:580px;margin:0 auto;padding-top:20px;font-size:0;line-height:0;text-align:center;">
         <!--[if mso]><table role="presentation" width="580" cellpadding="0" cellspacing="0" border="0" align="center"><tr><![endif]-->
         {%- for sa_s in sa_stat_list -%}
           {%- unless sa_s contains "|" -%}{%- continue -%}{%- endunless -%}
@@ -158,106 +142,128 @@ Igienă personală | Absorbante Sleepy Natural Normal Slim, 5 picături, 8 buc |
       </div>
 
       <!-- ===================== PRODUSE ===================== -->
-      <div style="max-width:572px;margin:0 auto;padding-top:34px;text-align:center;">
+      <div style="padding-top:34px;text-align:center;">
         <div style="font-family:{{ sa_font }};font-size:22px;line-height:28px;font-weight:800;color:{{ sa_ink }};">{{ sa_list_head }}</div>
         <div style="padding-top:6px;font-family:{{ sa_font }};font-size:14px;line-height:20px;font-weight:400;color:#5F676C;">{{ sa_list_text }}</div>
       </div>
-
-      {%- for sa_item in sa_lista -%}
-        {%- unless sa_item contains "|" -%}{%- continue -%}{%- endunless -%}
-        {%- assign sa_f      = sa_item | append: " | | | " | split: "|" -%}
-        {%- assign sa_cat    = sa_f[0] | strip | upcase | escape -%}
-        {%- assign sa_title2 = sa_f[1] | strip -%}
-        {%- if sa_title2.size > sa_title_max -%}
-          {%- assign sa_cut   = sa_title2 | slice: 0, sa_title_max -%}
-          {%- assign sa_next  = sa_title2 | slice: sa_title_max, 1 -%}
-          {%- assign sa_last  = sa_cut | slice: -1 -%}
-          {%- if sa_next == " " or sa_last == " " -%}
-            {%- assign sa_title2 = sa_cut | strip -%}
-          {%- else -%}
-            {%- assign sa_words = sa_cut | split: " " -%}
-            {%- assign sa_title2 = "" -%}
-            {%- for sa_w in sa_words -%}
-              {%- unless forloop.last -%}{%- assign sa_title2 = sa_title2 | append: sa_w | append: " " -%}{%- endunless -%}
-            {%- endfor -%}
-            {%- assign sa_title2 = sa_title2 | strip -%}
+    </td>
+  </tr>
+  <tr>
+    <td align="center" style="padding:12px 6px 0 6px;text-align:center;font-size:0;line-height:0;">
+      <!--[if mso]><table role="presentation" width="540" cellpadding="0" cellspacing="0" border="0" align="center"><tr><![endif]-->
+      <div style="display:inline-block;width:100%;max-width:540px;vertical-align:top;font-size:0;line-height:0;text-align:center;">
+        {%- assign sa_n = 0 -%}
+        {%- for sa_item in sa_lista -%}
+          {%- unless sa_item contains "|" -%}{%- continue -%}{%- endunless -%}
+          {%- assign sa_f      = sa_item | append: " | | | " | split: "|" -%}
+          {%- assign sa_cat    = sa_f[0] | strip | upcase | escape -%}
+          {%- assign sa_title2 = sa_f[1] | strip -%}
+          {%- if sa_title2.size > sa_title_max -%}
+            {%- assign sa_cut   = sa_title2 | slice: 0, sa_title_max -%}
+            {%- assign sa_next  = sa_title2 | slice: sa_title_max, 1 -%}
+            {%- assign sa_last  = sa_cut | slice: -1 -%}
+            {%- if sa_next == " " or sa_last == " " -%}
+              {%- assign sa_title2 = sa_cut | strip -%}
+            {%- else -%}
+              {%- assign sa_words = sa_cut | split: " " -%}
+              {%- assign sa_title2 = "" -%}
+              {%- for sa_w in sa_words -%}
+                {%- unless forloop.last -%}{%- assign sa_title2 = sa_title2 | append: sa_w | append: " " -%}{%- endunless -%}
+              {%- endfor -%}
+              {%- assign sa_title2 = sa_title2 | strip -%}
+            {%- endif -%}
+            {%- assign sa_lc = sa_title2 | slice: -1 -%}
+            {%- if sa_lc == "+" or sa_lc == "," or sa_lc == "-" or sa_lc == "–" or sa_lc == ":" or sa_lc == "(" -%}
+              {%- assign sa_len    = sa_title2.size | minus: 1 -%}
+              {%- assign sa_title2 = sa_title2 | slice: 0, sa_len | strip -%}
+            {%- endif -%}
+            {%- if sa_title2 == "" -%}{%- assign sa_title2 = sa_cut -%}{%- endif -%}
+            {%- assign sa_title2 = sa_title2 | append: "…" -%}
           {%- endif -%}
-          {%- assign sa_lc = sa_title2 | slice: -1 -%}
-          {%- if sa_lc == "+" or sa_lc == "," or sa_lc == "-" or sa_lc == "–" or sa_lc == ":" or sa_lc == "(" -%}
-            {%- assign sa_len    = sa_title2.size | minus: 1 -%}
-            {%- assign sa_title2 = sa_title2 | slice: 0, sa_len | strip -%}
+          {%- assign sa_title2 = sa_title2 | escape -%}
+          {%- assign sa_alt    = sa_f[1] | strip | escape -%}
+          {%- assign sa_img    = sa_f[2] | strip -%}
+          {%- assign sa_url    = sa_f[3] | strip -%}
+          {%- assign sa_new_c  = sa_f[4] | strip | times: 100 | round -%}
+          {%- assign sa_old_c  = sa_f[5] | strip | times: 100 | round -%}
+          {%- assign sa_rate   = sa_f[6] | strip -%}
+          {%- assign sa_revs   = sa_f[7] | strip -%}
+          {%- assign sa_badge  = "Smart Sales" -%}
+          {%- if sa_old_c > sa_new_c -%}
+            {%- assign sa_pct   = sa_old_c | minus: sa_new_c | times: 100.0 | divided_by: sa_old_c | round -%}
+            {%- assign sa_badge = "-" | append: sa_pct | append: "%" -%}
           {%- endif -%}
-          {%- if sa_title2 == "" -%}{%- assign sa_title2 = sa_cut -%}{%- endif -%}
-          {%- assign sa_title2 = sa_title2 | append: "…" -%}
-        {%- endif -%}
-        {%- assign sa_title2 = sa_title2 | escape -%}
-        {%- assign sa_alt    = sa_f[1] | strip | escape -%}
-        {%- assign sa_img    = sa_f[2] | strip -%}
-        {%- assign sa_url    = sa_f[3] | strip -%}
-        {%- assign sa_new_c  = sa_f[4] | strip | times: 100 | round -%}
-        {%- assign sa_old_c  = sa_f[5] | strip | times: 100 | round -%}
-        {%- assign sa_rate   = sa_f[6] | strip -%}
-        {%- assign sa_revs   = sa_f[7] | strip -%}
-        {%- assign sa_badge  = "" -%}
-        {%- if sa_old_c > sa_new_c -%}
-          {%- assign sa_pct   = sa_old_c | minus: sa_new_c | times: 100.0 | divided_by: sa_old_c | round -%}
-          {%- assign sa_badge = "-" | append: sa_pct | append: "%" -%}
-        {%- endif -%}
-        {%- comment -%} formatare prețuri: 15999 → 159,99 ; 434673 → 4.346,73 {%- endcomment -%}
-        {%- assign sa_fmt_in  = sa_new_c | append: "~" | append: sa_old_c | split: "~" -%}
-        {%- assign sa_fmt_out = "" -%}
-        {%- for sa_v in sa_fmt_in -%}
-          {%- assign sa_c  = sa_v | plus: 0 -%}
-          {%- assign sa_i  = sa_c | divided_by: 100 | floor -%}
-          {%- assign sa_d  = sa_c | modulo: 100 -%}
-          {%- if sa_d < 10 -%}{%- assign sa_ds = sa_d | prepend: "0" -%}{%- else -%}{%- assign sa_ds = sa_d | append: "" -%}{%- endif -%}
-          {%- if sa_i >= 1000 -%}
-            {%- assign sa_th = sa_i | divided_by: 1000 | floor -%}
-            {%- assign sa_r  = sa_i | modulo: 1000 -%}
-            {%- if sa_r < 10 -%}{%- assign sa_rs = sa_r | prepend: "00" -%}{%- elsif sa_r < 100 -%}{%- assign sa_rs = sa_r | prepend: "0" -%}{%- else -%}{%- assign sa_rs = sa_r | append: "" -%}{%- endif -%}
-            {%- assign sa_is = sa_th | append: "." | append: sa_rs -%}
-          {%- else -%}
-            {%- assign sa_is = sa_i | append: "" -%}
-          {%- endif -%}
-          {%- assign sa_fmt_out = sa_fmt_out | append: sa_is | append: "," | append: sa_ds | append: "~" -%}
-        {%- endfor -%}
-        {%- assign sa_pf = sa_fmt_out | split: "~" -%}
-        {%- comment -%} stele: nota rotunjită (4.8 → 5) {%- endcomment -%}
-        {%- assign sa_full = 0 -%}
-        {%- if sa_rate != "" -%}{%- assign sa_full = sa_rate | plus: 0 | round -%}{%- endif -%}
-        {%- assign sa_rate_txt = sa_rate | replace: ".", "," -%}
-      <!-- ===== produs ===== -->
-      <div style="max-width:572px;margin:0 auto;padding-top:{% if forloop.first %}16{% else %}10{% endif %}px;text-align:left;">
-        <div class="sa-card" style="background-color:#FFFFFF;border:1px solid {{ sa_line }};border-radius:18px;padding:12px;">
-          <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="table-layout:fixed;">
-            <tr>
-              <td class="sa-imgcell" width="112" valign="middle" style="width:112px;vertical-align:middle;">
-                <a href="{{ sa_url }}" target="_blank" style="text-decoration:none;"><img class="sa-img" src="{{ sa_img }}" width="104" height="104" alt="{{ sa_alt }}" style="display:block;width:104px;height:104px;border:1px solid #EEF2F3;border-radius:12px;outline:none;text-decoration:none;"></a>
-              </td>
-              <td class="sa-info" valign="middle" style="vertical-align:middle;padding-left:14px;">
-                <div style="overflow:hidden;white-space:nowrap;text-overflow:ellipsis;font-family:{{ sa_font }};font-size:10px;line-height:18px;font-weight:700;letter-spacing:1px;color:{{ sa_teal_dark }};">{% if sa_badge != "" %}<span style="display:inline-block;background-color:{{ sa_red }};border-radius:6px;padding:1px 6px;font-size:11px;line-height:16px;font-weight:800;letter-spacing:0;color:#FFFFFF;vertical-align:top;">{{ sa_badge }}</span>&nbsp; {% endif %}{{ sa_cat }}</div>
-                <div class="sa-title" style="margin-top:5px;height:38px;overflow:hidden;font-family:{{ sa_font }};font-size:14px;line-height:19px;font-weight:600;color:{{ sa_ink }};"><a href="{{ sa_url }}" target="_blank" style="color:{{ sa_ink }};text-decoration:none;">{{ sa_title2 }}</a></div>
-                <div style="margin-top:4px;white-space:nowrap;font-family:{{ sa_font }};font-size:12px;line-height:16px;font-weight:400;color:#5F676C;">{% if sa_full > 0 %}<span style="font-family:Arial,Helvetica,sans-serif;font-size:13px;letter-spacing:1px;color:{{ sa_star }};">{% for sa_k in (1..5) %}{% if sa_k <= sa_full %}&#9733;{% else %}<span style="color:#D3D9DB;">&#9733;</span>{% endif %}{% endfor %}</span>&nbsp; <span style="font-weight:700;color:{{ sa_ink }};">{{ sa_rate_txt }}</span>{% if sa_revs != "" %} ({{ sa_revs }}){% endif %}{% else %}&nbsp;{% endif %}</div>
-                <div style="margin-top:6px;font-size:0;line-height:0;">
-                  <div style="display:inline-block;vertical-align:middle;margin:0 12px 6px 0;font-family:{{ sa_font }};font-size:14px;line-height:24px;">
-                    <span class="sa-price" style="font-size:18px;font-weight:800;color:{{ sa_red }};white-space:nowrap;">{{ sa_pf[0] }} {{ sa_currency }}</span>{% if sa_old_c > sa_new_c %}&nbsp; <span style="font-size:13px;font-weight:400;color:#8A9095;text-decoration:line-through;white-space:nowrap;">{{ sa_pf[1] }} {{ sa_currency }}</span>{% endif %}
-                  </div><div style="display:inline-block;vertical-align:middle;margin:0 0 6px 0;"><a href="{{ sa_url }}" target="_blank" style="display:inline-block;background-color:{{ sa_ink }};border-radius:999px;padding:8px 16px;font-family:{{ sa_font }};font-size:13px;line-height:17px;font-weight:700;color:#FFFFFF;text-decoration:none;white-space:nowrap;">{{ sa_card_cta }}&nbsp;<span style="font-family:Arial,Helvetica,sans-serif;color:{{ sa_teal }};">&#8594;</span></a></div>
+          {%- comment -%} formatare prețuri: 15999 → 159,99 ; 434673 → 4.346,73 {%- endcomment -%}
+          {%- assign sa_fmt_in  = sa_new_c | append: "~" | append: sa_old_c | split: "~" -%}
+          {%- assign sa_fmt_out = "" -%}
+          {%- for sa_v in sa_fmt_in -%}
+            {%- assign sa_c  = sa_v | plus: 0 -%}
+            {%- assign sa_i  = sa_c | divided_by: 100 | floor -%}
+            {%- assign sa_d  = sa_c | modulo: 100 -%}
+            {%- if sa_d < 10 -%}{%- assign sa_ds = sa_d | prepend: "0" -%}{%- else -%}{%- assign sa_ds = sa_d | append: "" -%}{%- endif -%}
+            {%- if sa_i >= 1000 -%}
+              {%- assign sa_th = sa_i | divided_by: 1000 | floor -%}
+              {%- assign sa_r  = sa_i | modulo: 1000 -%}
+              {%- if sa_r < 10 -%}{%- assign sa_rs = sa_r | prepend: "00" -%}{%- elsif sa_r < 100 -%}{%- assign sa_rs = sa_r | prepend: "0" -%}{%- else -%}{%- assign sa_rs = sa_r | append: "" -%}{%- endif -%}
+              {%- assign sa_is = sa_th | append: "." | append: sa_rs -%}
+            {%- else -%}
+              {%- assign sa_is = sa_i | append: "" -%}
+            {%- endif -%}
+            {%- assign sa_fmt_out = sa_fmt_out | append: sa_is | append: "," | append: sa_ds | append: "~" -%}
+          {%- endfor -%}
+          {%- assign sa_pf = sa_fmt_out | split: "~" -%}
+          {%- comment -%} stele: nota rotunjită (4.8 → 5) {%- endcomment -%}
+          {%- assign sa_full = 0 -%}
+          {%- if sa_rate != "" -%}{%- assign sa_full = sa_rate | plus: 0 | round -%}{%- endif -%}
+          {%- assign sa_rate_txt = sa_rate | replace: ".", "," -%}
+          {%- assign sa_n   = sa_n | plus: 1 -%}
+          {%- assign sa_mod = sa_n | modulo: 3 -%}
+          {%- if sa_n > 1 and sa_mod == 1 -%}<!--[if mso]></tr><tr><![endif]-->{%- endif -%}
+          <!--[if mso]><td width="180" valign="top"><![endif]-->
+          <div class="sa-col" style="display:inline-block;width:100%;max-width:180px;vertical-align:top;font-size:14px;line-height:20px;text-align:left;">
+            <div style="padding:6px;">
+              <div class="sa-card" style="background-color:#FFFFFF;border:1px solid {{ sa_line }};border-radius:16px;padding:10px;">
+                <!-- badge + imagine -->
+                <div style="font-size:0;line-height:0;"><span style="display:inline-block;background-color:{{ sa_red }};border-radius:7px;padding:3px 7px;font-family:{{ sa_font }};font-size:12px;line-height:15px;font-weight:800;color:#FFFFFF;white-space:nowrap;">{{ sa_badge }}</span></div>
+                <div style="margin-top:4px;height:128px;text-align:center;font-size:0;line-height:0;">
+                  <a href="{{ sa_url }}" target="_blank" style="text-decoration:none;"><img src="{{ sa_img }}" width="128" alt="{{ sa_alt }}" style="display:inline-block;vertical-align:middle;width:auto;height:auto;max-width:100%;max-height:128px;border:0;outline:none;text-decoration:none;"></a>
                 </div>
-              </td>
-            </tr>
-          </table>
-        </div>
+                <!-- categorie -->
+                <div class="sa-cat" style="padding-top:10px;overflow:hidden;white-space:nowrap;text-overflow:ellipsis;font-family:{{ sa_font }};font-size:10px;line-height:13px;font-weight:700;letter-spacing:1px;color:{{ sa_teal_dark }};">{{ sa_cat }}</div>
+                <!-- titlu (max. 2 rânduri) -->
+                <div class="sa-title" style="margin-top:4px;height:36px;overflow:hidden;font-family:{{ sa_font }};font-size:13px;line-height:18px;font-weight:600;color:{{ sa_ink }};"><a href="{{ sa_url }}" target="_blank" style="color:{{ sa_ink }};text-decoration:none;line-height:inherit;">{{ sa_title2 }}</a></div>
+                <!-- stele -->
+                <div style="margin-top:5px;height:16px;overflow:hidden;white-space:nowrap;font-family:{{ sa_font }};font-size:12px;line-height:16px;font-weight:400;color:#5F676C;">{% if sa_full > 0 %}<span class="sa-stars" style="font-family:Arial,Helvetica,sans-serif;font-size:12px;letter-spacing:1px;color:{{ sa_star }};">{% for sa_k in (1..5) %}{% if sa_k <= sa_full %}&#9733;{% else %}<span style="color:#D3D9DB;">&#9733;</span>{% endif %}{% endfor %}</span>&nbsp;<span style="font-weight:700;color:{{ sa_ink }};">{{ sa_rate_txt }}</span>{% if sa_revs != "" %} ({{ sa_revs }}){% endif %}{% else %}&nbsp;{% endif %}</div>
+                <!-- preț vechi + preț nou -->
+                <div style="padding-top:6px;white-space:nowrap;font-family:{{ sa_font }};font-size:12px;line-height:15px;font-weight:400;color:#8A9095;">{% if sa_old_c > sa_new_c %}<span style="text-decoration:line-through;">{{ sa_pf[1] }} {{ sa_currency }}</span>{% else %}&nbsp;{% endif %}</div>
+                <div class="sa-price" style="white-space:nowrap;font-family:{{ sa_font }};font-size:17px;line-height:22px;font-weight:800;color:{{ sa_red }};">{{ sa_pf[0] }} {{ sa_currency }}</div>
+                <!-- buton card -->
+                <div style="padding-top:10px;">
+                  <div style="background-color:{{ sa_ink }};border-radius:999px;text-align:center;overflow:hidden;">
+                    <a class="sa-cta" href="{{ sa_url }}" target="_blank" style="display:block;padding:9px 6px;font-family:{{ sa_font }};font-size:13px;line-height:17px;font-weight:700;color:#FFFFFF;text-decoration:none;white-space:nowrap;">{{ sa_card_cta }}&nbsp;<span style="font-family:Arial,Helvetica,sans-serif;color:{{ sa_teal }};">&#8594;</span></a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!--[if mso]></td><![endif]-->
+        {%- endfor -%}
       </div>
-      {%- endfor %}
+      <!--[if mso]></tr></table><![endif]-->
+    </td>
+  </tr>
 
-      <!-- ===================== STOCURI ===================== -->
-      <div style="max-width:572px;margin:0 auto;padding-top:18px;text-align:left;">
+  <!-- ===================== STOCURI ===================== -->
+  <tr>
+    <td class="sa-wrap" align="center" style="padding:16px 16px 0 16px;text-align:center;font-size:0;line-height:0;">
+      <!--[if mso]><table role="presentation" width="528" cellpadding="0" cellspacing="0" border="0" align="center"><tr><td><![endif]-->
+      <div style="display:inline-block;width:100%;max-width:528px;vertical-align:top;text-align:left;">
         <div style="border:2px solid {{ sa_teal }};border-radius:18px;padding:14px 18px;background-color:#FFFFFF;">
           <div style="font-family:{{ sa_font }};font-size:15px;line-height:21px;font-weight:800;color:{{ sa_ink }};">{{ sa_stock_head }}</div>
           <div style="padding-top:2px;font-family:{{ sa_font }};font-size:14px;line-height:20px;font-weight:400;color:#41484D;">{{ sa_stock_text }}</div>
         </div>
       </div>
-
+      <!--[if mso]></td></tr></table><![endif]-->
     </td>
   </tr>
 
