@@ -1,0 +1,451 @@
+{%- comment -%}
+=====================================================================
+  EMAIL „SMART SALES — COȘURI GATA FĂCUTE” — SMARTINO SHOP
+  (reducerile sunt valabile până joi, 26 noiembrie 2026, 23:59)
+---------------------------------------------------------------------
+  Abordare: livrarea e gratuită peste 200 lei, așa că emailul vinde
+  COȘURI GATA FĂCUTE de peste 200 lei, adăugate în coș dintr-un click.
+  1. Pastilă „Smart Sales · până joi, 26 noiembrie” + titlu
+     „Umple coșul. Livrarea e pe noi.” + text + 3 pași.
+  2. 3 coșuri: produsele (poză, nume, preț), totalul Smart Sales,
+     prețul normal tăiat, „Economisești X lei”, bara până la livrarea
+     gratuită și butonul „Adaugă tot coșul →” (pune toate produsele
+     în coș dintr-un click). Totalurile se calculează singure.
+  3. „Îți lipsește puțin până la 200 lei?”: 6 produse sub 40 lei, fiecare
+     cu buton „Adaugă în coș” care îl pune direct în coș.
+  4. Bandă „Se încheie joi, 26 noiembrie, la 23:59” + buton turcoaz
+     „Vezi toate ofertele →” + notă.
+
+  ORDINEA ÎN SHOPIFY EMAIL
+  1. Banner (opțional)
+  2. Custom Liquid cu ACEST fișier
+  3. (opțional) Countdown: November 26, 2026, 11:59 PM
+
+  CUM FUNCȚIONEAZĂ BUTOANELE
+  - „Adaugă tot coșul” = link de coș Shopify:
+    smartinoshop.ro/cart/ID1:1,ID2:1,ID3:1?storefront=true
+    (deschide coșul cu produsele din coș; un coș deja început e înlocuit)
+  - „Adaugă în coș” = smartinoshop.ro/cart/add?id=ID&quantity=1
+    (adaugă produsul în coșul existent și deschide coșul)
+  ID-ul variantei: în adminul Shopify, pe pagina produsului, la variantă
+  (sau la finalul linkului ...?variant=ID de pe site).
+
+  Prețurile sunt cele de pe smartinoshop.ro din 18 noiembrie 2026.
+=====================================================================
+{%- endcomment -%}
+
+{%- comment -%} ===== 1. SETĂRI ===== {%- endcomment -%}
+{%- assign sc_shop      = "https://smartinoshop.ro" -%}
+{%- assign sc_free      = 200 -%}                  {%- comment -%} pragul de livrare gratuită, în lei {%- endcomment -%}
+{%- assign sc_pill      = "Smart Sales · până joi, 26 noiembrie" -%}
+{%- assign sc_title_1   = "Umple coșul." -%}
+{%- assign sc_title_2   = "Livrarea e pe noi." -%}  {%- comment -%} rândul colorat {%- endcomment -%}
+{%- assign sc_text      = "La comenzile de peste 200 lei livrarea e gratuită. Am pregătit trei coșuri cu reduceri Smart Sales, pe care le adaugi în coș dintr-un singur&nbsp;click." -%}
+{%- assign sc_steps     = "1|Alegi un coș##2|Un click și e în coș##3|Livrare gratuită" -%}
+
+{%- assign sc_cos_label = "Coșul" -%}
+{%- assign sc_total_lbl = "Total Smart Sales" -%}
+{%- assign sc_save_lbl  = "Economisești" -%}
+{%- assign sc_ship_ok   = "Livrare gratuită inclusă" -%}
+{%- assign sc_ship_more = "Mai adaugă" -%}       {%- comment -%} „Mai adaugă X lei pentru livrare gratuită” {%- endcomment -%}
+{%- assign sc_cos_cta   = "Adaugă tot coșul" -%}
+{%- assign sc_cos_hint  = "Produsele intră direct în coș, unde le poți modifica." -%}
+
+{%- assign sc_top_head  = "Îți lipsește puțin până la 200 lei?" -%}
+{%- assign sc_top_text  = "Completează cu ceva sub 40 lei. Butonul îl pune direct în&nbsp;coș." -%}
+{%- assign sc_top_cta   = "Adaugă în coș" -%}
+
+{%- assign sc_end_text  = "Ofertele Smart Sales se încheie <strong>joi, 26 noiembrie, la 23:59</strong>." -%}
+{%- assign sc_cta_text  = "Vezi toate ofertele" -%}
+{%- assign sc_cta_url   = "https://smartinoshop.ro/pages/smart-sales" -%}
+{%- assign sc_note      = "Livrarea gratuită se aplică la comenzile de peste 200 lei. Ofertele Smart Sales sunt valabile până pe 26 noiembrie 2026, ora 23:59, în limita stocului disponibil. Prețul final este cel afișat în coș." -%}
+{%- assign sc_currency  = "lei" -%}
+{%- assign sc_title_max = 34 -%}
+
+{%- comment -%} Culori și font {%- endcomment -%}
+{%- assign sc_bg        = "#000000" -%}
+{%- assign sc_head      = "#FFFFFF" -%}
+{%- assign sc_muted     = "#A3A6A8" -%}
+{%- assign sc_tile      = "#17181A" -%}
+{%- assign sc_tile_line = "#1C3436" -%}
+{%- assign sc_teal      = "#00B8C7" -%}
+{%- assign sc_teal_dark = "#00818C" -%}
+{%- assign sc_teal_soft = "#E3F7F9" -%}           {%- comment -%} fundal pastilă „Economisești” {%- endcomment -%}
+{%- assign sc_red       = "#E3242B" -%}
+{%- assign sc_ink       = "#111418" -%}
+{%- assign sc_line      = "#DDE4E6" -%}
+{%- assign sc_star      = "#F5A623" -%}
+{%- assign sc_font      = "'Poppins', Arial, Helvetica, sans-serif" -%}
+
+{%- comment -%}
+  ===== 2. COȘURI =====
+  Primul rând: Nume coș | Descriere
+  Apoi câte un produs pe bloc, separate prin ##
+     Nume scurt | URL imagine | URL produs | ID variantă | cantitate | preț nou | preț vechi
+  Prețurile cu punct (ex. 67.92). Un coș gol (fără produse) nu apare.
+  În texte NU folosi caracterul |.
+{%- endcomment -%}
+{%- capture sc_cos_1 -%}
+Curățenie rapidă | Mopul preferat al clienților, plus șervețele și lavete pentru toată casa.
+##
+Mop Parex + 10 șervețele | https://cdn.shopify.com/s/files/1/0834/0688/1063/files/pacheteparex_13.png?v=1787923296&width=300&height=300&pad_color=ffffff | https://smartinoshop.ro/products/mop-cu-prindere-rapida-parex-10-%C8%99erve%C8%9Bele-umede-pentru-cura%C8%9Bare | 56335346073981 | 1 | 67.92 | 84.90
+##
+6x Șervețele Easy Clean | https://cdn.shopify.com/s/files/1/0834/0688/1063/files/PACHETPROMOEASYCLEAN6BUC.png?v=1701998181&width=300&height=300&pad_color=ffffff | https://smartinoshop.ro/products/pachet-promo-6-x-servetele-umede-sleepy-easy-clean-multisuprafete-100-buc | 47252066468135 | 1 | 89.99 | 134.99
+##
+3x Lavete pardoseli Easy Clean | https://cdn.shopify.com/s/files/1/0834/0688/1063/files/Cadou_6.png?v=1715795711&width=300&height=300&pad_color=ffffff | https://smartinoshop.ro/products/pachet-promo-3-x-lavete-umede-pentru-curatare-pardoseli-sleepy-easy-clean-50-buc | 48414063329575 | 1 | 58.88 | 78.50
+{%- endcapture -%}
+
+{%- capture sc_cos_2 -%}
+Rezerva de șervețele | 12 pachete Easy Clean, lavete pentru pardoseli și balsam de rufe, ca să nu rămâi fără.
+##
+12x Șervețele Easy Clean | https://cdn.shopify.com/s/files/1/0834/0688/1063/files/PACHETPROMOEASYCLEAN12BUC.png?v=1701998513&width=300&height=300&pad_color=ffffff | https://smartinoshop.ro/products/pachet-promo-12-x-servetele-umede-sleepy-easy-clean-multisuprafete-100-buc | 47252069876007 | 1 | 159.99 | 254.99
+##
+2x Lavete pardoseli Easy Clean | https://cdn.shopify.com/s/files/1/0834/0688/1063/files/Cadou_5704cf4c-0f43-4e18-8851-6f59e0fb897c.png?v=1715798291&width=300&height=300&pad_color=ffffff | https://smartinoshop.ro/products/pachet-promo-2-x-lavete-umede-pentru-curatare-pardoseli-sleepy-easy-clean-50-buc | 48415699403047 | 1 | 41.25 | 55.00
+##
+Balsam de rufe Kalyon, 750 ml | https://cdn.shopify.com/s/files/1/0834/0688/1063/products/kalyon-balsom-rufe-concentrat-white-flower750ml-911258.jpg?v=1695812138&width=300&height=300&pad_color=ffffff | https://smartinoshop.ro/products/kalyon-balsom-rufe-concentrat-white-flower750ml | 46771411255591 | 1 | 12.00 | 15.00
+{%- endcapture -%}
+
+{%- capture sc_cos_3 -%}
+Baie & bucătărie | 12 prosoape de hârtie Papia, plus șervețele cu spumă activă pentru baie.
+##
+12x Prosop de hârtie Papia | https://cdn.shopify.com/s/files/1/0834/0688/1063/files/3X_2_0ccff245-34db-4f4d-90f2-38c017150661.png?v=1776697124&width=300&height=300&pad_color=ffffff | https://smartinoshop.ro/products/12x-papia-home-prosop-cu-dispozitiv-de-agatare-250-buc | 58072357601661 | 1 | 171.74 | 254.04
+##
+2x Easy Clean Baie cu spumă | https://cdn.shopify.com/s/files/1/0834/0688/1063/files/8787.png?v=1768939072&width=300&height=300&pad_color=ffffff | https://smartinoshop.ro/products/pachet-promo-2x-sleepy-easy-clean-de-baie | 57719795122557 | 1 | 35.61 | 47.48
+##
+Șervețele Easy Clean White Soap | https://cdn.shopify.com/s/files/1/0834/0688/1063/files/white.jpg?v=1790923430&width=300&height=300&pad_color=ffffff | https://smartinoshop.ro/products/servetele-umede-sleepy-easyclean-white-soap-additive-multisuprafete-100-buc | 46949980537127 | 1 | 18.75 | 24.99
+{%- endcapture -%}
+
+{%- comment -%}
+  ===== 3. PRODUSE PENTRU COMPLETAT COȘUL =====
+     Titlu | URL imagine | URL produs | ID variantă | preț nou | preț vechi | nota | nr. recenzii
+{%- endcomment -%}
+{%- capture sc_top -%}
+Lavete pardoseli Sleepy Easy Clean White Soap, 50 buc | https://cdn.shopify.com/s/files/1/0834/0688/1063/files/8206-750x750-depositphotos-bgremover_1.png?v=1715692376&width=600&height=600&pad_color=ffffff | https://smartinoshop.ro/products/lavete-umede-pentru-curatare-pardoseli-sleepy-easy-clean-white-soap-50buc | 48359346471207 | 19.50 | 25.99 | 4.9 | 754
+##
+Șervețele Sleepy Easy Clean Herbal Soap, 100 buc | https://cdn.shopify.com/s/files/1/0834/0688/1063/files/herbal.jpg?v=1790923443&width=600&height=600&pad_color=ffffff | https://smartinoshop.ro/products/servetele-umede-sleepy-easyclean-herbal-soap-additive-100-buc | 46950052561191 | 18.75 | 24.99 | 4.9 | 754
+##
+Păturici absorbante pentru pat Actual Double, 90x60 cm, 30 buc | https://cdn.shopify.com/s/files/1/0834/0688/1063/products/paturici-absorbante-pentru-pat-adult-actual-double-90x180-cm-30-bucati-copie-72-1243.jpg?v=1695812975&width=600&height=600&pad_color=ffffff | https://smartinoshop.ro/products/aleze-protectii-pentru-pat-adult-actual-double-90x60-cm-30-bucati | 46771591479591 | 27.20 | 33.99 | 4.9 | 239
+##
+Scutece-chiloțel MAGICS PYJAMA Pants, mărimea M, 17-30 kg, 15 buc | https://cdn.shopify.com/s/files/1/0834/0688/1063/files/Mmagicspyjamapants1-1210-01YouthPantsnohandle11-15pcsNAH300x415_1.png?v=1710763920&width=600&height=600&pad_color=ffffff | https://smartinoshop.ro/products/magics-pyjama-pants-night-m-17-30-kg-15-buc | 47822203388199 | 25.43 | 33.90 | 5.0 | 37
+##
+Scutece Sleepy Natural H2O Double, mărimea 7 XXLarge, 32 buc | https://cdn.shopify.com/s/files/1/0834/0688/1063/files/nr7-32_d9206a19-edf1-404b-aa15-2274feea9301.jpg?v=1790766684&width=600&height=600&pad_color=ffffff | https://smartinoshop.ro/products/scutece-sleepy-natural-ultra-sensitive-double-marime-7-xxlarge-20-30kg-32-bucati | 46771608256807 | 35.12 | 49.99 | 5.0 | 608
+##
+Pachet Sleepy Easy Clean Bucătărie + Baie cu spumă activă | https://cdn.shopify.com/s/files/1/0834/0688/1063/files/232323.png?v=1768852663&width=600&height=600&pad_color=ffffff | https://smartinoshop.ro/products/pachet-promo-sleepy-easy-clean-bucatarie-baie-cu-spuma-activa-2-30-buc | 57705559523709 | 35.61 | 47.48 | 5.0 | 28
+{%- endcapture -%}
+
+{%- assign sc_cosuri    = sc_cos_1 | append: "===" | append: sc_cos_2 | append: "===" | append: sc_cos_3 | split: "===" -%}
+{%- assign sc_top_list  = sc_top | split: "##" -%}
+{%- assign sc_step_list = sc_steps | split: "##" -%}
+{%- assign sc_free_c    = sc_free | times: 100 -%}
+
+{%- comment -%} ===== 4. ȘABLON (nu e nevoie să modifici mai jos) ===== {%- endcomment -%}
+<!--[if !mso]><!-->
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800&display=swap" rel="stylesheet">
+<!--<![endif]-->
+<style>
+  @media only screen and (max-width: 480px) {
+    .sc-wrap { padding-left: 12px !important; padding-right: 12px !important; }
+    .sc-h1 { font-size: 30px !important; line-height: 36px !important; }
+    .sc-cos { padding: 16px 12px 16px 12px !important; }
+    .sc-total { font-size: 22px !important; line-height: 28px !important; }
+    .sc-col { width: 50% !important; max-width: 50% !important; }
+    .sc-card { padding: 8px !important; }
+    .sc-cta { font-size: 12px !important; padding: 9px 2px !important; }
+    .sc-price { font-size: 15px !important; }
+  }
+  @media only screen and (max-width: 350px) {
+    .sc-step { font-size: 10px !important; }
+    .sc-item-name { font-size: 10.5px !important; }
+    .sc-stars { font-size: 11px !important; letter-spacing: 0 !important; }
+    .sc-title { font-size: 11.5px !important; line-height: 17px !important; height: 34px !important; }
+  }
+</style>
+
+<table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" bgcolor="{{ sc_bg }}" style="background-color:{{ sc_bg }};">
+
+  <!-- ===================== TITLU + PAȘI ===================== -->
+  <tr>
+    <td class="sc-wrap" align="center" style="padding:32px 16px 0 16px;text-align:center;">
+      <span style="display:inline-block;border:1px solid {{ sc_teal }};border-radius:999px;padding:6px 14px;font-family:{{ sc_font }};font-size:12px;line-height:14px;font-weight:700;letter-spacing:1.5px;color:{{ sc_teal }};text-transform:uppercase;"><span style="font-size:14px;">&#9679;</span>&nbsp; {{ sc_pill | upcase }}</span>
+      <div class="sc-h1" style="padding-top:16px;font-family:{{ sc_font }};font-size:36px;line-height:42px;font-weight:800;color:{{ sc_head }};">{{ sc_title_1 }}<br><span style="color:{{ sc_teal }};">{{ sc_title_2 }}</span></div>
+      <div style="padding-top:12px;font-size:0;line-height:0;"><div style="display:inline-block;max-width:460px;vertical-align:top;font-family:{{ sc_font }};font-size:15px;line-height:23px;font-weight:400;color:{{ sc_muted }};">{{ sc_text }}</div></div>
+      <div style="max-width:580px;margin:0 auto;padding-top:20px;font-size:0;line-height:0;text-align:center;">
+        <!--[if mso]><table role="presentation" width="580" cellpadding="0" cellspacing="0" border="0" align="center"><tr><![endif]-->
+        {%- for sc_s in sc_step_list -%}
+          {%- unless sc_s contains "|" -%}{%- continue -%}{%- endunless -%}
+          {%- assign sc_sp = sc_s | split: "|" %}
+        <!--[if mso]><td width="193" valign="top"><![endif]-->
+        <div style="display:inline-block;width:33.33%;vertical-align:top;">
+          <div style="padding:0 4px;">
+            <div style="background-color:{{ sc_tile }};border:1px solid {{ sc_tile_line }};border-radius:16px;padding:12px 6px 12px 6px;text-align:center;">
+              <div style="font-size:0;line-height:0;"><span style="display:inline-block;width:28px;height:28px;border-radius:14px;background-color:{{ sc_teal }};font-family:{{ sc_font }};font-size:14px;line-height:28px;font-weight:800;color:#000000;text-align:center;">{{ sc_sp[0] | strip }}</span></div>
+              <div class="sc-step" style="margin-top:8px;height:32px;overflow:hidden;font-family:{{ sc_font }};font-size:12px;line-height:16px;font-weight:600;color:{{ sc_head }};">{{ sc_sp[1] | strip }}</div>
+            </div>
+          </div>
+        </div>
+        <!--[if mso]></td><![endif]-->
+        {%- endfor %}
+        <!--[if mso]></tr></table><![endif]-->
+      </div>
+    </td>
+  </tr>
+
+  <!-- ===================== COȘURI ===================== -->
+  {%- assign sc_k = 0 -%}
+  {%- for sc_cos in sc_cosuri -%}
+    {%- assign sc_parts = sc_cos | split: "##" -%}
+    {%- if sc_parts.size < 2 -%}{%- continue -%}{%- endif -%}
+    {%- assign sc_hdr  = sc_parts[0] | append: " | " | split: "|" -%}
+    {%- assign sc_name = sc_hdr[0] | strip -%}
+    {%- assign sc_desc = sc_hdr[1] | strip -%}
+    {%- assign sc_k = sc_k | plus: 1 -%}
+    {%- comment -%} calcul: totaluri, link de coș, prețuri formatate {%- endcomment -%}
+    {%- assign sc_sum_new = 0 -%}
+    {%- assign sc_sum_old = 0 -%}
+    {%- assign sc_link    = "" -%}
+    {%- assign sc_vals    = "" -%}
+    {%- assign sc_n       = 0 -%}
+    {%- for sc_it in sc_parts offset:1 -%}
+      {%- unless sc_it contains "|" -%}{%- continue -%}{%- endunless -%}
+      {%- assign sc_f   = sc_it | split: "|" -%}
+      {%- assign sc_vid = sc_f[3] | strip -%}
+      {%- assign sc_q   = sc_f[4] | strip | plus: 0 -%}
+      {%- if sc_q < 1 -%}{%- assign sc_q = 1 -%}{%- endif -%}
+      {%- assign sc_nc  = sc_f[5] | strip | times: 100 | round -%}
+      {%- assign sc_oc  = sc_f[6] | strip | times: 100 | round -%}
+      {%- if sc_oc < sc_nc -%}{%- assign sc_oc = sc_nc -%}{%- endif -%}
+      {%- assign sc_sum_new = sc_nc | times: sc_q | plus: sc_sum_new -%}
+      {%- assign sc_sum_old = sc_oc | times: sc_q | plus: sc_sum_old -%}
+      {%- if sc_link != "" -%}{%- assign sc_link = sc_link | append: "," -%}{%- endif -%}
+      {%- assign sc_link = sc_link | append: sc_vid | append: ":" | append: sc_q -%}
+      {%- assign sc_vals = sc_vals | append: sc_nc | append: "~" | append: sc_oc | append: "~" -%}
+      {%- assign sc_n = sc_n | plus: 1 -%}
+    {%- endfor -%}
+    {%- if sc_n == 0 -%}{%- continue -%}{%- endif -%}
+    {%- assign sc_save = sc_sum_old | minus: sc_sum_new -%}
+    {%- assign sc_left = sc_free_c | minus: sc_sum_new -%}
+    {%- if sc_left < 0 -%}{%- assign sc_left = 0 -%}{%- endif -%}
+    {%- assign sc_bar = sc_sum_new | times: 100 | divided_by: sc_free_c -%}
+    {%- if sc_bar > 100 -%}{%- assign sc_bar = 100 -%}{%- endif -%}
+    {%- assign sc_bar = sc_bar | floor -%}
+    {%- assign sc_vals = sc_vals | append: sc_sum_new | append: "~" | append: sc_sum_old | append: "~" | append: sc_save | append: "~" | append: sc_left -%}
+    {%- assign sc_fmt_in  = sc_vals | split: "~" -%}
+    {%- assign sc_fmt_out = "" -%}
+    {%- for sc_v in sc_fmt_in -%}
+      {%- assign sc_c  = sc_v | plus: 0 -%}
+      {%- assign sc_i  = sc_c | divided_by: 100 | floor -%}
+      {%- assign sc_d  = sc_c | modulo: 100 -%}
+      {%- if sc_d < 10 -%}{%- assign sc_ds = sc_d | prepend: "0" -%}{%- else -%}{%- assign sc_ds = sc_d | append: "" -%}{%- endif -%}
+      {%- if sc_i >= 1000 -%}
+        {%- assign sc_th = sc_i | divided_by: 1000 | floor -%}
+        {%- assign sc_r  = sc_i | modulo: 1000 -%}
+        {%- if sc_r < 10 -%}{%- assign sc_rs = sc_r | prepend: "00" -%}{%- elsif sc_r < 100 -%}{%- assign sc_rs = sc_r | prepend: "0" -%}{%- else -%}{%- assign sc_rs = sc_r | append: "" -%}{%- endif -%}
+        {%- assign sc_is = sc_th | append: "." | append: sc_rs -%}
+      {%- else -%}
+        {%- assign sc_is = sc_i | append: "" -%}
+      {%- endif -%}
+      {%- assign sc_fmt_out = sc_fmt_out | append: sc_is | append: "," | append: sc_ds | append: "~" -%}
+    {%- endfor -%}
+    {%- assign sc_fmt = sc_fmt_out | split: "~" -%}
+    {%- assign sc_ti = sc_n | times: 2 -%}
+    {%- assign sc_oi = sc_ti | plus: 1 -%}
+    {%- assign sc_si = sc_ti | plus: 2 -%}
+    {%- assign sc_li = sc_ti | plus: 3 -%}
+    {%- assign sc_w  = 100 | divided_by: sc_n | floor -%}
+    {%- assign sc_url = sc_shop | append: "/cart/" | append: sc_link | append: "?storefront=true" %}
+  <tr>
+    <td class="sc-wrap" align="center" style="padding:{% if sc_k == 1 %}30{% else %}16{% endif %}px 16px 0 16px;text-align:center;font-size:0;line-height:0;">
+      <!--[if mso]><table role="presentation" width="568" cellpadding="0" cellspacing="0" border="0" align="center"><tr><td bgcolor="#FFFFFF" style="padding:20px;"><![endif]-->
+      <div class="sc-cos" style="display:inline-block;width:100%;max-width:568px;vertical-align:top;background-color:#FFFFFF;border-radius:20px;padding:20px 18px 18px 18px;box-sizing:border-box;text-align:left;">
+        <!-- antet coș -->
+        <div style="font-family:{{ sc_font }};font-size:11px;line-height:14px;font-weight:700;letter-spacing:1.5px;color:{{ sc_teal_dark }};text-transform:uppercase;">{{ sc_cos_label | upcase }} {{ sc_k }}</div>
+        <div style="padding-top:2px;font-family:{{ sc_font }};font-size:21px;line-height:27px;font-weight:800;color:{{ sc_ink }};">{{ sc_name }}</div>
+        <div style="padding-top:2px;font-family:{{ sc_font }};font-size:13px;line-height:19px;font-weight:400;color:#5F676C;">{{ sc_desc }}</div>
+        <!-- produse -->
+        <div style="padding-top:14px;font-size:0;line-height:0;">
+          <!--[if mso]><table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0"><tr><![endif]-->
+          {%- assign sc_j = 0 -%}
+          {%- for sc_it in sc_parts offset:1 -%}
+            {%- unless sc_it contains "|" -%}{%- continue -%}{%- endunless -%}
+            {%- assign sc_f    = sc_it | split: "|" -%}
+            {%- assign sc_nm   = sc_f[0] | strip | escape -%}
+            {%- assign sc_img  = sc_f[1] | strip -%}
+            {%- assign sc_purl = sc_f[2] | strip -%}
+            {%- assign sc_q    = sc_f[4] | strip | plus: 0 -%}
+            {%- assign sc_pi   = sc_j | times: 2 -%}
+            {%- assign sc_po   = sc_pi | plus: 1 -%}
+            {%- assign sc_nc   = sc_f[5] | strip | times: 100 | round -%}
+            {%- assign sc_oc   = sc_f[6] | strip | times: 100 | round -%}
+            {%- assign sc_j    = sc_j | plus: 1 %}
+          <!--[if mso]><td valign="top" width="{{ sc_w }}%"><![endif]-->
+          <div style="display:inline-block;width:{{ sc_w }}%;vertical-align:top;text-align:center;">
+            <div style="padding:0 4px;">
+              <a href="{{ sc_purl }}" target="_blank" style="text-decoration:none;"><img src="{{ sc_img }}" width="120" alt="{{ sc_nm }}" style="display:inline-block;width:100%;max-width:120px;height:auto;border:1px solid #EEF2F3;border-radius:12px;outline:none;text-decoration:none;vertical-align:top;"></a>
+              <div class="sc-item-name" style="margin-top:6px;height:45px;overflow:hidden;font-family:{{ sc_font }};font-size:11.5px;line-height:15px;font-weight:600;color:{{ sc_ink }};">{% if sc_q > 1 %}{{ sc_q }} × {% endif %}{{ sc_nm }}</div>
+              <div style="padding-top:4px;white-space:nowrap;font-family:{{ sc_font }};font-size:13px;line-height:17px;font-weight:800;color:{{ sc_red }};">{{ sc_fmt[sc_pi] }} {{ sc_currency }}</div>
+              <div style="white-space:nowrap;font-family:{{ sc_font }};font-size:11px;line-height:14px;font-weight:400;color:#8A9095;">{% if sc_oc > sc_nc %}<span style="text-decoration:line-through;">{{ sc_fmt[sc_po] }} {{ sc_currency }}</span>{% else %}&nbsp;{% endif %}</div>
+            </div>
+          </div>
+          <!--[if mso]></td><![endif]-->
+          {%- endfor %}
+          <!--[if mso]></tr></table><![endif]-->
+        </div>
+        <!-- total -->
+        <div style="margin-top:14px;border-top:1px dashed {{ sc_line }};font-size:0;line-height:0;">&nbsp;</div>
+        <div style="padding-top:12px;font-size:0;line-height:0;">
+          <div style="display:inline-block;vertical-align:middle;margin:0 12px 8px 0;">
+            <div style="font-family:{{ sc_font }};font-size:11px;line-height:14px;font-weight:700;letter-spacing:1px;color:#5F676C;text-transform:uppercase;">{{ sc_total_lbl | upcase }}</div>
+            <div style="white-space:nowrap;font-family:{{ sc_font }};font-size:14px;line-height:30px;font-weight:400;color:#8A9095;"><span class="sc-total" style="font-size:26px;line-height:30px;font-weight:800;color:{{ sc_ink }};">{{ sc_fmt[sc_ti] }} {{ sc_currency }}</span>&nbsp; <span style="text-decoration:line-through;">{{ sc_fmt[sc_oi] }}</span></div>
+          </div><div style="display:inline-block;vertical-align:middle;margin:0 0 8px 0;"><span style="display:inline-block;background-color:{{ sc_teal_soft }};border-radius:999px;padding:7px 12px;font-family:{{ sc_font }};font-size:13px;line-height:16px;font-weight:800;color:{{ sc_teal_dark }};white-space:nowrap;">{{ sc_save_lbl }} {{ sc_fmt[sc_si] }} {{ sc_currency }}</span></div>
+        </div>
+        <!-- bara livrare gratuită -->
+        <div style="padding-top:2px;font-family:{{ sc_font }};font-size:12px;line-height:16px;font-weight:700;color:{% if sc_left == 0 %}{{ sc_teal_dark }}{% else %}#5F676C{% endif %};">{% if sc_left == 0 %}&#10003;&nbsp; {{ sc_ship_ok }}{% else %}{{ sc_ship_more }} {{ sc_fmt[sc_li] }} {{ sc_currency }} pentru livrare gratuită{% endif %}</div>
+        <div style="margin-top:6px;background-color:#E3E8EA;border-radius:999px;height:8px;font-size:0;line-height:0;overflow:hidden;">
+          <div style="width:{{ sc_bar }}%;height:8px;background-color:{{ sc_teal }};border-radius:999px;font-size:0;line-height:0;">&nbsp;</div>
+        </div>
+        <!-- buton coș -->
+        <div style="padding-top:16px;text-align:center;">
+          <!--[if mso]>
+          <v:roundrect xmlns:v="urn:schemas-microsoft-com:vml" xmlns:w="urn:schemas-microsoft-com:office:word" href="{{ sc_url }}" style="height:50px;v-text-anchor:middle;width:300px;" arcsize="50%" stroke="f" fillcolor="{{ sc_ink }}">
+            <w:anchorlock/>
+            <center style="color:#FFFFFF;font-family:Arial,sans-serif;font-size:15px;font-weight:bold;">{{ sc_cos_cta }}&nbsp;&nbsp;&#8594;</center>
+          </v:roundrect>
+          <![endif]-->
+          <!--[if !mso]><!-->
+          <a href="{{ sc_url }}" target="_blank" style="display:block;background-color:{{ sc_ink }};border-radius:999px;padding:15px 10px;font-family:{{ sc_font }};font-size:15px;line-height:20px;font-weight:700;color:#FFFFFF;text-decoration:none;text-align:center;">{{ sc_cos_cta }}&nbsp;&nbsp;<span style="font-family:Arial,Helvetica,sans-serif;font-size:18px;line-height:20px;font-weight:700;color:{{ sc_teal }};">&#8594;</span></a>
+          <!--<![endif]-->
+          <div style="padding-top:8px;font-family:{{ sc_font }};font-size:11px;line-height:15px;font-weight:400;color:#8A9095;">{{ sc_cos_hint }}</div>
+        </div>
+      </div>
+      <!--[if mso]></td></tr></table><![endif]-->
+    </td>
+  </tr>
+  {%- endfor %}
+
+  <!-- ===================== COMPLETEAZĂ COȘUL ===================== -->
+  <tr>
+    <td class="sc-wrap" align="center" style="padding:36px 16px 0 16px;text-align:center;">
+      <div style="font-family:{{ sc_font }};font-size:22px;line-height:28px;font-weight:800;color:{{ sc_head }};">{{ sc_top_head }}</div>
+      <div style="padding-top:6px;font-family:{{ sc_font }};font-size:14px;line-height:20px;font-weight:400;color:{{ sc_muted }};">{{ sc_top_text }}</div>
+    </td>
+  </tr>
+  <tr>
+    <td align="center" style="padding:12px 6px 0 6px;text-align:center;font-size:0;line-height:0;">
+      <!--[if mso]><table role="presentation" width="540" cellpadding="0" cellspacing="0" border="0" align="center"><tr><![endif]-->
+      <div style="display:inline-block;width:100%;max-width:540px;vertical-align:top;font-size:0;line-height:0;text-align:center;">
+        {%- assign sc_n = 0 -%}
+        {%- for sc_item in sc_top_list -%}
+          {%- unless sc_item contains "|" -%}{%- continue -%}{%- endunless -%}
+          {%- assign sc_f      = sc_item | append: " | | | " | split: "|" -%}
+          {%- assign sc_title2 = sc_f[0] | strip -%}
+          {%- if sc_title2.size > sc_title_max -%}
+            {%- assign sc_cut   = sc_title2 | slice: 0, sc_title_max -%}
+            {%- assign sc_next  = sc_title2 | slice: sc_title_max, 1 -%}
+            {%- assign sc_last  = sc_cut | slice: -1 -%}
+            {%- if sc_next == " " or sc_last == " " -%}
+              {%- assign sc_title2 = sc_cut | strip -%}
+            {%- else -%}
+              {%- assign sc_words = sc_cut | split: " " -%}
+              {%- assign sc_title2 = "" -%}
+              {%- for sc_w2 in sc_words -%}
+                {%- unless forloop.last -%}{%- assign sc_title2 = sc_title2 | append: sc_w2 | append: " " -%}{%- endunless -%}
+              {%- endfor -%}
+              {%- assign sc_title2 = sc_title2 | strip -%}
+            {%- endif -%}
+            {%- assign sc_lc = sc_title2 | slice: -1 -%}
+            {%- if sc_lc == "+" or sc_lc == "," or sc_lc == "-" or sc_lc == "–" or sc_lc == ":" or sc_lc == "(" -%}
+              {%- assign sc_len    = sc_title2.size | minus: 1 -%}
+              {%- assign sc_title2 = sc_title2 | slice: 0, sc_len | strip -%}
+            {%- endif -%}
+            {%- if sc_title2 == "" -%}{%- assign sc_title2 = sc_cut -%}{%- endif -%}
+            {%- assign sc_title2 = sc_title2 | append: "…" -%}
+          {%- endif -%}
+          {%- assign sc_title2 = sc_title2 | escape -%}
+          {%- assign sc_alt    = sc_f[0] | strip | escape -%}
+          {%- assign sc_img    = sc_f[1] | strip -%}
+          {%- assign sc_purl   = sc_f[2] | strip -%}
+          {%- assign sc_vid    = sc_f[3] | strip -%}
+          {%- assign sc_nc     = sc_f[4] | strip | times: 100 | round -%}
+          {%- assign sc_oc     = sc_f[5] | strip | times: 100 | round -%}
+          {%- assign sc_rate   = sc_f[6] | strip -%}
+          {%- assign sc_revs   = sc_f[7] | strip -%}
+          {%- assign sc_badge  = "Smart Sales" -%}
+          {%- if sc_oc > sc_nc -%}
+            {%- assign sc_pct   = sc_oc | minus: sc_nc | times: 100.0 | divided_by: sc_oc | round -%}
+            {%- assign sc_badge = "-" | append: sc_pct | append: "%" -%}
+          {%- endif -%}
+          {%- assign sc_fmt_in  = sc_nc | append: "~" | append: sc_oc | split: "~" -%}
+          {%- assign sc_fmt_out = "" -%}
+          {%- for sc_v in sc_fmt_in -%}
+            {%- assign sc_c  = sc_v | plus: 0 -%}
+            {%- assign sc_i  = sc_c | divided_by: 100 | floor -%}
+            {%- assign sc_d  = sc_c | modulo: 100 -%}
+            {%- if sc_d < 10 -%}{%- assign sc_ds = sc_d | prepend: "0" -%}{%- else -%}{%- assign sc_ds = sc_d | append: "" -%}{%- endif -%}
+            {%- assign sc_is = sc_i | append: "" -%}
+            {%- assign sc_fmt_out = sc_fmt_out | append: sc_is | append: "," | append: sc_ds | append: "~" -%}
+          {%- endfor -%}
+          {%- assign sc_pf = sc_fmt_out | split: "~" -%}
+          {%- assign sc_full = 0 -%}
+          {%- if sc_rate != "" -%}{%- assign sc_full = sc_rate | plus: 0 | round -%}{%- endif -%}
+          {%- assign sc_rate_txt = sc_rate | replace: ".", "," -%}
+          {%- assign sc_add = sc_shop | append: "/cart/add?id=" | append: sc_vid | append: "&quantity=1" -%}
+          {%- assign sc_n   = sc_n | plus: 1 -%}
+          {%- assign sc_mod = sc_n | modulo: 3 -%}
+          {%- if sc_n > 1 and sc_mod == 1 -%}<!--[if mso]></tr><tr><![endif]-->{%- endif -%}
+          <!--[if mso]><td width="180" valign="top"><![endif]-->
+          <div class="sc-col" style="display:inline-block;width:100%;max-width:180px;vertical-align:top;font-size:14px;line-height:20px;text-align:left;">
+            <div style="padding:6px;">
+              <div class="sc-card" style="background-color:#FFFFFF;border:1px solid {{ sc_line }};border-radius:16px;padding:10px;">
+                <div style="font-size:0;line-height:0;"><span style="display:inline-block;background-color:{{ sc_red }};border-radius:7px;padding:3px 7px;font-family:{{ sc_font }};font-size:12px;line-height:15px;font-weight:800;color:#FFFFFF;white-space:nowrap;">{{ sc_badge }}</span></div>
+                <div style="margin-top:4px;height:116px;text-align:center;font-size:0;line-height:0;">
+                  <a href="{{ sc_purl }}" target="_blank" style="text-decoration:none;"><img src="{{ sc_img }}" width="116" alt="{{ sc_alt }}" style="display:inline-block;vertical-align:middle;width:auto;height:auto;max-width:100%;max-height:116px;border:0;outline:none;text-decoration:none;"></a>
+                </div>
+                <div class="sc-title" style="margin-top:8px;height:36px;overflow:hidden;font-family:{{ sc_font }};font-size:13px;line-height:18px;font-weight:600;color:{{ sc_ink }};"><a href="{{ sc_purl }}" target="_blank" style="color:{{ sc_ink }};text-decoration:none;line-height:inherit;">{{ sc_title2 }}</a></div>
+                <div style="margin-top:5px;height:16px;overflow:hidden;white-space:nowrap;font-family:{{ sc_font }};font-size:12px;line-height:16px;font-weight:400;color:#5F676C;">{% if sc_full > 0 %}<span class="sc-stars" style="font-family:Arial,Helvetica,sans-serif;font-size:12px;letter-spacing:1px;color:{{ sc_star }};">{% for sc_s in (1..5) %}{% if sc_s <= sc_full %}&#9733;{% else %}<span style="color:#D3D9DB;">&#9733;</span>{% endif %}{% endfor %}</span>&nbsp;<span style="font-weight:700;color:{{ sc_ink }};">{{ sc_rate_txt }}</span>{% if sc_revs != "" %} ({{ sc_revs }}){% endif %}{% else %}&nbsp;{% endif %}</div>
+                <div style="padding-top:6px;white-space:nowrap;font-family:{{ sc_font }};font-size:12px;line-height:15px;font-weight:400;color:#8A9095;">{% if sc_oc > sc_nc %}<span style="text-decoration:line-through;">{{ sc_pf[1] }} {{ sc_currency }}</span>{% else %}&nbsp;{% endif %}</div>
+                <div class="sc-price" style="white-space:nowrap;font-family:{{ sc_font }};font-size:17px;line-height:22px;font-weight:800;color:{{ sc_red }};">{{ sc_pf[0] }} {{ sc_currency }}</div>
+                <div style="padding-top:10px;">
+                  <div style="background-color:{{ sc_ink }};border-radius:999px;text-align:center;overflow:hidden;">
+                    <a class="sc-cta" href="{{ sc_add }}" target="_blank" style="display:block;padding:9px 6px;font-family:{{ sc_font }};font-size:13px;line-height:17px;font-weight:700;color:#FFFFFF;text-decoration:none;white-space:nowrap;"><span style="font-family:Arial,Helvetica,sans-serif;color:{{ sc_teal }};">+</span>&nbsp;{{ sc_top_cta }}</a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!--[if mso]></td><![endif]-->
+        {%- endfor -%}
+      </div>
+      <!--[if mso]></tr></table><![endif]-->
+    </td>
+  </tr>
+
+  <!-- ===================== SE ÎNCHEIE + BUTON ===================== -->
+  <tr>
+    <td class="sc-wrap" align="center" style="padding:20px 16px 0 16px;text-align:center;font-size:0;line-height:0;">
+      <!--[if mso]><table role="presentation" width="528" cellpadding="0" cellspacing="0" border="0" align="center"><tr><td><![endif]-->
+      <div style="display:inline-block;width:100%;max-width:528px;vertical-align:top;text-align:center;">
+        <div style="background-color:{{ sc_tile }};border:1px solid {{ sc_teal }};border-radius:999px;padding:12px 18px;font-family:{{ sc_font }};font-size:14px;line-height:20px;font-weight:400;color:#FFFFFF;">{{ sc_end_text }}</div>
+      </div>
+      <!--[if mso]></td></tr></table><![endif]-->
+    </td>
+  </tr>
+  <tr>
+    <td align="center" style="padding:22px 12px 0 12px;text-align:center;">
+      <!--[if mso]>
+      <v:roundrect xmlns:v="urn:schemas-microsoft-com:vml" xmlns:w="urn:schemas-microsoft-com:office:word" href="{{ sc_cta_url }}" style="height:52px;v-text-anchor:middle;width:270px;" arcsize="50%" stroke="f" fillcolor="{{ sc_teal }}">
+        <w:anchorlock/>
+        <center style="color:#000000;font-family:Arial,sans-serif;font-size:15px;font-weight:bold;">{{ sc_cta_text }}&nbsp;&nbsp;&#8594;</center>
+      </v:roundrect>
+      <![endif]-->
+      <!--[if !mso]><!-->
+      <a href="{{ sc_cta_url }}" target="_blank" style="display:inline-block;background-color:{{ sc_teal }};border-radius:999px;padding:16px 30px 16px 34px;font-family:{{ sc_font }};font-size:15px;line-height:20px;font-weight:700;color:#000000;text-decoration:none;">{{ sc_cta_text }}&nbsp;&nbsp;<span style="font-family:Arial,Helvetica,sans-serif;font-size:18px;line-height:20px;font-weight:700;color:#000000;">&#8594;</span></a>
+      <!--<![endif]-->
+    </td>
+  </tr>
+
+  <!-- ===================== NOTĂ ===================== -->
+  <tr>
+    <td align="center" style="padding:16px 24px 32px 24px;text-align:center;font-family:{{ sc_font }};font-size:12px;line-height:18px;font-weight:400;color:#75797C;">{{ sc_note }}</td>
+  </tr>
+
+</table>
