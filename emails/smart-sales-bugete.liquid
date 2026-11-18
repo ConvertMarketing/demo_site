@@ -7,9 +7,10 @@
   i se potrivește, și cumpărare dintr-un click.
   1. Pastilă „Smart Sales · până joi, 26 noiembrie” + titlu
      „Cât vrei să cheltui? / Noi am ales ofertele.” + text +
-     4 casete-index: Sub 20 lei · Sub 50 lei · Sub 100 lei · Pachete mari.
-  2. 4 secțiuni (câte una pe buget), fiecare cu produse în carduri albe,
-     2 pe rând (și pe desktop, și pe mobil): badge cu reducerea, poză,
+     4 casete-index: Pachete promo · Sub 100 lei · Sub 50 lei · Sub 20 lei.
+  2. 4 secțiuni: Pachete promo → Sub 100 lei → Sub 50 lei → Sub 20 lei,
+     câte 6 produse în carduri albe (3 pe rând desktop, 2 pe rând mobil):
+     badge cu reducerea, poză,
      titlu, nota cu stele, preț vechi tăiat + preț nou, „Economisești
      X lei” (calculat singur) și buton „+ Adaugă în coș”.
   3. Bandă „Ofertele Smart Sales se încheie joi, 26 noiembrie, la 23:59”
@@ -35,14 +36,14 @@
 {%- assign sb_pill      = "Smart Sales · până joi, 26 noiembrie" -%}
 {%- assign sb_title_1   = "Cât vrei să cheltui?" -%}
 {%- assign sb_title_2   = "Noi am ales ofertele." -%}   {%- comment -%} rândul colorat {%- endcomment -%}
-{%- assign sb_text      = "Am sortat ofertele Smart Sales pe bugete, de la produse sub 20 lei până la pachetele cu cea mai mare economie. Alegi, apeși și produsul e în&nbsp;coș." -%}
+{%- assign sb_text      = "Am sortat ofertele Smart Sales pe bugete, începând cu pachetele promo, unde economisești cel mai mult. Alegi, apeși și produsul e în&nbsp;coș." -%}
 {%- comment -%} Casetele-index: rând mic | rând mare {%- endcomment -%}
-{%- assign sb_index     = "sub|20 lei##sub|50 lei##sub|100 lei##pachete|mari" -%}
+{%- assign sb_index     = "pachete|promo##sub|100 lei##sub|50 lei##sub|20 lei" -%}
 
 {%- assign sb_save_lbl  = "Economisești" -%}
 {%- assign sb_card_cta  = "Adaugă în coș" -%}
 {%- assign sb_currency  = "lei" -%}
-{%- assign sb_title_max = 36 -%}
+{%- assign sb_title_max = 38 -%}
 
 {%- assign sb_end_text  = "Ofertele Smart Sales se încheie <strong>joi, 26 noiembrie, la 23:59</strong>." -%}
 {%- assign sb_cta_text  = "Vezi toate ofertele" -%}
@@ -73,35 +74,67 @@
   rămâne goale. Un buget fără produse nu apare. În texte NU folosi |.
 {%- endcomment -%}
 {%- capture sb_buget_1 -%}
-Sub 20 lei | Mici, dar le folosești în fiecare zi.
+Pachete promo | Aici economisești cel mai mult: până la 185 lei la un singur pachet.
 ##
-Șervețele Easy Clean White Soap | https://cdn.shopify.com/s/files/1/0834/0688/1063/files/white.jpg?v=1790923430&width=600&height=600&pad_color=ffffff | https://smartinoshop.ro/products/servetele-umede-sleepy-easyclean-white-soap-additive-multisuprafete-100-buc | 46949980537127 | 18.75 | 24.99 | 4.9 | 754
+18x Șervețele Sleepy Easy Clean | https://cdn.shopify.com/s/files/1/0834/0688/1063/files/PACHETESMARTINOBF_4_aa1d0eb5-9982-408f-89d6-9327b2bafa4e.png?v=1761833080&width=600&height=600&pad_color=ffffff | https://smartinoshop.ro/products/pachet-promo-18-x-servetele-umede-sleepy-easy-clean-multisuprafete-100-buc-1 | 57289704472957 | 239.99 | 425.89 | 5.0 | 1
 ##
-Balsam de rufe Kalyon, 750 ml | https://cdn.shopify.com/s/files/1/0834/0688/1063/products/kalyon-balsom-rufe-concentrat-white-flower750ml-911258.jpg?v=1695812138&width=600&height=600&pad_color=ffffff | https://smartinoshop.ro/products/kalyon-balsom-rufe-concentrat-white-flower750ml | 46771411255591 | 12.00 | 15.00 | 4.8 | 27
+12x Prosop de hârtie Papia Home | https://cdn.shopify.com/s/files/1/0834/0688/1063/files/3X_2_0ccff245-34db-4f4d-90f2-38c017150661.png?v=1776697124&width=600&height=600&pad_color=ffffff | https://smartinoshop.ro/products/12x-papia-home-prosop-cu-dispozitiv-de-agatare-250-buc | 58072357601661 | 171.74 | 254.04 |  | 
+##
+Mop Parex + 3x Lavete Easy Clean | https://cdn.shopify.com/s/files/1/0834/0688/1063/files/4_ef0c1a85-70a3-4f94-96b7-a2e8da2d8a4a.png?v=1787923568&width=600&height=600&pad_color=ffffff | https://smartinoshop.ro/products/pachet-promo-mop-cu-prindere-rapida-parex-lavete-umede-pentru-curatare-pardoseli-sleepy-easy-clean-mix | 57529958826365 | 109.99 | 166.99 | 5.0 | 8
+##
+3x Scutece Sleepy Natural, mărimea 7 | https://cdn.shopify.com/s/files/1/0834/0688/1063/files/Cadou_6_358cd324-7ba3-461c-8739-b8c9d497203b.png?v=1790765561&width=600&height=600&pad_color=ffffff | https://smartinoshop.ro/products/pachet-promo-3x-sleepy-natural-ultra-sensitive-double-marime-7-xxlarge | 48367572025639 | 96.59 | 146.97 | 4.9 | 48
+##
+4x Scutece adulți Actual XL + aleze | https://cdn.shopify.com/s/files/1/0834/0688/1063/files/3X-2026-07-21T113011.129.png?v=1784622648&width=600&height=600&pad_color=ffffff | https://smartinoshop.ro/products/4x-actual-scutece-adult-xl-30-buc | 57914348765565 | 220.48 | 275.60 | 5.0 | 7
+##
+Easy Clean Bucătărie/Baie 3+3 | https://cdn.shopify.com/s/files/1/0834/0688/1063/files/90909.png?v=1768852863&width=600&height=600&pad_color=ffffff | https://smartinoshop.ro/products/pachet-promo-4-sleepy-easy-clean-bucatarie-4-baie-cu-spuma-activa | 57705566372221 | 95.58 | 127.44 | 4.9 | 17
 {%- endcapture -%}
 
 {%- capture sb_buget_2 -%}
+Sub 100 lei | Favoritele cu cele mai bune note de la clienți.
+##
+Mop Parex + 10 șervețele umede | https://cdn.shopify.com/s/files/1/0834/0688/1063/files/pacheteparex_13.png?v=1787923296&width=600&height=600&pad_color=ffffff | https://smartinoshop.ro/products/mop-cu-prindere-rapida-parex-10-%C8%99erve%C8%9Bele-umede-pentru-cura%C8%9Bare | 56335346073981 | 67.92 | 84.90 | 5.0 | 189
+##
+3x Lavete pardoseli Easy Clean | https://cdn.shopify.com/s/files/1/0834/0688/1063/files/Cadou_6.png?v=1715795711&width=600&height=600&pad_color=ffffff | https://smartinoshop.ro/products/pachet-promo-3-x-lavete-umede-pentru-curatare-pardoseli-sleepy-easy-clean-50-buc | 48414063329575 | 58.88 | 78.50 | 5.0 | 85
+##
+Scutece adulți Actual Double, L | https://cdn.shopify.com/s/files/1/0834/0688/1063/products/scutece-textil-incontinenta-adulti-actual-double-marime-m-85-125-cm-30-bucati-copie-76-1173.jpg?v=1695812965&width=600&height=600&pad_color=ffffff | https://smartinoshop.ro/products/scutece-textil-incontinenta-adulti-actual-double-marime-l-100-150-cm-30-bucati | 46771588071719 | 51.20 | 63.99 | 4.9 | 239
+##
+Scutece-chilot Sleepy Sensitive XL | https://cdn.shopify.com/s/files/1/0834/0688/1063/files/WhatsAppImage2025-02-19at10.27.04.jpg?v=1739953651&width=600&height=600&pad_color=ffffff | https://smartinoshop.ro/products/scutece-tip-chilot-pentru-adul%C8%9Bi-sleepy-sensitive-marimea-m-130-170cm-30-buca%C8%9Bi | 55369249948029 | 79.92 | 99.90 | 4.9 | 27
+##
+Capsule rufe Wash & Free, 75 buc | https://cdn.shopify.com/s/files/1/0834/0688/1063/files/WF_Doypack_capsule_Jasmin_75.png?v=1761743431&width=600&height=600&pad_color=ffffff | https://smartinoshop.ro/products/detergent-capsule-pentru-rufe-wash-free-jasmine-lavender-cu-sapun-de-marsilia-75-capsule | 57286111101309 | 55.12 | 68.89 | 5.0 | 4
+##
+Easy Clean Bucătărie/Baie 2+2 | https://cdn.shopify.com/s/files/1/0834/0688/1063/files/6666.png?v=1768852780&width=600&height=600&pad_color=ffffff | https://smartinoshop.ro/products/pachet-promo-2-sleepy-easy-clean-bucatarie-2-baie-cu-spuma-activa | 57705565159805 | 67.47 | 89.96 | 5.0 | 6
+{%- endcapture -%}
+
+{%- capture sb_buget_3 -%}
 Sub 50 lei | Cele mai cumpărate, la preț Smart Sales.
 ##
 Scutece Sleepy Natural, mărimea 7 | https://cdn.shopify.com/s/files/1/0834/0688/1063/files/nr7-32_d9206a19-edf1-404b-aa15-2274feea9301.jpg?v=1790766684&width=600&height=600&pad_color=ffffff | https://smartinoshop.ro/products/scutece-sleepy-natural-ultra-sensitive-double-marime-7-xxlarge-20-30kg-32-bucati | 46771608256807 | 35.12 | 49.99 | 5.0 | 608
 ##
 3x Șervețele Easy Clean, 100 buc | https://cdn.shopify.com/s/files/1/0834/0688/1063/files/PACHETPROMOEASYCLEAN3BUC_3bd9595a-28fe-4f22-82c2-120ea98e7970.png?v=1701971056&width=600&height=600&pad_color=ffffff | https://smartinoshop.ro/products/pachet-promo-servetele-umede-sleepy-easy-clean-multisuprafete-100-buc | 47250312757543 | 49.99 | 70.99 | 4.9 | 754
-{%- endcapture -%}
-
-{%- capture sb_buget_3 -%}
-Sub 100 lei | Favoritele cu cele mai bune note de la clienți.
 ##
-Mop Parex + 10 șervețele umede | https://cdn.shopify.com/s/files/1/0834/0688/1063/files/pacheteparex_13.png?v=1787923296&width=600&height=600&pad_color=ffffff | https://smartinoshop.ro/products/mop-cu-prindere-rapida-parex-10-%C8%99erve%C8%9Bele-umede-pentru-cura%C8%9Bare | 56335346073981 | 67.92 | 84.90 | 5.0 | 189
+Periuță electrică JTF Sonic J40 | https://cdn.shopify.com/s/files/1/0834/0688/1063/files/2_f99dbe7d-8df8-465f-aaa9-3d6030bc1c17.jpg?v=1736430393&width=600&height=600&pad_color=ffffff | https://smartinoshop.ro/products/periuta-de-dinti-electrica-jtf-sonic-j40-6-capete-de-periere-negru | 55092190609789 | 43.50 | 58.00 | 5.0 | 25
 ##
-Scutece adulți Actual Double, L | https://cdn.shopify.com/s/files/1/0834/0688/1063/products/scutece-textil-incontinenta-adulti-actual-double-marime-m-85-125-cm-30-bucati-copie-76-1173.jpg?v=1695812965&width=600&height=600&pad_color=ffffff | https://smartinoshop.ro/products/scutece-textil-incontinenta-adulti-actual-double-marime-l-100-150-cm-30-bucati | 46771588071719 | 51.20 | 63.99 | 4.9 | 239
+Cremă Pyunkang Yul Kids & Baby | https://cdn.shopify.com/s/files/1/0834/0688/1063/files/cream1_new_550x_2b6e1eb9-6b82-43ac-82fd-9736a473743f.webp?v=1716487002&width=600&height=600&pad_color=ffffff | https://smartinoshop.ro/products/pyunkang-yul-kids-baby-cream-sweet-orange-crema-aroma-portocala-dulce-400ml | 48474905739559 | 28.93 | 44.50 | 4.9 | 7
+##
+Păturici absorbante Actual, 30 buc | https://cdn.shopify.com/s/files/1/0834/0688/1063/products/paturici-absorbante-pentru-pat-adult-actual-double-90x180-cm-30-bucati-copie-72-1243.jpg?v=1695812975&width=600&height=600&pad_color=ffffff | https://smartinoshop.ro/products/aleze-protectii-pentru-pat-adult-actual-double-90x60-cm-30-bucati | 46771591479591 | 27.20 | 33.99 | 4.9 | 239
+##
+Cap de duș Nard cu microfiltru | https://cdn.shopify.com/s/files/1/0834/0688/1063/files/ab86d6f9daaa3f34491c0d2daf189496.jpg?v=1716396035&width=600&height=600&pad_color=ffffff | https://smartinoshop.ro/products/nard-himalaya-herb-pure-water-para-de-dus-cu-1-microfiltru-de-apa | 48464030957863 | 27.16 | 38.80 | 5.0 | 16
 {%- endcapture -%}
 
 {%- capture sb_buget_4 -%}
-Pachete mari | Economia cea mai mare se face la pachete.
+Sub 20 lei | Mici, dar le folosești în fiecare zi.
 ##
-12x Șervețele Easy Clean, 100 buc | https://cdn.shopify.com/s/files/1/0834/0688/1063/files/PACHETPROMOEASYCLEAN12BUC.png?v=1701998513&width=600&height=600&pad_color=ffffff | https://smartinoshop.ro/products/pachet-promo-12-x-servetele-umede-sleepy-easy-clean-multisuprafete-100-buc | 47252069876007 | 159.99 | 254.99 | 4.9 | 754
+Șervețele Easy Clean White Soap | https://cdn.shopify.com/s/files/1/0834/0688/1063/files/white.jpg?v=1790923430&width=600&height=600&pad_color=ffffff | https://smartinoshop.ro/products/servetele-umede-sleepy-easyclean-white-soap-additive-multisuprafete-100-buc | 46949980537127 | 18.75 | 24.99 | 4.9 | 754
 ##
-12x Prosop de hârtie Papia Home | https://cdn.shopify.com/s/files/1/0834/0688/1063/files/3X_2_0ccff245-34db-4f4d-90f2-38c017150661.png?v=1776697124&width=600&height=600&pad_color=ffffff | https://smartinoshop.ro/products/12x-papia-home-prosop-cu-dispozitiv-de-agatare-250-buc | 58072357601661 | 171.74 | 254.04 |  | 
+Lavete pardoseli Easy Clean | https://cdn.shopify.com/s/files/1/0834/0688/1063/files/8206-750x750-depositphotos-bgremover_1.png?v=1715692376&width=600&height=600&pad_color=ffffff | https://smartinoshop.ro/products/lavete-umede-pentru-curatare-pardoseli-sleepy-easy-clean-white-soap-50buc | 48359346471207 | 19.50 | 25.99 | 4.9 | 754
+##
+Balsam de rufe Kalyon, 750 ml | https://cdn.shopify.com/s/files/1/0834/0688/1063/products/kalyon-balsom-rufe-concentrat-white-flower750ml-911258.jpg?v=1695812138&width=600&height=600&pad_color=ffffff | https://smartinoshop.ro/products/kalyon-balsom-rufe-concentrat-white-flower750ml | 46771411255591 | 12.00 | 15.00 | 4.8 | 27
+##
+Capsule vase TEMS 4-în-1, 36 buc | https://cdn.shopify.com/s/files/1/0834/0688/1063/files/WhatsApp_Image_2025-01-17_at_07.15.23.jpg?v=1737149496&width=600&height=600&pad_color=ffffff | https://smartinoshop.ro/products/tems-capsule-pentru-masina-de-spalat-vase-36-buc | 55092011630973 | 13.00 | 19.99 | 5.0 | 14
+##
+Pastă Scrub Daddy Tangerine Clean | https://cdn.shopify.com/s/files/1/0834/0688/1063/files/Pasta-de-curatat-universala-TANGERINE-CLEAN-cu-ingrediente-naturale-si-parfum-de-portocala-500g-5999546883787.jpg?v=1742832203&width=600&height=600&pad_color=ffffff | https://smartinoshop.ro/products/pasta-de-curatat-universala-tangerine-clean-500g-scrub-daddy | 55591665303933 | 17.18 | 22.90 | 4.7 | 6
+##
+Folie alimentară Macromax, 100 m | https://cdn.shopify.com/s/files/1/0834/0688/1063/files/2_e80310f2-9b17-4c76-8a9f-a1264b47b742.png?v=1736551683&width=600&height=600&pad_color=ffffff | https://smartinoshop.ro/products/macromax-folie-alimentara-100-m-cu-dispozitiv-de-taiere | 55096157929853 | 15.88 | 22.68 | 5.0 | 4
 {%- endcapture -%}
 
 {%- assign sb_bugete     = sb_buget_1 | append: "===" | append: sb_buget_2 | append: "===" | append: sb_buget_3 | append: "===" | append: sb_buget_4 | split: "===" -%}
@@ -116,10 +149,11 @@ Pachete mari | Economia cea mai mare se face la pachete.
     .sb-wrap { padding-left: 12px !important; padding-right: 12px !important; }
     .sb-h1 { font-size: 30px !important; line-height: 36px !important; }
     .sb-idx-big { font-size: 17px !important; }
-    .sb-card { padding: 9px !important; }
-    .sb-imgbox { height: 124px !important; }
-    .sb-img { max-height: 124px !important; }
-    .sb-price { font-size: 16px !important; }
+    .sb-col { width: 50% !important; max-width: 50% !important; }
+    .sb-card { padding: 8px !important; }
+    .sb-imgbox { height: 116px !important; }
+    .sb-img { max-height: 116px !important; }
+    .sb-price { font-size: 15px !important; }
     .sb-save-amt { font-size: 13px !important; }
     .sb-cta { font-size: 12px !important; padding: 9px 2px !important; }
   }
@@ -167,7 +201,7 @@ Pachete mari | Economia cea mai mare se face la pachete.
     {%- assign sb_name = sb_hdr[0] | strip -%}
     {%- assign sb_desc = sb_hdr[1] | strip %}
   <tr>
-    <td class="sb-wrap" align="left" style="padding:34px 22px 0 22px;text-align:left;">
+    <td class="sb-wrap" align="center" style="padding:36px 16px 0 16px;text-align:center;">
       <div style="font-family:{{ sb_font }};font-size:22px;line-height:28px;font-weight:800;color:{{ sb_head }};"><span style="display:inline-block;width:5px;height:20px;background-color:{{ sb_teal }};border-radius:3px;vertical-align:-2px;">&nbsp;</span>&nbsp; {{ sb_name }}</div>
       <div style="padding-top:2px;font-family:{{ sb_font }};font-size:14px;line-height:20px;font-weight:400;color:{{ sb_muted }};">{{ sb_desc }}</div>
     </td>
@@ -243,24 +277,24 @@ Pachete mari | Economia cea mai mare se face la pachete.
           {%- assign sb_rate_txt = sb_rate | replace: ".", "," -%}
           {%- assign sb_add = sb_shop | append: "/cart/add?id=" | append: sb_vid | append: "&quantity=1" -%}
           {%- assign sb_n   = sb_n | plus: 1 -%}
-          {%- assign sb_mod = sb_n | modulo: 2 -%}
+          {%- assign sb_mod = sb_n | modulo: 3 -%}
           {%- if sb_n > 1 and sb_mod == 1 -%}<!--[if mso]></tr><tr><![endif]-->{%- endif -%}
-          <!--[if mso]><td width="270" valign="top"><![endif]-->
-          <div class="sb-col" style="display:inline-block;width:50%;vertical-align:top;font-size:14px;line-height:20px;text-align:left;">
+          <!--[if mso]><td width="172" valign="top"><![endif]-->
+          <div class="sb-col" style="display:inline-block;width:100%;max-width:170px;vertical-align:top;font-size:14px;line-height:20px;text-align:left;">
             <div style="padding:6px;">
-              <div class="sb-card" style="background-color:#FFFFFF;border:1px solid {{ sb_line }};border-radius:16px;padding:12px;">
+              <div class="sb-card" style="background-color:#FFFFFF;border:1px solid {{ sb_line }};border-radius:16px;padding:10px;">
                 <div style="font-size:0;line-height:0;"><span style="display:inline-block;background-color:{{ sb_red }};border-radius:7px;padding:3px 8px;font-family:{{ sb_font }};font-size:13px;line-height:16px;font-weight:800;color:#FFFFFF;white-space:nowrap;">{{ sb_badge }}</span></div>
-                <div class="sb-imgbox" style="margin-top:4px;height:160px;text-align:center;font-size:0;line-height:0;">
-                  <a href="{{ sb_purl }}" target="_blank" style="text-decoration:none;"><img class="sb-img" src="{{ sb_img }}" width="160" alt="{{ sb_alt }}" style="display:inline-block;vertical-align:middle;width:auto;height:auto;max-width:100%;max-height:160px;border:0;outline:none;text-decoration:none;"></a>
+                <div class="sb-imgbox" style="margin-top:4px;height:124px;text-align:center;font-size:0;line-height:0;">
+                  <a href="{{ sb_purl }}" target="_blank" style="text-decoration:none;"><img class="sb-img" src="{{ sb_img }}" width="124" alt="{{ sb_alt }}" style="display:inline-block;vertical-align:middle;width:auto;height:auto;max-width:100%;max-height:124px;border:0;outline:none;text-decoration:none;"></a>
                 </div>
-                <div class="sb-title" style="margin-top:10px;height:36px;overflow:hidden;font-family:{{ sb_font }};font-size:12px;line-height:18px;font-weight:600;color:{{ sb_ink }};"><a href="{{ sb_purl }}" target="_blank" style="color:{{ sb_ink }};text-decoration:none;line-height:inherit;">{{ sb_title2 }}</a></div>
+                <div class="sb-title" style="margin-top:8px;height:36px;overflow:hidden;font-family:{{ sb_font }};font-size:12.5px;line-height:18px;font-weight:600;color:{{ sb_ink }};"><a href="{{ sb_purl }}" target="_blank" style="color:{{ sb_ink }};text-decoration:none;line-height:inherit;">{{ sb_title2 }}</a></div>
                 <div style="margin-top:5px;height:16px;overflow:hidden;white-space:nowrap;font-family:{{ sb_font }};font-size:12px;line-height:16px;font-weight:400;color:#5F676C;">{% if sb_full > 0 %}<span class="sb-stars" style="font-family:Arial,Helvetica,sans-serif;font-size:12px;letter-spacing:1px;color:{{ sb_star }};">{% for sb_s in (1..5) %}{% if sb_s <= sb_full %}&#9733;{% else %}<span style="color:#D3D9DB;">&#9733;</span>{% endif %}{% endfor %}</span>&nbsp;<span style="font-weight:700;color:{{ sb_ink }};">{{ sb_rate_txt }}</span>{% if sb_revs != "" %} ({{ sb_revs }}){% endif %}{% else %}&nbsp;{% endif %}</div>
                 <div style="padding-top:6px;white-space:nowrap;font-family:{{ sb_font }};font-size:12px;line-height:15px;font-weight:400;color:#8A9095;">{% if sb_oc > sb_nc %}<span style="text-decoration:line-through;">{{ sb_pf[1] }} {{ sb_currency }}</span>{% else %}&nbsp;{% endif %}</div>
-                <div class="sb-price" style="white-space:nowrap;font-family:{{ sb_font }};font-size:19px;line-height:24px;font-weight:800;color:{{ sb_red }};">{{ sb_pf[0] }} {{ sb_currency }}</div>
+                <div class="sb-price" style="white-space:nowrap;font-family:{{ sb_font }};font-size:17px;line-height:22px;font-weight:800;color:{{ sb_red }};">{{ sb_pf[0] }} {{ sb_currency }}</div>
                 <!-- economisești -->
                 <div style="margin-top:8px;background-color:{{ sb_teal_soft }};border-radius:10px;padding:6px 8px;">
                   <div style="font-family:{{ sb_font }};font-size:9.5px;line-height:12px;font-weight:700;letter-spacing:1px;color:{{ sb_teal_dark }};text-transform:uppercase;white-space:nowrap;">{{ sb_save_lbl | upcase }}</div>
-                  <div class="sb-save-amt" style="font-family:{{ sb_font }};font-size:15px;line-height:19px;font-weight:800;color:{{ sb_teal_dark }};white-space:nowrap;">{% if sb_sc > 0 %}{{ sb_pf[2] }} {{ sb_currency }}{% else %}&nbsp;{% endif %}</div>
+                  <div class="sb-save-amt" style="font-family:{{ sb_font }};font-size:14px;line-height:18px;font-weight:800;color:{{ sb_teal_dark }};white-space:nowrap;">{% if sb_sc > 0 %}{{ sb_pf[2] }} {{ sb_currency }}{% else %}&nbsp;{% endif %}</div>
                 </div>
                 <!-- buton -->
                 <div style="padding-top:10px;">
