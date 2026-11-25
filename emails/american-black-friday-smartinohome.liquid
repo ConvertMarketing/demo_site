@@ -1,0 +1,309 @@
+{%- comment -%}
+=====================================================================
+  EMAIL „AMERICAN BLACK FRIDAY” — SMARTINO HOME
+  (−25% la toate produsele, 27–30 noiembrie 2026, vineri–luni,
+   online și în magazinul din Snagov; reducerea se aplică automat în coș)
+---------------------------------------------------------------------
+  Se pune SUB bannerul „American Black Friday · 25% reducere”.
+  Fundal gri închis ca în banner, accente coral #E16065 și turcoaz.
+  1. Pastilă coral „A început · 27–30 noiembrie” + titlu
+     „Toată casa, / cu 25% mai puțin.” + text +
+     3 casete: reducere −25% · online și Snagov · ultima zi 30.11.
+  2. „Cele mai vândute, acum cu −25%”: câte un produs din 6 categorii,
+     în carduri albe (3 pe rând desktop, 2 pe rând mobil): badge −25%,
+     eticheta „Top”, poză, categoria, titlu, preț întreg tăiat + preț
+     cu −25%, „Economisești X lei” (calculat singur) și „+ Adaugă în coș”.
+  3. Caseta „Te așteptăm și în magazinul din Snagov” + link spre hartă.
+  4. Bandă „Oferta se încheie luni, 30 noiembrie” + buton coral
+     „Vezi toate produsele →” (ca în banner) + nota din banner.
+
+  ORDINEA ÎN SHOPIFY EMAIL
+  1. Bannerul American Black Friday Smartino Home
+  2. Custom Liquid cu ACEST fișier
+
+  BUTONUL „ADAUGĂ ÎN COȘ” = smartinohome.ro/cart/add?id=ID&quantity=1
+  (pune produsul în coș și deschide coșul). Reducerea de 25% o aplică
+  magazinul automat în coș.
+
+  Produsele: cele mai vândute din fiecare categorie (ordonarea „cele
+  mai vândute” de pe site), doar dintre cele fără altă reducere, ca să
+  aibă sigur −25%. Prețul întreg și prețul cu −25% sunt cele de pe
+  pagina American Black Friday din 25 noiembrie 2026.
+=====================================================================
+{%- endcomment -%}
+
+{%- comment -%} ===== 1. SETĂRI ===== {%- endcomment -%}
+{%- assign ah_shop      = "https://smartinohome.ro" -%}
+{%- assign ah_pill      = "A început · 27–30 noiembrie" -%}
+{%- assign ah_title_1   = "Toată casa," -%}
+{%- assign ah_title_2   = "cu 25% mai&nbsp;puțin." -%}   {%- comment -%} rândul colorat {%- endcomment -%}
+{%- assign ah_intro     = "De vineri până luni, ai 25% reducere la toate produsele Smartino Home, online și în magazinul din Snagov. Reducerea se aplică automat în coș, fără&nbsp;cod." -%}
+{%- comment -%} Casetele: rând mic | rând mare {%- endcomment -%}
+{%- assign ah_stats     = "reducere|−25%##online și|Snagov##ultima zi|30.11" -%}
+
+{%- assign ah_sec_title = "Cele mai vândute, acum cu&nbsp;−25%" -%}
+{%- assign ah_sec_text  = "Câte un favorit din 6&nbsp;categorii&nbsp;diferite." -%}
+{%- assign ah_rank      = "Top" -%}               {%- comment -%} eticheta din colțul cardului; gol = fără {%- endcomment -%}
+
+{%- assign ah_save_lbl  = "Economisești" -%}
+{%- assign ah_card_cta  = "Adaugă în coș" -%}
+{%- assign ah_currency  = "lei" -%}
+{%- assign ah_title_max = 38 -%}
+
+{%- comment -%} Caseta cu magazinul din Snagov (gol la ah_store_text = fără casetă) {%- endcomment -%}
+{%- assign ah_store_lbl  = "Și în magazin" -%}
+{%- assign ah_store_text = "Te așteptăm și în magazinul <strong>SMARTINO Home din Snagov</strong>, cu aceeași reducere de&nbsp;25%." -%}
+{%- assign ah_store_addr = "Snagov Plaza, DN1, Tâncăbești" -%}
+{%- assign ah_store_link = "Vezi pe hartă" -%}
+{%- assign ah_store_url  = "https://www.google.com/maps/search/?api=1&query=Smartino+Home+Snagov+Plaza+Tancabesti" -%}
+
+{%- assign ah_end_text  = "Oferta American Black Friday se încheie <strong>luni, 30 noiembrie</strong>." -%}
+{%- assign ah_cta_text  = "Vezi toate produsele" -%}
+{%- assign ah_cta_url   = "https://smartinohome.ro/pages/american-black-friday" -%}
+{%- assign ah_note      = "* Ofertă valabilă în perioada 27–30.11.2026, pe smartinohome.ro și în magazinul fizic SMARTINO Home din Snagov. Reducerea de 25% se aplică automat în coș, respectiv la casa de marcat. Nu se cumulează cu alte campanii și nu se aplică produselor incluse în alte campanii promoționale." -%}
+
+{%- comment -%} Culori (din banner) și font {%- endcomment -%}
+{%- assign ah_bg        = "#393939" -%}           {%- comment -%} gri închis din banner {%- endcomment -%}
+{%- assign ah_head      = "#FFFFFF" -%}           {%- comment -%} titluri {%- endcomment -%}
+{%- assign ah_teal      = "#6CC0CC" -%}           {%- comment -%} accent turcoaz {%- endcomment -%}
+{%- assign ah_wine      = "#E16065" -%}           {%- comment -%} accent coral (pastilă, badge, buton) {%- endcomment -%}
+{%- assign ah_price     = "#D2434A" -%}           {%- comment -%} prețul cu reducere {%- endcomment -%}
+{%- assign ah_muted     = "#C9CBCC" -%}           {%- comment -%} textele de pe gri {%- endcomment -%}
+{%- assign ah_tile      = "#2C2C2C" -%}           {%- comment -%} casetele {%- endcomment -%}
+{%- assign ah_tile_line = "#4A4A4A" -%}
+{%- assign ah_teal_dark = "#2F7F8A" -%}
+{%- assign ah_teal_soft = "#E6F4F6" -%}           {%- comment -%} fundal „Economisești” {%- endcomment -%}
+{%- assign ah_btn       = "#1F1F1F" -%}           {%- comment -%} butonul din card și eticheta Top {%- endcomment -%}
+{%- assign ah_ink       = "#151515" -%}
+{%- assign ah_line      = "#DDE1E2" -%}
+{%- assign ah_font      = "'Poppins', Arial, Helvetica, sans-serif" -%}
+
+{%- comment -%}
+  ===== 2. PRODUSE =====
+  Câte un produs pe bloc, separate prin ##
+     Categorie | Titlu | URL imagine | URL produs | ID variantă | preț cu −25% | preț întreg
+  Prețurile cu punct (ex. 88.94). În texte NU folosi |.
+{%- endcomment -%}
+{%- capture ah_products -%}
+Crăciun | Difuzor Elan, pin și scorțișoară | https://cdn.shopify.com/s/files/1/1050/9189/1539/files/208546A_DEB1.jpg?v=1788786548&width=600&height=600&pad_color=ffffff | https://smartinohome.ro/products/difuzor-de-craciun-parfum-elan-pin-scortisoara-150-ml | 53657874006355 | 88.94 | 118.59
+##
+Lumânări și parfum | Candelabru cu 3 brațe, auriu, 27 cm | https://cdn.shopify.com/s/files/1/1050/9189/1539/files/123154A_DEB1_10ff7a63-d81b-4ef8-b7cd-64ae20402850.jpg?v=1787221238&width=600&height=600&pad_color=ffffff | https://smartinohome.ro/products/candelabru-argintiu-cu-3-brate-27-cm-metal | 54637838991699 | 49.42 | 65.89
+##
+Mobilier interior | Măsuță de cafea „Leopard”, auriu | https://cdn.shopify.com/s/files/1/1050/9189/1539/files/197754_DEB1_16be0878-d74b-42e7-bf37-15783c57b823.jpg?v=1781190821&width=600&height=600&pad_color=ffffff | https://smartinohome.ro/products/masuta-de-cafea-leopard-auriu-d-40-cm | 53608504820051 | 328.79 | 438.39
+##
+Textile | Pilotă bebeluș din lână 100% | https://cdn.shopify.com/s/files/1/1050/9189/1539/files/cotton-box-100-yun-bebek-yorgani-431.jpg?v=1787135758&width=600&height=600&pad_color=ffffff | https://smartinohome.ro/products/pilota-bebelus-100-lana | 54630025920851 | 143.17 | 190.89
+##
+Iluminat | Lampă de exterior „Cody”, auriu | https://cdn.shopify.com/s/files/1/1050/9189/1539/files/202613I_DEB1_cb4d4474-4e75-420e-ac7a-1e86d717c779.jpg?v=1781192518&width=600&height=600&pad_color=ffffff | https://smartinohome.ro/products/lampa-de-exterior-cody-auriu-37x11-cm | 53659044348243 | 65.92 | 87.89
+##
+Camera copiilor | Sticlă termos copii „Angel”, 350 ml | https://cdn.shopify.com/s/files/1/1050/9189/1539/files/203763A_DEB1_e8307215-d05b-49c2-8d69-6bcd7bded56e.jpg?v=1781193541&width=600&height=600&pad_color=ffffff | https://smartinohome.ro/products/sticla-termos-pentru-copii-angel-roz-350-ml | 53656967020883 | 43.87 | 58.49
+{%- endcapture -%}
+
+{%- assign ah_list       = ah_products | split: "##" -%}
+{%- assign ah_stats_list = ah_stats | split: "##" -%}
+
+{%- comment -%} ===== 3. ȘABLON (nu e nevoie să modifici mai jos) ===== {%- endcomment -%}
+<!--[if !mso]><!-->
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800&display=swap" rel="stylesheet">
+<!--<![endif]-->
+<style>
+  @media only screen and (max-width: 480px) {
+    .ah-wrap { padding-left: 12px !important; padding-right: 12px !important; }
+    .ah-h1 { font-size: 26px !important; line-height: 34px !important; }
+    .ah-stat-big { font-size: 18px !important; }
+    .ah-col { width: 50% !important; max-width: 50% !important; }
+    .ah-card { padding: 8px !important; }
+    .ah-imgbox { height: 116px !important; }
+    .ah-img { max-height: 116px !important; }
+    .ah-price { font-size: 15px !important; }
+    .ah-save-amt { font-size: 13px !important; }
+    .ah-cta { font-size: 12px !important; padding: 9px 2px !important; }
+    .ah-btn-main { font-size: 14px !important; padding: 15px 24px 15px 28px !important; }
+  }
+  @media only screen and (max-width: 350px) {
+    .ah-h1 { font-size: 23px !important; line-height: 30px !important; }
+    .ah-stat-big { font-size: 16px !important; }
+    .ah-title { font-size: 11.5px !important; line-height: 17px !important; height: 34px !important; }
+  }
+</style>
+<table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" bgcolor="{{ ah_bg }}" style="background-color:{{ ah_bg }};">
+  {%- comment -%} --- intro --- {%- endcomment %}
+  <tr>
+    <td class="ah-wrap" align="center" style="padding:30px 16px 0 16px;text-align:center;">
+      <span style="display:inline-block;background-color:{{ ah_wine }};border-radius:999px;padding:7px 16px;font-family:{{ ah_font }};font-size:12px;line-height:14px;font-weight:800;letter-spacing:1.2px;color:#FFFFFF;text-transform:uppercase;">{{ ah_pill | upcase }}</span>
+      <div class="ah-h1" style="padding-top:16px;font-family:{{ ah_font }};font-size:27px;line-height:35px;font-weight:800;color:{{ ah_head }};">{{ ah_title_1 }}<br><span style="color:{{ ah_teal }};">{{ ah_title_2 }}</span></div>
+      <div style="padding-top:12px;font-size:0;line-height:0;"><div style="display:inline-block;max-width:470px;vertical-align:top;font-family:{{ ah_font }};font-size:15px;line-height:23px;font-weight:400;color:{{ ah_muted }};">{{ ah_intro }}</div></div>
+      <div style="max-width:480px;margin:0 auto;padding-top:20px;font-size:0;line-height:0;text-align:center;">
+        <!--[if mso]><table role="presentation" width="480" cellpadding="0" cellspacing="0" border="0" align="center"><tr><![endif]-->
+        {%- for ah_x in ah_stats_list -%}
+          {%- unless ah_x contains "|" -%}{%- continue -%}{%- endunless -%}
+          {%- assign ah_xp = ah_x | split: "|" %}
+        <!--[if mso]><td width="160" valign="top"><![endif]-->
+        <div style="display:inline-block;width:33.33%;vertical-align:top;">
+          <div style="padding:0 3px;">
+            <div style="background-color:{{ ah_tile }};border:1px solid {{ ah_tile_line }};border-radius:14px;padding:10px 2px 11px 2px;text-align:center;">
+              <div style="font-family:{{ ah_font }};font-size:10px;line-height:13px;font-weight:700;letter-spacing:1px;color:{{ ah_muted }};text-transform:uppercase;white-space:nowrap;">{{ ah_xp[0] | strip }}</div>
+              <div class="ah-stat-big" style="padding-top:2px;font-family:{{ ah_font }};font-size:20px;line-height:24px;font-weight:800;color:{{ ah_teal }};white-space:nowrap;">{{ ah_xp[1] | strip }}</div>
+            </div>
+          </div>
+        </div>
+        <!--[if mso]></td><![endif]-->
+        {%- endfor %}
+        <!--[if mso]></tr></table><![endif]-->
+      </div>
+    </td>
+  </tr>
+  {%- comment -%} --- titlul secțiunii --- {%- endcomment %}
+  <tr>
+    <td class="ah-wrap" align="center" style="padding:34px 16px 0 16px;text-align:center;">
+      <div style="font-family:{{ ah_font }};font-size:22px;line-height:28px;font-weight:800;color:{{ ah_head }};"><span style="display:inline-block;width:5px;height:20px;background-color:{{ ah_teal }};border-radius:3px;vertical-align:-2px;">&nbsp;</span>&nbsp; {{ ah_sec_title }}</div>
+      <div style="padding-top:2px;font-family:{{ ah_font }};font-size:14px;line-height:20px;font-weight:400;color:{{ ah_muted }};">{{ ah_sec_text }}</div>
+    </td>
+  </tr>
+  {%- comment -%} --- produsele --- {%- endcomment %}
+  <tr>
+    <td align="center" style="padding:10px 10px 0 10px;text-align:center;font-size:0;line-height:0;">
+      <!--[if mso]><table role="presentation" width="540" cellpadding="0" cellspacing="0" border="0" align="center"><tr><![endif]-->
+      <div style="display:inline-block;width:100%;max-width:540px;vertical-align:top;font-size:0;line-height:0;text-align:center;">
+        {%- assign ah_n = 0 -%}
+        {%- for ah_item in ah_list -%}
+          {%- unless ah_item contains "|" -%}{%- continue -%}{%- endunless -%}
+          {%- assign ah_f      = ah_item | append: " | | | " | split: "|" -%}
+          {%- assign ah_cat    = ah_f[0] | strip | escape -%}
+          {%- assign ah_title2 = ah_f[1] | strip -%}
+          {%- if ah_title2.size > ah_title_max -%}
+            {%- assign ah_cut   = ah_title2 | slice: 0, ah_title_max -%}
+            {%- assign ah_next  = ah_title2 | slice: ah_title_max, 1 -%}
+            {%- assign ah_last  = ah_cut | slice: -1 -%}
+            {%- if ah_next == " " or ah_last == " " -%}
+              {%- assign ah_title2 = ah_cut | strip -%}
+            {%- else -%}
+              {%- assign ah_words = ah_cut | split: " " -%}
+              {%- assign ah_title2 = "" -%}
+              {%- for ah_w in ah_words -%}
+                {%- unless forloop.last -%}{%- assign ah_title2 = ah_title2 | append: ah_w | append: " " -%}{%- endunless -%}
+              {%- endfor -%}
+              {%- assign ah_title2 = ah_title2 | strip -%}
+            {%- endif -%}
+            {%- assign ah_lc = ah_title2 | slice: -1 -%}
+            {%- if ah_lc == "+" or ah_lc == "," or ah_lc == "-" or ah_lc == "–" or ah_lc == ":" or ah_lc == "(" -%}
+              {%- assign ah_len    = ah_title2.size | minus: 1 -%}
+              {%- assign ah_title2 = ah_title2 | slice: 0, ah_len | strip -%}
+            {%- endif -%}
+            {%- if ah_title2 == "" -%}{%- assign ah_title2 = ah_cut -%}{%- endif -%}
+            {%- assign ah_title2 = ah_title2 | append: "…" -%}
+          {%- endif -%}
+          {%- assign ah_title2 = ah_title2 | escape -%}
+          {%- assign ah_alt    = ah_f[1] | strip | escape -%}
+          {%- assign ah_img    = ah_f[2] | strip -%}
+          {%- assign ah_purl   = ah_f[3] | strip -%}
+          {%- assign ah_vid    = ah_f[4] | strip -%}
+          {%- assign ah_nc     = ah_f[5] | strip | times: 100 | round -%}
+          {%- assign ah_oc     = ah_f[6] | strip | times: 100 | round -%}
+          {%- assign ah_sc     = 0 -%}
+          {%- assign ah_badge  = "Black Friday" -%}
+          {%- if ah_oc > ah_nc -%}
+            {%- assign ah_sc    = ah_oc | minus: ah_nc -%}
+            {%- assign ah_pct   = ah_sc | times: 100.0 | divided_by: ah_oc | round -%}
+            {%- assign ah_badge = "-" | append: ah_pct | append: "%" -%}
+          {%- endif -%}
+          {%- comment -%} formatare prețuri: 15999 → 159,99 ; 434673 → 4.346,73 {%- endcomment -%}
+          {%- assign ah_fmt_in  = ah_nc | append: "~" | append: ah_oc | append: "~" | append: ah_sc | split: "~" -%}
+          {%- assign ah_fmt_out = "" -%}
+          {%- for ah_v in ah_fmt_in -%}
+            {%- assign ah_c  = ah_v | plus: 0 -%}
+            {%- assign ah_i  = ah_c | divided_by: 100 | floor -%}
+            {%- assign ah_d  = ah_c | modulo: 100 -%}
+            {%- if ah_d < 10 -%}{%- assign ah_ds = ah_d | prepend: "0" -%}{%- else -%}{%- assign ah_ds = ah_d | append: "" -%}{%- endif -%}
+            {%- if ah_i >= 1000 -%}
+              {%- assign ah_th = ah_i | divided_by: 1000 | floor -%}
+              {%- assign ah_r  = ah_i | modulo: 1000 -%}
+              {%- if ah_r < 10 -%}{%- assign ah_rs = ah_r | prepend: "00" -%}{%- elsif ah_r < 100 -%}{%- assign ah_rs = ah_r | prepend: "0" -%}{%- else -%}{%- assign ah_rs = ah_r | append: "" -%}{%- endif -%}
+              {%- assign ah_is = ah_th | append: "." | append: ah_rs -%}
+            {%- else -%}
+              {%- assign ah_is = ah_i | append: "" -%}
+            {%- endif -%}
+            {%- assign ah_fmt_out = ah_fmt_out | append: ah_is | append: "," | append: ah_ds | append: "~" -%}
+          {%- endfor -%}
+          {%- assign ah_pf = ah_fmt_out | split: "~" -%}
+          {%- assign ah_add = ah_shop | append: "/cart/add?id=" | append: ah_vid | append: "&quantity=1" -%}
+          {%- assign ah_n   = ah_n | plus: 1 -%}
+          {%- assign ah_mod = ah_n | modulo: 3 -%}
+          {%- if ah_n > 1 and ah_mod == 1 -%}<!--[if mso]></tr><tr><![endif]-->{%- endif -%}
+          <!--[if mso]><td width="172" valign="top"><![endif]-->
+          <div class="ah-col" style="display:inline-block;width:100%;max-width:170px;vertical-align:top;font-size:14px;line-height:20px;text-align:left;">
+            <div style="padding:6px;">
+              <div class="ah-card" style="background-color:#FFFFFF;border:1px solid {{ ah_line }};border-radius:16px;padding:10px;">
+                <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0"><tr>
+                  <td align="left" style="text-align:left;font-size:0;line-height:0;"><span style="display:inline-block;background-color:{{ ah_wine }};border-radius:7px;padding:3px 8px;font-family:{{ ah_font }};font-size:13px;line-height:16px;font-weight:800;color:#FFFFFF;white-space:nowrap;">{{ ah_badge }}</span></td>
+                  {%- if ah_rank != "" %}
+                  <td align="right" style="text-align:right;font-size:0;line-height:0;"><span style="display:inline-block;background-color:{{ ah_btn }};border-radius:7px;padding:3px 7px;font-family:{{ ah_font }};font-size:11px;line-height:16px;font-weight:800;letter-spacing:0.5px;color:#FFFFFF;white-space:nowrap;text-transform:uppercase;"><span style="font-family:Arial,Helvetica,sans-serif;color:{{ ah_teal }};">&#9733;</span> {{ ah_rank | upcase }}</span></td>
+                  {%- endif %}
+                </tr></table>
+                <div class="ah-imgbox" style="margin-top:4px;height:124px;text-align:center;font-size:0;line-height:0;">
+                  <a href="{{ ah_purl }}" target="_blank" style="text-decoration:none;"><img class="ah-img" src="{{ ah_img }}" width="124" alt="{{ ah_alt }}" style="display:inline-block;vertical-align:middle;width:auto;height:auto;max-width:100%;max-height:124px;border:0;outline:none;text-decoration:none;"></a>
+                </div>
+                <div class="ah-cat" style="margin-top:8px;height:15px;overflow:hidden;white-space:nowrap;text-overflow:ellipsis;font-family:{{ ah_font }};font-size:11px;line-height:15px;font-weight:700;color:{{ ah_teal_dark }};">{{ ah_cat }}</div>
+                <div class="ah-title" style="margin-top:2px;height:36px;overflow:hidden;font-family:{{ ah_font }};font-size:12.5px;line-height:18px;font-weight:600;color:{{ ah_ink }};"><a href="{{ ah_purl }}" target="_blank" style="color:{{ ah_ink }};text-decoration:none;line-height:inherit;">{{ ah_title2 }}</a></div>
+                <div style="padding-top:6px;white-space:nowrap;font-family:{{ ah_font }};font-size:12px;line-height:15px;font-weight:400;color:#8A9095;">{% if ah_oc > ah_nc %}<span style="text-decoration:line-through;">{{ ah_pf[1] }} {{ ah_currency }}</span>{% else %}&nbsp;{% endif %}</div>
+                <div class="ah-price" style="white-space:nowrap;font-family:{{ ah_font }};font-size:17px;line-height:22px;font-weight:800;color:{{ ah_price }};">{{ ah_pf[0] }} {{ ah_currency }}</div>
+                <div style="margin-top:8px;background-color:{{ ah_teal_soft }};border-radius:10px;padding:6px 8px;">
+                  <div style="font-family:{{ ah_font }};font-size:9.5px;line-height:12px;font-weight:700;letter-spacing:1px;color:{{ ah_teal_dark }};text-transform:uppercase;white-space:nowrap;">{{ ah_save_lbl | upcase }}</div>
+                  <div class="ah-save-amt" style="font-family:{{ ah_font }};font-size:14px;line-height:18px;font-weight:800;color:{{ ah_teal_dark }};white-space:nowrap;">{% if ah_sc > 0 %}{{ ah_pf[2] }} {{ ah_currency }}{% else %}&nbsp;{% endif %}</div>
+                </div>
+                <div style="padding-top:10px;">
+                  <div style="background-color:{{ ah_btn }};border-radius:999px;text-align:center;overflow:hidden;">
+                    <a class="ah-cta" href="{{ ah_add }}" target="_blank" style="display:block;padding:10px 6px;font-family:{{ ah_font }};font-size:13px;line-height:17px;font-weight:700;color:#FFFFFF;text-decoration:none;white-space:nowrap;"><span style="font-family:Arial,Helvetica,sans-serif;color:{{ ah_teal }};">+</span>&nbsp;{{ ah_card_cta }}</a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!--[if mso]></td><![endif]-->
+        {%- endfor -%}
+      </div>
+      <!--[if mso]></tr></table><![endif]-->
+    </td>
+  </tr>
+  {%- comment -%} --- magazinul din Snagov --- {%- endcomment -%}
+  {%- if ah_store_text != "" %}
+  <tr>
+    <td class="ah-wrap" align="center" style="padding:30px 16px 0 16px;text-align:center;font-size:0;line-height:0;">
+      <!--[if mso]><table role="presentation" width="528" cellpadding="0" cellspacing="0" border="0" align="center"><tr><td><![endif]-->
+      <div style="display:inline-block;width:100%;max-width:528px;vertical-align:top;text-align:center;">
+        <div style="background-color:#FFFFFF;border-radius:20px;padding:20px 20px 20px 20px;text-align:center;">
+          <div style="font-size:0;line-height:0;"><span style="display:inline-block;background-color:{{ ah_wine }};border-radius:999px;padding:5px 12px;font-family:{{ ah_font }};font-size:11px;line-height:14px;font-weight:800;letter-spacing:1.2px;color:#FFFFFF;text-transform:uppercase;">{{ ah_store_lbl | upcase }}</span></div>
+          <div style="padding-top:10px;font-family:{{ ah_font }};font-size:15px;line-height:22px;font-weight:400;color:{{ ah_ink }};">{{ ah_store_text }}</div>
+          <div style="padding-top:4px;font-family:{{ ah_font }};font-size:13px;line-height:19px;font-weight:400;color:#5F6366;">{{ ah_store_addr }}{% if ah_store_url != "" %} &middot; <a href="{{ ah_store_url }}" target="_blank" style="color:{{ ah_teal_dark }};font-weight:700;text-decoration:underline;">{{ ah_store_link }}&nbsp;&#8594;</a>{% endif %}</div>
+        </div>
+      </div>
+      <!--[if mso]></td></tr></table><![endif]-->
+    </td>
+  </tr>
+  {%- endif %}
+  {%- comment -%} --- final --- {%- endcomment %}
+  <tr>
+    <td class="ah-wrap" align="center" style="padding:16px 16px 0 16px;text-align:center;font-size:0;line-height:0;">
+      <!--[if mso]><table role="presentation" width="528" cellpadding="0" cellspacing="0" border="0" align="center"><tr><td><![endif]-->
+      <div style="display:inline-block;width:100%;max-width:528px;vertical-align:top;text-align:center;">
+        <div style="background-color:{{ ah_tile }};border:1px solid {{ ah_teal }};border-radius:999px;padding:12px 18px;font-family:{{ ah_font }};font-size:14px;line-height:20px;font-weight:400;color:#FFFFFF;">{{ ah_end_text }}</div>
+      </div>
+      <!--[if mso]></td></tr></table><![endif]-->
+    </td>
+  </tr>
+  <tr>
+    <td align="center" style="padding:22px 12px 0 12px;text-align:center;">
+      <!--[if mso]>
+      <v:roundrect xmlns:v="urn:schemas-microsoft-com:vml" xmlns:w="urn:schemas-microsoft-com:office:word" href="{{ ah_cta_url }}" style="height:52px;v-text-anchor:middle;width:300px;" arcsize="50%" stroke="f" fillcolor="{{ ah_wine }}">
+        <w:anchorlock/>
+        <center style="color:#FFFFFF;font-family:Arial,sans-serif;font-size:15px;font-weight:bold;letter-spacing:1px;">{{ ah_cta_text | upcase }}&nbsp;&nbsp;&#8594;</center>
+      </v:roundrect>
+      <![endif]-->
+      <!--[if !mso]><!-->
+      <a class="ah-btn-main" href="{{ ah_cta_url }}" target="_blank" style="display:inline-block;background-color:{{ ah_wine }};border-radius:999px;padding:16px 30px 16px 34px;font-family:{{ ah_font }};font-size:15px;line-height:20px;font-weight:800;letter-spacing:1px;color:#FFFFFF;text-decoration:none;text-transform:uppercase;">{{ ah_cta_text | upcase }}&nbsp;&nbsp;<span style="font-family:Arial,Helvetica,sans-serif;font-size:18px;line-height:20px;font-weight:700;color:#FFFFFF;">&#8594;</span></a>
+      <!--<![endif]-->
+    </td>
+  </tr>
+  <tr>
+    <td align="center" style="padding:16px 24px 32px 24px;text-align:center;font-family:{{ ah_font }};font-size:12px;line-height:18px;font-weight:400;color:#A9ACAD;">{{ ah_note }}</td>
+  </tr>
+</table>
