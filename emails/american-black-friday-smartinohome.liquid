@@ -5,8 +5,8 @@
    online și în magazinul din Snagov; reducerea se aplică automat în coș)
 ---------------------------------------------------------------------
   Se pune SUB bannerul „American Black Friday · 25% reducere”.
-  Fundal gri închis ca în banner, accente coral #E16065 și turcoaz.
-  1. Pastilă coral „A început · 27–30 noiembrie” + titlu
+  Fundal negru, accente turcoaz #00BBC5 și vișiniu #B91F27.
+  1. Pastilă vișinie „A început · 27–30 noiembrie” + titlu
      „Toată casa, / cu 25% mai puțin.” + text +
      3 casete: reducere −25% · online și Snagov · ultima zi 30.11.
   2. „Cele mai vândute, acum cu −25%”: câte un produs din 6 categorii,
@@ -14,8 +14,8 @@
      eticheta „Top”, poză, categoria, titlu, preț întreg tăiat + preț
      cu −25%, „Economisești X lei” (calculat singur) și „+ Adaugă în coș”.
   3. Caseta „Te așteptăm și în magazinul din Snagov” + link spre hartă.
-  4. Bandă „Oferta se încheie luni, 30 noiembrie” + buton coral
-     „Vezi toate produsele →” (ca în banner) + nota din banner.
+  4. Bandă „Oferta se încheie luni, 30 noiembrie” + buton turcoaz
+     „Vezi toate produsele →” + nota din banner.
 
   ORDINEA ÎN SHOPIFY EMAIL
   1. Bannerul American Black Friday Smartino Home
@@ -62,20 +62,20 @@
 {%- assign ah_cta_url   = "https://smartinohome.ro/pages/american-black-friday" -%}
 {%- assign ah_note      = "* Ofertă valabilă în perioada 27–30.11.2026, pe smartinohome.ro și în magazinul fizic SMARTINO Home din Snagov. Reducerea de 25% se aplică automat în coș, respectiv la casa de marcat. Nu se cumulează cu alte campanii și nu se aplică produselor incluse în alte campanii promoționale." -%}
 
-{%- comment -%} Culori (din banner) și font {%- endcomment -%}
-{%- assign ah_bg        = "#393939" -%}           {%- comment -%} gri închis din banner {%- endcomment -%}
+{%- comment -%} Culori și font {%- endcomment -%}
+{%- assign ah_bg        = "#000000" -%}           {%- comment -%} fundalul emailului {%- endcomment -%}
 {%- assign ah_head      = "#FFFFFF" -%}           {%- comment -%} titluri {%- endcomment -%}
-{%- assign ah_teal      = "#6CC0CC" -%}           {%- comment -%} accent turcoaz {%- endcomment -%}
-{%- assign ah_wine      = "#E16065" -%}           {%- comment -%} accent coral (pastilă, badge, buton) {%- endcomment -%}
-{%- assign ah_price     = "#D2434A" -%}           {%- comment -%} prețul cu reducere {%- endcomment -%}
-{%- assign ah_muted     = "#C9CBCC" -%}           {%- comment -%} textele de pe gri {%- endcomment -%}
-{%- assign ah_tile      = "#2C2C2C" -%}           {%- comment -%} casetele {%- endcomment -%}
-{%- assign ah_tile_line = "#4A4A4A" -%}
-{%- assign ah_teal_dark = "#2F7F8A" -%}
-{%- assign ah_teal_soft = "#E6F4F6" -%}           {%- comment -%} fundal „Economisești” {%- endcomment -%}
-{%- assign ah_btn       = "#1F1F1F" -%}           {%- comment -%} butonul din card și eticheta Top {%- endcomment -%}
-{%- assign ah_ink       = "#151515" -%}
-{%- assign ah_line      = "#DDE1E2" -%}
+{%- assign ah_teal      = "#00BBC5" -%}           {%- comment -%} accent turcoaz {%- endcomment -%}
+{%- assign ah_wine      = "#B91F27" -%}           {%- comment -%} accent vișiniu (pastilă, badge) {%- endcomment -%}
+{%- assign ah_price     = "#B91F27" -%}           {%- comment -%} prețul cu reducere {%- endcomment -%}
+{%- assign ah_muted     = "#B4B9BB" -%}           {%- comment -%} textele de pe negru {%- endcomment -%}
+{%- assign ah_tile      = "#141617" -%}           {%- comment -%} casetele {%- endcomment -%}
+{%- assign ah_tile_line = "#1D3B3E" -%}
+{%- assign ah_teal_dark = "#00808A" -%}
+{%- assign ah_teal_soft = "#E0F7F9" -%}           {%- comment -%} fundal „Economisești” {%- endcomment -%}
+{%- assign ah_btn       = "#000000" -%}           {%- comment -%} butonul din card și eticheta Top {%- endcomment -%}
+{%- assign ah_ink       = "#111418" -%}
+{%- assign ah_line      = "#DDE4E6" -%}
 {%- assign ah_font      = "'Poppins', Arial, Helvetica, sans-serif" -%}
 
 {%- comment -%}
@@ -293,17 +293,17 @@ Camera copiilor | Sticlă termos copii „Angel”, 350 ml | https://cdn.shopify
   <tr>
     <td align="center" style="padding:22px 12px 0 12px;text-align:center;">
       <!--[if mso]>
-      <v:roundrect xmlns:v="urn:schemas-microsoft-com:vml" xmlns:w="urn:schemas-microsoft-com:office:word" href="{{ ah_cta_url }}" style="height:52px;v-text-anchor:middle;width:300px;" arcsize="50%" stroke="f" fillcolor="{{ ah_wine }}">
+      <v:roundrect xmlns:v="urn:schemas-microsoft-com:vml" xmlns:w="urn:schemas-microsoft-com:office:word" href="{{ ah_cta_url }}" style="height:52px;v-text-anchor:middle;width:300px;" arcsize="50%" stroke="f" fillcolor="{{ ah_teal }}">
         <w:anchorlock/>
-        <center style="color:#FFFFFF;font-family:Arial,sans-serif;font-size:15px;font-weight:bold;letter-spacing:1px;">{{ ah_cta_text | upcase }}&nbsp;&nbsp;&#8594;</center>
+        <center style="color:#000000;font-family:Arial,sans-serif;font-size:15px;font-weight:bold;letter-spacing:1px;">{{ ah_cta_text | upcase }}&nbsp;&nbsp;&#8594;</center>
       </v:roundrect>
       <![endif]-->
       <!--[if !mso]><!-->
-      <a class="ah-btn-main" href="{{ ah_cta_url }}" target="_blank" style="display:inline-block;background-color:{{ ah_wine }};border-radius:999px;padding:16px 30px 16px 34px;font-family:{{ ah_font }};font-size:15px;line-height:20px;font-weight:800;letter-spacing:1px;color:#FFFFFF;text-decoration:none;text-transform:uppercase;">{{ ah_cta_text | upcase }}&nbsp;&nbsp;<span style="font-family:Arial,Helvetica,sans-serif;font-size:18px;line-height:20px;font-weight:700;color:#FFFFFF;">&#8594;</span></a>
+      <a class="ah-btn-main" href="{{ ah_cta_url }}" target="_blank" style="display:inline-block;background-color:{{ ah_teal }};border-radius:999px;padding:16px 30px 16px 34px;font-family:{{ ah_font }};font-size:15px;line-height:20px;font-weight:800;letter-spacing:1px;color:#000000;text-decoration:none;text-transform:uppercase;">{{ ah_cta_text | upcase }}&nbsp;&nbsp;<span style="font-family:Arial,Helvetica,sans-serif;font-size:18px;line-height:20px;font-weight:700;color:#000000;">&#8594;</span></a>
       <!--<![endif]-->
     </td>
   </tr>
   <tr>
-    <td align="center" style="padding:16px 24px 32px 24px;text-align:center;font-family:{{ ah_font }};font-size:12px;line-height:18px;font-weight:400;color:#A9ACAD;">{{ ah_note }}</td>
+    <td align="center" style="padding:16px 24px 32px 24px;text-align:center;font-family:{{ ah_font }};font-size:12px;line-height:18px;font-weight:400;color:#8E9396;">{{ ah_note }}</td>
   </tr>
 </table>
