@@ -5,9 +5,9 @@
 ---------------------------------------------------------------------
   Se pune SUB bannerul „American Black Friday · Se strigă BIS! ·
   Reducerile revin pentru ultima dată”, așa că nu repetă titlul lui.
-  Fundal turcoaz #00BBC5, accente coral ca în banner.
+  Fundal negru, accente turcoaz #00BBC5 și vișiniu #B91F27.
   Se trimite când pornește campania, deci prețurile apar direct.
-  1. Pastilă coral „A început · 27–30 noiembrie” + titlu
+  1. Pastilă vișinie „A început · 27–30 noiembrie” + titlu
      „Ai cerut BIS? / Reducerile s-au întors.” + text +
      3 casete: până la −45% · sute de oferte · ultima zi 30.11.
   2. „Nr. 1 în fiecare categorie”: cel mai vândut produs din 6
@@ -15,11 +15,8 @@
      badge cu reducerea + eticheta „Nr. 1”, poză, categoria, titlu,
      nota cu stele, preț vechi tăiat + preț nou, „Economisești X lei”
      (calculat singur) și buton „+ Adaugă în coș”.
-  3. Caseta cu recenzii: totalul recenziilor celor 6 produse și nota
-     minimă (calculate singure din listă).
-  4. „Cum prinzi ofertele” în 3 pași.
-  5. Bandă „Ofertele se încheie luni, 30 noiembrie” + buton coral
-     „Vezi toate ofertele →” (ca în banner) + notă.
+  3. Bandă „Ofertele se încheie luni, 30 noiembrie” + buton turcoaz
+     „Vezi toate ofertele →” + notă.
 
   ORDINEA ÎN SHOPIFY EMAIL
   1. Bannerul American Black Friday
@@ -49,18 +46,6 @@
 {%- assign ab_sec_text  = "Le-am ales pe cele mai vândute, din 6&nbsp;categorii&nbsp;diferite." -%}
 {%- assign ab_rank      = "Nr. 1" -%}             {%- comment -%} eticheta din colțul cardului; gol = fără {%- endcomment -%}
 
-{%- comment -%} Caseta cu recenzii (totalul și nota minimă se calculează singure) {%- endcomment -%}
-{%- assign ab_proof_on  = true -%}
-{%- assign ab_proof_lbl = "recenzii" -%}
-{%- assign ab_proof_a   = "pentru aceste" -%}
-{%- assign ab_proof_b   = "produse pe smartinoshop.ro," -%}
-{%- assign ab_proof_b2  = "toate cu cel puțin" -%}
-{%- assign ab_proof_c   = "stele." -%}
-
-{%- comment -%} Pașii: titlu | text {%- endcomment -%}
-{%- assign ab_steps_title = "Cum prinzi ofertele" -%}
-{%- assign ab_steps     = "Alegi produsul|Din topul de mai sus sau din sute de oferte, în 12 categorii.##Apeși „Adaugă în coș”|Produsul intră direct în coș, la prețul de Black&nbsp;Friday.##Finalizezi comanda|Până luni, 30 noiembrie, cât timp mai e&nbsp;stoc." -%}
-
 {%- assign ab_save_lbl  = "Economisești" -%}
 {%- assign ab_card_cta  = "Adaugă în coș" -%}
 {%- assign ab_currency  = "lei" -%}
@@ -72,17 +57,16 @@
 {%- assign ab_note      = "* Ofertele American Black Friday sunt valabile în perioada 27–30 noiembrie 2026, în limita stocului disponibil, doar la produsele selectate, exclusiv pe smartinoshop.ro. Prețul final este cel afișat în coș." -%}
 
 {%- comment -%} Culori și font {%- endcomment -%}
-{%- assign ab_bg        = "#00BBC5" -%}           {%- comment -%} fundalul emailului {%- endcomment -%}
-{%- assign ab_head      = "#FFFFFF" -%}           {%- comment -%} primul rând din titlu {%- endcomment -%}
-{%- assign ab_hl        = "#08343A" -%}           {%- comment -%} al doilea rând din titlu {%- endcomment -%}
-{%- assign ab_text      = "#08343A" -%}           {%- comment -%} textele de pe turcoaz {%- endcomment -%}
-{%- assign ab_tile      = "#FFFFFF" -%}           {%- comment -%} casetele cu cifre {%- endcomment -%}
-{%- assign ab_strip     = "#08343A" -%}           {%- comment -%} banda „se încheie” {%- endcomment -%}
-{%- assign ab_coral     = "#F2555B" -%}           {%- comment -%} coralul din banner {%- endcomment -%}
-{%- assign ab_price     = "#E0353B" -%}
-{%- assign ab_teal_dark = "#01707C" -%}
-{%- assign ab_teal_soft = "#E2F5F7" -%}           {%- comment -%} fundal „Economisești” {%- endcomment -%}
-{%- assign ab_btn       = "#0B3B42" -%}           {%- comment -%} butonul din card {%- endcomment -%}
+{%- assign ab_bg        = "#000000" -%}           {%- comment -%} fundalul emailului {%- endcomment -%}
+{%- assign ab_head      = "#FFFFFF" -%}           {%- comment -%} titluri {%- endcomment -%}
+{%- assign ab_teal      = "#00BBC5" -%}           {%- comment -%} accent turcoaz {%- endcomment -%}
+{%- assign ab_wine      = "#B91F27" -%}           {%- comment -%} accent vișiniu {%- endcomment -%}
+{%- assign ab_muted     = "#B4B9BB" -%}           {%- comment -%} textele de pe negru {%- endcomment -%}
+{%- assign ab_tile      = "#141617" -%}           {%- comment -%} casetele cu cifre {%- endcomment -%}
+{%- assign ab_tile_line = "#1D3B3E" -%}
+{%- assign ab_teal_dark = "#00808A" -%}
+{%- assign ab_teal_soft = "#E0F7F9" -%}           {%- comment -%} fundal „Economisești” {%- endcomment -%}
+{%- assign ab_btn       = "#000000" -%}           {%- comment -%} butonul din card și eticheta Nr. 1 {%- endcomment -%}
 {%- assign ab_ink       = "#111418" -%}
 {%- assign ab_line      = "#DDE4E6" -%}
 {%- assign ab_star      = "#F5A623" -%}
@@ -111,7 +95,6 @@ Cosmetice coreene | Cap de duș Nard cu microfiltru | https://cdn.shopify.com/s/
 
 {%- assign ab_list       = ab_products | split: "##" -%}
 {%- assign ab_stats_list = ab_stats | split: "##" -%}
-{%- assign ab_steps_list = ab_steps | split: "##" -%}
 
 {%- comment -%} ===== 3. ȘABLON (nu e nevoie să modifici mai jos) ===== {%- endcomment -%}
 <!--[if !mso]><!-->
@@ -130,8 +113,6 @@ Cosmetice coreene | Cap de duș Nard cu microfiltru | https://cdn.shopify.com/s/
     .ab-save-amt { font-size: 13px !important; }
     .ab-cta { font-size: 12px !important; padding: 9px 2px !important; }
     .ab-btn-main { font-size: 14px !important; padding: 15px 24px 15px 28px !important; }
-    .ab-proof-big { font-size: 24px !important; line-height: 30px !important; }
-    .ab-box { padding-left: 16px !important; padding-right: 16px !important; }
   }
   @media only screen and (max-width: 350px) {
     .ab-h1 { font-size: 23px !important; line-height: 30px !important; }
@@ -144,9 +125,9 @@ Cosmetice coreene | Cap de duș Nard cu microfiltru | https://cdn.shopify.com/s/
   {%- comment -%} --- intro --- {%- endcomment %}
   <tr>
     <td class="ab-wrap" align="center" style="padding:30px 16px 0 16px;text-align:center;">
-      <span style="display:inline-block;background-color:{{ ab_coral }};border-radius:999px;padding:7px 16px;font-family:{{ ab_font }};font-size:12px;line-height:14px;font-weight:800;letter-spacing:1.2px;color:#FFFFFF;text-transform:uppercase;">{{ ab_pill | upcase }}</span>
-      <div class="ab-h1" style="padding-top:16px;font-family:{{ ab_font }};font-size:27px;line-height:35px;font-weight:800;color:{{ ab_head }};">{{ ab_title_1 }}<br><span style="color:{{ ab_hl }};">{{ ab_title_2 }}</span></div>
-      <div style="padding-top:12px;font-size:0;line-height:0;"><div style="display:inline-block;max-width:470px;vertical-align:top;font-family:{{ ab_font }};font-size:15px;line-height:23px;font-weight:500;color:{{ ab_text }};">{{ ab_intro }}</div></div>
+      <span style="display:inline-block;background-color:{{ ab_wine }};border-radius:999px;padding:7px 16px;font-family:{{ ab_font }};font-size:12px;line-height:14px;font-weight:800;letter-spacing:1.2px;color:#FFFFFF;text-transform:uppercase;">{{ ab_pill | upcase }}</span>
+      <div class="ab-h1" style="padding-top:16px;font-family:{{ ab_font }};font-size:27px;line-height:35px;font-weight:800;color:{{ ab_head }};">{{ ab_title_1 }}<br><span style="color:{{ ab_teal }};">{{ ab_title_2 }}</span></div>
+      <div style="padding-top:12px;font-size:0;line-height:0;"><div style="display:inline-block;max-width:470px;vertical-align:top;font-family:{{ ab_font }};font-size:15px;line-height:23px;font-weight:400;color:{{ ab_muted }};">{{ ab_intro }}</div></div>
       <div style="max-width:480px;margin:0 auto;padding-top:20px;font-size:0;line-height:0;text-align:center;">
         <!--[if mso]><table role="presentation" width="480" cellpadding="0" cellspacing="0" border="0" align="center"><tr><![endif]-->
         {%- for ab_x in ab_stats_list -%}
@@ -155,9 +136,9 @@ Cosmetice coreene | Cap de duș Nard cu microfiltru | https://cdn.shopify.com/s/
         <!--[if mso]><td width="160" valign="top"><![endif]-->
         <div style="display:inline-block;width:33.33%;vertical-align:top;">
           <div style="padding:0 3px;">
-            <div style="background-color:{{ ab_tile }};border-radius:14px;padding:11px 2px 12px 2px;text-align:center;">
-              <div style="font-family:{{ ab_font }};font-size:10px;line-height:13px;font-weight:700;letter-spacing:1px;color:{{ ab_teal_dark }};text-transform:uppercase;white-space:nowrap;">{{ ab_xp[0] | strip }}</div>
-              <div class="ab-stat-big" style="padding-top:2px;font-family:{{ ab_font }};font-size:20px;line-height:24px;font-weight:800;color:{{ ab_text }};white-space:nowrap;">{{ ab_xp[1] | strip }}</div>
+            <div style="background-color:{{ ab_tile }};border:1px solid {{ ab_tile_line }};border-radius:14px;padding:10px 2px 11px 2px;text-align:center;">
+              <div style="font-family:{{ ab_font }};font-size:10px;line-height:13px;font-weight:700;letter-spacing:1px;color:{{ ab_muted }};text-transform:uppercase;white-space:nowrap;">{{ ab_xp[0] | strip }}</div>
+              <div class="ab-stat-big" style="padding-top:2px;font-family:{{ ab_font }};font-size:20px;line-height:24px;font-weight:800;color:{{ ab_teal }};white-space:nowrap;">{{ ab_xp[1] | strip }}</div>
             </div>
           </div>
         </div>
@@ -170,8 +151,8 @@ Cosmetice coreene | Cap de duș Nard cu microfiltru | https://cdn.shopify.com/s/
   {%- comment -%} --- titlul secțiunii --- {%- endcomment %}
   <tr>
     <td class="ab-wrap" align="center" style="padding:34px 16px 0 16px;text-align:center;">
-      <div style="font-family:{{ ab_font }};font-size:22px;line-height:28px;font-weight:800;color:{{ ab_text }};"><span style="display:inline-block;width:5px;height:20px;background-color:{{ ab_coral }};border-radius:3px;vertical-align:-2px;">&nbsp;</span>&nbsp; {{ ab_sec_title }}</div>
-      <div style="padding-top:2px;font-family:{{ ab_font }};font-size:14px;line-height:20px;font-weight:500;color:{{ ab_text }};">{{ ab_sec_text }}</div>
+      <div style="font-family:{{ ab_font }};font-size:22px;line-height:28px;font-weight:800;color:{{ ab_head }};"><span style="display:inline-block;width:5px;height:20px;background-color:{{ ab_teal }};border-radius:3px;vertical-align:-2px;">&nbsp;</span>&nbsp; {{ ab_sec_title }}</div>
+      <div style="padding-top:2px;font-family:{{ ab_font }};font-size:14px;line-height:20px;font-weight:400;color:{{ ab_muted }};">{{ ab_sec_text }}</div>
     </td>
   </tr>
   {%- comment -%} --- produsele --- {%- endcomment %}
@@ -180,8 +161,6 @@ Cosmetice coreene | Cap de duș Nard cu microfiltru | https://cdn.shopify.com/s/
       <!--[if mso]><table role="presentation" width="540" cellpadding="0" cellspacing="0" border="0" align="center"><tr><![endif]-->
       <div style="display:inline-block;width:100%;max-width:540px;vertical-align:top;font-size:0;line-height:0;text-align:center;">
         {%- assign ab_n = 0 -%}
-        {%- assign ab_rev_total = 0 -%}
-        {%- assign ab_min_rate = 5.0 -%}
         {%- for ab_item in ab_list -%}
           {%- unless ab_item contains "|" -%}{%- continue -%}{%- endunless -%}
           {%- assign ab_f      = ab_item | append: " | | | " | split: "|" -%}
@@ -247,8 +226,6 @@ Cosmetice coreene | Cap de duș Nard cu microfiltru | https://cdn.shopify.com/s/
           {%- assign ab_full = 0 -%}
           {%- if ab_rate != "" -%}{%- assign ab_full = ab_rate | plus: 0 | round -%}{%- endif -%}
           {%- assign ab_rate_txt = ab_rate | replace: ".", "," -%}
-          {%- if ab_revs != "" -%}{%- assign ab_rev_total = ab_rev_total | plus: ab_revs -%}{%- endif -%}
-          {%- if ab_rate != "" -%}{%- assign ab_rv = ab_rate | plus: 0 -%}{%- if ab_rv < ab_min_rate -%}{%- assign ab_min_rate = ab_rv -%}{%- endif -%}{%- endif -%}
           {%- assign ab_add = ab_shop | append: "/cart/add?id=" | append: ab_vid | append: "&quantity=1" -%}
           {%- assign ab_n   = ab_n | plus: 1 -%}
           {%- assign ab_mod = ab_n | modulo: 3 -%}
@@ -258,9 +235,9 @@ Cosmetice coreene | Cap de duș Nard cu microfiltru | https://cdn.shopify.com/s/
             <div style="padding:6px;">
               <div class="ab-card" style="background-color:#FFFFFF;border:1px solid {{ ab_line }};border-radius:16px;padding:10px;">
                 <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0"><tr>
-                  <td align="left" style="text-align:left;font-size:0;line-height:0;"><span style="display:inline-block;background-color:{{ ab_coral }};border-radius:7px;padding:3px 8px;font-family:{{ ab_font }};font-size:13px;line-height:16px;font-weight:800;color:#FFFFFF;white-space:nowrap;">{{ ab_badge }}</span></td>
+                  <td align="left" style="text-align:left;font-size:0;line-height:0;"><span style="display:inline-block;background-color:{{ ab_wine }};border-radius:7px;padding:3px 8px;font-family:{{ ab_font }};font-size:13px;line-height:16px;font-weight:800;color:#FFFFFF;white-space:nowrap;">{{ ab_badge }}</span></td>
                   {%- if ab_rank != "" %}
-                  <td align="right" style="text-align:right;font-size:0;line-height:0;"><span style="display:inline-block;background-color:{{ ab_strip }};border-radius:7px;padding:3px 7px;font-family:{{ ab_font }};font-size:11px;line-height:16px;font-weight:800;letter-spacing:0.5px;color:#FFFFFF;white-space:nowrap;text-transform:uppercase;"><span style="font-family:Arial,Helvetica,sans-serif;color:{{ ab_star }};">&#9733;</span> {{ ab_rank | upcase }}</span></td>
+                  <td align="right" style="text-align:right;font-size:0;line-height:0;"><span style="display:inline-block;background-color:{{ ab_btn }};border-radius:7px;padding:3px 7px;font-family:{{ ab_font }};font-size:11px;line-height:16px;font-weight:800;letter-spacing:0.5px;color:#FFFFFF;white-space:nowrap;text-transform:uppercase;"><span style="font-family:Arial,Helvetica,sans-serif;color:{{ ab_teal }};">&#9733;</span> {{ ab_rank | upcase }}</span></td>
                   {%- endif %}
                 </tr></table>
                 <div class="ab-imgbox" style="margin-top:4px;height:124px;text-align:center;font-size:0;line-height:0;">
@@ -270,14 +247,14 @@ Cosmetice coreene | Cap de duș Nard cu microfiltru | https://cdn.shopify.com/s/
                 <div class="ab-title" style="margin-top:2px;height:36px;overflow:hidden;font-family:{{ ab_font }};font-size:12.5px;line-height:18px;font-weight:600;color:{{ ab_ink }};"><a href="{{ ab_purl }}" target="_blank" style="color:{{ ab_ink }};text-decoration:none;line-height:inherit;">{{ ab_title2 }}</a></div>
                 <div style="margin-top:5px;height:16px;overflow:hidden;white-space:nowrap;font-family:{{ ab_font }};font-size:12px;line-height:16px;font-weight:400;color:#5F676C;">{% if ab_full > 0 %}<span class="ab-stars" style="font-family:Arial,Helvetica,sans-serif;font-size:12px;letter-spacing:1px;color:{{ ab_star }};">{% for ab_s in (1..5) %}{% if ab_s <= ab_full %}&#9733;{% else %}<span style="color:#D3D9DB;">&#9733;</span>{% endif %}{% endfor %}</span>&nbsp;<span style="font-weight:700;color:{{ ab_ink }};">{{ ab_rate_txt }}</span>{% if ab_revs != "" %} ({{ ab_revs }}){% endif %}{% else %}&nbsp;{% endif %}</div>
                 <div style="padding-top:6px;white-space:nowrap;font-family:{{ ab_font }};font-size:12px;line-height:15px;font-weight:400;color:#8A9095;">{% if ab_oc > ab_nc %}<span style="text-decoration:line-through;">{{ ab_pf[1] }} {{ ab_currency }}</span>{% else %}&nbsp;{% endif %}</div>
-                <div class="ab-price" style="white-space:nowrap;font-family:{{ ab_font }};font-size:17px;line-height:22px;font-weight:800;color:{{ ab_price }};">{{ ab_pf[0] }} {{ ab_currency }}</div>
+                <div class="ab-price" style="white-space:nowrap;font-family:{{ ab_font }};font-size:17px;line-height:22px;font-weight:800;color:{{ ab_wine }};">{{ ab_pf[0] }} {{ ab_currency }}</div>
                 <div style="margin-top:8px;background-color:{{ ab_teal_soft }};border-radius:10px;padding:6px 8px;">
                   <div style="font-family:{{ ab_font }};font-size:9.5px;line-height:12px;font-weight:700;letter-spacing:1px;color:{{ ab_teal_dark }};text-transform:uppercase;white-space:nowrap;">{{ ab_save_lbl | upcase }}</div>
                   <div class="ab-save-amt" style="font-family:{{ ab_font }};font-size:14px;line-height:18px;font-weight:800;color:{{ ab_teal_dark }};white-space:nowrap;">{% if ab_sc > 0 %}{{ ab_pf[2] }} {{ ab_currency }}{% else %}&nbsp;{% endif %}</div>
                 </div>
                 <div style="padding-top:10px;">
                   <div style="background-color:{{ ab_btn }};border-radius:999px;text-align:center;overflow:hidden;">
-                    <a class="ab-cta" href="{{ ab_add }}" target="_blank" style="display:block;padding:10px 6px;font-family:{{ ab_font }};font-size:13px;line-height:17px;font-weight:700;color:#FFFFFF;text-decoration:none;white-space:nowrap;"><span style="font-family:Arial,Helvetica,sans-serif;color:{{ ab_coral }};">+</span>&nbsp;{{ ab_card_cta }}</a>
+                    <a class="ab-cta" href="{{ ab_add }}" target="_blank" style="display:block;padding:10px 6px;font-family:{{ ab_font }};font-size:13px;line-height:17px;font-weight:700;color:#FFFFFF;text-decoration:none;white-space:nowrap;"><span style="font-family:Arial,Helvetica,sans-serif;color:{{ ab_teal }};">+</span>&nbsp;{{ ab_card_cta }}</a>
                   </div>
                 </div>
               </div>
@@ -289,64 +266,12 @@ Cosmetice coreene | Cap de duș Nard cu microfiltru | https://cdn.shopify.com/s/
       <!--[if mso]></tr></table><![endif]-->
     </td>
   </tr>
-  {%- comment -%} --- recenzii --- {%- endcomment -%}
-  {%- if ab_proof_on and ab_rev_total > 0 -%}
-    {%- if ab_rev_total >= 1000 -%}
-      {%- assign ab_t_th = ab_rev_total | divided_by: 1000 | floor -%}
-      {%- assign ab_t_r  = ab_rev_total | modulo: 1000 -%}
-      {%- if ab_t_r < 10 -%}{%- assign ab_t_rs = ab_t_r | prepend: "00" -%}{%- elsif ab_t_r < 100 -%}{%- assign ab_t_rs = ab_t_r | prepend: "0" -%}{%- else -%}{%- assign ab_t_rs = ab_t_r | append: "" -%}{%- endif -%}
-      {%- assign ab_total_txt = ab_t_th | append: "." | append: ab_t_rs -%}
-    {%- else -%}
-      {%- assign ab_total_txt = ab_rev_total | append: "" -%}
-    {%- endif -%}
-    {%- comment -%} „1.848 de recenzii”, dar „1.812 recenzii” {%- endcomment -%}
-    {%- assign ab_last2 = ab_rev_total | modulo: 100 -%}
-    {%- assign ab_de = " de " -%}
-    {%- if ab_last2 >= 1 and ab_last2 <= 19 -%}{%- assign ab_de = " " -%}{%- endif -%}
-    {%- assign ab_min_txt = ab_min_rate | append: "" | replace: ".", "," %}
-  <tr>
-    <td class="ab-wrap" align="center" style="padding:30px 16px 0 16px;text-align:center;font-size:0;line-height:0;">
-      <!--[if mso]><table role="presentation" width="528" cellpadding="0" cellspacing="0" border="0" align="center"><tr><td><![endif]-->
-      <div style="display:inline-block;width:100%;max-width:528px;vertical-align:top;text-align:center;">
-        <div class="ab-box" style="background-color:{{ ab_strip }};border-radius:20px;padding:22px 24px 22px 24px;text-align:center;">
-          <div style="font-family:Arial,Helvetica,sans-serif;font-size:20px;line-height:22px;letter-spacing:3px;color:{{ ab_star }};">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
-          <div class="ab-proof-big" style="padding-top:8px;font-family:{{ ab_font }};font-size:28px;line-height:34px;font-weight:800;color:#FFFFFF;">{{ ab_total_txt }}{{ ab_de }}{{ ab_proof_lbl }}</div>
-          <div style="padding-top:4px;font-family:{{ ab_font }};font-size:14px;line-height:21px;font-weight:400;color:#CFE6E9;">{{ ab_proof_a }} {{ ab_n }} {{ ab_proof_b }}<br>{{ ab_proof_b2 }} {{ ab_min_txt }}&nbsp;{{ ab_proof_c }}</div>
-        </div>
-      </div>
-      <!--[if mso]></td></tr></table><![endif]-->
-    </td>
-  </tr>
-  {%- endif -%}
-  {%- comment -%} --- pașii --- {%- endcomment %}
-  <tr>
-    <td class="ab-wrap" align="center" style="padding:16px 16px 0 16px;text-align:center;font-size:0;line-height:0;">
-      <!--[if mso]><table role="presentation" width="528" cellpadding="0" cellspacing="0" border="0" align="center"><tr><td><![endif]-->
-      <div style="display:inline-block;width:100%;max-width:528px;vertical-align:top;text-align:left;">
-        <div class="ab-box" style="background-color:#FFFFFF;border-radius:20px;padding:20px 24px 8px 24px;">
-          <div style="padding-bottom:14px;text-align:center;font-family:{{ ab_font }};font-size:19px;line-height:25px;font-weight:800;color:{{ ab_text }};">{{ ab_steps_title }}</div>
-          {%- for ab_st in ab_steps_list -%}
-            {%- unless ab_st contains "|" -%}{%- continue -%}{%- endunless -%}
-            {%- assign ab_stp = ab_st | split: "|" %}
-          <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0"><tr>
-            <td width="46" valign="top" style="width:46px;vertical-align:top;padding:0 0 14px 0;"><div style="width:34px;height:34px;border-radius:17px;background-color:{{ ab_coral }};text-align:center;font-family:{{ ab_font }};font-size:16px;line-height:34px;font-weight:800;color:#FFFFFF;">{{ forloop.index }}</div></td>
-            <td valign="top" style="vertical-align:top;padding:0 0 14px 0;text-align:left;">
-              <div style="font-family:{{ ab_font }};font-size:15px;line-height:20px;font-weight:700;color:{{ ab_text }};">{{ ab_stp[0] | strip }}</div>
-              <div style="padding-top:2px;font-family:{{ ab_font }};font-size:13px;line-height:19px;font-weight:400;color:#4A5B5F;">{{ ab_stp[1] | strip }}</div>
-            </td>
-          </tr></table>
-          {%- endfor %}
-        </div>
-      </div>
-      <!--[if mso]></td></tr></table><![endif]-->
-    </td>
-  </tr>
   {%- comment -%} --- final --- {%- endcomment %}
   <tr>
     <td class="ab-wrap" align="center" style="padding:28px 16px 0 16px;text-align:center;font-size:0;line-height:0;">
       <!--[if mso]><table role="presentation" width="528" cellpadding="0" cellspacing="0" border="0" align="center"><tr><td><![endif]-->
       <div style="display:inline-block;width:100%;max-width:528px;vertical-align:top;text-align:center;">
-        <div style="background-color:{{ ab_strip }};border-radius:999px;padding:13px 18px;font-family:{{ ab_font }};font-size:14px;line-height:20px;font-weight:400;color:#FFFFFF;">{{ ab_end_text }}</div>
+        <div style="background-color:{{ ab_tile }};border:1px solid {{ ab_teal }};border-radius:999px;padding:12px 18px;font-family:{{ ab_font }};font-size:14px;line-height:20px;font-weight:400;color:#FFFFFF;">{{ ab_end_text }}</div>
       </div>
       <!--[if mso]></td></tr></table><![endif]-->
     </td>
@@ -354,17 +279,17 @@ Cosmetice coreene | Cap de duș Nard cu microfiltru | https://cdn.shopify.com/s/
   <tr>
     <td align="center" style="padding:22px 12px 0 12px;text-align:center;">
       <!--[if mso]>
-      <v:roundrect xmlns:v="urn:schemas-microsoft-com:vml" xmlns:w="urn:schemas-microsoft-com:office:word" href="{{ ab_cta_url }}" style="height:52px;v-text-anchor:middle;width:300px;" arcsize="50%" stroke="f" fillcolor="{{ ab_coral }}">
+      <v:roundrect xmlns:v="urn:schemas-microsoft-com:vml" xmlns:w="urn:schemas-microsoft-com:office:word" href="{{ ab_cta_url }}" style="height:52px;v-text-anchor:middle;width:300px;" arcsize="50%" stroke="f" fillcolor="{{ ab_teal }}">
         <w:anchorlock/>
-        <center style="color:#FFFFFF;font-family:Arial,sans-serif;font-size:15px;font-weight:bold;letter-spacing:1px;">{{ ab_cta_text | upcase }}&nbsp;&nbsp;&#8594;</center>
+        <center style="color:#000000;font-family:Arial,sans-serif;font-size:15px;font-weight:bold;letter-spacing:1px;">{{ ab_cta_text | upcase }}&nbsp;&nbsp;&#8594;</center>
       </v:roundrect>
       <![endif]-->
       <!--[if !mso]><!-->
-      <a class="ab-btn-main" href="{{ ab_cta_url }}" target="_blank" style="display:inline-block;background-color:{{ ab_coral }};border-radius:999px;padding:16px 30px 16px 34px;font-family:{{ ab_font }};font-size:15px;line-height:20px;font-weight:800;letter-spacing:1px;color:#FFFFFF;text-decoration:none;text-transform:uppercase;">{{ ab_cta_text | upcase }}&nbsp;&nbsp;<span style="font-family:Arial,Helvetica,sans-serif;font-size:18px;line-height:20px;font-weight:700;color:#FFFFFF;">&#8594;</span></a>
+      <a class="ab-btn-main" href="{{ ab_cta_url }}" target="_blank" style="display:inline-block;background-color:{{ ab_teal }};border-radius:999px;padding:16px 30px 16px 34px;font-family:{{ ab_font }};font-size:15px;line-height:20px;font-weight:800;letter-spacing:1px;color:#000000;text-decoration:none;text-transform:uppercase;">{{ ab_cta_text | upcase }}&nbsp;&nbsp;<span style="font-family:Arial,Helvetica,sans-serif;font-size:18px;line-height:20px;font-weight:700;color:#000000;">&#8594;</span></a>
       <!--<![endif]-->
     </td>
   </tr>
   <tr>
-    <td align="center" style="padding:16px 24px 32px 24px;text-align:center;font-family:{{ ab_font }};font-size:12px;line-height:18px;font-weight:500;color:{{ ab_text }};">{{ ab_note }}</td>
+    <td align="center" style="padding:16px 24px 32px 24px;text-align:center;font-family:{{ ab_font }};font-size:12px;line-height:18px;font-weight:400;color:#8E9396;">{{ ab_note }}</td>
   </tr>
 </table>
