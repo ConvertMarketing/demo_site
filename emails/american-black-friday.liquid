@@ -1,0 +1,370 @@
+{%- comment -%}
+=====================================================================
+  EMAIL „AMERICAN BLACK FRIDAY” — SMARTINO SHOP
+  (reducerile sunt valabile 27–30 noiembrie 2026, vineri–luni)
+---------------------------------------------------------------------
+  Se pune SUB bannerul „American Black Friday · Se strigă BIS! ·
+  Reducerile revin pentru ultima dată”, așa că nu repetă titlul lui.
+  Fundal turcoaz #00BBC5, accente coral ca în banner.
+  Se trimite când pornește campania, deci prețurile apar direct.
+  1. Pastilă coral „A început · 27–30 noiembrie” + titlu
+     „Ai cerut BIS? / Reducerile s-au întors.” + text +
+     3 casete: până la −45% · sute de oferte · ultima zi 30.11.
+  2. „Nr. 1 în fiecare categorie”: cel mai vândut produs din 6
+     categorii, în carduri albe (3 pe rând desktop, 2 pe rând mobil):
+     badge cu reducerea + eticheta „Nr. 1”, poză, categoria, titlu,
+     nota cu stele, preț vechi tăiat + preț nou, „Economisești X lei”
+     (calculat singur) și buton „+ Adaugă în coș”.
+  3. Caseta cu recenzii: totalul recenziilor celor 6 produse și nota
+     minimă (calculate singure din listă).
+  4. „Cum prinzi ofertele” în 3 pași.
+  5. Bandă „Ofertele se încheie luni, 30 noiembrie” + buton coral
+     „Vezi toate ofertele →” (ca în banner) + notă.
+
+  ORDINEA ÎN SHOPIFY EMAIL
+  1. Bannerul American Black Friday
+  2. Custom Liquid cu ACEST fișier
+
+  BUTONUL „ADAUGĂ ÎN COȘ” = smartinoshop.ro/cart/add?id=ID&quantity=1
+  (pune produsul în coș și deschide coșul). ID-ul variantei se ia din
+  adminul Shopify, de la variantă, sau din ...?variant=ID de pe site.
+  Poza și titlul duc la pagina produsului.
+
+  Produsele: primul din fiecare categorie de pe pagina American Black
+  Friday, cu ordonarea „cele mai vândute”. Prețurile, notele și
+  recenziile sunt cele de pe smartinoshop.ro din 25 noiembrie 2026.
+=====================================================================
+{%- endcomment -%}
+
+{%- comment -%} ===== 1. SETĂRI ===== {%- endcomment -%}
+{%- assign ab_shop      = "https://smartinoshop.ro" -%}
+{%- assign ab_pill      = "A început · 27–30 noiembrie" -%}
+{%- assign ab_title_1   = "Ai cerut BIS?" -%}
+{%- assign ab_title_2   = "Reducerile s-au&nbsp;întors." -%}   {%- comment -%} rândul colorat {%- endcomment -%}
+{%- assign ab_intro     = "De vineri până luni, produsele pe care le cumperi cel mai des au din nou reduceri de până la −45%. E ultima rundă de oferte, așa că nu lăsa coșul pe mai&nbsp;târziu." -%}
+{%- comment -%} Casetele: rând mic | rând mare {%- endcomment -%}
+{%- assign ab_stats     = "până la|−45%##sute de|oferte##ultima zi|30.11" -%}
+
+{%- assign ab_sec_title = "Nr. 1 în fiecare categorie" -%}
+{%- assign ab_sec_text  = "Le-am ales pe cele mai vândute, din 6&nbsp;categorii&nbsp;diferite." -%}
+{%- assign ab_rank      = "Nr. 1" -%}             {%- comment -%} eticheta din colțul cardului; gol = fără {%- endcomment -%}
+
+{%- comment -%} Caseta cu recenzii (totalul și nota minimă se calculează singure) {%- endcomment -%}
+{%- assign ab_proof_on  = true -%}
+{%- assign ab_proof_lbl = "recenzii" -%}
+{%- assign ab_proof_a   = "pentru aceste" -%}
+{%- assign ab_proof_b   = "produse pe smartinoshop.ro," -%}
+{%- assign ab_proof_b2  = "toate cu cel puțin" -%}
+{%- assign ab_proof_c   = "stele." -%}
+
+{%- comment -%} Pașii: titlu | text {%- endcomment -%}
+{%- assign ab_steps_title = "Cum prinzi ofertele" -%}
+{%- assign ab_steps     = "Alegi produsul|Din topul de mai sus sau din sute de oferte, în 12 categorii.##Apeși „Adaugă în coș”|Produsul intră direct în coș, la prețul de Black&nbsp;Friday.##Finalizezi comanda|Până luni, 30 noiembrie, cât timp mai e&nbsp;stoc." -%}
+
+{%- assign ab_save_lbl  = "Economisești" -%}
+{%- assign ab_card_cta  = "Adaugă în coș" -%}
+{%- assign ab_currency  = "lei" -%}
+{%- assign ab_title_max = 38 -%}
+
+{%- assign ab_end_text  = "Ofertele American Black Friday se încheie <strong>luni, 30 noiembrie</strong>." -%}
+{%- assign ab_cta_text  = "Vezi toate ofertele" -%}
+{%- assign ab_cta_url   = "https://smartinoshop.ro/pages/american-black-friday" -%}
+{%- assign ab_note      = "* Ofertele American Black Friday sunt valabile în perioada 27–30 noiembrie 2026, în limita stocului disponibil, doar la produsele selectate, exclusiv pe smartinoshop.ro. Prețul final este cel afișat în coș." -%}
+
+{%- comment -%} Culori și font {%- endcomment -%}
+{%- assign ab_bg        = "#00BBC5" -%}           {%- comment -%} fundalul emailului {%- endcomment -%}
+{%- assign ab_head      = "#FFFFFF" -%}           {%- comment -%} primul rând din titlu {%- endcomment -%}
+{%- assign ab_hl        = "#08343A" -%}           {%- comment -%} al doilea rând din titlu {%- endcomment -%}
+{%- assign ab_text      = "#08343A" -%}           {%- comment -%} textele de pe turcoaz {%- endcomment -%}
+{%- assign ab_tile      = "#FFFFFF" -%}           {%- comment -%} casetele cu cifre {%- endcomment -%}
+{%- assign ab_strip     = "#08343A" -%}           {%- comment -%} banda „se încheie” {%- endcomment -%}
+{%- assign ab_coral     = "#F2555B" -%}           {%- comment -%} coralul din banner {%- endcomment -%}
+{%- assign ab_price     = "#E0353B" -%}
+{%- assign ab_teal_dark = "#01707C" -%}
+{%- assign ab_teal_soft = "#E2F5F7" -%}           {%- comment -%} fundal „Economisești” {%- endcomment -%}
+{%- assign ab_btn       = "#0B3B42" -%}           {%- comment -%} butonul din card {%- endcomment -%}
+{%- assign ab_ink       = "#111418" -%}
+{%- assign ab_line      = "#DDE4E6" -%}
+{%- assign ab_star      = "#F5A623" -%}
+{%- assign ab_font      = "'Poppins', Arial, Helvetica, sans-serif" -%}
+
+{%- comment -%}
+  ===== 2. PRODUSE =====
+  Câte un produs pe bloc, separate prin ##
+     Categorie | Titlu | URL imagine | URL produs | ID variantă | preț nou | preț vechi | nota | nr. recenzii
+  Prețurile și nota cu punct (ex. 18.75 și 4.9). Nota și recenziile pot
+  rămâne goale. În texte NU folosi |.
+{%- endcomment -%}
+{%- capture ab_products -%}
+Șervețele Easy Clean | 3x Șervețele Easy Clean, 100 buc | https://cdn.shopify.com/s/files/1/0834/0688/1063/files/PACHETPROMOEASYCLEAN3BUC_3bd9595a-28fe-4f22-82c2-120ea98e7970.png?v=1701971056&width=600&height=600&pad_color=ffffff | https://smartinoshop.ro/products/pachet-promo-servetele-umede-sleepy-easy-clean-multisuprafete-100-buc | 47250312757543 | 49.99 | 70.99 | 4.9 | 758
+##
+Scutece copii | Scutece Sleepy Natural, mărimea 7 | https://cdn.shopify.com/s/files/1/0834/0688/1063/files/nr7-32_d9206a19-edf1-404b-aa15-2274feea9301.jpg?v=1790766684&width=600&height=600&pad_color=ffffff | https://smartinoshop.ro/products/scutece-sleepy-natural-ultra-sensitive-double-marime-7-xxlarge-20-30kg-32-bucati | 46771608256807 | 35.12 | 49.99 | 5.0 | 610
+##
+Curățenie | Mop Parex + 10 șervețele umede | https://cdn.shopify.com/s/files/1/0834/0688/1063/files/pacheteparex_13.png?v=1787923296&width=600&height=600&pad_color=ffffff | https://smartinoshop.ro/products/mop-cu-prindere-rapida-parex-10-%C8%99erve%C8%9Bele-umede-pentru-cura%C8%9Bare | 56335346073981 | 67.92 | 84.90 | 5.0 | 198
+##
+Îngrijire dentară | Periuță electrică JTF Sonic J40 | https://cdn.shopify.com/s/files/1/0834/0688/1063/files/2_f99dbe7d-8df8-465f-aaa9-3d6030bc1c17.jpg?v=1736430393&width=600&height=600&pad_color=ffffff | https://smartinoshop.ro/products/periuta-de-dinti-electrica-jtf-sonic-j40-6-capete-de-periere-negru | 55092190609789 | 43.50 | 58.00 | 5.0 | 26
+##
+Scutece adulți | Păturici absorbante Actual, 30 buc | https://cdn.shopify.com/s/files/1/0834/0688/1063/products/paturici-absorbante-pentru-pat-adult-actual-double-90x180-cm-30-bucati-copie-72-1243.jpg?v=1695812975&width=600&height=600&pad_color=ffffff | https://smartinoshop.ro/products/aleze-protectii-pentru-pat-adult-actual-double-90x60-cm-30-bucati | 46771591479591 | 27.20 | 33.99 | 4.9 | 240
+##
+Cosmetice coreene | Cap de duș Nard cu microfiltru | https://cdn.shopify.com/s/files/1/0834/0688/1063/files/ab86d6f9daaa3f34491c0d2daf189496.jpg?v=1716396035&width=600&height=600&pad_color=ffffff | https://smartinoshop.ro/products/nard-himalaya-herb-pure-water-para-de-dus-cu-1-microfiltru-de-apa | 48464030957863 | 27.16 | 38.80 | 5.0 | 16
+{%- endcapture -%}
+
+{%- assign ab_list       = ab_products | split: "##" -%}
+{%- assign ab_stats_list = ab_stats | split: "##" -%}
+{%- assign ab_steps_list = ab_steps | split: "##" -%}
+
+{%- comment -%} ===== 3. ȘABLON (nu e nevoie să modifici mai jos) ===== {%- endcomment -%}
+<!--[if !mso]><!-->
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800&display=swap" rel="stylesheet">
+<!--<![endif]-->
+<style>
+  @media only screen and (max-width: 480px) {
+    .ab-wrap { padding-left: 12px !important; padding-right: 12px !important; }
+    .ab-h1 { font-size: 26px !important; line-height: 34px !important; }
+    .ab-stat-big { font-size: 18px !important; }
+    .ab-col { width: 50% !important; max-width: 50% !important; }
+    .ab-card { padding: 8px !important; }
+    .ab-imgbox { height: 116px !important; }
+    .ab-img { max-height: 116px !important; }
+    .ab-price { font-size: 15px !important; }
+    .ab-save-amt { font-size: 13px !important; }
+    .ab-cta { font-size: 12px !important; padding: 9px 2px !important; }
+    .ab-btn-main { font-size: 14px !important; padding: 15px 24px 15px 28px !important; }
+    .ab-proof-big { font-size: 24px !important; line-height: 30px !important; }
+    .ab-box { padding-left: 16px !important; padding-right: 16px !important; }
+  }
+  @media only screen and (max-width: 350px) {
+    .ab-h1 { font-size: 23px !important; line-height: 30px !important; }
+    .ab-stat-big { font-size: 16px !important; }
+    .ab-stars { font-size: 11px !important; letter-spacing: 0 !important; }
+    .ab-title { font-size: 11.5px !important; line-height: 17px !important; height: 34px !important; }
+  }
+</style>
+<table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" bgcolor="{{ ab_bg }}" style="background-color:{{ ab_bg }};">
+  {%- comment -%} --- intro --- {%- endcomment %}
+  <tr>
+    <td class="ab-wrap" align="center" style="padding:30px 16px 0 16px;text-align:center;">
+      <span style="display:inline-block;background-color:{{ ab_coral }};border-radius:999px;padding:7px 16px;font-family:{{ ab_font }};font-size:12px;line-height:14px;font-weight:800;letter-spacing:1.2px;color:#FFFFFF;text-transform:uppercase;">{{ ab_pill | upcase }}</span>
+      <div class="ab-h1" style="padding-top:16px;font-family:{{ ab_font }};font-size:27px;line-height:35px;font-weight:800;color:{{ ab_head }};">{{ ab_title_1 }}<br><span style="color:{{ ab_hl }};">{{ ab_title_2 }}</span></div>
+      <div style="padding-top:12px;font-size:0;line-height:0;"><div style="display:inline-block;max-width:470px;vertical-align:top;font-family:{{ ab_font }};font-size:15px;line-height:23px;font-weight:500;color:{{ ab_text }};">{{ ab_intro }}</div></div>
+      <div style="max-width:480px;margin:0 auto;padding-top:20px;font-size:0;line-height:0;text-align:center;">
+        <!--[if mso]><table role="presentation" width="480" cellpadding="0" cellspacing="0" border="0" align="center"><tr><![endif]-->
+        {%- for ab_x in ab_stats_list -%}
+          {%- unless ab_x contains "|" -%}{%- continue -%}{%- endunless -%}
+          {%- assign ab_xp = ab_x | split: "|" %}
+        <!--[if mso]><td width="160" valign="top"><![endif]-->
+        <div style="display:inline-block;width:33.33%;vertical-align:top;">
+          <div style="padding:0 3px;">
+            <div style="background-color:{{ ab_tile }};border-radius:14px;padding:11px 2px 12px 2px;text-align:center;">
+              <div style="font-family:{{ ab_font }};font-size:10px;line-height:13px;font-weight:700;letter-spacing:1px;color:{{ ab_teal_dark }};text-transform:uppercase;white-space:nowrap;">{{ ab_xp[0] | strip }}</div>
+              <div class="ab-stat-big" style="padding-top:2px;font-family:{{ ab_font }};font-size:20px;line-height:24px;font-weight:800;color:{{ ab_text }};white-space:nowrap;">{{ ab_xp[1] | strip }}</div>
+            </div>
+          </div>
+        </div>
+        <!--[if mso]></td><![endif]-->
+        {%- endfor %}
+        <!--[if mso]></tr></table><![endif]-->
+      </div>
+    </td>
+  </tr>
+  {%- comment -%} --- titlul secțiunii --- {%- endcomment %}
+  <tr>
+    <td class="ab-wrap" align="center" style="padding:34px 16px 0 16px;text-align:center;">
+      <div style="font-family:{{ ab_font }};font-size:22px;line-height:28px;font-weight:800;color:{{ ab_text }};"><span style="display:inline-block;width:5px;height:20px;background-color:{{ ab_coral }};border-radius:3px;vertical-align:-2px;">&nbsp;</span>&nbsp; {{ ab_sec_title }}</div>
+      <div style="padding-top:2px;font-family:{{ ab_font }};font-size:14px;line-height:20px;font-weight:500;color:{{ ab_text }};">{{ ab_sec_text }}</div>
+    </td>
+  </tr>
+  {%- comment -%} --- produsele --- {%- endcomment %}
+  <tr>
+    <td align="center" style="padding:10px 10px 0 10px;text-align:center;font-size:0;line-height:0;">
+      <!--[if mso]><table role="presentation" width="540" cellpadding="0" cellspacing="0" border="0" align="center"><tr><![endif]-->
+      <div style="display:inline-block;width:100%;max-width:540px;vertical-align:top;font-size:0;line-height:0;text-align:center;">
+        {%- assign ab_n = 0 -%}
+        {%- assign ab_rev_total = 0 -%}
+        {%- assign ab_min_rate = 5.0 -%}
+        {%- for ab_item in ab_list -%}
+          {%- unless ab_item contains "|" -%}{%- continue -%}{%- endunless -%}
+          {%- assign ab_f      = ab_item | append: " | | | " | split: "|" -%}
+          {%- assign ab_cat    = ab_f[0] | strip | escape -%}
+          {%- assign ab_title2 = ab_f[1] | strip -%}
+          {%- if ab_title2.size > ab_title_max -%}
+            {%- assign ab_cut   = ab_title2 | slice: 0, ab_title_max -%}
+            {%- assign ab_next  = ab_title2 | slice: ab_title_max, 1 -%}
+            {%- assign ab_last  = ab_cut | slice: -1 -%}
+            {%- if ab_next == " " or ab_last == " " -%}
+              {%- assign ab_title2 = ab_cut | strip -%}
+            {%- else -%}
+              {%- assign ab_words = ab_cut | split: " " -%}
+              {%- assign ab_title2 = "" -%}
+              {%- for ab_w in ab_words -%}
+                {%- unless forloop.last -%}{%- assign ab_title2 = ab_title2 | append: ab_w | append: " " -%}{%- endunless -%}
+              {%- endfor -%}
+              {%- assign ab_title2 = ab_title2 | strip -%}
+            {%- endif -%}
+            {%- assign ab_lc = ab_title2 | slice: -1 -%}
+            {%- if ab_lc == "+" or ab_lc == "," or ab_lc == "-" or ab_lc == "–" or ab_lc == ":" or ab_lc == "(" -%}
+              {%- assign ab_len    = ab_title2.size | minus: 1 -%}
+              {%- assign ab_title2 = ab_title2 | slice: 0, ab_len | strip -%}
+            {%- endif -%}
+            {%- if ab_title2 == "" -%}{%- assign ab_title2 = ab_cut -%}{%- endif -%}
+            {%- assign ab_title2 = ab_title2 | append: "…" -%}
+          {%- endif -%}
+          {%- assign ab_title2 = ab_title2 | escape -%}
+          {%- assign ab_alt    = ab_f[1] | strip | escape -%}
+          {%- assign ab_img    = ab_f[2] | strip -%}
+          {%- assign ab_purl   = ab_f[3] | strip -%}
+          {%- assign ab_vid    = ab_f[4] | strip -%}
+          {%- assign ab_nc     = ab_f[5] | strip | times: 100 | round -%}
+          {%- assign ab_oc     = ab_f[6] | strip | times: 100 | round -%}
+          {%- assign ab_rate   = ab_f[7] | strip -%}
+          {%- assign ab_revs   = ab_f[8] | strip -%}
+          {%- assign ab_sc     = 0 -%}
+          {%- assign ab_badge  = "Black Friday" -%}
+          {%- if ab_oc > ab_nc -%}
+            {%- assign ab_sc    = ab_oc | minus: ab_nc -%}
+            {%- assign ab_pct   = ab_sc | times: 100.0 | divided_by: ab_oc | round -%}
+            {%- assign ab_badge = "-" | append: ab_pct | append: "%" -%}
+          {%- endif -%}
+          {%- comment -%} formatare prețuri: 15999 → 159,99 ; 434673 → 4.346,73 {%- endcomment -%}
+          {%- assign ab_fmt_in  = ab_nc | append: "~" | append: ab_oc | append: "~" | append: ab_sc | split: "~" -%}
+          {%- assign ab_fmt_out = "" -%}
+          {%- for ab_v in ab_fmt_in -%}
+            {%- assign ab_c  = ab_v | plus: 0 -%}
+            {%- assign ab_i  = ab_c | divided_by: 100 | floor -%}
+            {%- assign ab_d  = ab_c | modulo: 100 -%}
+            {%- if ab_d < 10 -%}{%- assign ab_ds = ab_d | prepend: "0" -%}{%- else -%}{%- assign ab_ds = ab_d | append: "" -%}{%- endif -%}
+            {%- if ab_i >= 1000 -%}
+              {%- assign ab_th = ab_i | divided_by: 1000 | floor -%}
+              {%- assign ab_r  = ab_i | modulo: 1000 -%}
+              {%- if ab_r < 10 -%}{%- assign ab_rs = ab_r | prepend: "00" -%}{%- elsif ab_r < 100 -%}{%- assign ab_rs = ab_r | prepend: "0" -%}{%- else -%}{%- assign ab_rs = ab_r | append: "" -%}{%- endif -%}
+              {%- assign ab_is = ab_th | append: "." | append: ab_rs -%}
+            {%- else -%}
+              {%- assign ab_is = ab_i | append: "" -%}
+            {%- endif -%}
+            {%- assign ab_fmt_out = ab_fmt_out | append: ab_is | append: "," | append: ab_ds | append: "~" -%}
+          {%- endfor -%}
+          {%- assign ab_pf = ab_fmt_out | split: "~" -%}
+          {%- assign ab_full = 0 -%}
+          {%- if ab_rate != "" -%}{%- assign ab_full = ab_rate | plus: 0 | round -%}{%- endif -%}
+          {%- assign ab_rate_txt = ab_rate | replace: ".", "," -%}
+          {%- if ab_revs != "" -%}{%- assign ab_rev_total = ab_rev_total | plus: ab_revs -%}{%- endif -%}
+          {%- if ab_rate != "" -%}{%- assign ab_rv = ab_rate | plus: 0 -%}{%- if ab_rv < ab_min_rate -%}{%- assign ab_min_rate = ab_rv -%}{%- endif -%}{%- endif -%}
+          {%- assign ab_add = ab_shop | append: "/cart/add?id=" | append: ab_vid | append: "&quantity=1" -%}
+          {%- assign ab_n   = ab_n | plus: 1 -%}
+          {%- assign ab_mod = ab_n | modulo: 3 -%}
+          {%- if ab_n > 1 and ab_mod == 1 -%}<!--[if mso]></tr><tr><![endif]-->{%- endif -%}
+          <!--[if mso]><td width="172" valign="top"><![endif]-->
+          <div class="ab-col" style="display:inline-block;width:100%;max-width:170px;vertical-align:top;font-size:14px;line-height:20px;text-align:left;">
+            <div style="padding:6px;">
+              <div class="ab-card" style="background-color:#FFFFFF;border:1px solid {{ ab_line }};border-radius:16px;padding:10px;">
+                <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0"><tr>
+                  <td align="left" style="text-align:left;font-size:0;line-height:0;"><span style="display:inline-block;background-color:{{ ab_coral }};border-radius:7px;padding:3px 8px;font-family:{{ ab_font }};font-size:13px;line-height:16px;font-weight:800;color:#FFFFFF;white-space:nowrap;">{{ ab_badge }}</span></td>
+                  {%- if ab_rank != "" %}
+                  <td align="right" style="text-align:right;font-size:0;line-height:0;"><span style="display:inline-block;background-color:{{ ab_strip }};border-radius:7px;padding:3px 7px;font-family:{{ ab_font }};font-size:11px;line-height:16px;font-weight:800;letter-spacing:0.5px;color:#FFFFFF;white-space:nowrap;text-transform:uppercase;"><span style="font-family:Arial,Helvetica,sans-serif;color:{{ ab_star }};">&#9733;</span> {{ ab_rank | upcase }}</span></td>
+                  {%- endif %}
+                </tr></table>
+                <div class="ab-imgbox" style="margin-top:4px;height:124px;text-align:center;font-size:0;line-height:0;">
+                  <a href="{{ ab_purl }}" target="_blank" style="text-decoration:none;"><img class="ab-img" src="{{ ab_img }}" width="124" alt="{{ ab_alt }}" style="display:inline-block;vertical-align:middle;width:auto;height:auto;max-width:100%;max-height:124px;border:0;outline:none;text-decoration:none;"></a>
+                </div>
+                <div class="ab-cat" style="margin-top:8px;height:15px;overflow:hidden;white-space:nowrap;text-overflow:ellipsis;font-family:{{ ab_font }};font-size:11px;line-height:15px;font-weight:700;color:{{ ab_teal_dark }};">{{ ab_cat }}</div>
+                <div class="ab-title" style="margin-top:2px;height:36px;overflow:hidden;font-family:{{ ab_font }};font-size:12.5px;line-height:18px;font-weight:600;color:{{ ab_ink }};"><a href="{{ ab_purl }}" target="_blank" style="color:{{ ab_ink }};text-decoration:none;line-height:inherit;">{{ ab_title2 }}</a></div>
+                <div style="margin-top:5px;height:16px;overflow:hidden;white-space:nowrap;font-family:{{ ab_font }};font-size:12px;line-height:16px;font-weight:400;color:#5F676C;">{% if ab_full > 0 %}<span class="ab-stars" style="font-family:Arial,Helvetica,sans-serif;font-size:12px;letter-spacing:1px;color:{{ ab_star }};">{% for ab_s in (1..5) %}{% if ab_s <= ab_full %}&#9733;{% else %}<span style="color:#D3D9DB;">&#9733;</span>{% endif %}{% endfor %}</span>&nbsp;<span style="font-weight:700;color:{{ ab_ink }};">{{ ab_rate_txt }}</span>{% if ab_revs != "" %} ({{ ab_revs }}){% endif %}{% else %}&nbsp;{% endif %}</div>
+                <div style="padding-top:6px;white-space:nowrap;font-family:{{ ab_font }};font-size:12px;line-height:15px;font-weight:400;color:#8A9095;">{% if ab_oc > ab_nc %}<span style="text-decoration:line-through;">{{ ab_pf[1] }} {{ ab_currency }}</span>{% else %}&nbsp;{% endif %}</div>
+                <div class="ab-price" style="white-space:nowrap;font-family:{{ ab_font }};font-size:17px;line-height:22px;font-weight:800;color:{{ ab_price }};">{{ ab_pf[0] }} {{ ab_currency }}</div>
+                <div style="margin-top:8px;background-color:{{ ab_teal_soft }};border-radius:10px;padding:6px 8px;">
+                  <div style="font-family:{{ ab_font }};font-size:9.5px;line-height:12px;font-weight:700;letter-spacing:1px;color:{{ ab_teal_dark }};text-transform:uppercase;white-space:nowrap;">{{ ab_save_lbl | upcase }}</div>
+                  <div class="ab-save-amt" style="font-family:{{ ab_font }};font-size:14px;line-height:18px;font-weight:800;color:{{ ab_teal_dark }};white-space:nowrap;">{% if ab_sc > 0 %}{{ ab_pf[2] }} {{ ab_currency }}{% else %}&nbsp;{% endif %}</div>
+                </div>
+                <div style="padding-top:10px;">
+                  <div style="background-color:{{ ab_btn }};border-radius:999px;text-align:center;overflow:hidden;">
+                    <a class="ab-cta" href="{{ ab_add }}" target="_blank" style="display:block;padding:10px 6px;font-family:{{ ab_font }};font-size:13px;line-height:17px;font-weight:700;color:#FFFFFF;text-decoration:none;white-space:nowrap;"><span style="font-family:Arial,Helvetica,sans-serif;color:{{ ab_coral }};">+</span>&nbsp;{{ ab_card_cta }}</a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!--[if mso]></td><![endif]-->
+        {%- endfor -%}
+      </div>
+      <!--[if mso]></tr></table><![endif]-->
+    </td>
+  </tr>
+  {%- comment -%} --- recenzii --- {%- endcomment -%}
+  {%- if ab_proof_on and ab_rev_total > 0 -%}
+    {%- if ab_rev_total >= 1000 -%}
+      {%- assign ab_t_th = ab_rev_total | divided_by: 1000 | floor -%}
+      {%- assign ab_t_r  = ab_rev_total | modulo: 1000 -%}
+      {%- if ab_t_r < 10 -%}{%- assign ab_t_rs = ab_t_r | prepend: "00" -%}{%- elsif ab_t_r < 100 -%}{%- assign ab_t_rs = ab_t_r | prepend: "0" -%}{%- else -%}{%- assign ab_t_rs = ab_t_r | append: "" -%}{%- endif -%}
+      {%- assign ab_total_txt = ab_t_th | append: "." | append: ab_t_rs -%}
+    {%- else -%}
+      {%- assign ab_total_txt = ab_rev_total | append: "" -%}
+    {%- endif -%}
+    {%- comment -%} „1.848 de recenzii”, dar „1.812 recenzii” {%- endcomment -%}
+    {%- assign ab_last2 = ab_rev_total | modulo: 100 -%}
+    {%- assign ab_de = " de " -%}
+    {%- if ab_last2 >= 1 and ab_last2 <= 19 -%}{%- assign ab_de = " " -%}{%- endif -%}
+    {%- assign ab_min_txt = ab_min_rate | append: "" | replace: ".", "," %}
+  <tr>
+    <td class="ab-wrap" align="center" style="padding:30px 16px 0 16px;text-align:center;font-size:0;line-height:0;">
+      <!--[if mso]><table role="presentation" width="528" cellpadding="0" cellspacing="0" border="0" align="center"><tr><td><![endif]-->
+      <div style="display:inline-block;width:100%;max-width:528px;vertical-align:top;text-align:center;">
+        <div class="ab-box" style="background-color:{{ ab_strip }};border-radius:20px;padding:22px 24px 22px 24px;text-align:center;">
+          <div style="font-family:Arial,Helvetica,sans-serif;font-size:20px;line-height:22px;letter-spacing:3px;color:{{ ab_star }};">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+          <div class="ab-proof-big" style="padding-top:8px;font-family:{{ ab_font }};font-size:28px;line-height:34px;font-weight:800;color:#FFFFFF;">{{ ab_total_txt }}{{ ab_de }}{{ ab_proof_lbl }}</div>
+          <div style="padding-top:4px;font-family:{{ ab_font }};font-size:14px;line-height:21px;font-weight:400;color:#CFE6E9;">{{ ab_proof_a }} {{ ab_n }} {{ ab_proof_b }}<br>{{ ab_proof_b2 }} {{ ab_min_txt }}&nbsp;{{ ab_proof_c }}</div>
+        </div>
+      </div>
+      <!--[if mso]></td></tr></table><![endif]-->
+    </td>
+  </tr>
+  {%- endif -%}
+  {%- comment -%} --- pașii --- {%- endcomment %}
+  <tr>
+    <td class="ab-wrap" align="center" style="padding:16px 16px 0 16px;text-align:center;font-size:0;line-height:0;">
+      <!--[if mso]><table role="presentation" width="528" cellpadding="0" cellspacing="0" border="0" align="center"><tr><td><![endif]-->
+      <div style="display:inline-block;width:100%;max-width:528px;vertical-align:top;text-align:left;">
+        <div class="ab-box" style="background-color:#FFFFFF;border-radius:20px;padding:20px 24px 8px 24px;">
+          <div style="padding-bottom:14px;text-align:center;font-family:{{ ab_font }};font-size:19px;line-height:25px;font-weight:800;color:{{ ab_text }};">{{ ab_steps_title }}</div>
+          {%- for ab_st in ab_steps_list -%}
+            {%- unless ab_st contains "|" -%}{%- continue -%}{%- endunless -%}
+            {%- assign ab_stp = ab_st | split: "|" %}
+          <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0"><tr>
+            <td width="46" valign="top" style="width:46px;vertical-align:top;padding:0 0 14px 0;"><div style="width:34px;height:34px;border-radius:17px;background-color:{{ ab_coral }};text-align:center;font-family:{{ ab_font }};font-size:16px;line-height:34px;font-weight:800;color:#FFFFFF;">{{ forloop.index }}</div></td>
+            <td valign="top" style="vertical-align:top;padding:0 0 14px 0;text-align:left;">
+              <div style="font-family:{{ ab_font }};font-size:15px;line-height:20px;font-weight:700;color:{{ ab_text }};">{{ ab_stp[0] | strip }}</div>
+              <div style="padding-top:2px;font-family:{{ ab_font }};font-size:13px;line-height:19px;font-weight:400;color:#4A5B5F;">{{ ab_stp[1] | strip }}</div>
+            </td>
+          </tr></table>
+          {%- endfor %}
+        </div>
+      </div>
+      <!--[if mso]></td></tr></table><![endif]-->
+    </td>
+  </tr>
+  {%- comment -%} --- final --- {%- endcomment %}
+  <tr>
+    <td class="ab-wrap" align="center" style="padding:28px 16px 0 16px;text-align:center;font-size:0;line-height:0;">
+      <!--[if mso]><table role="presentation" width="528" cellpadding="0" cellspacing="0" border="0" align="center"><tr><td><![endif]-->
+      <div style="display:inline-block;width:100%;max-width:528px;vertical-align:top;text-align:center;">
+        <div style="background-color:{{ ab_strip }};border-radius:999px;padding:13px 18px;font-family:{{ ab_font }};font-size:14px;line-height:20px;font-weight:400;color:#FFFFFF;">{{ ab_end_text }}</div>
+      </div>
+      <!--[if mso]></td></tr></table><![endif]-->
+    </td>
+  </tr>
+  <tr>
+    <td align="center" style="padding:22px 12px 0 12px;text-align:center;">
+      <!--[if mso]>
+      <v:roundrect xmlns:v="urn:schemas-microsoft-com:vml" xmlns:w="urn:schemas-microsoft-com:office:word" href="{{ ab_cta_url }}" style="height:52px;v-text-anchor:middle;width:300px;" arcsize="50%" stroke="f" fillcolor="{{ ab_coral }}">
+        <w:anchorlock/>
+        <center style="color:#FFFFFF;font-family:Arial,sans-serif;font-size:15px;font-weight:bold;letter-spacing:1px;">{{ ab_cta_text | upcase }}&nbsp;&nbsp;&#8594;</center>
+      </v:roundrect>
+      <![endif]-->
+      <!--[if !mso]><!-->
+      <a class="ab-btn-main" href="{{ ab_cta_url }}" target="_blank" style="display:inline-block;background-color:{{ ab_coral }};border-radius:999px;padding:16px 30px 16px 34px;font-family:{{ ab_font }};font-size:15px;line-height:20px;font-weight:800;letter-spacing:1px;color:#FFFFFF;text-decoration:none;text-transform:uppercase;">{{ ab_cta_text | upcase }}&nbsp;&nbsp;<span style="font-family:Arial,Helvetica,sans-serif;font-size:18px;line-height:20px;font-weight:700;color:#FFFFFF;">&#8594;</span></a>
+      <!--<![endif]-->
+    </td>
+  </tr>
+  <tr>
+    <td align="center" style="padding:16px 24px 32px 24px;text-align:center;font-family:{{ ab_font }};font-size:12px;line-height:18px;font-weight:500;color:{{ ab_text }};">{{ ab_note }}</td>
+  </tr>
+</table>
